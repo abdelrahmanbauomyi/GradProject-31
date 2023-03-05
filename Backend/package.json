@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrate": "npx sequelize-cli db:migrate" 
+    "migrate": "npx sequelize-cli db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,9 @@
     "sequelize-cli": "^6.6.0"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.29.0"
   }
 }
