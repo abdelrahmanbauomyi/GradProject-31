@@ -21,3 +21,10 @@ To create a login-system for the 1st version of the project, A client can sign u
 - email : VARCHAR 
 - mobile number : VARCHAR
 - VerfiedEmail : Boolean
+- Rating : VARCHAR
+- Review : VARCHAR
+ 
+## parts to study
+- JWT 
+- sequlize
+- nodemailer
