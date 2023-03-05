@@ -1,12 +1,13 @@
-{
-  "development": {
-    "username": {"ENV":"POSTGRES_USER"},
-    "password": {"ENV":"POSTGRES_PASSWORD"},
-    "database": {"ENV":"POSTGRES_DB"},
-    "host": {"ENV":"POSTGRES_HOST"},
+require('dotenv').config(); // this is important!
+module.exports = {
+"development": {
+    "username": process.env.POSTGRES_USER,
+    "password": process.env.POSTGRES_PASSWORD,
+    "database": process.env.POSTGRES_DB,
+    "host": process.env.POSTGRES_HOST,
     "dialect": "postgres",
-    "port":{"ENV" : "DB_PORT"}
-  },
+    "port": process.env.DB_PORT
+},
   "test": {
     "username": "root",
     "password": null,
