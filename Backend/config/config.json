@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": {"ENV":"POSTGRES_USER"},
+    "password": {"ENV":"POSTGRES_PASSWORD"},
+    "database": {"ENV":"POSTGRES_DB"},
+    "host": {"ENV":"POSTGRES_HOST"},
+    "dialect": "postgres",
+    "port":{"ENV" : "DB_PORT"}
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
