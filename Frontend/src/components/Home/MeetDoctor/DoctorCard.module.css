@@ -1,0 +1,86 @@
+.card {
+  width: 417.12px;
+  height: 494.64px;
+  border-radius: 13.03px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-family: "poppins";
+  padding: 0 57px;
+
+  padding-top: 45px;
+}
+
+p,
+h2,
+button,
+.available {
+  font-weight: 900 !important;
+}
+.preview {
+  margin-bottom: 19px;
+}
+.available {
+  width: 92.07px;
+  height: 22.22px;
+  background-color: #ededed;
+  margin-bottom: 4px;
+  border-radius: 10.58px;
+  font-size: 10.97px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #404040;
+}
+.rectangle {
+  width: 302.28px;
+  height: 198.91px;
+  border-radius: 20.85px;
+  background-color: #4200ff;
+  margin: 0 auto;
+  margin-bottom: 0px;
+}
+.img {
+  display: flex;
+  justify-content: center;
+}
+.img img {
+  width: 323.99px;
+  height: 223.23px;
+  margin-top: -223px;
+}
+.info {
+  text-align: center;
+}
+.info h2 {
+  font-size: 23.28px;
+  color: #404040;
+  margin-bottom: 5px;
+}
+.info p {
+  font-size: 17.37px;
+  color: #767676;
+  margin-bottom: 0.5rem;
+}
+.rating{
+    display: flex;
+    justify-content: center;
+}
+.rating p{
+    size: 17.37px;
+    color: #404040;
+}
+.button {
+  height: 52.12px;
+  width: 256.79px;
+  border-radius: 20.85px;
+  color: #4200ff;
+  border: 1px solid #4200ff;
+  font-size: 17.97px;
+  color: #4200ff;
+  background-color: transparent;
+  transition: 0.2s ease-in;
+}
+.button:hover {
+  background-color: #4200ff;
+  color: white;
+}

@@ -1,0 +1,17 @@
+.holder{
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    padding: 0 120px;
+}
+.secondary-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+}
+@media only screen and (max-width: 1500px){
+    .secondary-holder{
+        gap: 20px
+    }
+}
