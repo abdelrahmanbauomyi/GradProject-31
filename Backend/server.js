@@ -1,37 +1,18 @@
-const { sequelize, User } = require('../src/models');
+const { sequelize, User } = require('./models');
 const express = require('express');
-const app = express();
+const app = express(); 
+const userRoutes = require('./routes/router')
 //TEST CODE FOR THE DATABASE CONNECTION
-app.use(express.json());
-app.post('/users', async (req, res) => {
-  try {
-    const {
-      firstName,
-      lastName,
-      password,
-      email,
-      dob,
-      gender,
-      mobilenumber,
-      VerfiedEmail,
-    } = req.body;
-    const user = await User.create({
-      firstName,
-      lastName,
-      password,
-      email,
-      dob,
-      gender,
-      mobilenumber,
-      VerfiedEmail,
-    });
-    return res.json(user);
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+app.use(express.json());         
+
+
+//Routes
+app.use('/users' , userRoutes )
+
+//Server
 app.listen({ port: 5000 }, async () => {
   console.log('running!!');
-  await sequelize.sync({ force: true });
+  //await sequelize.sync({ force: true });
+  await sequelize.sync();
   console.log('synced !!');
 });
