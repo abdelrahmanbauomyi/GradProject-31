@@ -1,7 +1,7 @@
 import "./App.css";
-import LatestArticle from "./components/ArticleSection/LatestArticle";
-import DoctorCard from "./components/MeetDoctor/DoctorCard";
-import PatientReview from "./components/PatientsReviewSection/PatientReview";
+import LatestArticle from "./components/Home/ArticleSection/LatestArticle";
+import DoctorCard from "./components/Home/MeetDoctor/DoctorCard";
+import PatientReview from "./components/Home/PatientsReviewSection/PatientReview";
 
 function App() {
   return (

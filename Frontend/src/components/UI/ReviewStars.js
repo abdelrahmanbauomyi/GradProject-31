@@ -1,27 +1,40 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import classes from "./ReviewStars.module.css";
 
-const ReviewStars = () => {
+const IconStar = ({ props }) => {
   return (
-    <div className={classes.stars}>
+    <FontAwesomeIcon
+      icon={faStar}
+      style={{
+        width: props.width,
+        height: props.height,
+        marginRight: props.marginRight,
+        color: props.color,
+      }}
+    />
+  );
+};
+
+const ReviewStars = (props) => {
+  return (
+    <Fragment>
       <span>
-        <FontAwesomeIcon icon={faStar} className={classes.icon} />
+        <IconStar props={props} />
       </span>
       <span>
-        <FontAwesomeIcon icon={faStar} className={classes.icon} />
+        <IconStar props={props} />
       </span>
       <span>
-        <FontAwesomeIcon icon={faStar} className={classes.icon} />
+        <IconStar props={props} />
       </span>
       <span>
-        <FontAwesomeIcon icon={faStar} className={classes.icon} />
+        <IconStar props={props} />
       </span>
       <span>
-        <FontAwesomeIcon icon={faStar} className={classes.icon} />
+        <IconStar props={props} />
       </span>
-    </div>
+    </Fragment>
   );
 };
 
