@@ -8,11 +8,12 @@ To create a login-system for the 1st version of the project, A client can sign u
 - Index [token required]: 'Users/' [GET]
 - Show [token required] : 'Users/:id' [GET]
 - Create N[token created] : 'Users/' [POST]
+- login [return a token] : 'Users/:email && password' 
 
 
 ## Data Shapes
 ### users
-- id :  SERIAL PRIMARY KEY
+- id :  SERIAL PRIMARY KEY 
 - firstName : VARCHAR
 - lastName : VARCHAR
 - password : VARCHAR encrypted using bcrypt
@@ -22,7 +23,7 @@ To create a login-system for the 1st version of the project, A client can sign u
 - mobile number : VARCHAR
 - VerfiedEmail : Boolean
 - Rating : VARCHAR
-- Review : VARCHAR
+- Review : VARCHAR             
  
 ## parts to study
 - JWT 
