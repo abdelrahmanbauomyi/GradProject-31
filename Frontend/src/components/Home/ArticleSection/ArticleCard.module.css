@@ -21,7 +21,7 @@
   height: 101.63px;
   width: 466.44px;
   border-radius: 30.4px;
-  margin-top: -97.905px;
+  margin-top: -90.905px;
 }
 .description {
   margin-top: 40px;
@@ -78,7 +78,7 @@
   height: 94px;
   border-radius: 30.4px;
   background-color: #4200ff;
-  margin-top: -93px;
+  margin-top: -85px;
 }
 .secondary-description {
   padding: 20px 33px;
@@ -126,8 +126,8 @@ a:focus {
     height: 60px;
     margin-left: 27px;
     border-radius: 20px;
-    margin-top: -55px;
-    margin-bottom: 25px;
+    margin-top: -2.8125rem;
+    margin-bottom: 1.5625rem;
   }
   .secondary-description {
     text-align: center;
