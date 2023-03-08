@@ -5,9 +5,10 @@ To create a login-system for the 1st version of the project, A client can sign u
 ## API Endpoints
 
 #### Users
--                  Index [token required]: 'Users/' [GET]
+- Index [token required]: 'Users/' [GET]
 - Show [token required] : 'Users/:id' [GET]
 - Create N[token created] : 'Users/' [POST]
+- login [return a token] : 'Users/:email && password' 
 
 
 ## Data Shapes
