@@ -26,6 +26,7 @@ const DoctorCard = () => {
           <p>(102)</p>
         </div>
         <button className={classes.button}>Book an Appointment</button>
+        
       </div>
     </div>
   );

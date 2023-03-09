@@ -1,3 +1,4 @@
+
 .card {
   width: 417.12px;
   height: 494.64px;
@@ -6,7 +7,6 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-family: "poppins";
   padding: 0 57px;
-
   padding-top: 45px;
 }
 
@@ -30,6 +30,17 @@ button,
   align-items: center;
   justify-content: center;
   color: #404040;
+  position: relative;
+}
+.available::before{
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #00FF00;
+  border-radius: 50%;
+  position: absolute;
+  left: 9px;
+
 }
 .rectangle {
   width: 302.28px;
@@ -83,4 +94,28 @@ button,
 .button:hover {
   background-color: #4200ff;
   color: white;
+}
+
+@media only screen and (max-width: 600px) {.card
+  {
+   width: 300px;
+    min-height: 300px;
+    display: block;
+    padding-bottom: 15px;
+    margin:10px auto;
+
+  }
+ .button {
+  width: 200px;
+  font-size: 15px;
+  }
+  .rectangle{
+    width:250px;
+    height: 200px;
+    margin-left: -30px;
+
+  }
+  .available{
+    margin-left: -28px;
+  }
 }

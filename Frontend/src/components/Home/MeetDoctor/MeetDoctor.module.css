@@ -1,0 +1,57 @@
+
+.container{
+  width: 1000.68px;
+  height: 1097.45px;
+margin:auto;
+
+} 
+.flex{
+width:100%;
+display:flex;
+ flex-wrap: wrap;
+justify-content: space-between;
+}
+
+.button {
+  height: 61px;
+  width: 185px;
+  border-radius: 20.85px;
+  color: #4200ff;
+  border: 1px solid #4200ff;
+  font-size: 17.97px;
+  color: #4200ff;
+  background-color: transparent;
+  transition: 0.2s ease-in;
+  text-align: center;
+  line-height: 58px;
+ margin: 30px auto;
+ cursor: pointer;
+
+}
+.three{
+  margin-top: 90px;
+
+  
+}
+.four{
+  align-self: flex-end;
+}
+.button:hover {
+  background-color: #4200ff;
+  color: white;
+}
+
+
+
+@media only screen and (max-width: 600px) {.container
+  {
+   width: 400px;
+   height: 2100px;
+  }
+  .three{
+    margin: auto;
+  }
+  .four{
+    margin: auto;
+  }
+}
