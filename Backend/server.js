@@ -11,7 +11,13 @@ app.use('/users', userRoutes);
 //Server
 app.listen({ port: 5000 }, async () => {
   console.log('running!!');
-  await sequelize.sync({ force: true });
+  await sequelize.sync(
+    // commented the force so it doesnt remove the database everytime you run
+    // { force: true }
+    );
   //await sequelize.sync();
   console.log('synced !!');
 });
+
+// this export is required to test the app
+module.exports = app;
