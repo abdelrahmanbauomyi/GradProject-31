@@ -13,7 +13,7 @@
   margin-right: 1rem;
 }
 .profile {
-  margin-right: 2.4375rem;
+  margin-right: 1.4375rem;
   margin-top: 1.32125rem;
   margin-left: 1.32125rem;
 }
@@ -51,9 +51,8 @@
   margin-bottom: 0.625rem;
 }
 .review {
-  font-size: 0.649375rem;
+  font-size: 0.49375rem;
   color: #404040;
-  font-weight: 800;
 }
 
 @media only screen and (max-width: 600px) {
