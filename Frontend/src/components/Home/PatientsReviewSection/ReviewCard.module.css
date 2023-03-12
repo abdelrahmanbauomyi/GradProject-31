@@ -13,7 +13,6 @@
   margin-right: 1rem;
 }
 .profile {
-  position: relative;
   margin-right: 2.4375rem;
   margin-top: 1.32125rem;
   margin-left: 1.32125rem;
@@ -25,9 +24,8 @@
   background: #4200ff;
 }
 .img {
-  position: absolute;
-  top: 0;
-  left: 0.7625rem;
+  margin-left: 0.75rem;
+  margin-top: -4.57625rem;
 }
 .img img {
   width: 4.57625rem;
