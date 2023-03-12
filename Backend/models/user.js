@@ -45,6 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       mobilenumber: {
         type: DataTypes.STRING,
       },
+      confirmed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
