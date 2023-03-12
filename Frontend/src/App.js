@@ -1,14 +1,10 @@
 import "./App.css";
-import LatestArticle from "./components/Home/ArticleSection/LatestArticle";
-import DoctorCard from "./components/Home/MeetDoctor/DoctorCard";
-import PatientReview from "./components/Home/PatientsReviewSection/PatientReview";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div style={{ padding: "100px" }}>
-      <PatientReview />
-      <LatestArticle />
-      <DoctorCard />
+      <Home />
     </div>
   );
 }
