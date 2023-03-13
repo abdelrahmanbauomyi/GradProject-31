@@ -6,11 +6,14 @@ To create a login-system for the 1st version of the project, A client can sign u
 
 #### Users
 - Index [token required]: 'Users/' [GET]
-- Show [token required] : 'Users/:id' [GET]
+<!-- - Show [token required] : 'Users/:id' [GET] -->
 - Create N[token created] : 'Users/' [POST]
 - login [return a token] : 'Users/:email && password' 
 
-
+### Doctors
+- Index : 'Doctors/' [GET]
+- Show [token required] : 'doctor/:speciality/:area ?title' [GET]
+- 
 ## Data Shapes
 ### users
 - id :  SERIAL PRIMARY KEY 
@@ -22,8 +25,26 @@ To create a login-system for the 1st version of the project, A client can sign u
 - email : VARCHAR 
 - mobile number : VARCHAR
 - VerfiedEmail : Boolean
+
+### Doctors
+- id :  SERIAL PRIMARY KEY
+- Dname : VARCHAR
+- password : VARCHAR encrypted using bcrypt
+- dob : DATE
+- gender : VARCHAR 
+- email : VARCHAR 
+- mobile number : VARCHAR
+- VerfiedEmail : Boolean
 - Rating : VARCHAR
-- Review : VARCHAR             
+- speciality : VARCHAR
+- sub-specialties : VARCHAR
+- title :VARCHAR
+- area : VARCHAR
+- location : VARCHAR
+- Fees : INTEGER
+
+
+       
  
 ## parts to study
 - JWT 
