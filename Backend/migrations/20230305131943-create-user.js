@@ -35,9 +35,9 @@ module.exports = {
       mobilenumber: {
         type: Sequelize.STRING,
       },
-      VerfiedEmail: {
+      confirmed: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

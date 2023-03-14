@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
-     * The `models/index` fi le will call this method automatically.
+     * The `models/index` file will call this method automatically.
      */
     static associate(models) {
       // define association here
@@ -45,11 +45,22 @@ module.exports = (sequelize, DataTypes) => {
       mobilenumber: {
         type: DataTypes.STRING,
       },
+      confirmed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      }
     },
     {
       sequelize,
       modelName: 'User',
       tableName: 'users',
+      indexes: [
+        // Create a unique index on email
+        {
+          unique: true,
+          fields: ['email']
+        }
+      ]
     }
   );
   return User;

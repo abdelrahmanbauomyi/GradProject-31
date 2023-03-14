@@ -1,4 +1,5 @@
 const { sequelize, User } = require('../models');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const { where } = require('sequelize');
@@ -17,6 +18,7 @@ exports.getUsers = (req, res) => {
 //LOGIN BY EMAIL
 exports.loginUser = async (req, res) => {
   try {
+    debugger;
     let email = req.body.email;
     let upass = req.body.password;
     const user = await User.findOne({ where: { email: email } });
@@ -26,6 +28,12 @@ exports.loginUser = async (req, res) => {
         user.dataValues.password
       );
       if (valid === true) {
+        const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+        res.cookie('token', token, {
+          httpOnly: true, 
+          // secure: true, set this on production
+          sameSite: 'strict',
+        });
         res.status(200).json(user);
       } else {
         res.status(400).send('invalid email or password');
@@ -56,9 +64,24 @@ exports.postUser = async (req, res) => {
     );
 
     const user = await User.create(json);
-
+    const token = jwt.sign({_id: user._id}, process.env.JWT_STRING);
+    res.cookie('token', token, {
+      httpOnly: true, 
+      // secure: true, set this on production
+      sameSite: 'strict',
+    });
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json(err);
   }
 };
+
+// Dummy request for authentication middleware testing
+exports.authTest = async (req, res) => {
+  try{
+    debugger
+    res.status(200).send(req.user);
+  }catch(e){
+    res.send({"error": e});
+  }
+}
