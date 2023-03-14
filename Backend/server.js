@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Routes
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 
 //Server
 app.listen({ port: 4000 }, async () => {

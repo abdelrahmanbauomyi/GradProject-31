@@ -3,14 +3,15 @@ const router = express.Router();
 const authUser = require('../Handlers/authUser');
 const userHandler = require('../Handlers/userHandler');
 
-//GET Request at /users
+//Requests at /user
 
-router.get('/', userHandler.getUsers);
-router.get('/login', userHandler.loginUser);
+router.get('/user', userHandler.getUsers);
 router.get('/user', authUser, userHandler.authTest);
+router.post('/user', userHandler.postUser);
 
-//POST Request at /users
 
-router.post('/', userHandler.postUser);
+
+//Request at /login
+router.get('/login', userHandler.loginUser);
 
 module.exports = router;
