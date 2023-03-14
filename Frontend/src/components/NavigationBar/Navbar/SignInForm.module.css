@@ -1,0 +1,28 @@
+.signin-form {
+    /* max-width: 500px; */
+    width: fit-content;
+    height:fit-content;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    flex:1;
+    /* background-color: #f7f7f7; */
+    background-color: #FFFAF1;
+    
+    /* box-shadow: 0 2px 5px rgba(2, 0, 0, 0.3); */
+  }
+  .text {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+.sign-up-text{
+    display: flex;
+    justify-content: center;
+  }
+  .sign-up-text p:last-child {
+    color: blue;
+    text-decoration: underline;
+    margin-left: 10px;
+    cursor: pointer;
+  }

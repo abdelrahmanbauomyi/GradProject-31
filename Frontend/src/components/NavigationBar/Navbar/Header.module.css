@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #fffaf1;
+  background-size: auto;
+  height: 100% !important;
+}
+.Home {
+  border: none;
+
+  border-radius: 10px;
+  color: #4200ff !important;
+}
+
+.SignUp {
+  border: none;
+  border-radius: 20px;
+  background-color: white !important;
+  color: #4200ff !important;
+  border-color: #4200ff !important;
+  margin: 10px;
+}
+.SignIn {
+  border: none;
+  border-radius: 20px;
+  background-color: #4200ff !important;
+  margin: 10px;
+}

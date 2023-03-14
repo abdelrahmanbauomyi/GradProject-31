@@ -1,0 +1,37 @@
+.nameDoc {
+  margin: 15px;
+  border-radius: 15px;
+
+  text-align: center;
+  height: 40px;
+  position: relative;
+}
+
+.specialtiy {
+  margin: 15px;
+  border-radius: 15px;
+
+  height: 40px;
+  text-align: center;
+}
+
+.searchBtn {
+  border: none;
+  border-radius: 20px;
+  background-color: #4200ff !important;
+  margin: 15px;
+}
+.findDoc {
+  position: relative;
+  margin-top: 1%;
+  margin-left: 3%;
+}
+
+.pos {
+  position: sticky;
+  background-color: white;
+  border-radius: 15px;
+  margin-left: 2%;
+  margin-top: 6%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
