@@ -4,18 +4,11 @@
   border-radius: 13.03px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  font-family: "poppins";
   padding: 0 57px;
 
   padding-top: 45px;
 }
 
-p,
-h2,
-button,
-.available {
-  font-weight: 900 !important;
-}
 .preview {
   margin-bottom: 19px;
 }
@@ -61,13 +54,13 @@ button,
   color: #767676;
   margin-bottom: 0.5rem;
 }
-.rating{
-    display: flex;
-    justify-content: center;
+.rating {
+  display: flex;
+  justify-content: center;
 }
-.rating p{
-    size: 17.37px;
-    color: #404040;
+.rating p {
+  size: 17.37px;
+  color: #404040;
 }
 .button {
   height: 52.12px;

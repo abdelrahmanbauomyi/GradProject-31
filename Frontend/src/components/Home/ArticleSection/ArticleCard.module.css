@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
-
 .main-card {
   width: 551.57px;
   min-height: 535.93px;
   padding: 41px;
   background-color: white;
-  font-family: "poppins";
-  font-weight: 800;
   border-radius: 12.69px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.25s ease-in-out;
+}
+.main-card:hover {
+  transform: scale(1.05);
 }
 
 .main-card__img img {
@@ -56,15 +56,17 @@
   width: 531.59px;
   min-height: 244.08px;
   background-color: white;
-  font-family: "poppins";
-  font-weight: 800;
   border-radius: 12.69px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 27px 18px;
   display: flex;
   justify-content: space-between;
+  transition: 0.25s ease-in-out;
 }
-.img-wrapper{
+.secondary-card:hover {
+  transform: scale(1.05);
+}
+.img-wrapper {
   display: flex;
   align-items: center;
 }
