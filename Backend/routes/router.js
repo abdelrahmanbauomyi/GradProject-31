@@ -6,7 +6,7 @@ const userHandler = require('../Handlers/userHandler');
 //Requests at /users
 
 router.get('/users', userHandler.getUsers);
-router.get('/users', authUser, userHandler.authTest);
+router.get('/auth', authUser, userHandler.authTest);
 router.post('/users', userHandler.postUser);
 
 
