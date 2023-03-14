@@ -3,11 +3,11 @@ const router = express.Router();
 const authUser = require('../Handlers/authUser');
 const userHandler = require('../Handlers/userHandler');
 
-//Requests at /user
+//Requests at /users
 
-router.get('/user', userHandler.getUsers);
-router.get('/user', authUser, userHandler.authTest);
-router.post('/user', userHandler.postUser);
+router.get('/users', userHandler.getUsers);
+router.get('/users', authUser, userHandler.authTest);
+router.post('/users', userHandler.postUser);
 
 
 
