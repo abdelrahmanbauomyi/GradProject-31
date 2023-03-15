@@ -2,8 +2,10 @@ const { sequelize, User } = require('./models');
 const express = require('express');
 const app = express();
 const userRoutes = require('./routes/router');
+const cookieParser = require('cookie-parser');
 //TEST CODE FOR THE DATABASE CONNECTION
 app.use(express.json());
+app.use(cookieParser())
 
 //Routes
 app.use('/', userRoutes);
