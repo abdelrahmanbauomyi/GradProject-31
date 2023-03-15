@@ -29,6 +29,13 @@ describe('this is the suite for the routes testing', () => {
       });
       expect(response.status).toBe(200);
     });
+    fit("this is for the edit users test", async() => {
+      const response = await request.get('/users/edit').send({
+        userId: 1 
+      });
+      expect(response.status).toBe(200);
+    
+    })
   });
   // the is the post requests test which is the "/users/" at the moment
   describe('this is the post requests', () => {
@@ -39,7 +46,7 @@ describe('this is the suite for the routes testing', () => {
     in order for this test to pass you need to change the email every time you run it 
     */
     it('this is the /users/ test', async () => {
-      const response = await request.post('/users/').send({
+      const response = await request.post('/users/edit').send({
         firstName: 'zzzz',
         lastName: 'zzz',
         password: 'zzzz',

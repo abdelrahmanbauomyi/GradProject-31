@@ -85,3 +85,26 @@ exports.authTest = async (req, res) => {
     res.send({ error: e });
   }
 };
+
+
+
+exports.getEditUser = async (req, res, next) => {
+  const userId = req.body.userId;
+  let user;
+  User.findByPk(userId).then((User) => {
+    user.firstName = User.firstName;
+    user.lastName = User.lastName;
+    user.password = User.password;
+    user.email = User.email;
+    user.dob = User.dob;
+    user.gender = User.gender;
+    user.mobilenumber = User.mobilenumber;
+
+    console.log(user);
+    res.status(202).json(user);
+  }).catch((error)=>{
+    console.log(error);
+    res.send({ error: e });
+    }
+  )
+}
