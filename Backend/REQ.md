@@ -24,7 +24,7 @@ To create a login-system for the 1st version of the project, A client can sign u
 - gender : VARCHAR 
 - email : VARCHAR 
 - mobile number : VARCHAR
-- VerfiedEmail : Boolean
+- confirmed : Boolean
 
 ### Doctors
 - id :  SERIAL PRIMARY KEY
@@ -34,8 +34,8 @@ To create a login-system for the 1st version of the project, A client can sign u
 - gender : VARCHAR 
 - email : VARCHAR 
 - mobile number : VARCHAR
-- VerfiedEmail : Boolean
-- Rating : VARCHAR
+- confirmed : Boolean
+- Rating : INTGER
 - speciality : VARCHAR
 - sub-specialties : VARCHAR
 - title :VARCHAR

@@ -9,8 +9,6 @@ router.get('/users', userHandler.getUsers);
 router.get('/auth', authUser, userHandler.authTest);
 router.post('/users', userHandler.postUser);
 
-
-
 //Request at /login
 router.get('/login', userHandler.loginUser);
 

@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Doctor extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init(
+  Doctor.init(
     {
       id: {
         allowNull: false,
@@ -19,11 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
+      Dname: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -49,11 +45,34 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      Rating: {
+        type: DataTypes.INTEGER,
+      },
+      speciality: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      sub_specialties: {
+        type: DataTypes.STRING,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      area: {
+        type: DataTypes.STRING,
+      },
+      location: {
+        type: DataTypes.STRING,
+      },
+      Fees: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
-      modelName: 'User',
-      tableName: 'users',
+      modelName: 'Doctor',
+      tableName: 'doctors',
       indexes: [
         // Create a unique index on email
         {
@@ -63,5 +82,5 @@ module.exports = (sequelize, DataTypes) => {
       ],
     }
   );
-  return User;
+  return Doctor;
 };

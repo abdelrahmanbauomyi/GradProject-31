@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
       if (valid === true) {
         const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
         res.cookie('token', token, {
-          httpOnly: true, 
+          httpOnly: true,
           // secure: true, set this on production
           sameSite: 'strict',
         });
@@ -64,9 +64,9 @@ exports.postUser = async (req, res) => {
     );
 
     const user = await User.create(json);
-    const token = jwt.sign({_id: user._id}, process.env.JWT_STRING);
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_STRING);
     res.cookie('token', token, {
-      httpOnly: true, 
+      httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
     });
@@ -78,10 +78,10 @@ exports.postUser = async (req, res) => {
 
 // Dummy request for authentication middleware testing
 exports.authTest = async (req, res) => {
-  try{
-    debugger
+  try {
+    debugger;
     res.status(200).send(req.user);
-  }catch(e){
-    res.send({"error": e});
+  } catch (e) {
+    res.send({ error: e });
   }
-}
+};
