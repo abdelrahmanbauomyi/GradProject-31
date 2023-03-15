@@ -87,7 +87,7 @@ exports.authTest = async (req, res) => {
 };
 
 
-
+// TODO : use the req.user instead of the query
 exports.getEditUser = async (req, res, next) => {
   const userId = req.body.userId;
   User.findAll({
@@ -102,6 +102,7 @@ exports.getEditUser = async (req, res, next) => {
   });
 }
 
+// TODO : use the req.user instead of the query
 exports.postEditUser = async (req, res, next) => {
   const userId = req.body.userId;
   const updatedFirstName = req.body.firstName;
