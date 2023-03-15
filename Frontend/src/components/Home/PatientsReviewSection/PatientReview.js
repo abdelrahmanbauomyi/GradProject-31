@@ -7,6 +7,7 @@ const PatientReview = () => {
     <Section
       title="Patients Reviews"
       paragraph="Let’s see what our happy patients says"
+      className='ReviewMarginTop'
     >
       <SliderComponent />
     </Section>

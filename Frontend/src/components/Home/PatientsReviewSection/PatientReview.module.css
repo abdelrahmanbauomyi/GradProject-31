@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
 .main {
   width: 100%;
   height: auto;
-  font-family: "poppins";
-  font-weight: 800;
 }
 .title {
   text-align: center;

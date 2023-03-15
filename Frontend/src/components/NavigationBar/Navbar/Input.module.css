@@ -1,0 +1,47 @@
+.input {
+  display: block;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.input label {
+  display: block;
+  font-size: 15px;
+  margin-right: 1rem;
+  margin-bottom: 3px;
+  font-weight: bold;
+  color: black;
+}
+
+.input input {
+  display: block;
+  width: 80%;
+  border-radius: 15px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  font: inherit;
+  font-size: 1em;
+  text-align: center;
+  background-color: #f8f7f7;
+}
+/*  */
+/* .input {
+    display: block;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input label {
+    
+    font-size: 15px;
+    margin-right: 1rem;
+  }
+  
+  .input input {
+    width: 30%;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    font: inherit;
+    text-align: center
+    
+  } */

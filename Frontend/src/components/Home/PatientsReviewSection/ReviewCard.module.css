@@ -7,14 +7,12 @@
   margin: 0 auto;
   margin-bottom: 1rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  font-weight: 800;
 }
 .wrapper {
   margin-right: 1rem;
 }
 .profile {
-  position: relative;
-  margin-right: 2.4375rem;
+  margin-right: 1.4375rem;
   margin-top: 1.32125rem;
   margin-left: 1.32125rem;
 }
@@ -25,9 +23,8 @@
   background: #4200ff;
 }
 .img {
-  position: absolute;
-  top: 0;
-  left: 0.7625rem;
+  margin-left: 0.75rem;
+  margin-top: -4.57625rem;
 }
 .img img {
   width: 4.57625rem;
@@ -53,9 +50,8 @@
   margin-bottom: 0.625rem;
 }
 .review {
-  font-size: 0.649375rem;
+  font-size: 0.49375rem;
   color: #404040;
-  font-weight: 800;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,17 +1,12 @@
 import "./App.css";
-import LatestArticle from "./components/Home/ArticleSection/LatestArticle";
-import PatientReview from "./components/Home/PatientsReviewSection/PatientReview";
-import MeetDoctor from "./components/Home/MeetDoctor/MeetDoctor"
-
+import Home from "./components/Home/Home";
+import Header from './components/NavigationBar/Navbar/Header'
 
 function App() {
   return (
-    <div style={{ padding: "10px" }}>
-      <MeetDoctor /> 
-      <PatientReview />
-      <LatestArticle />
-
-      
+    <div style={{ padding: "1px" }}>
+      <Header/>
+      <Home />
     </div>
   );
 }
