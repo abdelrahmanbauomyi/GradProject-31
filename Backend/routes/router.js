@@ -9,11 +9,18 @@ router.get('/users', userHandler.getUsers);
 router.get('/auth', authUser, userHandler.authTest);
 router.post('/users', userHandler.postUser);
 
-// Requqest for edit and delete user
-// dummy urls for simple tests
-// router.get('/users/delete', authUser, userHandler.authTest);
-router.get('/users/edit', userHandler.getEditUser);
 
+// Request for edit and delete user all should have the userId passed in the body
+// dummy urls for simple tests
+router.post('/users/delete',userHandler.postDeleteUser);
+/* this should open the edit page and fill the 
+    the values are 'firstName', 'lastName', 'email', 'gender', 'mobilenumber','dob'
+    password wont be shown for security and the other fields are irrelevant user
+*/
+router.get('/users/edit', userHandler.getEditUser);
+/* after the user edit the data he will send a post request
+ */
+router.post('/users/edit',userHandler.postEditUser);
 
 
 //Request at /login

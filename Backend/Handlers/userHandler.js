@@ -90,21 +90,73 @@ exports.authTest = async (req, res) => {
 
 exports.getEditUser = async (req, res, next) => {
   const userId = req.body.userId;
-  let user;
-  User.findByPk(userId).then((User) => {
-    user.firstName = User.firstName;
-    user.lastName = User.lastName;
-    user.password = User.password;
-    user.email = User.email;
-    user.dob = User.dob;
-    user.gender = User.gender;
-    user.mobilenumber = User.mobilenumber;
-
-    console.log(user);
-    res.status(202).json(user);
-  }).catch((error)=>{
+  User.findAll({
+    attributes: ['firstName', 'lastName', 'email', 'gender', 'mobilenumber', 'dob']
+    , where: { id: userId }
+  }).then((products) => {
+    console.log(products[0]);
+    res.status(202).json(products[0]);
+  }).catch((error) => {
     console.log(error);
-    res.send({ error: e });
-    }
-  )
+    res.send({ error: error })
+  });
+}
+
+exports.postEditUser = async (req, res, next) => {
+  const userId = req.body.userId;
+  const updatedFirstName = req.body.firstName;
+  const updatedLastName = req.body.lastName;
+  const updatedEmail = req.body.email;
+  const updatedPassword = bcrypt.hashSync(
+    req.body.password + BCRYPT_PASSWORD,
+    parseInt(SALT_ROUNDS)
+  );
+  const updatedGender = req.body.gender;
+  const updatedMobilenumber = req.body.mobilenumber;
+  const updatedDob = req.body.dob;
+  User.findByPk(userId)
+    .then((user) => {
+      console.log(user);
+      user.firstName = updatedFirstName;
+      user.lastName = updatedLastName;
+      user.email = updatedEmail;
+      user.password = updatedPassword;
+      user.gender = updatedGender;
+      user.mobilenumber = updatedMobilenumber;
+      user.dob = updatedDob;
+      return user.save();
+    })
+    .then((result) => {
+      console.log("edit complete");
+      res.redirect('/users');
+    })
+    .catch((error) => {
+      console.log(error);
+      res.send({ error: error })
+    })
+}
+
+exports.postDeleteUser = (req, res, next) => {
+  const userId = req.body.userId;
+  User.findByPk(userId)
+    .then((user) => {
+      if (user) {
+        user.destroy()
+          .then((result) => {
+            console.log('user was found and destroyed');
+            res.redirect('/users');
+          })
+          .catch((error) => {
+            console.log(error);
+            res.send({ error: error })
+          });
+      } else {
+        console.log('user was not found');
+        res.redirect('/users');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.send({ error: error });
+    })
 }
