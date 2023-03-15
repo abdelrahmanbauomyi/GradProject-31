@@ -30,9 +30,9 @@ button,
   align-items: center;
   justify-content: center;
   color: #404040;
-  position: relative;
+  gap:4px;
 }
-.available::before{
+/* .available::before{
   content: "";
   width: 8px;
   height: 8px;
@@ -40,7 +40,12 @@ button,
   border-radius: 50%;
   position: absolute;
   left: 9px;
-
+} */
+.dot{
+  width: 8px;
+  height: 8px;
+  /* background-color: #00FF00; */
+  border-radius: 50%;
 }
 .rectangle {
   width: 302.28px;

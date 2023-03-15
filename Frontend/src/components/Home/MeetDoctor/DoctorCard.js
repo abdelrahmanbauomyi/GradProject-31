@@ -4,10 +4,17 @@ import doctor from "../../../assets/doctor.png";
 import ReviewStars from "../../UI/ReviewStars";
 
 const DoctorCard = () => {
+  const avaliable = false;
   return (
     <div className={classes.card}>
       <div className={classes.preview}>
-        <div className={classes.available}>Available</div>
+        <div className={classes.available}>
+          <div
+            style={{ backgroundColor: avaliable ? "#00FF00" : "grey" }}
+            className={classes.dot}
+          ></div>
+          Available
+        </div>
         <div className={classes.rectangle}></div>
         <div className={classes.img}>
           <img src={doctor} alt="doctor" />
@@ -26,7 +33,6 @@ const DoctorCard = () => {
           <p>(102)</p>
         </div>
         <button className={classes.button}>Book an Appointment</button>
-        
       </div>
     </div>
   );

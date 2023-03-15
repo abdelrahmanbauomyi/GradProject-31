@@ -2,10 +2,12 @@ import React from "react";
 import classes from "./MeetDoctor.module.css";
 import DoctorCard from "./DoctorCard"
 import Section from "../../UI/Section"
+import useWidthAndHeight from "../../../hooks/useWidthAndHeight";
 
 
 const MeetDoctor = () => {
-
+  const [width] = useWidthAndHeight();
+  console.log(width);
   return (
     <Section title="Meet Our Doctors" paragraph="Well qualified doctors ready to serve you">
        <div className={classes.container}>
