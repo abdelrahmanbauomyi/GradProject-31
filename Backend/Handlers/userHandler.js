@@ -93,9 +93,9 @@ exports.getEditUser = async (req, res, next) => {
   User.findAll({
     attributes: ['firstName', 'lastName', 'email', 'gender', 'mobilenumber', 'dob']
     , where: { id: userId }
-  }).then((products) => {
-    console.log(products[0]);
-    res.status(202).json(products[0]);
+  }).then((users) => {
+    console.log(users[0]);
+    res.status(202).json(users[0]);
   }).catch((error) => {
     console.log(error);
     res.send({ error: error })
