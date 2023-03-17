@@ -14,10 +14,10 @@ app.use('/', userRoutes);
 app.listen({ port: process.env.BACK_END_PORT }, async () => {
   console.log('running!!');
   await sequelize
-    .sync
+    .sync(
     // commented the force so it doesnt remove the database everytime you run
-    // { force: true }
-    ();
+    { force: true }
+    );
   //await sequelize.sync();
   console.log('synced !!');
 });

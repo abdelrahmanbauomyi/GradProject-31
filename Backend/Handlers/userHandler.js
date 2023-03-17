@@ -75,7 +75,7 @@ exports.postUser = async (req, res) => {
     );
 
     const user = await User.create(json);
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_STRING);
+    const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
     await User.update(
       { tokens: sequelize.fn('array_append', sequelize.col('tokens'), token) },
       { where: { id: user.id } }
@@ -238,14 +238,17 @@ exports.sendVerificationEmail= async (email,urlToken)=>{
     html:`please click this url to confirm your email address : <a href=${urlToken}>${urlToken}</a>`
   });
 }
-exports.verifyEmail= async (req,res) => {
+exports.verifyEmail= async (req,res,next) => {
   try{
-    debugger;
+
     const token = req.params.token;
     console.log(token);
     const decoded = jwt.verify(token, process.env.JWT_STRING);
-    const id = decoded._id;
-    await User.update({confirmed: true},{where:{id:1}})
+    const user = await User.findOne({ where: { id: decoded._id } });
+    console.log(user)
+    await User.update({confirmed: true},{where:{id:decoded._id}});
+    res.status(200).send("email has been verified")
+
   }
   catch(err){
     res.send(err)
