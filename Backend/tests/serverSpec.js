@@ -29,13 +29,12 @@ describe('this is the suite for the routes testing', () => {
       });
       expect(response.status).toBe(200);
     });
-    it("this is for the edit users test", async () => {
+    it('this is for the edit users test', async () => {
       const response = await request.get('/users/edit').send({
-        userId: 1
+        userId: 1,
       });
       expect(response.status).toBe(202);
-
-    })
+    });
   });
   // the is the post requests test which is the "/users/" at the moment
   describe('this is the post requests', () => {
@@ -74,7 +73,7 @@ describe('this is the suite for the routes testing', () => {
 
   fit('this is the /users/delete test', async () => {
     const response = await request.post('/users/delete').send({
-      userId:5
+      userId: 5,
     });
     expect(response.status).toBe(302);
   });

@@ -30,6 +30,16 @@ exports.loginUser = async (req, res) => {
       );
       if (valid === true) {
         const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+        await User.update(
+          {
+            tokens: sequelize.fn(
+              'array_append',
+              sequelize.col('tokens'),
+              token
+            ),
+          },
+          { where: { id: user.id } }
+        );
         res.cookie('token', token, {
           httpOnly: true,
           // secure: true, set this on production
@@ -66,6 +76,10 @@ exports.postUser = async (req, res) => {
 
     const user = await User.create(json);
     const token = jwt.sign({ _id: user._id }, process.env.JWT_STRING);
+    await User.update(
+      { tokens: sequelize.fn('array_append', sequelize.col('tokens'), token) },
+      { where: { id: user.id } }
+    );
     res.cookie('token', token, {
       httpOnly: true,
       // secure: true, set this on production
@@ -80,32 +94,74 @@ exports.postUser = async (req, res) => {
   }
 };
 
-// Dummy request for authentication middleware testing
-exports.authTest = async (req, res) => {
+exports.logout = async (req, res) => {
   try {
-    debugger;
-    res.status(200).send(req.user);
+    const validTokens = req.user.tokens.filter(
+      (token) => token !== req.cookies.token
+    );
+    await User.update({ tokens: validTokens }, { where: { id: req.user.id } });
+    res.cookie('token', '', {
+      expires: new Date('October 13, 1970 11:13:00'),
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+    });
+    res.send(req.user);
   } catch (e) {
     res.send({ error: e });
   }
 };
 
+exports.logoutFromAllDevices = async (req, res) => {
+  try {
+    await User.update({ tokens: [] }, { where: { id: req.user.id } });
+    res.cookie('token', '', {
+      expires: new Date('October 13, 1970 11:13:00'),
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+    });
+    res.send(req.user);
+  } catch (e) {
+    res.send({ error: e });
+  }
+};
 
+// Dummy request for authentication middleware testing
+exports.authTest = async (req, res) => {
+  try {
+    const tokens = req.user.tokens;
+    res.status(200).send(tokens);
+  } catch (e) {
+    res.send({ error: e });
+  }
+};
 
+// TODO : use the req.user instead of the query
 exports.getEditUser = async (req, res, next) => {
   const userId = req.body.userId;
   User.findAll({
-    attributes: ['firstName', 'lastName', 'email', 'gender', 'mobilenumber', 'dob']
-    , where: { id: userId }
-  }).then((products) => {
-    console.log(products[0]);
-    res.status(202).json(products[0]);
-  }).catch((error) => {
-    console.log(error);
-    res.send({ error: error })
-  });
-}
+    attributes: [
+      'firstName',
+      'lastName',
+      'email',
+      'gender',
+      'mobilenumber',
+      'dob',
+    ],
+    where: { id: userId },
+  })
+    .then((users) => {
+      console.log(users[0]);
+      res.status(202).json(users[0]);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.send({ error: error });
+    });
+};
 
+// TODO : use the req.user instead of the query
 exports.postEditUser = async (req, res, next) => {
   const userId = req.body.userId;
   const updatedFirstName = req.body.firstName;
@@ -131,28 +187,29 @@ exports.postEditUser = async (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      console.log("edit complete");
+      console.log('edit complete');
       res.redirect('/users');
     })
     .catch((error) => {
       console.log(error);
-      res.send({ error: error })
-    })
-}
+      res.send({ error: error });
+    });
+};
 
 exports.postDeleteUser = (req, res, next) => {
   const userId = req.body.userId;
   User.findByPk(userId)
     .then((user) => {
       if (user) {
-        user.destroy()
+        user
+          .destroy()
           .then((result) => {
             console.log('user was found and destroyed');
             res.redirect('/users');
           })
           .catch((error) => {
             console.log(error);
-            res.send({ error: error })
+            res.send({ error: error });
           });
       } else {
         console.log('user was not found');

@@ -9,7 +9,6 @@ const userHandler = require('../Handlers/userHandler');
 router.get('/auth', authUser, userHandler.authTest);
 router.post('/users', userHandler.postUser);
 
-
 // Request for edit and delete user all should have the userId passed in the body
 // dummy urls for simple tests
 router.delete('/users/delete',authUser,userHandler.postDeleteUser);
