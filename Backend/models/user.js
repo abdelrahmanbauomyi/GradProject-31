@@ -49,6 +49,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      tokens: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+      },
     },
     {
       sequelize,

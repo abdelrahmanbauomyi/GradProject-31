@@ -3,12 +3,10 @@ const { sequelize, User } = require('../models');
 
 const authUser = async (req, res, next) => {
   try {
-    debugger;
     const token = req.cookies.token;
     const decoded = jwt.verify(token, process.env.JWT_STRING);
-    const id = decoded._id;
     const user = await User.findOne({ where: { id: decoded._id } });
-    if (!user) {
+    if (!user || !user.tokens.includes(token)) {
       throw new Error();
     }
     req.user = user;
