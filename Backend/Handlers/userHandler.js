@@ -140,7 +140,7 @@ exports.authTest = async (req, res) => {
 
 // TODO : use the req.user instead of the query
 exports.getUserInfo = async (req, res, next) => {
-  const userId = req.body.userId;
+  const userId = req.user.id;
   User.findAll({
     attributes: [
       'firstName',
@@ -164,7 +164,7 @@ exports.getUserInfo = async (req, res, next) => {
 
 // TODO : use the req.user instead of the query
 exports.Edit = async (req, res, next) => {
-  const userId = req.body.userId;
+  const userId = req.user.id;
   const updatedFirstName = req.body.firstName;
   const updatedLastName = req.body.lastName;
   const updatedEmail = req.body.email;
@@ -198,7 +198,7 @@ exports.Edit = async (req, res, next) => {
 };
 
 exports.Delete = (req, res, next) => {
-  const userId = req.body.userId;
+  const userId = req.user.id;
   User.findByPk(userId)
     .then((user) => {
       if (user) {

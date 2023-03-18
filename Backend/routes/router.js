@@ -11,7 +11,7 @@ router.get('/auth', authUser, userHandler.authTest); //test for the authenticati
 //CRUD routes
 router.post('/users', userHandler.createUser);
 router.delete('/users', authUser, userHandler.Delete);
-router.get('/users', authUser, userHandler.getUserInfo); // gives an error !!!!!!!!!!!!!!!!!
+router.get('/users', authUser, userHandler.getUserInfo);
 router.patch('/users/edit', authUser, userHandler.Edit); // gives an error !!!!!!!!!!!!!!!!!
 
 //login & logouts routes
