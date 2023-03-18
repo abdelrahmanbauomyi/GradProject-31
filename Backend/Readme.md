@@ -5,15 +5,24 @@ To create a login-system for the 1st version of the project, A client can sign u
 ## API Endpoints
 
 #### Users
-- Index [token required]: 'Users/' [GET]
+#### CRUD routes
+- [x] get_user_data  [token required]: 'users/' [GET]
 <!-- - Show [token required] : 'Users/:id' [GET] -->
-- Create N[token created] : 'Users/' [POST]
-- login [return a token] : 'Users/:email && password' 
+- [x] Create [token created] : 'users/' [POST] 
+- [x] delete [user deleted] : 'users/' [DELETE] 
+- [x] edit [user deleted] : 'users/edit' [PATCH] 
+#### Login & Logout routes
+- [x] login  [return a token] : 'users/login'  [GET]
+- [x] logout [removes a token] : 'Users/logout'[POST] 
+- [x] logoutFromAllDevices[removes all tokens] : 'Users/logoutFromAllDevices'[POST]
+#### Email routes
+- [x] verifyEmail [uses a token] : 'confirmation/:token'  [GET]
 
+- - - -
 ### Doctors
-- Index : 'Doctors/' [GET]
-- Show [token required] : 'doctor/:speciality/:area ?title' [GET]
-- 
+- [x] Index : 'Doctors/' [GET]
+- [x] Show [token required] : 'doctor/:speciality/:area ?title' [GET]
+- [x] 
 ## Data Shapes
 ### users
 - id :  SERIAL PRIMARY KEY 

@@ -138,7 +138,7 @@ exports.authTest = async (req, res) => {
 };
 
 // TODO : use the req.user instead of the query
-exports.getEditUser = async (req, res, next) => {
+exports.getUserInfo = async (req, res, next) => {
   const userId = req.body.userId;
   User.findAll({
     attributes: [
@@ -162,7 +162,7 @@ exports.getEditUser = async (req, res, next) => {
 };
 
 // TODO : use the req.user instead of the query
-exports.postEditUser = async (req, res, next) => {
+exports.Edit = async (req, res, next) => {
   const userId = req.body.userId;
   const updatedFirstName = req.body.firstName;
   const updatedLastName = req.body.lastName;
@@ -196,7 +196,7 @@ exports.postEditUser = async (req, res, next) => {
     });
 };
 
-exports.postDeleteUser = (req, res, next) => {
+exports.Delete = (req, res, next) => {
   const userId = req.body.userId;
   User.findByPk(userId)
     .then((user) => {
