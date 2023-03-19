@@ -11,13 +11,11 @@ const searchSlice = createSlice({
   },
   reducers: {
     setGender(state, action) {
-      /* const gender = action.payload;
-      if (gender.checked) {
-        state.gender += gender.check;
-      } else {
-        state.gender = state.gender.replace(gender.check, "");
-      } */
-      state.gender = action.payload
+      if (action.payload === "Any") {
+        state.gender = "";
+        return;
+      }
+      state.gender = action.payload;
     },
     setTitle(state, action) {
       const title = action.payload;
@@ -36,9 +34,17 @@ const searchSlice = createSlice({
       }
     },
     setAvailability(state, action) {
+      if (action.payload === "Any Day") {
+        state.availability = "";
+        return;
+      }
       state.availability = action.payload;
     },
     setFees(state, action) {
+      if (action.payload === "Any") {
+        state.fees = "";
+        return;
+      }
       state.fees = action.payload;
     },
   },

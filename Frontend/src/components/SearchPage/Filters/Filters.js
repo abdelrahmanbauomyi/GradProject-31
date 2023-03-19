@@ -11,6 +11,7 @@ const Filters = () => {
         title="Title"
         checks={["Professor", "Lecturer", "Consultant", "Specialist"]}
         action={(title) => dispatch(searchActions.setTitle(title))}
+        expanded
       />
       <AccordionComponent
         title="Gender"

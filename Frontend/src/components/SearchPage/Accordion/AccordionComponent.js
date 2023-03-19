@@ -3,14 +3,22 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Checkbox, FormControlLabel } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RadioComponent from "./RadioComponent";
+import CheckBoxComponent from "./CheckBoxComponent";
 
 const AccordionComponent = (props) => {
+  const AccordionStyle = {
+    "&:before": {
+      backgroundColor: "transparent !important",
+    },
+    marginBottom: "5px",
+    borderRadius: "10px !important",
+  };
+
   return (
-    <Accordion className={classes.accordion}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion className={classes.accordion} sx={AccordionStyle} defaultExpanded={props.expanded}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} >
         <Typography style={{ color: "#4200FF", fontSize: "20px" }}>
           {props.title}
         </Typography>
@@ -19,22 +27,11 @@ const AccordionComponent = (props) => {
         <div style={{ paddingLeft: "20px" }}>
           {!props.radio &&
             props.checks.map((check, idx) => (
-              <FormControlLabel
-                key={idx}
-                value="start"
-                control={
-                  <Checkbox
-                    onChange={(event) =>
-                      props.action({ check, checked: event.target.checked })
-                    }
-                    color="primary"
-                  />
-                }
-                label={check}
-                labelPlacement="end"
-              />
+              <CheckBoxComponent key={idx} check={check} action={props.action}/>
             ))}
-          {props.radio && <RadioComponent checks={props.checks} action={props.action}/>}
+          {props.radio && (
+            <RadioComponent checks={props.checks} action={props.action} />
+          )}
         </div>
       </AccordionDetails>
     </Accordion>

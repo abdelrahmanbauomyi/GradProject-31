@@ -16,7 +16,15 @@ const RadioComponent = ({ checks, action }) => {
           <FormControlLabel
             key={idx}
             value={check}
-            control={<Radio />}
+            control={
+              <Radio
+                sx={{
+                  " &.Mui-checked": {
+                    color: "#4200ff",
+                  },
+                }}
+              />
+            }
             label={check}
           />
         ))}
