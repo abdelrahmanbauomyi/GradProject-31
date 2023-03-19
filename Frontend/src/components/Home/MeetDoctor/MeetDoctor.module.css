@@ -2,8 +2,8 @@
 .container{
   width: 1000.68px;
   height: 1097.45px;
-margin:auto;
-
+  margin:auto;
+ text-align: center;
 } 
 .flex{
 width:100%;
@@ -30,8 +30,6 @@ justify-content: space-between;
 }
 .three{
   margin-top: 90px;
-
-  
 }
 .four{
   align-self: flex-end;
@@ -46,12 +44,7 @@ justify-content: space-between;
 @media only screen and (max-width: 600px) {.container
   {
    width: 400px;
-   height: 2100px;
+   height: 1050px;
   }
-  .three{
-    margin: auto;
-  }
-  .four{
-    margin: auto;
-  }
+
 }

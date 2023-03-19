@@ -7,22 +7,35 @@ import useWidthAndHeight from "../../../hooks/useWidthAndHeight";
 
 const MeetDoctor = () => {
   const [width] = useWidthAndHeight();
-  console.log(width);
+
+  if(width < 600) {
+    return (
+    <Section title="Meet Our Doctors" paragraph="Well qualified doctors ready to serve you">
+    <div className={classes.container}>
+     <div className={classes.flex}>
+     <DoctorCard />
+     <DoctorCard />
+     </div>
+     </div>
+     <div className={classes.button}>See More </div>
+ </Section>
+);
+  }
   return (
     <Section title="Meet Our Doctors" paragraph="Well qualified doctors ready to serve you">
        <div className={classes.container}>
         <div className={classes.flex}>
-         <DoctorCard></DoctorCard>
-         <DoctorCard></DoctorCard>
+        <DoctorCard />
+        <DoctorCard />
          <div className={classes.three}>
-         <DoctorCard ></DoctorCard>
+         <DoctorCard />
          </div>
          <div className={classes.four}>
-         <DoctorCard ></DoctorCard>
+         <DoctorCard />
          </div>
         </div>
+        <button className={classes.button}>See More </button>
         </div>
-        <div className={classes.button}>See More </div>
     </Section>
   );
 }

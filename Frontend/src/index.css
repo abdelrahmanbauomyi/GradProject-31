@@ -7,15 +7,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fffaf1;
+  background-color: #fffaf1 !important;
 }
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  font-family: "poppins";
-  font-weight: 800 !important;
+  /* font-family: "poppins";
+  font-weight: 800 !important; */
 }
 
 code {
