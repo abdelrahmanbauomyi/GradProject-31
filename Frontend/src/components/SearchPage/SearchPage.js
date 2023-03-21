@@ -1,4 +1,3 @@
-import React from "react";
 import DrawerComponent from "../UI/DrawerComponent";
 import Filters from "./Filters/Filters";
 import useWidthAndHeight from "../../hooks/useWidthAndHeight";
@@ -20,7 +19,7 @@ const SearchPage = () => {
           <div
             style={{
               marginTop: "200px",
-              position: "sticky;",
+              position: "sticky",
             }}
           >
             <Filters />

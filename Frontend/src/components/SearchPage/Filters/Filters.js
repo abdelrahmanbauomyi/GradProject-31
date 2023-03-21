@@ -1,36 +1,34 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { searchActions } from "../../../store/Slices/SearchSlice";
 import AccordionComponent from "../Accordion/AccordionComponent";
 
 const Filters = () => {
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch(); */
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px" ,position:'sticky',top:'0'}}>
       <AccordionComponent
         title="Title"
         checks={["Professor", "Lecturer", "Consultant", "Specialist"]}
-        action={(title) => dispatch(searchActions.setTitle(title))}
+        /* action={(title) => dispatch(searchActions.setTitle(title))} */
         expanded
       />
       <AccordionComponent
         title="Gender"
         checks={["Any", "Male", "Female"]}
-        action={(gender) => dispatch(searchActions.setGender(gender))}
+        /* action={(gender) => dispatch(searchActions.setGender(gender))} */
         radio
       />
       <AccordionComponent
         title="Availability"
         checks={["Any Day", "Today", "Tomorrow"]}
-        action={(availability) =>
+        /* action={(availability) =>
           dispatch(searchActions.setAvailability(availability))
-        }
+        } */
         radio
       />
       <AccordionComponent
         title="Entity"
         checks={["Online", "Hospital", "Clinic"]}
-        action={(entity) => dispatch(searchActions.setEntity(entity))}
+        /* action={(entity) => dispatch(searchActions.setEntity(entity))} */
       />
       <AccordionComponent
         title="Fees"
@@ -42,9 +40,9 @@ const Filters = () => {
           "From 200 to 300",
           "Greater than 300",
         ]}
-        action={(check) => {
+        /* action={(check) => {
           dispatch(searchActions.setFees(check));
-        }}
+        }} */
         radio
       />
     </div>

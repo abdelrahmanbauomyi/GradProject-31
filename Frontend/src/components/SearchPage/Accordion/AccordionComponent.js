@@ -27,10 +27,10 @@ const AccordionComponent = (props) => {
         <div style={{ paddingLeft: "20px" }}>
           {!props.radio &&
             props.checks.map((check, idx) => (
-              <CheckBoxComponent key={idx} check={check} action={props.action}/>
+              <CheckBoxComponent key={idx} check={check} /* action={props.action} *//>
             ))}
           {props.radio && (
-            <RadioComponent checks={props.checks} action={props.action} />
+            <RadioComponent checks={props.checks} /* action={props.action} */ />
           )}
         </div>
       </AccordionDetails>
