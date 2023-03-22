@@ -1,13 +1,17 @@
 import "./App.css";
 import Home from "./components/Home/Home";
-import Header from './components/NavigationBar/Navbar/Header'
+import DoctorCard from "./components/Home/MeetDoctor/DoctorCard";
+import Header from "./components/NavigationBar/Navbar/Header";
+import SearchPage from "./components/SearchPage/SearchPage";
 
 function App() {
+
   return (
-    <div style={{ padding: "1px" }}>
-      <Header/>
-      <Home />
-    </div>
+    <>
+      {/* <Header />
+      <Home /> */}
+      <SearchPage />
+    </>
   );
 }
 

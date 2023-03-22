@@ -1,0 +1,64 @@
+.doctor-card {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.doctor-image {
+  margin-right: 20px;
+}
+
+.doctor-image img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-name {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #4200ff;
+}
+
+.doctor-speciality {
+  margin: 0;
+  font-size: 20px;
+  font-weight: normal;
+  color: #666;
+}
+
+.doctor-description {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.doctor-contact {
+  display: flex;
+  margin-top: 20px;
+}
+
+.doctor-contact a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: #fff;
+  background-color: #4200ff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.doctor-contact a:hover {
+  background-color: #6f44ff;
+}
