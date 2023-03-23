@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      Dname: {
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -47,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       Rating: {
         type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       speciality: {
         type: DataTypes.STRING,
@@ -61,25 +66,26 @@ module.exports = (sequelize, DataTypes) => {
       },
       area: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       location: {
         type: DataTypes.STRING,
       },
       Fees: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      imgPath: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'imgs\\doctor.png',
       },
     },
     {
       sequelize,
       modelName: 'Doctor',
       tableName: 'doctors',
-      indexes: [
-        // Create a unique index on email
-        {
-          unique: true,
-          fields: ['email'],
-        },
-      ],
+      indexes: [],
     }
   );
   return Doctor;

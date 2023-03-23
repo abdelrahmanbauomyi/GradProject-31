@@ -1,10 +1,8 @@
 const { sequelize, User } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const dotenv = require('dotenv');
 const { where } = require('sequelize');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
-const nodemailer = require('nodemailer');
 const emailHandler = require('./emailHandler');
 //GET Logic
 exports.getUsers = (req, res) => {
@@ -78,7 +76,9 @@ exports.createUser = async (req, res) => {
     const user = await User.create(json);
     const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
     await User.update(
-      { tokens: sequelize.fn('array_append', sequelize.col('tokens'), token) },
+      {
+        tokens: sequelize.fn('array_append', sequelize.col('tokens'), token),
+      },
       { where: { id: user.id } }
     );
     res.cookie('token', token, {

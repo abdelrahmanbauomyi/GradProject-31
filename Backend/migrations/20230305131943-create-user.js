@@ -39,6 +39,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      imgPath: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '/imgs/defaultdoctor.png',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -103,6 +108,11 @@ module.exports = {
       },
       Fees: {
         type: Sequelize.INTEGER,
+      },
+      imgPath: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '/imgs/defaultdoctor.png',
       },
       createdAt: {
         allowNull: false,

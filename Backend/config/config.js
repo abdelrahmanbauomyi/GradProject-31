@@ -7,6 +7,11 @@ module.exports = {
     host: process.env.POSTGRES_HOST,
     dialect: process.env.DIALECT,
     port: process.env.DB_PORT,
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000,
+    },
   },
   test: {
     username: 'root',
