@@ -8,32 +8,10 @@ const SearchPage = () => {
   const [width] = useWidthAndHeight();
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
-  const nameRef = useRef()
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      await fetch(`https://api.api-ninjas.com/v1/animals?name=${name}`, {
-        method: "GET",
-        url: "" + name,
-        headers: { "X-Api-Key": "1p/gZ0J1DInsnxnWeWATeQ==hOAHUk1OWyq8w2h3" },
-        contentType: "application/json",
-      })
-        .then((res) => res.json())
-        .then((res) => console.log(res));
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [name]);
-  if (isLoading) return <p>LOADING......</p>;
-  
+  const nameRef = useRef();
+
   return (
     <>
-      <form onSubmit={e => {
-        e.preventDefault();
-        setName(nameRef.current.value)
-      }}>
-        <input  ref={nameRef}></input>
-      </form>
       <div
         style={{
           display: width > 800 ? "flex" : "",
