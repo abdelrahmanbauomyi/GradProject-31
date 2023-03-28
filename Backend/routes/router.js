@@ -2,29 +2,37 @@ const express = require('express');
 const router = express.Router();
 const authUser = require('../Handlers/authUser');
 const userHandler = require('../Handlers/userHandler');
-
+const emailHandler = require('../Handlers/emailHandler');
+const doctorHandler = require('../Handlers/doctorHndler');
+const imageHandler = require('../Handlers/imgHandler');
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
-router.get('/auth', authUser, userHandler.authTest);
-router.post('/users', userHandler.postUser);
+router.get('/auth', authUser, userHandler.authTest); //test for the authentication method
 
-// Request for edit and delete user all should have the userId passed in the body
-// dummy urls for simple tests
-router.delete('/users/delete', authUser, userHandler.postDeleteUser);
-/* this should open the edit page and fill the 
-    the values are 'firstName', 'lastName', 'email', 'gender', 'mobilenumber','dob'
-    password wont be shown for security and the other fields are irrelevant user
-*/
-router.get('/users/edit', authUser, userHandler.getEditUser);
-/* after the user edit the data he will send a post request
- */
-router.post('/users/edit', authUser, userHandler.postEditUser);
+//users CRUD routes
+router.post('/users', userHandler.createUser);
+router.delete('/users', authUser, userHandler.Delete);
+router.get('/users', authUser, userHandler.getUserInfo);
+router.patch('/users/edit', authUser, userHandler.Edit);
 
-//Request at /login
+//doctors CRUD routes
+router.post(
+  '/doctors',
+  imageHandler.upload.single('img'),
+  doctorHandler.createDoctor
+);
+
+//login & logouts routes
 router.get('/login', userHandler.loginUser);
+router.post('/logout', authUser, userHandler.logout);
+router.post(
+  '/logoutFromAllDevices',
+  authUser,
+  userHandler.logoutFromAllDevices
+);
 
-//confirm email
-router.get('/confirmation/:token', userHandler.verifyEmail);
+//email routes
+router.get('/confirmation/:token', emailHandler.verifyEmail);
 
 module.exports = router;

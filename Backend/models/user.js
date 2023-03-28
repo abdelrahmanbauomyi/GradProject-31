@@ -52,6 +52,11 @@ module.exports = (sequelize, DataTypes) => {
       tokens: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
+      imgPath: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: '/imgs/defaultdoctor.png',
+      },
     },
     {
       sequelize,
