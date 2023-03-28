@@ -1,54 +1,10 @@
 import Modal from "./Modal";
-<<<<<<< Updated upstream
-import React  from "react";
 import classes from"./SignUpForm.module.css";
 import Input from "./Input";
-import { register } from "../../../actions/userActions";
-import { useState } from "react";
+// import { register } from "../../../actions/userActions";
+// import { useState } from "react";
 import results from "../../../results";
-
-const SignUpForm = (props) => {
-
-  const[firstName,setFirstName]=useState("")
-  const[lastName,setLastName]=useState("")
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
-  const[gender,setGender]=useState("")
-
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const Data = {email,password,firstName,lastName,gender,confirmpassword}
-    results.post('/users.json',Data).then(response=>{
-      console.log(response);
-      })
-
-    }
-      const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-      };
-    
-      const onChangeName = (e) => {
-        const firstname = e.target.value;
-        setFirstName(firstname);
-      };
-    
-
-
-
-
-
-    
-  
-  return (
-    <Modal onClose={props.onClose}>
-      <form className={classes[`signup-form`] } onSubmit={handleRegister}>
-=======
 import React from "react";
-import classes from "./SignUpForm.module.css";
-import Input from "./Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import ErrorPopUp from "./ErrorPopUp";
@@ -57,7 +13,27 @@ import ErrorPopUp from "./ErrorPopUp";
 // import calstyles from './ReactCalendar.module.css'
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
+
 const SignUpForm = (props) => {
+  const handleRegister = (values) => {
+    // e.preventDefault();
+    // const Data = {email,password,firstName,lastName,gender,confirmpassword}
+    results.post('/users.json',values).then(response=>{
+      console.log(response);
+      })
+
+    }
+    const handleDateChange = (event) => {
+      formik.setFieldValue("age", event.target.value);
+    };
+  
+
+  // const[firstName,setFirstName]=useState("")
+  // const[lastName,setLastName]=useState("")
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmpassword, setConfirmPassword] = useState("");
+  // const[gender,setGender]=useState("")
   const regex_name = /^[a-zA-Z ]*$/;
   const regex_password =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@$!%*?&])[A-Za-z\d-_$@$!%*?&]{8,}$/;
@@ -72,95 +48,115 @@ const SignUpForm = (props) => {
  and is at least 8 characters long. This ensures that the password meets the minimum length requirement.
  $ - The end of the string. 
   */
-  async function addUsers(user) {
-    await fetch(
-      "https://users-test-signup-default-rtdb.europe-west1.firebasedatabase.app//users.json",
-      {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-  const handleDateChange = (event) => {
-    formik.setFieldValue("age", event.target.value);
-  };
+ const formik = useFormik({
+  initialValues: {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    age: "",
+    gender: "",
+    phoneNumber: "",
+  },
+  validationSchema: yup.object({
+    firstname: yup
+      .string()
+      .required("First name is required")
+      .matches(regex_name, "First name should only contain alphabets")
+      .min(2, "First name should be at least 2 characters long")
+      .max(10, "First name should not be longer than 10 characters"),
 
-  const formik = useFormik({
-    initialValues: {
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      age: "",
-      gender: "",
-      phoneNumber: "",
-    },
-    validationSchema: yup.object({
-      firstname: yup
-        .string()
-        .required("First name is required")
-        .matches(regex_name, "First name should only contain alphabets")
-        .min(2, "First name should be at least 2 characters long")
-        .max(10, "First name should not be longer than 10 characters"),
+    lastname: yup
+      .string()
+      .required("Last name is required")
+      .matches(regex_name, "Last name should only contain alphabets")
+      .min(2, "Last name should be at least 2 characters long")
+      .max(10, "Last name should not be longer than 10 characters"),
 
-      lastname: yup
-        .string()
-        .required("Last name is required")
-        .matches(regex_name, "Last name should only contain alphabets")
-        .min(2, "Last name should be at least 2 characters long")
-        .max(10, "Last name should not be longer than 10 characters"),
+    email: yup.string().email("Invalid Email").required("Email is required"),
 
-      email: yup.string().email("Invalid Email").required("Email is required"),
+    password: yup
+      .string()
+      .required("Password is Required")
+      .matches(
+        regex_password,
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      ),
 
-      password: yup
-        .string()
-        .required("Password is Required")
-        .matches(
-          regex_password,
-          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-        ),
+    confirmPassword: yup
+      .string()
+      .required("Confirming Password is required")
+      .oneOf([yup.ref("password"), null], "Passwords must match"),
+    age: yup
+      .date()
+      .required("Choosing your age is required")
+      .test("age", "You must be 18 years old or older", function (age) {
+        const cutoff = new Date();
+        cutoff.setFullYear(cutoff.getFullYear() - 18);
+        return age <= cutoff;
+      }),
+    gender: yup.string().required("Selecting your gender is Required"),
+    phoneNumber: yup
+      .string()
+      .required("Phone Number is required")
+      .matches(regex_number, "Phone Number must be 11 digits"),
+  }), //// VALIDATION SCHEMA END
 
-      confirmPassword: yup
-        .string()
-        .required("Confirming Password is required")
-        .oneOf([yup.ref("password"), null], "Passwords must match"),
-      age: yup
-        .date()
-        .required("Choosing your age is required")
-        .test("age", "You must be 18 years old or older", function (age) {
-          const cutoff = new Date();
-          cutoff.setFullYear(cutoff.getFullYear() - 18);
-          return age <= cutoff;
-        }),
-      gender: yup.string().required("Selecting your gender is Required"),
-      phoneNumber: yup
-        .string()
-        .required("Phone Number is required")
-        .matches(regex_number, "Phone Number must be 11 digits"),
-    }), //// VALIDATION SCHEMA END
+  onSubmit: async (values, { resetForm }) => {
+    console.log("Your Sumbitted data is", values);
+    try {
 
-    onSubmit: async (values, { resetForm }) => {
-      console.log("Your Sumbitted data is", values);
-      try {
-        await addUsers(values);
-        console.log("data added");
-        resetForm();
-      } catch (error) {
-        console.error("error,,,,,,: ", error);
-      }
-    },
-  });
-  console.log("Data values", formik.values);
+      // await addUsers(values);
+      handleRegister(values)
+      console.log("data added");
+      resetForm();
+    } catch (error) {
+      console.error("error,,,,,,: ", error);
+    }
+  },
+});
+
+
+ 
+      // const onChangePassword = (e) => {
+      //   const password = e.target.value;
+      //   setPassword(password);
+      // };
+    
+      // const onChangeName = (e) => {
+      //   const firstname = e.target.value;
+      //   setFirstName(firstname);
+      // };
+    
+
+    
+  // return (
+    // <Modal onClose={props.onClose}>
+    //   <form className={classes[`signup-form`] } onSubmit={handleRegister}>
+
+
+  
+  // async function addUsers(user) {
+  //   await fetch(
+  //     "https://users-test-signup-default-rtdb.europe-west1.firebasedatabase.app//users.json",
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify(user),
+  //       headers: { "Content-Type": "application/json" },
+  //     }
+  //   );
+  // }
+ 
+  
+  // console.log("Data values", formik.values);
   // console.log("Errors", formik.errors);
   // console.log("Touched", formik.touched);
-  console.log(formik.errors.phoneNumber);
+  // console.log(formik.errors.phoneNumber);
   // console.log(formik.values.phoneNumber);
   return (
     <Modal onClose={props.onClose}>
       <form className={classes[`signup-form`]} onSubmit={formik.handleSubmit}>
->>>>>>> Stashed changes
         <div className={classes.text}>
           <p>Sign Up For an Account Now!</p>
         </div>
@@ -172,14 +168,9 @@ const SignUpForm = (props) => {
               type: "text",
               placeholder: "Your First Name",
             }}
-<<<<<<< Updated upstream
-            value={firstName}
-            onChange={onChangeName}
-=======
             value={formik.values.firstname}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
->>>>>>> Stashed changes
           />
           {formik.touched.firstname && formik.errors.firstname ? (
             <ErrorPopUp top={160} left={90}>
@@ -193,13 +184,10 @@ const SignUpForm = (props) => {
               type: "text",
               placeholder: "Your Last Name",
             }}
-<<<<<<< Updated upstream
            
-=======
             value={formik.values.lastname}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
->>>>>>> Stashed changes
           />
           {formik.touched.lastname && formik.errors.lastname ? (
             <ErrorPopUp top={160} right={150}>
@@ -265,13 +253,10 @@ const SignUpForm = (props) => {
               type: "password",
               placeholder: "Confirm Password",
             }}
-<<<<<<< Updated upstream
           
-=======
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
->>>>>>> Stashed changes
           />
          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
             <ErrorPopUp top={320} left={400}>
@@ -330,5 +315,4 @@ const SignUpForm = (props) => {
     </Modal>
   );
 };
-//onClick={() => props.onSwitch("signin")}
 export default SignUpForm;

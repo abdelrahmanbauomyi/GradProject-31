@@ -76,7 +76,6 @@ const logoutHandler = () => {
             <Nav.Link href="#link">Contact us </Nav.Link>
           </Nav>
           <Nav  className='ms-auto'>
-<<<<<<< Updated upstream
           {userInfo?(
               <NavDropdown title={userInfo.name} id='username'>
                 <Nav.Link as={Link} to='/profile_info'>
@@ -94,12 +93,6 @@ const logoutHandler = () => {
             }
           
          
-=======
-          <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button>
-          <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
-          {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch}/>}
-          {signInIsClicked && <SignInForm onClose={hideSignInHandler} onSwitch={onFormSwitch}/>}
->>>>>>> Stashed changes
           </Nav>
         </Navbar.Collapse>
       </Container>
