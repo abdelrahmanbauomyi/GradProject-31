@@ -1,0 +1,39 @@
+.bar {
+    position: relative;
+    background: #FFE6E6;
+    border: 1px solid #FFE6E6;
+    width: 170px;
+    height: fit-content;
+    border-radius: 9px;
+    padding: 1px;
+    opacity: .9;
+    /* top:10px;
+    right:20px;
+    left:30px; */
+    text-align: center;
+  }
+  
+  .bar:before,
+  .bar:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    left: 50%;
+  }
+  
+  .bar:before {
+    top: -8px;
+    margin-left: -8px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #FFE6E6;
+  }
+  
+  .bar:after {
+    top: -7px;
+    margin-left: -7px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #FFE6E6;
+  }

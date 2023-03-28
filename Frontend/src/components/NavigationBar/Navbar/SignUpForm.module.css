@@ -1,7 +1,7 @@
 .signup-form {
   /* max-width: 500px; */
-  width: fit-content;
-  height:fit-content;
+  width: 700px;
+  height:500px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 15px;
@@ -24,18 +24,6 @@
   margin-right: 10px;
  
 }
-
-/* .form-row > .email {
-  flex: 2;
-} */
-
-/* .form-row > .email input {
-  width: 100%;
-} */
-
-/* .form-row > :not(.email) input {
-  width: 80%;
-} */
 
 
 
@@ -77,11 +65,20 @@
   border: 1px solid #ccc;
   box-sizing: border-box;
   font-size: 1em;
-  background-color: #F8F7F7
+  background-color: #F8F7F7;
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
 }
+
+.selectdiv select option{
+  border-radius: 15px;
+}
+
 .text {
   font-size: 25px;
   font-weight: bold;
+  text-align: center;
 }
 
 .container{
@@ -113,4 +110,8 @@ top: 130px;
     text-decoration: underline;
     margin-left: 10px;
     cursor: pointer;
+  }
+  .date-pick{
+    display: flex;
+    justify-content:left;
   }

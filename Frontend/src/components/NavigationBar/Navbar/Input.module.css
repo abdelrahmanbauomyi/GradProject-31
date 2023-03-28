@@ -4,6 +4,8 @@
   margin-bottom: 0.5rem;
 }
 
+
+
 .input label {
   display: block;
   font-size: 15px;
@@ -24,24 +26,17 @@
   text-align: center;
   background-color: #f8f7f7;
 }
-/*  */
-/* .input {
-    display: block;
-    align-items: center;
-    margin-bottom: 0.5rem;
+.input input.focused {
+  border-color: green;
+}
+
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
   
-  .input label {
-    
-    font-size: 15px;
-    margin-right: 1rem;
-  }
-  
-  .input input {
-    width: 30%;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    font: inherit;
-    text-align: center
-    
-  } */
