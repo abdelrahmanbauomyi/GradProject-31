@@ -1,12 +1,49 @@
 import Modal from "./Modal";
-import React from "react";
+import React  from "react";
 import classes from"./SignUpForm.module.css";
 import Input from "./Input";
+import { register } from "../../../actions/userActions";
+import { useState } from "react";
+import results from "../../../results";
 
 const SignUpForm = (props) => {
+
+  const[firstName,setFirstName]=useState("")
+  const[lastName,setLastName]=useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const[gender,setGender]=useState("")
+
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const Data = {email,password,firstName,lastName,gender,confirmpassword}
+    results.post('/users.json',Data).then(response=>{
+      console.log(response);
+      })
+
+    }
+      const onChangePassword = (e) => {
+        const password = e.target.value;
+        setPassword(password);
+      };
+    
+      const onChangeName = (e) => {
+        const firstname = e.target.value;
+        setFirstName(firstname);
+      };
+    
+
+
+
+
+
+    
+  
   return (
     <Modal onClose={props.onClose}>
-      <form className={classes[`signup-form`] }>
+      <form className={classes[`signup-form`] } onSubmit={handleRegister}>
         <div className={classes.text}>
           <p>Sign Up For an Account Now!</p>
         </div>
@@ -18,6 +55,8 @@ const SignUpForm = (props) => {
               type: "text",
               placeholder: "Your First Name",
             }}
+            value={firstName}
+            onChange={onChangeName}
           />
           <Input
             label="Last Name"
@@ -26,6 +65,7 @@ const SignUpForm = (props) => {
               type: "text",
               placeholder: "Your Last Name",
             }}
+           
           />
         </div>
         <div className={classes[`form-row`]}>
@@ -55,6 +95,7 @@ const SignUpForm = (props) => {
               type: "password",
               placeholder: "Confirm Password",
             }}
+          
           />
         </div>
         <div className={classes[`form-row`]}>

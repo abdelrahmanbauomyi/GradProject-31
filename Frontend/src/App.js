@@ -1,13 +1,27 @@
+import React from "react";
 import "./App.css";
-import Home from "./components/Home/Home";
-import Header from './components/NavigationBar/Navbar/Header'
+import HomeScreen from "./Screens/HomeScreen";
+import {BrowserRouter as Router ,Routes ,Route} from 'react-router-dom'
+import ProfileInfo  from './Screens/ProfileInfo'
+import EditProfile from './Screens/EditProfile'
+import MyAppointments from './Screens/MyAppointments'
+import FavouriteArticles from './Screens/FavouriteArticles'
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   return (
-    <div style={{ padding: "1px" }}>
-      <Header/>
-      <Home />
-    </div>
+    <Router>
+      
+       <Routes>
+       <Route exact path="/" element={<HomeScreen/>}   ></Route>
+       <Route exact path="/profile_info" element={<ProfileInfo></ProfileInfo>}></Route>
+       <Route path="/edit_profile" element={<EditProfile/>}/>
+          <Route path="/my_appointments" element={<MyAppointments></MyAppointments>}/>
+          <Route path="/favourite_articles" element={<FavouriteArticles/>}/>
+       </Routes>
+    </Router>
+    
+    
   );
 }
 

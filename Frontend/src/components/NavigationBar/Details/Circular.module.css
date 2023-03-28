@@ -11,7 +11,7 @@
 
 .img {
   position: absolute;
-  width: 723.24px;
+  width: 1023.24px;
   height: 485.6px;
   left: 0.01px;
   top: -137.98px;
@@ -72,6 +72,50 @@
 }
 .wrap {
   position: absolute;
-  left: 3% !important;
+  left: -1% !important;
   bottom: 115% !important;
+}
+
+@media only screen and (max-width: 1400px) {
+  .wrap {
+    position: absolute;
+    left: -8% !important;
+    bottom: 115% !important;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .wrap {
+    position: absolute;
+    left: -15% !important;
+    bottom: 115% !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .wrap {
+    position: absolute;
+    left: -21% !important;
+    bottom: 115% !important;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .wrap {
+    position: absolute;
+    left: 6% !important;
+    bottom: 115% !important;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .wrap {
+    position: absolute;
+    left: 20% !important;
+    bottom: 107% !important;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .wrap {
+    display: none;
+  }
 }

@@ -6,10 +6,21 @@ import SearchCard from '../Cards/SearchCard'
 import { useState } from 'react'
 import SignInForm from './SignInForm'
 import SignUpForm from './SignUpForm'
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
+import { logout } from '../../../actions/userActions'
 
 
 const Header = () => {
 
+  const dispatch = useDispatch()
+const userLogin = useSelector(state=>state.userLogin)
+const {userInfo} = userLogin
+
+const logoutHandler = () => {
+  dispatch(logout())
+}
+   
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
   const [signInIsClicked, setsignInIsClicked] = useState(false);
 
@@ -65,10 +76,23 @@ const Header = () => {
             <Nav.Link href="#link">Contact us </Nav.Link>
           </Nav>
           <Nav  className='ms-auto'>
-          <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button>
-          <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
-          {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch} />}
-          {signInIsClicked && <SignInForm onClose={hideSignInHandler} onSwitch={onFormSwitch}/>}
+          {userInfo?(
+              <NavDropdown title={userInfo.name} id='username'>
+                <Nav.Link as={Link} to='/profile_info'>
+                  Profile
+                </Nav.Link>
+                <NavDropdown.Item onClick={logoutHandler} >Log out</NavDropdown.Item>
+              </NavDropdown>
+              
+            ):( <div > <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 
+            <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
+            {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch} />}
+            {signInIsClicked && <SignInForm onClose={hideSignInHandler} onSwitch={onFormSwitch}/>}
+            </div>
+            )   
+            }
+          
+         
           </Nav>
         </Navbar.Collapse>
       </Container>

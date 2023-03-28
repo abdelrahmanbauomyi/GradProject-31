@@ -1,0 +1,30 @@
+.main-contaienr {
+  height: 100vh;
+  background-color: #fffaf1;
+  margin-left: 250px;
+  position: relative;
+}
+.user-info-box {
+  width: 650px;
+  height: 300px;
+  background-color: #fff;
+  /* border: 1px solid #ccc; */
+  padding: 20px;
+  border-radius: 14px;
+  position: absolute;
+  top: 150px;
+  left: 50px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.user-info-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+#firstnamefield {
+  color: blue;
+}
+
+.user-info-number {
+  font-size: 18px;
+}
