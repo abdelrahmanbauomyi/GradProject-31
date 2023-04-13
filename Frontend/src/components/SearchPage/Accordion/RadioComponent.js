@@ -10,7 +10,7 @@ const RadioComponent = ({ checks, action }) => {
         aria-labelledby="demo-radio-buttons-group-label"
         defaultValue={checks[0]}
         name="radio-buttons-group"
-        /* onChange={(event) => action(event.target.value)} */
+        onChange={(event) => action(event.target.value)}
       >
         {checks.map((check, idx) => (
           <FormControlLabel

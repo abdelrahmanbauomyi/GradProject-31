@@ -2,14 +2,15 @@ import DrawerComponent from "../UI/DrawerComponent";
 import Filters from "./Filters/Filters";
 import useWidthAndHeight from "../../hooks/useWidthAndHeight";
 import DoctorCard from "../Home/MeetDoctor/DoctorCard";
-import { useState, useEffect, useRef } from "react";
+import {  useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
-  const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState("");
-  const nameRef = useRef();
-
+  const filters = useSelector((state) => state.searchFilters);
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
   return (
     <>
       <div

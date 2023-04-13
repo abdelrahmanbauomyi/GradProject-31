@@ -12,9 +12,9 @@ const CheckBoxComponent = (props) => {
               color: "#4200ff",
             },
           }}
-          /* onChange={(event) =>
+          onChange={(event) =>
             props.action({ check , checked: event.target.checked })
-          } */
+          }
         />
       }
       label={check}

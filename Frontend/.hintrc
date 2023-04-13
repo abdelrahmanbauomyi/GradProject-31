@@ -4,6 +4,8 @@
   ],
   "hints": {
     "detect-css-reflows/layout": "off",
-    "compat-api/css": "off"
+    "compat-api/css": "off",
+    "detect-css-reflows/composite": "off",
+    "detect-css-reflows/paint": "off"
   }
 }

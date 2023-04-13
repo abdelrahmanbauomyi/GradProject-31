@@ -1,34 +1,35 @@
 import React from "react";
 import AccordionComponent from "../Accordion/AccordionComponent";
+import { useDispatch } from "react-redux";
 
 const Filters = () => {
-  /* const dispatch = useDispatch(); */
+  const dispatch = useDispatch();
   return (
-    <div style={{ padding: "20px" ,position:'sticky',top:'0'}}>
+    <div style={{ padding: "20px", position: "sticky", top: "0" }}>
       <AccordionComponent
         title="Title"
         checks={["Professor", "Lecturer", "Consultant", "Specialist"]}
-        /* action={(title) => dispatch(searchActions.setTitle(title))} */
+        action={(title) => dispatch({ type: "TITLE", payload: title })}
         expanded
       />
       <AccordionComponent
         title="Gender"
         checks={["Any", "Male", "Female"]}
-        /* action={(gender) => dispatch(searchActions.setGender(gender))} */
+        action={(gender) => dispatch({ type: "GENDER", payload: gender })}
         radio
       />
       <AccordionComponent
         title="Availability"
         checks={["Any Day", "Today", "Tomorrow"]}
-        /* action={(availability) =>
-          dispatch(searchActions.setAvailability(availability))
-        } */
+        action={(availability) =>
+          dispatch({ type: "AVAILABILITY", payload: availability })
+        }
         radio
       />
       <AccordionComponent
         title="Entity"
         checks={["Online", "Hospital", "Clinic"]}
-        /* action={(entity) => dispatch(searchActions.setEntity(entity))} */
+        action={(entity) => dispatch({ type: "ENTITY", payload: entity })}
       />
       <AccordionComponent
         title="Fees"
@@ -40,9 +41,9 @@ const Filters = () => {
           "From 200 to 300",
           "Greater than 300",
         ]}
-        /* action={(check) => {
-          dispatch(searchActions.setFees(check));
-        }} */
+
+        action={(fees) => dispatch({ type: "FEES", payload: fees })}
+
         radio
       />
     </div>
