@@ -1,5 +1,6 @@
 const { sequelize, Doctor } = require('../models');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
+const { Op } = require("sequelize");
 const bcrypt = require('bcrypt');
 
 exports.createDoctor = async (req, res) => {
@@ -84,7 +85,7 @@ exports.getDoctor = async (req,res) =>{
     const {Dname , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath  } = req.body
     const queryObj = {}
     if(Dname){
-      queryObj.Dname = Dname
+      queryObj.Dname  = { [Op.like] : '%' + Dname + '%'}
     }
     if(id){
       queryObj.id = id
@@ -127,12 +128,20 @@ exports.getDoctor = async (req,res) =>{
     }
     
     console.log(queryObj)
-    const doctors = await Doctor.findAll(
-      {
-        where: queryObj
-      }
-    )
-    res.status(200).json(doctors)
+    try{
+      const doctors = await Doctor.findAll(
+        {
+          where: queryObj
+        }
+      )
+      res.status(200).json(doctors)
+
+    }
+    catch(err){
+      console.log(err)
+      res.status(500).json(err)
+    }
+  
     
 
 
