@@ -80,8 +80,62 @@ exports.getDoctor = async (req,res) =>{
     }
   }
 
+  exports.searchDoctors = async (req,res) =>{
+    const {Dname , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath  } = req.body
+    const queryObj = {}
+    if(Dname){
+      queryObj.Dname = Dname
+    }
+    if(id){
+      queryObj.id = id
+    }
+    if(email){
+      queryObj.email = email
+    }
+    if(dob){
+      queryObj.dob = dob
+    }
+    if(gender){
+      queryObj.gender = gender
+    }
+    if(confirmed){
+      queryObj.confirmed = confirmed
+    }
+    if(rating){
+      queryObj.rating = rating
+    }
+    if(speciality){
+      queryObj.speciality = speciality
+    }
+    if(sub_specialties){
+      queryObj.sub_specialties = sub_specialties
+    }
+    if(title){
+      queryObj.title = title
+    }
+    if(area){
+      queryObj.area = area
+    }
+    if(location){
+      queryObj.location = location
+    }
+    if(fees){
+      queryObj.fees = fees
+    }
+    if(imgPath){
+      queryObj.imgPath = imgPath
+    }
+    
+    console.log(queryObj)
+    const doctors = await Doctor.findAll(
+      {
+        where: queryObj
+      }
+    )
+    res.status(200).json(doctors)
+    
 
 
 
-
+  }
 
