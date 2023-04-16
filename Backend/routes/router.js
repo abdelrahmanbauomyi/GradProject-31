@@ -3,7 +3,7 @@ const router = express.Router();
 const authUser = require('../Handlers/authUser');
 const userHandler = require('../Handlers/userHandler');
 const emailHandler = require('../Handlers/emailHandler');
-const doctorHandler = require('../Handlers/doctorHndler');
+const doctorHandler = require('../Handlers/doctorHandler');
 const imageHandler = require('../Handlers/imgHandler');
 //Requests at /users
 
@@ -22,6 +22,7 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
+router.get('/doctors', doctorHandler.getAllDoctors)
 
 //login & logouts routes
 router.get('/login', userHandler.loginUser);

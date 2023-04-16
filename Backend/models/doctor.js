@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-      Rating: {
+      rating: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
@@ -71,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
       location: {
         type: DataTypes.STRING,
       },
-      Fees: {
+      fees: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

@@ -35,3 +35,17 @@ exports.createDoctor = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+
+exports.getAllDoctors = async (req,res) =>{
+
+  const doctors = await Doctor.findAll();
+  res.status(200).json(doctors);
+
+
+
+
+}
+
+
+
