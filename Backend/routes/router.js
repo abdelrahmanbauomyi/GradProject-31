@@ -24,6 +24,7 @@ router.post(
 );
 router.get('/doctors', doctorHandler.getDoctor)
 router.delete('/doctors', doctorHandler.deleteDoctor)
+router.get('/doctors/search', doctorHandler.searchDoctors)
 
 //login & logouts routes
 router.get('/login', userHandler.loginUser);
