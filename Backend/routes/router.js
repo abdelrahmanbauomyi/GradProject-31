@@ -22,7 +22,8 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', doctorHandler.getAllDoctors)
+router.get('/doctors', doctorHandler.getDoctor)
+router.delete('/doctors', doctorHandler.deleteDoctor)
 
 //login & logouts routes
 router.get('/login', userHandler.loginUser);
