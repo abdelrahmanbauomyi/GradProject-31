@@ -3,26 +3,26 @@ import axios from "axios";
 const API_URL = "https://online-clinic-99063-default-rtdb.firebaseio.com/.json";
 
 const register = (
+  firstName,
+  lastName,
+  password,
+  email,
+  dob,
+  gender,
+  mobilenumber
+) => {
+  return axios.post(API_URL + "signup", {
     firstName,
     lastName,
     password,
     email,
     dob,
     gender,
-    mobilenumber
-    ) => {
-  return axios.post(API_URL + "signup", {
-    firstName,
-        lastName,
-        password,
-        email,
-        dob,
-        gender,
-        mobilenumber
+    mobilenumber,
   });
 };
 
-const login = (email, password) => {
+const login = async (email, password) => {
   return axios
     .post(API_URL + "signin", {
       email,
