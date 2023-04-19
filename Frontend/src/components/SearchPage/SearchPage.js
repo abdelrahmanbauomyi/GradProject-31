@@ -2,14 +2,14 @@ import DrawerComponent from "../UI/DrawerComponent";
 import Filters from "./Filters/Filters";
 import useWidthAndHeight from "../../hooks/useWidthAndHeight";
 import DoctorCard from "../Home/MeetDoctor/DoctorCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
   const filters = useSelector((state) => state.searchFilters);
-  let doctors = [];
+  const [doctors, setDoctors] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:8000/doctors/search", {
@@ -20,7 +20,7 @@ const SearchPage = () => {
       .then((res) => {
         console.log(res.data);
         console.log(filters);
-        doctors = res.data;
+        setDoctors((docotors) => res.data);
       });
   }, [filters]);
   return (
