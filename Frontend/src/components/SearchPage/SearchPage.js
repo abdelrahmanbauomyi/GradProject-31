@@ -4,12 +4,24 @@ import useWidthAndHeight from "../../hooks/useWidthAndHeight";
 import DoctorCard from "../Home/MeetDoctor/DoctorCard";
 import {  useEffect } from "react";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
   const filters = useSelector((state) => state.searchFilters);
   useEffect(() => {
-    console.log(filters);
+    axios.get("http://localhost:8000/doctors/search" , {
+      params: {
+        filters: filters
+      }
+    }).then( res => 
+      {console.log(res.data) 
+      console.log(filters)}
+
+
+    )
+
+
   }, [filters]);
   return (
     <>

@@ -11,7 +11,7 @@ export const searchReducer = (state = initialState, action) => {
       if (action.payload === "Any") {
         return { ...state, gender: "" };
       }
-      return { ...state, gender: action.payload };
+      return { ...state, gender: action.payload.toLowerCase() };
     case "TITLE":
       const title = action.payload;
       const titleArray = state.title;
