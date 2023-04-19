@@ -6,7 +6,6 @@ const authUser = async (req, res, next) => {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, process.env.JWT_STRING);
     const user = await User.findOne({ where: { id: decoded._id } });
-    console.log(user);
     if (!user || !user.tokens.includes(token)) {
       throw new Error();
     }

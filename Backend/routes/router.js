@@ -27,7 +27,7 @@ router.delete('/doctors', doctorHandler.deleteDoctor)
 router.get('/doctors/search', doctorHandler.searchDoctors)
 
 //login & logouts routes
-router.get('/login', userHandler.loginUser);
+router.post('/login', userHandler.loginUser);
 router.post('/logout', authUser, userHandler.logout);
 router.post(
   '/logoutFromAllDevices',
