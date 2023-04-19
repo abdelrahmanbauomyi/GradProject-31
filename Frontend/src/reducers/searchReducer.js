@@ -1,8 +1,8 @@
 const initialState = {
-  title: "",
+  title: [],
   gender: "",
   availability: "",
-  entity: "",
+  entity: [],
   fees: "",
 };
 export const searchReducer = (state = initialState, action) => {
@@ -14,17 +14,25 @@ export const searchReducer = (state = initialState, action) => {
       return { ...state, gender: action.payload };
     case "TITLE":
       const title = action.payload;
+      const titleArray = state.title;
       if (title.checked) {
-        return { ...state, title: (state.title += title.check) };
+        titleArray.push(title.check);
+        return { ...state, title: titleArray };
       } else {
-        return { ...state, title: state.title.replace(title.check, "") };
+        const titleIndex = titleArray.indexOf(title.check);
+        titleArray.splice(titleIndex, 1);
+        return { ...state, title: titleArray };
       }
     case "ENTITY":
       const entity = action.payload;
+      const entitiesArray = state.entity;
       if (entity.checked) {
-        return { ...state, entity: (state.entity += entity.check) };
+        entitiesArray.push(entity.check);
+        return { ...state, entity: entitiesArray };
       } else {
-        return { ...state, entity: state.entity.replace(entity.check, "") };
+        const entityIndex = entitiesArray.indexOf(entity.check);
+        entitiesArray.splice(entityIndex, 1);
+        return { ...state, entity: entitiesArray };
       }
     case "AVAILABILITY":
       if (action.payload === "Any Day") {
