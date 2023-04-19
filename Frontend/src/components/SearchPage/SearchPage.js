@@ -28,7 +28,6 @@ const SearchPage = () => {
       <div
         style={{
           display: width > 800 ? "flex" : "",
-          justifyContent: "center",
           marginTop: "50px",
           gap: "50px",
         }}
