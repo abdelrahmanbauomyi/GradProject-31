@@ -82,8 +82,9 @@ exports.getDoctor = async (req,res) =>{
   }
 
   exports.searchDoctors = async (req,res) =>{
-    const {Dname , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath  } = req.body
+    const {Dname , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath } = req.query.filters
     const queryObj = {}
+    
     if(Dname){
       queryObj.Dname  = { [Op.like] : '%' + Dname + '%'}
     }
@@ -97,6 +98,7 @@ exports.getDoctor = async (req,res) =>{
       queryObj.dob = dob
     }
     if(gender){
+      
       queryObj.gender = gender
     }
     if(confirmed){
@@ -126,8 +128,8 @@ exports.getDoctor = async (req,res) =>{
     if(imgPath){
       queryObj.imgPath = imgPath
     }
-    
-    console.log(queryObj)
+  
+    //console.log(queryObj)
     try{
       const doctors = await Doctor.findAll(
         {
@@ -135,6 +137,9 @@ exports.getDoctor = async (req,res) =>{
         }
       )
       res.status(200).json(doctors)
+      console.log(req.query)
+     
+    
 
     }
     catch(err){
