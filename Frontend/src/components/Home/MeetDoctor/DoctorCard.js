@@ -3,7 +3,7 @@ import classes from "./DoctorCard.module.css";
 import doctor from "../../../assets/doctor.png";
 import ReviewStars from "../../UI/ReviewStars";
 
-const DoctorCard = () => {
+const DoctorCard = ({ doctorName, speciality }) => {
   const avaliable = false;
   return (
     <div className={classes.card}>
@@ -21,8 +21,8 @@ const DoctorCard = () => {
         </div>
       </div>
       <div className={classes.info}>
-        <h2>Dr Name</h2>
-        <p>Cardiologist</p>
+        <h2>{doctorName}</h2>
+        <p>{speciality}</p>
         <div className={classes.rating}>
           <ReviewStars
             width="17.4px"

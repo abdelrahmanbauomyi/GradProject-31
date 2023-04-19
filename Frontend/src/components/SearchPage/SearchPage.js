@@ -2,26 +2,26 @@ import DrawerComponent from "../UI/DrawerComponent";
 import Filters from "./Filters/Filters";
 import useWidthAndHeight from "../../hooks/useWidthAndHeight";
 import DoctorCard from "../Home/MeetDoctor/DoctorCard";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import axios from 'axios';
+import axios from "axios";
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
   const filters = useSelector((state) => state.searchFilters);
+  let doctors = [];
   useEffect(() => {
-    axios.get("http://localhost:8000/doctors/search" , {
-      params: {
-        filters: filters
-      }
-    }).then( res => 
-      {console.log(res.data) 
-      console.log(filters)}
-
-
-    )
-
-
+    axios
+      .get("http://localhost:8000/doctors/search", {
+        params: {
+          filters: filters,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(filters);
+        doctors = res.data;
+      });
   }, [filters]);
   return (
     <>
@@ -50,22 +50,12 @@ const SearchPage = () => {
           </div>
         )}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
+          {doctors.map((doctor) => (
+            <DoctorCard
+              doctorName={doctor.Dname}
+              speciality={doctor.speciality}
+            />
+          ))}
         </div>
       </div>
     </>
