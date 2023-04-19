@@ -3,9 +3,16 @@ const express = require('express');
 const app = express();
 const userRoutes = require('./routes/router');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 //TEST CODE FOR THE DATABASE CONNECTION
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 //Routes
 app.use('/', userRoutes);

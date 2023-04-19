@@ -20,11 +20,10 @@ exports.createDoctor = async (req, res) => {
       location,
       Fees,
     } = req.body);
-    if(image){
-          const imageUrl =image.path;
-    sentInfo.imgPath = imageUrl ;
+    if (image) {
+      const imageUrl = image.path;
+      sentInfo.imgPath = imageUrl;
     }
-
 
     sentInfo.password = bcrypt.hashSync(
       sentInfo.password + BCRYPT_PASSWORD,

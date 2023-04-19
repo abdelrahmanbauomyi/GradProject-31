@@ -24,7 +24,7 @@ router.post(
 );
 
 //login & logouts routes
-router.get('/login', userHandler.loginUser);
+router.post('/login', userHandler.loginUser);
 router.post('/logout', authUser, userHandler.logout);
 router.post(
   '/logoutFromAllDevices',
