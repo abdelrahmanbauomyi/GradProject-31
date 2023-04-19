@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+    Doctor.belongsToMany(models.User,{through:{model:models.Booking,unique:false},uniqueKey:'appoitmentId',foreignKey:'doctorId'});
+      
     }
   }
   Doctor.init(
@@ -19,11 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
+      Dname: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -49,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-      Rating: {
+      rating: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
@@ -71,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       location: {
         type: DataTypes.STRING,
       },
-      Fees: {
+      fees: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -85,7 +83,10 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Doctor',
       tableName: 'doctors',
-      indexes: [],
+      indexes: [{
+        unique:false,
+        fields: ['Dname']
+      }],
     }
   );
   return Doctor;
