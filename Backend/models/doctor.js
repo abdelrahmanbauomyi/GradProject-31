@@ -60,17 +60,19 @@ module.exports = (sequelize, DataTypes) => {
       },
       title: {
         type: DataTypes.STRING,
+        defaultValue: "Dr",
         allowNull: false,
       },
       area: {
         type: DataTypes.STRING,
-        allowNull: false,
+        //allowNull: false,
       },
       location: {
         type: DataTypes.STRING,
       },
       fees: {
         type: DataTypes.INTEGER,
+        defaultValue: 200,
         allowNull: false,
       },
       tokens: {

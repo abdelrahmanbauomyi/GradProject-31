@@ -70,12 +70,7 @@ exports.createDoctor = async (req, res) => {
       dob: req.body.dob,
       gender: req.body.gender,
       mobilenumber: req.body.mobilenumber,
-      speciality: req.body.speciality,
-      sub_specialties: req.body.sub_specialties,
-      title: req.body.title,
-      area: req.body.area,
-      location: req.body.location,
-      fees: req.body.fees,
+      speciality: req.body.speciality
     };
     if (image) {
       const imageUrl = image.path;
