@@ -73,6 +73,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      tokens: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+      },
       imgPath: {
         type: DataTypes.STRING,
         allowNull: false,

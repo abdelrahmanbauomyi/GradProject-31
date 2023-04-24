@@ -3,6 +3,7 @@ const { sequelize, User, Doctor } = require('../models');
 
 const authUser = async (req, res, next) => {
   try {
+    debugger
     const token = req.cookies.token;
     const decoded = jwt.verify(token, process.env.JWT_STRING);
     if (decoded.userType == "user") {
