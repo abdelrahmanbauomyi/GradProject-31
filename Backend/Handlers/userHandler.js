@@ -27,7 +27,7 @@ exports.loginUser = async (req, res) => {
         user.dataValues.password
       );
       if (valid === true) {
-        const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+        const token = jwt.sign({ _id: user.id, userType: "user" }, process.env.JWT_STRING);
         await User.update(
           {
             tokens: sequelize.fn(
@@ -71,9 +71,9 @@ exports.createUser = async (req, res) => {
       json.password + BCRYPT_PASSWORD,
       parseInt(SALT_ROUNDS)
     );
-
+    
     const user = await User.create(json);
-    const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+    const token = jwt.sign({ _id: user.id, userType: "user" }, process.env.JWT_STRING);
     await User.update(
       {
         tokens: sequelize.fn('array_append', sequelize.col('tokens'), token),
