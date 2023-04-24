@@ -163,6 +163,21 @@ exports.getUserInfo = async (req, res, next) => {
 
 // TODO : use the req.user instead of the query
 exports.Edit = async (req, res, next) => {
+  try{
+    debugger
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ["firstName", "lastName", "password", "email", "gender", "mobilenumber", "dob"]
+    const validUpdate = updates.every((update) => allowedUpdates.includes(update))
+    if(!validUpdate){
+      res.status(500).send("Invalid Updates!")
+    }
+    updates.forEach((update) => req.user[update] = req.body[update])
+    req.user.save()
+    res.status(200).send(req.user)
+  }catch(error){
+    res.status(500).send(error)
+  }
+  /*
   const userId = req.user.id;
   const updatedFirstName = req.body.firstName;
   const updatedLastName = req.body.lastName;
@@ -194,6 +209,7 @@ exports.Edit = async (req, res, next) => {
       console.log(error);
       res.send({ error: error });
     });
+    */
 };
 
 exports.Delete = (req, res, next) => {
