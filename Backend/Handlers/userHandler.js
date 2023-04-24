@@ -18,7 +18,6 @@ exports.getUsers = (req, res) => {
 //LOGIN BY EMAIL
 exports.loginUser = async (req, res) => {
   try {
-    debugger;
     let email = req.body.email;
     let upass = req.body.password;
     const user = await User.findOne({ where: { email: email } });
@@ -28,7 +27,7 @@ exports.loginUser = async (req, res) => {
         user.dataValues.password
       );
       if (valid === true) {
-        const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+        const token = jwt.sign({ _id: user.id, userType: "user" }, process.env.JWT_STRING);
         await User.update(
           {
             tokens: sequelize.fn(
@@ -72,9 +71,9 @@ exports.createUser = async (req, res) => {
       json.password + BCRYPT_PASSWORD,
       parseInt(SALT_ROUNDS)
     );
-
+    
     const user = await User.create(json);
-    const token = jwt.sign({ _id: user.id }, process.env.JWT_STRING);
+    const token = jwt.sign({ _id: user.id, userType: "user" }, process.env.JWT_STRING);
     await User.update(
       {
         tokens: sequelize.fn('array_append', sequelize.col('tokens'), token),
@@ -164,6 +163,21 @@ exports.getUserInfo = async (req, res, next) => {
 
 // TODO : use the req.user instead of the query
 exports.Edit = async (req, res, next) => {
+  try{
+    debugger
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ["firstName", "lastName", "password", "email", "gender", "mobilenumber", "dob"]
+    const validUpdate = updates.every((update) => allowedUpdates.includes(update))
+    if(!validUpdate){
+      res.status(500).send("Invalid Updates!")
+    }
+    updates.forEach((update) => req.user[update] = req.body[update])
+    req.user.save()
+    res.status(200).send(req.user)
+  }catch(error){
+    res.status(500).send(error)
+  }
+  /*
   const userId = req.user.id;
   const updatedFirstName = req.body.firstName;
   const updatedLastName = req.body.lastName;
@@ -195,6 +209,7 @@ exports.Edit = async (req, res, next) => {
       console.log(error);
       res.send({ error: error });
     });
+    */
 };
 
 exports.Delete = (req, res, next) => {

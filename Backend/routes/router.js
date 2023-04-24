@@ -3,7 +3,7 @@ const router = express.Router();
 const authUser = require('../Handlers/authUser');
 const userHandler = require('../Handlers/userHandler');
 const emailHandler = require('../Handlers/emailHandler');
-const doctorHandler = require('../Handlers/doctorHndler');
+const doctorHandler = require('../Handlers/doctorHandler');
 const imageHandler = require('../Handlers/imgHandler');
 //Requests at /users
 
@@ -22,14 +22,25 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
+router.get('/doctors', doctorHandler.getDoctor)
+router.delete('/doctors', doctorHandler.deleteDoctor)
+router.get('/doctors/search', doctorHandler.searchDoctors)
+router.patch('/doctors/edit', authUser, doctorHandler.Edit)
 
 //login & logouts routes
-router.get('/login', userHandler.loginUser);
-router.post('/logout', authUser, userHandler.logout);
+router.post('/users/login', userHandler.loginUser);
+router.post('/users/logout', authUser, userHandler.logout);
 router.post(
-  '/logoutFromAllDevices',
+  '/users/logoutFromAllDevices',
   authUser,
   userHandler.logoutFromAllDevices
+);
+router.post('/doctors/login', doctorHandler.loginDoctor);
+router.post('/doctors/logout', authUser, doctorHandler.logout);
+router.post(
+  '/doctors/logoutFromAllDevices',
+  authUser,
+  doctorHandler.logoutFromAllDevices
 );
 
 //email routes
