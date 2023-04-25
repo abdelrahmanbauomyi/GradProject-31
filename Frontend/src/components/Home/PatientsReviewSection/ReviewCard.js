@@ -1,6 +1,7 @@
 import classes from "./ReviewCard.module.css";
 import React from "react";
 import image from "../../../assets/image.png";
+
 import ReviewStars from "../../UI/ReviewStars";
 
 const ReviewCard = () => {
@@ -21,8 +22,9 @@ const ReviewCard = () => {
           width="0.85625rem"
           height="0.85625rem"
           color="#4200ff"
-          marginRight="0.25rem"
+          marginRight="1px"
         />
+
         <p className={classes.review}>
           Thanks for all the services, no doubt it is the best hospital.
         </p>
