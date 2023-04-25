@@ -1,0 +1,43 @@
+.butt {
+  margin: 20px;
+}
+
+h1 {
+  display: inline;
+  padding: 100px;
+}
+
+.vert {
+  margin-top: 50px !important;
+}
+
+.box {
+  animation: loader 3.5s infinite;
+
+  background-color: red;
+  width: 150px;
+  height: 50px;
+  color: #00136c;
+  position: absolute;
+  left: 80%;
+  top: 20%;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+@keyframes loader {
+  0% {
+    rotate: 0 deg;
+  }
+  100% {
+    border-radius: 50%;
+    rotate: 180deg;
+  }
+}

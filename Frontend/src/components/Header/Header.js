@@ -1,19 +1,20 @@
 import React from 'react'
-import { Nav,Navbar,Container,NavDropdown,Button } from 'react-bootstrap'
-import Details from '../Details/Details'
+import { Nav,Navbar,Container,NavDropdown,Button, NavLink } from 'react-bootstrap'
 import styles from './Header.module.css'
-import SearchCard from '../Cards/SearchCard'
 import { useState } from 'react'
-import SignInForm from './SignInForm'
-import SignUpForm from './SignUpForm'
+import SignInForm from '../NavigationBar/Navbar/SignInForm'
+import SignUpForm from '../NavigationBar/Navbar/SignUpForm'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
-import { logout } from '../../../actions/userActions'
+import { logout } from '../../actions/userActions'
+
 
 
 const Header = () => {
 
-  const dispatch = useDispatch()
+
+const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
+const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
 
@@ -47,19 +48,29 @@ const logoutHandler = () => {
        showSignUpHandler();
     }
   };
-  
 
+/*
+  const handleDoctorModalShow=()=>{
+    setDoctorSignUpClicked(true);
+  }
+  const handleDoctorModalClose=()=>{
+    setDoctorSignUpClicked(false);
+  }
 
+  <Navbar.Text className={styles.text} onClick={handleDoctorModalShow}>Clinic For Doctors</Navbar.Text>
+  {doctorSignUpClicked && <DoctorSignUpForm onClose={handleDoctorModalClose}/>}
+
+*/ 
   return (
     
     <header  >
        <Navbar className={styles.navbar} expand="lg">
       <Container>
-        <Navbar.Brand href="#home" className={styles.Brand}>Clinc Logo</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/' className={styles.Brand}>Clinc Logo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home"  className={styles.Home}>Home</Nav.Link>
+            <Nav.Link as={Link} to='/'  className={styles.Home}>Home</Nav.Link>
             <NavDropdown title="services" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -71,9 +82,11 @@ const logoutHandler = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#link">Doctors</Nav.Link>
-            <Nav.Link href="#link">About us</Nav.Link>
-            <Nav.Link href="#link">Contact us </Nav.Link>
+            <Nav.Link href='#link'>Doctors</Nav.Link>
+            <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
+            <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
+            <NavLink  as={Link} to='/Home Page' >Clinic For Doctors</NavLink>
+            
           </Nav>
           <Nav  className='ms-auto'>
           {userInfo?(
@@ -91,14 +104,12 @@ const logoutHandler = () => {
             </div>
             )   
             }
-          
-         
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Details></Details>
-    <SearchCard></SearchCard>
+    
+    
     </header>
     
   )

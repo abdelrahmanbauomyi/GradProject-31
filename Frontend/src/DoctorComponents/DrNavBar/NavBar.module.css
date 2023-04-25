@@ -2,6 +2,7 @@
   background-color: #fffaf1;
   background-size: auto;
   height: 100% !important;
+  margin-bottom: 30px;
 }
 .Home {
   border: none;
@@ -23,4 +24,8 @@
   border-radius: 20px;
   background-color: #4200ff !important;
   margin: 10px;
+}
+.text {
+  color: #4200ff !important;
+  cursor: pointer;
 }

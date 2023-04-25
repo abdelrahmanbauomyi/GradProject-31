@@ -22,17 +22,6 @@ const SignInForm = (props) => {
   const { loading, error, userInfo } = userLogin;
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
-  /*
-  const postData = (e) =>{
-    e.preventDefault()
-    const Data = {email,password}
-    results.post('/users.json',Data).then(response=>{
-    console.log(response);
-    })
-  }
-   
-  */
-
   useEffect(() => {
     if (userInfo) {
       history(redirect);
@@ -41,9 +30,7 @@ const SignInForm = (props) => {
 
   const sumbitHandler = (e) => {
     e.preventDefault();
-    disaptch(login(email,password))
-    //login(email, password, name);
-    //disaptch();
+    disaptch(login(email, password))
   };
 
   const onChangePassword = (e) => {

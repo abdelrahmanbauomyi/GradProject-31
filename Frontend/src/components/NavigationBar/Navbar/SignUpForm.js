@@ -3,6 +3,7 @@ import classes from"./SignUpForm.module.css";
 import Input from "./Input";
 // import { register } from "../../../actions/userActions";
 // import { useState } from "react";
+import axios from "axios";
 import results from "../../../results";
 import React from "react";
 import { useFormik } from "formik";
@@ -13,16 +14,69 @@ import ErrorPopUp from "./ErrorPopUp";
 // import calstyles from './ReactCalendar.module.css'
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-
+import { register } from "../../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import {  useNavigate  ,  useLocation} from "react-router-dom"
+import { useEffect,useState } from "react";
 const SignUpForm = (props) => {
+  
+  
+  const history = useNavigate();
+  const location = useLocation();
+  
+
+    const disaptch = useDispatch()
+    const userRegister = useSelector(state => state.userRegister)
+    const {loading, error,userInfo} = userRegister
+    const redirect = location.search? location.search.split('=')[1] :'/'
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [dob,setDob] = useState(yup.date);
+    const [gender,setGender] =useState("");
+    const [mobilenumber,setmobileNumber] = useState("");
+
+
+    useEffect(()=>{
+      if(userInfo){
+          history(redirect)
+      }
+      },[history,userInfo,redirect]) 
+  
+  
+  
+  
   const handleRegister = (values) => {
+    disaptch(register(values))
     // e.preventDefault();
     // const Data = {email,password,firstName,lastName,gender,confirmpassword}
-    results.post('/users.json',values).then(response=>{
-      console.log(response);
-      })
+   /* const options = {
+      url: 'http://localhost:8000/login',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:8000/login',
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+      withCredentials: true,
+      data: {
+          "password":"a7a",
+          "email":"omar.tolan@gmail.com"
+      }
+    };
+    
+    axios(options)
+      .then(response => {
+        console.log(response.status, response.body);
+      });
+    }*/
 
-    }
+    
+    
+
+  }
     const handleDateChange = (event) => {
       formik.setFieldValue("age", event.target.value);
     };
@@ -147,7 +201,7 @@ const SignUpForm = (props) => {
   //     }
   //   );
   // }
- 
+
   
   // console.log("Data values", formik.values);
   // console.log("Errors", formik.errors);
