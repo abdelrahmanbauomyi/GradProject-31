@@ -16,12 +16,12 @@ export default function QuestionForm(props) {
   const [questionContent, setQuestionContent] = useState("");
   const [FAQ, setFAQ] = useState([]);
   useEffect(() => {
-    axios.get("PUT FAQ URL HERE").then((result) => setFAQ(result));
+    axios.get("http://localhost:8000/qa").then((result) => setFAQ( res =>result.data));
   }, []);
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log(questionContent);
-    axios.post("PUT URL HERE");
+    axios.post("http://localhost:8000/qa" ,{title : questionTitle , question : questionContent})
   };
   return (
     <MDBContainer
@@ -47,47 +47,19 @@ export default function QuestionForm(props) {
                 Frequently Asked Questions
               </h3>
               <MDBAccordion alwaysOpen initialActive={1}>
-                {/* <MDBAccordionItem collapseId={1} headerTitle="Question #1">
-                  <strong>This is the first item's accordion body.</strong> It
-                  is shown by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
-                </MDBAccordionItem>
-                <MDBAccordionItem collapseId={2} headerTitle="Question #2">
-                  <strong>This is the second item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
-                </MDBAccordionItem>
-                <MDBAccordionItem collapseId={3} headerTitle="Question #3">
-                  <strong>This is the third item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
-                </MDBAccordionItem> */}
-                {FAQ.map((question, idx) => {
+                
+                {FAQ.map((question, idx) => 
+                  
+                  
+                  
                   <MDBAccordionItem
-                    collapseId={idx}
-                    headerTitle={question.header}
+                    collapseId={idx+1}
+                    headerTitle={question.question}
                   >
-                    <p>{question.answer}</p>
-                  </MDBAccordionItem>;
-                })}
+                    
+                    <p>{question.answers}</p>
+                  </MDBAccordionItem>
+                )}
               </MDBAccordion>
             </MDBContainer>
           </MDBCol>
