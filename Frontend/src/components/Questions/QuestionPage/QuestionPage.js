@@ -18,7 +18,7 @@ const QuestionPage = () => {
     axios
       .get(`http://localhost:8000/qa/${id}`)
       .then((response) => setQuestion(response.data));
-  }, [updateAnswer]);
+  }, [updateAnswer,id]);
   return (
     <MDBContainer>
       <QuestionCard

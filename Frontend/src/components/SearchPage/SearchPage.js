@@ -35,7 +35,7 @@ const SearchPage = () => {
         {width > 800 ? (
           <div
             style={{
-              marginTop: "4vw",
+              marginTop: "3vw",
               position: "sticky",
             }}
           >

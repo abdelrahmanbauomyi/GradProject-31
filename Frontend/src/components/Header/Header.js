@@ -18,9 +18,9 @@ const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
 
-const logoutHandler = () => {
+/* const logoutHandler = () => {
   dispatch(logout())
-}
+} */
    
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
   const [signInIsClicked, setsignInIsClicked] = useState(false);
@@ -94,7 +94,7 @@ const logoutHandler = () => {
                 <Nav.Link as={Link} to='/profile_info'>
                   Profile
                 </Nav.Link>
-                <NavDropdown.Item onClick={logoutHandler} >Log out</NavDropdown.Item>
+                <NavDropdown.Item /* onClick={logoutHandler} */ >Log out</NavDropdown.Item>
               </NavDropdown>
               
             ):( <div > <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 

@@ -10,7 +10,6 @@ import {
   MDBRow,
   MDBTextArea,
 } from "mdb-react-ui-kit";
-import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -21,14 +20,13 @@ export default function QuestionCard({
   updateAnswerArray,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
-  
 
   const postAnswerHandler = () => {
     axios.patch(`http://localhost:8000/qa/${id}`, {
       questionId: id,
       answer: postedAnswer,
     });
-    setPostedAnswer("")
+    setPostedAnswer("");
     updateAnswerArray();
   };
   return (
@@ -78,7 +76,7 @@ export default function QuestionCard({
                     rows={4}
                     style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
-                    value= {postedAnswer}
+                    value={postedAnswer}
                     onChange={(event) => setPostedAnswer(event.target.value)}
                   />
                 </div>

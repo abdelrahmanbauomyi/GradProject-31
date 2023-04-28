@@ -3,9 +3,11 @@ import classes from "./MeetDoctor.module.css";
 import DoctorCard from "./DoctorCard"
 import Section from "../../UI/Section"
 import useWidthAndHeight from "../../../hooks/useWidthAndHeight";
+import { redirect, useNavigate } from "react-router-dom";
 
 
 const MeetDoctor = () => {
+  const navigate = useNavigate()
   const [width] = useWidthAndHeight();
 
   if(width < 600) {
@@ -34,7 +36,7 @@ const MeetDoctor = () => {
          <DoctorCard />
          </div>
         </div>
-        <button className={classes.button}>See More </button>
+        <button onClick={()=>navigate('/search')} className={classes.button}>See More </button>
         </div>
     </Section>
   );
