@@ -14,12 +14,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function QuestionCard({ id, title, content }) {
+export default function QuestionCard({
+  id,
+  title,
+  content,
+  updateAnswerArray,
+}) {
   const [postedAnswer, setPostedAnswer] = useState("");
-  console.log(title , content)
+  console.log(title, content);
 
   const postAnswerHandler = () => {
-    axios.patch(`http://localhost:8000/qa/${id}`, { questionId: id, answer: postedAnswer });
+    axios.patch(`http://localhost:8000/qa/${id}`, {
+      questionId: id,
+      answer: postedAnswer,
+    });
+    updateAnswerArray();
   };
   return (
     <section className="">

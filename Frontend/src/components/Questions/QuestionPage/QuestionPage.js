@@ -9,8 +9,10 @@ const QuestionPage = () => {
   const params = useParams();
   const id = params.questionId;
   const [question, setQuestion] = useState({});
+  const [updateAnswer, setUpdateAnswer] = useState(false); // boolean variable to update the answers array
+  const updateAnswerArray = () =>
+    setUpdateAnswer((updateAnswer) => !updateAnswer);
   useEffect(() => {
-    
     axios
       .get(`http://localhost:8000/qa/${id}`)
       .then((response) => setQuestion(response.data));
@@ -22,8 +24,9 @@ const QuestionPage = () => {
         id={id}
         title={question.title}
         content={question.question}
+        updateAnswerArray={updateAnswerArray}
       />
-      <QuestionAnswers id={id} answers={question.answers}/>
+      <QuestionAnswers id={id} answers={question.answers} />
     </MDBContainer>
   );
 };
