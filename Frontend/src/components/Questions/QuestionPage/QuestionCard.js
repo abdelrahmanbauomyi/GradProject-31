@@ -16,9 +16,13 @@ import axios from "axios";
 
 export default function QuestionCard({ id }) {
   const [question, setQuestion] = useState({});
+  const [postedAnswer, setPostedAnswer] = useState("");
   useEffect(() => {
-    axios.get(`PUT UEL HERE/${id}`).then((question) => setQuestion(question));
+    axios.get(`PUT URL HERE/${id}`).then((question) => setQuestion(question));
   }, []);
+  const postAnswerHandler = () => {
+    axios.post("PUT URL HERE", { questionId: id, answer: postedAnswer });
+  };
   return (
     <section className="">
       <MDBContainer className="py-5">
@@ -66,10 +70,15 @@ export default function QuestionCard({ id }) {
                     rows={4}
                     style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
+                    onChange={(event) => setPostedAnswer(event.target.value)}
                   />
                 </div>
                 <div className="float-end mt-2 pt-1">
-                  <MDBBtn size="sm" className="me-1">
+                  <MDBBtn
+                    size="sm"
+                    className="me-1"
+                    onClick={postAnswerHandler}
+                  >
                     Post Answer
                   </MDBBtn>
                 </div>
