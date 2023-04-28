@@ -1,4 +1,5 @@
 const initialState = {
+  name: "",
   title: [],
   gender: "",
   availability: "",
@@ -7,6 +8,8 @@ const initialState = {
 };
 export const searchReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "NAME":
+      return { ...state, name: action.payload };
     case "GENDER":
       if (action.payload === "Any") {
         return { ...state, gender: "" };

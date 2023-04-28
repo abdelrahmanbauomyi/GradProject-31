@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
   const filters = useSelector((state) => state.searchFilters);
   const [doctors, setDoctors] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/doctors/search", {
@@ -18,8 +20,6 @@ const SearchPage = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(filters);
         setDoctors((docotors) => res.data);
       });
   }, [filters]);
@@ -35,7 +35,7 @@ const SearchPage = () => {
         {width > 800 ? (
           <div
             style={{
-              marginTop: "200px",
+              marginTop: "4vw",
               position: "sticky",
             }}
           >

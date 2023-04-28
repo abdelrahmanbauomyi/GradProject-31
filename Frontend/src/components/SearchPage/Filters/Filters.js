@@ -1,11 +1,35 @@
 import React from "react";
 import AccordionComponent from "../Accordion/AccordionComponent";
 import { useDispatch } from "react-redux";
+import { MDBContainer, MDBInput } from "mdb-react-ui-kit";
+import { Button, TextField } from "@mui/material";
+import { useRef } from "react";
 
 const Filters = () => {
   const dispatch = useDispatch();
+  const nameRef = useRef();
+  const nameFormSubmitHandler = (event) => {
+    event.preventDefault();
+    const searchName = nameRef.current.value;
+    dispatch({ type: "NAME", payload: searchName });
+  };
   return (
     <div style={{ padding: "20px", position: "sticky", top: "0" }}>
+      <form
+        className="align-items-end justify-content-center d-flex mb-4"
+        style={{ gap: "30px" }}
+        onSubmit={nameFormSubmitHandler}
+      >
+        <TextField
+          id="standard-basic"
+          label="Doctor Name"
+          variant="standard"
+          ref={nameRef}
+        />
+        <Button variant="contained" size="small">
+          Search
+        </Button>
+      </form>
       <AccordionComponent
         title="Title"
         checks={["Professor", "Lecturer", "Consultant", "Specialist"]}
@@ -41,9 +65,7 @@ const Filters = () => {
           "From 200 to 300",
           "Greater than 300",
         ]}
-
         action={(fees) => dispatch({ type: "FEES", payload: fees })}
-
         radio
       />
     </div>
