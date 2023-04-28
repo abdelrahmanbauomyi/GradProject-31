@@ -20,7 +20,7 @@ export default function QuestionCard() {
           <MDBCol md="12" lg="12" xl="12">
             <MDBCard>
               <MDBCardBody>
-                <div className="d-flex flex-start align-items-center">
+                <div className="d-flex flex-start align-items-center mb-4 ">
                   <MDBCardImage
                     className="rounded-circle shadow-1-strong me-3"
                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
@@ -30,22 +30,25 @@ export default function QuestionCard() {
                   />
                   <div>
                     <h6 className="fw-bold text-primary mb-1">Lily Coleman</h6>
+
                     <p className="text-muted small mb-0">
                       Shared publicly - Jan 2020
                     </p>
                   </div>
                 </div>
-
-                <p className="mt-3 mb-4 pb-2">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip consequat.
-                </p>
+                <div className="p-4">
+                  <h4>Question Title</h4>
+                  <p className="mt-3 mb-0 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
               </MDBCardBody>
 
               <MDBCardFooter
-                className="py-3 border-0"
+                className="py-4 px-4 border-0 "
                 style={{ backgroundColor: "#f8f9fa" }}
               >
                 <div className="d-flex flex-start w-100">
@@ -59,9 +62,8 @@ export default function QuestionCard() {
                   <MDBTextArea
                     label="Answer"
                     id="textAreaExample"
-                    
                     rows={4}
-                    style={{ backgroundColor: "#fff" ,resize:'none'}}
+                    style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
                   />
                 </div>
