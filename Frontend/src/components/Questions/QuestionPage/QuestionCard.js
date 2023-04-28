@@ -7,12 +7,18 @@ import {
   MDBCardImage,
   MDBCol,
   MDBContainer,
-  MDBIcon,
   MDBRow,
   MDBTextArea,
 } from "mdb-react-ui-kit";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
-export default function QuestionCard() {
+export default function QuestionCard({ id }) {
+  const [question, setQuestion] = useState({});
+  useEffect(() => {
+    axios.get(`PUT UEL HERE/${id}`).then((question) => setQuestion(question));
+  }, []);
   return (
     <section className="">
       <MDBContainer className="py-5">
@@ -37,13 +43,8 @@ export default function QuestionCard() {
                   </div>
                 </div>
                 <div className="p-4">
-                  <h4>Question Title</h4>
-                  <p className="mt-3 mb-0 pb-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip consequat.
-                  </p>
+                  <h4>{question.title}</h4>
+                  <p className="mt-3 mb-0 pb-2">{question.content}</p>
                 </div>
               </MDBCardBody>
 
