@@ -14,12 +14,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function QuestionCard({ id }) {
+export default function QuestionCard({ id, title, content }) {
   const [question, setQuestion] = useState({});
   const [postedAnswer, setPostedAnswer] = useState("");
-  useEffect(() => {
-    axios.get(`PUT URL HERE/${id}`).then((question) => setQuestion(question));
-  }, []);
+
   const postAnswerHandler = () => {
     axios.post("PUT URL HERE", { questionId: id, answer: postedAnswer });
   };
@@ -47,8 +45,8 @@ export default function QuestionCard({ id }) {
                   </div>
                 </div>
                 <div className="p-4">
-                  <h4>{question.title}</h4>
-                  <p className="mt-3 mb-0 pb-2">{question.content}</p>
+                  <h4>{title}</h4>
+                  <p className="mt-3 mb-0 pb-2">{content}</p>
                 </div>
               </MDBCardBody>
 
