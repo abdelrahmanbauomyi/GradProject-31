@@ -21,13 +21,14 @@ export default function QuestionCard({
   updateAnswerArray,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
-  console.log(title, content);
+  
 
   const postAnswerHandler = () => {
     axios.patch(`http://localhost:8000/qa/${id}`, {
       questionId: id,
       answer: postedAnswer,
     });
+    setPostedAnswer("")
     updateAnswerArray();
   };
   return (
@@ -77,6 +78,7 @@ export default function QuestionCard({
                     rows={4}
                     style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
+                    value= {postedAnswer}
                     onChange={(event) => setPostedAnswer(event.target.value)}
                   />
                 </div>
