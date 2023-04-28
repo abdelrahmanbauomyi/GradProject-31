@@ -16,12 +16,17 @@ export default function QuestionForm(props) {
   const [questionContent, setQuestionContent] = useState("");
   const [FAQ, setFAQ] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/qa").then((result) => setFAQ( res =>result.data));
+    axios
+      .get("http://localhost:8000/qa")
+      .then((result) => setFAQ((res) => result.data));
   }, []);
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log(questionContent);
-    axios.post("http://localhost:8000/qa" ,{title : questionTitle , question : questionContent})
+    axios.post("http://localhost:8000/qa", {
+      title: questionTitle,
+      question: questionContent,
+    });
   };
   return (
     <MDBContainer
@@ -47,19 +52,14 @@ export default function QuestionForm(props) {
                 Frequently Asked Questions
               </h3>
               <MDBAccordion alwaysOpen initialActive={1}>
-                
-                {FAQ.map((question, idx) => 
-                  
-                  
-                  
+                {FAQ.map((question, idx) => (
                   <MDBAccordionItem
-                    collapseId={idx+1}
+                    collapseId={idx + 1}
                     headerTitle={question.question}
                   >
-                    
                     <p>{question.answers}</p>
                   </MDBAccordionItem>
-                )}
+                ))}
               </MDBAccordion>
             </MDBContainer>
           </MDBCol>

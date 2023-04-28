@@ -13,6 +13,7 @@ import Coivd from "./components/NavigationBar/NavbarScreens/Covid";
 import ContactUs from "./components/NavigationBar/NavbarScreens/ContactUs";
 import NavBar from "./DoctorComponents/DrNavBar/NavBar";
 import QuestionForm from "./components/Questions/QuestionForm/QuestionFrom";
+import QuestionPage from "./components/Questions/QuestionPage/QuestionPage";
 function App() {
   return (
     <Router>
@@ -37,6 +38,7 @@ function App() {
         <Route path="/Health Tips" element={<Tips />} />
         <Route path="/Home Page" element={<NavBar />} />
         <Route path="/ask" element={<QuestionForm />} />
+        <Route path="/questions/:questionId" element={<QuestionPage />} />
       </Routes>
     </Router>
   );
