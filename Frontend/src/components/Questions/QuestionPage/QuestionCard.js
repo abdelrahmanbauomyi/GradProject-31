@@ -15,11 +15,11 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function QuestionCard({ id, title, content }) {
-  const [question, setQuestion] = useState({});
   const [postedAnswer, setPostedAnswer] = useState("");
+  console.log(title , content)
 
   const postAnswerHandler = () => {
-    axios.post("PUT URL HERE", { questionId: id, answer: postedAnswer });
+    axios.patch(`http://localhost:8000/qa/${id}`, { questionId: id, answer: postedAnswer });
   };
   return (
     <section className="">

@@ -7,21 +7,23 @@ import axios from "axios";
 
 const QuestionPage = () => {
   const params = useParams();
-  const id = params.id;
+  const id = params.questionId;
   const [question, setQuestion] = useState({});
   useEffect(() => {
+    
     axios
-      .get(`PUT URL HERE/${id}`)
+      .get(`http://localhost:8000/qa/${id}`)
       .then((response) => setQuestion(response.data));
   }, []);
   return (
     <MDBContainer>
+      {console.log(question)}
       <QuestionCard
-        id={params.id}
+        id={id}
         title={question.title}
-        content={question.content}
+        content={question.question}
       />
-      <QuestionAnswers id={params.id} answers={question.answers}/>
+      <QuestionAnswers id={id} answers={question.answers}/>
     </MDBContainer>
   );
 };
