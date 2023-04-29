@@ -5,6 +5,7 @@ const userHandler = require('../Handlers/userHandler');
 const emailHandler = require('../Handlers/emailHandler');
 const doctorHandler = require('../Handlers/doctorHandler');
 const imageHandler = require('../Handlers/imgHandler');
+const qaHandler = require('../Handlers/qaHandler');
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -45,5 +46,12 @@ router.post(
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);
+
+
+//qa routes
+router.get('/qa', qaHandler.getAllQA)
+router.get('/qa/:id' , qaHandler.getQA)
+router.post('/qa' , qaHandler.createQA)
+router.patch('/qa/:id' , qaHandler.updateQA)
 
 module.exports = router;

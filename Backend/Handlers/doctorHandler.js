@@ -64,7 +64,7 @@ exports.createDoctor = async (req, res) => {
   try {
     const image = req.file;
     const sentInfo = {
-      Dname: req.body.firstName + " " + req.body.lastName,
+      Dname: req.body.Dname,
       password: req.body.password,
       email: req.body.email,
       dob: req.body.dob,
@@ -178,11 +178,11 @@ exports.getDoctor = async (req,res) =>{
   };
 
   exports.searchDoctors = async (req,res) =>{
-    const {Dname , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath } = req.query.filters
+    const {name , id , email ,dob , gender , mobilenumber , confirmed , rating , speciality , sub_specialties , title , area , location , fees , imgPath } = req.query.filters
     const queryObj = {}
     
-    if(Dname){
-      queryObj.Dname  = { [Op.like] : '%' + Dname + '%'}
+    if(name){
+      queryObj.Dname  = { [Op.like] : '%' + name + '%'}
     }
     if(id){
       queryObj.id = id
