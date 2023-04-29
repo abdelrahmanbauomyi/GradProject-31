@@ -9,8 +9,10 @@ const Filters = () => {
   const dispatch = useDispatch();
   const nameRef = useRef();
   const nameFormSubmitHandler = (event) => {
+    
     event.preventDefault();
     const searchName = nameRef.current.value;
+    console.log(searchName)
     dispatch({ type: "NAME", payload: searchName });
   };
   return (
@@ -24,9 +26,9 @@ const Filters = () => {
           id="standard-basic"
           label="Doctor Name"
           variant="standard"
-          ref={nameRef}
+          inputRef={nameRef}
         />
-        <Button variant="contained" size="small">
+        <Button variant="contained" type="submit" size="small" >
           Search
         </Button>
       </form>
