@@ -11,10 +11,12 @@ import {
 } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Modal from "../../NavigationBar/Navbar/Modal";
 
 export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionContent, setQuestionContent] = useState("");
+  const [modal, setModal] = useState(false);
   const [FAQ, setFAQ] = useState([]);
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
@@ -32,6 +34,9 @@ export default function QuestionForm(props) {
       title: questionTitle,
       question: questionContent,
     });
+    setModal(true);
+    setQuestionTitle("");
+    setQuestionContent("");
   };
   return (
     <MDBContainer
@@ -43,6 +48,15 @@ export default function QuestionForm(props) {
       }
     >
       <section>
+        {modal && (
+          <Modal
+            onClose={() => {
+              setModal(false);
+            }}
+          >
+            <p>You Question has been posted.</p>
+          </Modal>
+        )}
         <MDBRow>
           <MDBCol lg="6" md="12" className="mb-4">
             <MDBContainer
