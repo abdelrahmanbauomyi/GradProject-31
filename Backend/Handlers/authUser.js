@@ -19,6 +19,7 @@ const authUser = async (req, res, next) => {
         throw new Error();
       }
       req.user = user;
+      req.user.type = decoded.userType
       next();
     }else{
       throw new Error("Invalid User Type")
