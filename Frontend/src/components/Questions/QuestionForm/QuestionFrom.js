@@ -22,7 +22,7 @@ export default function QuestionForm(props) {
   const { user } = userDetails;
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qa", {
+      .get("http://localhost:8000/faq", {
         user,
       })
       .then((result) => setFAQ((res) => result.data));
@@ -41,11 +41,7 @@ export default function QuestionForm(props) {
   return (
     <MDBContainer
       className="mt-5"
-      style={
-        {
-          /* maxWidth: "1000px" */
-        }
-      }
+      
     >
       <section>
         {modal && (
@@ -76,7 +72,7 @@ export default function QuestionForm(props) {
                     collapseId={idx + 1}
                     headerTitle={question.question}
                   >
-                    <p>{question.answers}</p>
+                    <p>{question.answer}</p>
                   </MDBAccordionItem>
                 ))}
               </MDBAccordion>
@@ -94,12 +90,14 @@ export default function QuestionForm(props) {
               <MDBInput
                 label="Question Title"
                 required
+                value = {questionTitle}
                 className="mb-4"
                 onChange={(event) => setQuestionTitle(event.target.value)}
               />
               <MDBTextArea
                 rows={4}
                 label="Your Question"
+                value = {questionContent}
                 className="mb-4"
                 onChange={(event) => setQuestionContent(event.target.value)}
               />
