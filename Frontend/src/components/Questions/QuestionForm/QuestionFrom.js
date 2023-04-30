@@ -10,14 +10,19 @@ import {
   MDBAccordionItem,
 } from "mdb-react-ui-kit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const [FAQ, setFAQ] = useState([]);
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qa")
+      .get("http://localhost:8000/qa", {
+        user,
+      })
       .then((result) => setFAQ((res) => result.data));
   }, []);
   const formSubmitHandler = (event) => {
