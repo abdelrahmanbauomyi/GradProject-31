@@ -24,14 +24,14 @@ export const login = (email, password) => async (dispatch) => {
       const config = {
         headers: {
           'Accept': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:8000/login',
+          'Access-Control-Allow-Origin': 'http://localhost:8000/users/login',
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           'Content-Type': 'application/json;charset=UTF-8'
         },
         withCredentials: true
       }
       console.log(email, password)
-      const { data } = await axios.post('http://localhost:8000/login', {
+      const { data } = await axios.post('http://localhost:8000/users/login', {
         "email": email,
         "password": password
       }, config)
