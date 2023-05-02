@@ -6,6 +6,7 @@ const emailHandler = require('../Handlers/emailHandler');
 const doctorHandler = require('../Handlers/doctorHandler');
 const imageHandler = require('../Handlers/imgHandler');
 const qaHandler = require('../Handlers/qaHandler');
+const faqHandler = require('../Handlers/faqHandler');
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -52,6 +53,11 @@ router.get('/confirmation/:token', emailHandler.verifyEmail);
 router.get('/qa', qaHandler.getAllQA)
 router.get('/qa/:id' , qaHandler.getQA)
 router.post('/qa' , qaHandler.createQA)
-router.patch('/qa/:id' , qaHandler.updateQA)
+router.patch('/qa/:id' , authUser , qaHandler.updateQA)
+
+
+//faq routes
+router.get('/faq', faqHandler.getAllFAQ)
+router.post('/faq' , faqHandler.createFAQ)
 
 module.exports = router;

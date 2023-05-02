@@ -12,7 +12,8 @@ exports.createQA = async (req,res) =>{
             answers : req.body.answers,
         }
         const entry = await qa.create(info)
-        return res.status(201).json(info);
+        console.log(entry)
+        return res.status(201).json(entry);
     }
    
     catch(err){
@@ -53,6 +54,8 @@ exports.updateQA = async (req , res) =>{
     try{
         const qaId = req.params.id
         const answer = [req.body.answer]
+        console.log('here')
+        console.log(req.user)
         const entry = await qa.findByPk(qaId)
         entry.answers = entry.answers.concat(answer)
         await entry.save()
