@@ -17,15 +17,15 @@ router.post('/users', userHandler.createUser);
 router.delete('/users', authUser, userHandler.Delete);
 router.get('/users', authUser, userHandler.getUserInfo);
 router.patch('/users/edit', authUser, userHandler.Edit);
-
+  
 //doctors CRUD routes
 router.post(
   '/doctors',
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', doctorHandler.getDoctor)
-router.delete('/doctors', doctorHandler.deleteDoctor)
+router.get('/doctors', authUser, doctorHandler.getDoctor)
+router.delete('/doctors', authUser, doctorHandler.deleteDoctor)
 router.get('/doctors/search', doctorHandler.searchDoctors)
 router.patch('/doctors/edit', authUser, doctorHandler.Edit)
 
