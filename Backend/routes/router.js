@@ -18,17 +18,17 @@ router.post('/users', userHandler.createUser);
 router.delete('/users', authUser, userHandler.Delete);
 router.get('/users', authUser, userHandler.getUserInfo);
 router.patch('/users/edit', authUser, userHandler.Edit);
-  
+
 //doctors CRUD routes
 router.post(
   '/doctors',
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', authUser, doctorHandler.getDoctor)
-router.delete('/doctors', authUser, doctorHandler.deleteDoctor)
-router.get('/doctors/search', doctorHandler.searchDoctors)
-router.patch('/doctors/edit', authUser, doctorHandler.Edit)
+router.get('/doctors', authUser, doctorHandler.getDoctor);
+router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
+router.get('/doctors/search', doctorHandler.searchDoctors);
+router.patch('/doctors/edit', authUser, doctorHandler.Edit);
 
 //login & logouts routes
 router.post('/users/login', userHandler.loginUser);
@@ -47,21 +47,24 @@ router.post(
 );
 
 //Booking routes
-router.post('/booking/addappoitment',authUser,bookingHandler.addAppoitment)
+router.post('/booking/addappoitment', authUser, bookingHandler.addAppoitment);
+router.post('/booking/reservappoitment', authUser, bookingHandler.reserveAppoitment);
+router.delete('/booking/deleteappoitment', authUser, bookingHandler.deleteAppoitment);
+router.get('/booking/available', bookingHandler.showAvailable)
+router.get('/booking/userhistory',authUser,bookingHandler.userHistory)
+router.get('/booking/doctorhistory',authUser,bookingHandler.doctorHistory)
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);
 
-
 //qa routes
-router.get('/qa', qaHandler.getAllQA)
-router.get('/qa/:id' , qaHandler.getQA)
-router.post('/qa' , qaHandler.createQA)
-router.patch('/qa/:id' , authUser , qaHandler.updateQA)
-
+router.get('/qa', qaHandler.getAllQA);
+router.get('/qa/:id', qaHandler.getQA);
+router.post('/qa', qaHandler.createQA);
+router.patch('/qa/:id', authUser, qaHandler.updateQA);
 
 //faq routes
-router.get('/faq', faqHandler.getAllFAQ)
-router.post('/faq' , faqHandler.createFAQ)
+router.get('/faq', faqHandler.getAllFAQ);
+router.post('/faq', faqHandler.createFAQ);
 
 module.exports = router;

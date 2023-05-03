@@ -1,7 +1,7 @@
 const { sequelize, Doctor } = require('../models');
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 
 exports.loginDoctor = async (req, res) => {
@@ -15,7 +15,10 @@ exports.loginDoctor = async (req, res) => {
         doctor.dataValues.password
       );
       if (valid === true) {
-        const token = jwt.sign({ _id: doctor.id, userType: "doctor" }, process.env.JWT_STRING);
+        const token = jwt.sign(
+          { _id: doctor.id, userType: 'doctor' },
+          process.env.JWT_STRING
+        );
         await Doctor.update(
           {
             tokens: sequelize.fn(
@@ -45,20 +48,31 @@ exports.loginDoctor = async (req, res) => {
 
 exports.Edit = async (req, res, next) => {
   try {
-    debugger
-    const updates = Object.keys(req.body).filter((update) => req.body[update] !== "")
-    const allowedUpdates = ["Dname" , "password", "email", "gender", "mobilenumber", "dob"]
-    const validUpdate = updates.every((update) => allowedUpdates.includes(update))
+    debugger;
+    const updates = Object.keys(req.body).filter(
+      (update) => req.body[update] !== ''
+    );
+    const allowedUpdates = [
+      'Dname',
+      'password',
+      'email',
+      'gender',
+      'mobilenumber',
+      'dob',
+    ];
+    const validUpdate = updates.every((update) =>
+      allowedUpdates.includes(update)
+    );
     if (!validUpdate) {
-      res.status(500).send("Invalid Updates!")
+      res.status(500).send('Invalid Updates!');
     }
-    updates.forEach((update) => req.user[update] = req.body[update])
-    req.user.save()
-    res.status(200).send(req.user)
+    updates.forEach((update) => (req.user[update] = req.body[update]));
+    req.user.save();
+    res.status(200).send(req.user);
   } catch (error) {
-    res.status(500).send(error)
+    res.status(500).send(error);
   }
-}
+};
 
 exports.createDoctor = async (req, res) => {
   try {
@@ -72,7 +86,7 @@ exports.createDoctor = async (req, res) => {
       dob: req.body.dob,
       gender: req.body.gender,
       mobilenumber: req.body.mobilenumber,
-      speciality: req.body.speciality
+      speciality: req.body.speciality,
     };
     if (image) {
       const imageUrl = image.path;
@@ -84,7 +98,10 @@ exports.createDoctor = async (req, res) => {
       parseInt(SALT_ROUNDS)
     );
     const doctor = await Doctor.create(sentInfo);
-    const token = jwt.sign({ _id: doctor.id, userType: "doctor" }, process.env.JWT_STRING);
+    const token = jwt.sign(
+      { _id: doctor.id, userType: 'doctor' },
+      process.env.JWT_STRING
+    );
     await Doctor.update(
       {
         tokens: sequelize.fn('array_append', sequelize.col('tokens'), token),
@@ -102,54 +119,48 @@ exports.createDoctor = async (req, res) => {
   }
 };
 
-
 exports.getAllDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.findAll();
     res.status(200).json(doctors);
+  } catch (err) {
+    return res.status(500).json(err);
   }
-  catch (err) {
-    return res.status(500).json(err)
-  }
-
-
-}
+};
 
 exports.getDoctor = async (req, res) => {
   try {
-    res.status(200).json(req.user)
+    res.status(200).json(req.user);
+  } catch (err) {
+    res.status(500).json(err);
   }
-  catch (err) {
-    res.status(500).json(err)
-
-  }
-}
+};
 
 exports.deleteDoctor = async (req, res) => {
   try {
-    const doctorID = req.user.id
-    const doctor = await Doctor.findByPk(doctorID)
+    const doctorID = req.user.id;
+    const doctor = await Doctor.findByPk(doctorID);
     if (doctor) {
-      doctor.destroy()
-      res.status(200).json("Doctor removed successfully!")
+      doctor.destroy();
+      res.status(200).json('Doctor removed successfully!');
+    } else {
+      res.status(500).json('Doctor not found');
     }
-    else {
-      res.status(500).json("Doctor not found")
-
-    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-  catch (err) {
-    console.log(err)
-    res.status(500).json(err)
-  }
-}
+};
 
 exports.logout = async (req, res) => {
   try {
     const validTokens = req.user.tokens.filter(
       (token) => token !== req.cookies.token
     );
-    await Doctor.update({ tokens: validTokens }, { where: { id: req.user.id } });
+    await Doctor.update(
+      { tokens: validTokens },
+      { where: { id: req.user.id } }
+    );
     res.cookie('token', '', {
       expires: new Date('October 13, 1970 11:13:00'),
       httpOnly: true,
@@ -178,74 +189,77 @@ exports.logoutFromAllDevices = async (req, res) => {
 };
 
 exports.searchDoctors = async (req, res) => {
-  const { name, id, email, dob, gender, mobilenumber, confirmed, rating, speciality, sub_specialties, title, area, location, fees, imgPath } = req.query.filters
-  const queryObj = {}
+  const {
+    name,
+    id,
+    email,
+    dob,
+    gender,
+    mobilenumber,
+    confirmed,
+    rating,
+    speciality,
+    sub_specialties,
+    title,
+    area,
+    location,
+    fees,
+    imgPath,
+  } = req.query.filters;
+  const queryObj = {};
 
   if (name) {
-    queryObj.Dname = { [Op.like]: '%' + name + '%' }
+    queryObj.Dname = { [Op.like]: '%' + name + '%' };
   }
   if (id) {
-    queryObj.id = id
+    queryObj.id = id;
   }
   if (email) {
-    queryObj.email = email
+    queryObj.email = email;
   }
   if (dob) {
-    queryObj.dob = dob
+    queryObj.dob = dob;
   }
   if (gender) {
-
-    queryObj.gender = gender
+    queryObj.gender = gender;
   }
   if (confirmed) {
-    queryObj.confirmed = confirmed
+    queryObj.confirmed = confirmed;
   }
   if (rating) {
-    queryObj.rating = rating
+    queryObj.rating = rating;
   }
   if (speciality) {
-    queryObj.speciality = speciality
+    queryObj.speciality = speciality;
   }
   if (sub_specialties) {
-    queryObj.sub_specialties = sub_specialties
+    queryObj.sub_specialties = sub_specialties;
   }
   if (title) {
-    queryObj.title = title
+    queryObj.title = title;
   }
   if (area) {
-    queryObj.area = area
+    queryObj.area = area;
   }
   if (location) {
-    queryObj.location = location
+    queryObj.location = location;
   }
   if (fees) {
-    queryObj.fees = fees
+    queryObj.fees = fees;
   }
   if (imgPath) {
-    queryObj.imgPath = imgPath
+    queryObj.imgPath = imgPath;
   }
 
   //console.log(queryObj)
   try {
-    const doctors = await Doctor.findAll(
-      {
-        where: queryObj
-      }
-    )
-    res.status(200).json(doctors)
-    console.log(req.query)
-
-
-
+    const doctors = await Doctor.findAll({
+      where: queryObj,
+    });
+    res.status(200).json(doctors);
+    console.log(req.query);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-  catch (err) {
-    console.log(err)
-    res.status(500).json(err)
-  }
-
-
-
-
-
-}
-
+};

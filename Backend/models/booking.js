@@ -9,26 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
     }
   }
   Booking.init(
     {
-        appoitmentId:{
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER,
-        },
-        startTime:{
-            type: DataTypes.DATE
-        },
-        endTime:{
-            type: DataTypes.DATE
-        },
-        status:{
-            type:DataTypes.STRING
-        }
+      appoitmentId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      startTime: {
+        type: DataTypes.DATE,
+      },
+      endTime: {
+        type: DataTypes.DATE,
+      },
+      status: {
+        type: DataTypes.STRING,
+        defaultValue: 'pending',
+      },
     },
     {
       sequelize,

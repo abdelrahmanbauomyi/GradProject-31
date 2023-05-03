@@ -9,40 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
     }
   }
   qa.init(
     {
-        qaId:{
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER,
-        },
-        question:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        title:{
-          type: DataTypes.STRING
-          
-        },
-        answers:{
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            defaultValue : []
-            
-        },
-        date:{
-            type : DataTypes.DATE,
-            defaultValue: DataTypes.NOW
-        },
-        likes: {
-            type : DataTypes.INTEGER,
-            defaultValue : 0
-
-        },
-      
+      qaId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      question: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      title: {
+        type: DataTypes.STRING,
+      },
+      answers: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: [],
+      },
+      date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      likes: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
     {
       sequelize,

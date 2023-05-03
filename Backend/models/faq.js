@@ -9,22 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
     }
   }
   faq.init(
     {
-        question:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        answer:{
-          type: DataTypes.STRING,
-          allowNull: false
-          
-        },
-      
-      
+      question: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      answer: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
