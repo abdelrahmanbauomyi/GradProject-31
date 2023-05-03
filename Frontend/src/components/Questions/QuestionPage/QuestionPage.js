@@ -26,6 +26,7 @@ const QuestionPage = () => {
         title={question.title}
         content={question.question}
         updateAnswerArray={updateAnswerArray}
+        date= {question.date}
       />
       <QuestionAnswers id={id} answers={question.answers} />
     </MDBContainer>

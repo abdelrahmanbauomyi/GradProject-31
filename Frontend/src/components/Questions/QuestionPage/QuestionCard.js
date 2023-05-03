@@ -12,6 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function QuestionCard({
   id,
@@ -20,11 +21,14 @@ export default function QuestionCard({
   updateAnswerArray,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
 
   const postAnswerHandler = () => {
     axios.patch(`http://localhost:8000/qa/${id}`, {
       questionId: id,
       answer: postedAnswer,
+      user,
     });
     setPostedAnswer("");
     updateAnswerArray();

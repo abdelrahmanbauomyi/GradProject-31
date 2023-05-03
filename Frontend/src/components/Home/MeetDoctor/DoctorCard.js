@@ -21,8 +21,8 @@ const DoctorCard = ({ doctorName, speciality }) => {
         </div>
       </div>
       <div className={classes.info}>
-        <h2>doctorName</h2>
-        <p>speciality</p>
+        <h2>{doctorName}</h2>
+        <p>{speciality}</p>
         <div className={classes.rating}>
           <ReviewStars
             width="17.4px"

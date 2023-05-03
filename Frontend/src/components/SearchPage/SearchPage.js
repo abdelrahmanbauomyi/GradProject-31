@@ -20,7 +20,7 @@ const SearchPage = () => {
         },
       })
       .then((res) => {
-        setDoctors((docotors) => res.data);
+        setDoctors(res.data) ;
       });
   }, [filters]);
   return (

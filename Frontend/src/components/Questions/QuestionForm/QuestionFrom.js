@@ -10,14 +10,21 @@ import {
   MDBAccordionItem,
 } from "mdb-react-ui-kit";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import Modal from "../../NavigationBar/Navbar/Modal";
 
 export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionContent, setQuestionContent] = useState("");
+  const [modal, setModal] = useState(false);
   const [FAQ, setFAQ] = useState([]);
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
   useEffect(() => {
     axios
-      .get("http://localhost:8000/qa")
+      .get("http://localhost:8000/faq", {
+        user,
+      })
       .then((result) => setFAQ((res) => result.data));
   }, []);
   const formSubmitHandler = (event) => {
@@ -27,17 +34,25 @@ export default function QuestionForm(props) {
       title: questionTitle,
       question: questionContent,
     });
+    setModal(true);
+    setQuestionTitle("");
+    setQuestionContent("");
   };
   return (
     <MDBContainer
       className="mt-5"
-      style={
-        {
-          /* maxWidth: "1000px" */
-        }
-      }
+      
     >
       <section>
+        {modal && (
+          <Modal
+            onClose={() => {
+              setModal(false);
+            }}
+          >
+            <p>You Question has been posted.</p>
+          </Modal>
+        )}
         <MDBRow>
           <MDBCol lg="6" md="12" className="mb-4">
             <MDBContainer
@@ -57,7 +72,7 @@ export default function QuestionForm(props) {
                     collapseId={idx + 1}
                     headerTitle={question.question}
                   >
-                    <p>{question.answers}</p>
+                    <p>{question.answer}</p>
                   </MDBAccordionItem>
                 ))}
               </MDBAccordion>
@@ -75,12 +90,14 @@ export default function QuestionForm(props) {
               <MDBInput
                 label="Question Title"
                 required
+                value = {questionTitle}
                 className="mb-4"
                 onChange={(event) => setQuestionTitle(event.target.value)}
               />
               <MDBTextArea
                 rows={4}
                 label="Your Question"
+                value = {questionContent}
                 className="mb-4"
                 onChange={(event) => setQuestionContent(event.target.value)}
               />
