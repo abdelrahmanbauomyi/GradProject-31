@@ -3,7 +3,6 @@ import { Container, Button, NavLink } from "react-bootstrap";
 import styles from "./Details.module.css";
 import CircularImage from "./CircularImage";
 import SearchCard from "../Cards/SearchCard";
-import Header from '../../Header/Header'
 
 const Details = () => {
   return (

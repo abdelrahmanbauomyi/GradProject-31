@@ -12,8 +12,8 @@ import {
 } from "mdb-react-ui-kit";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import timeAgo from "../../../utils/timeAgo";
+import headersConfig from "../../../utils/headersConfig";
 
 export default function QuestionCard({
   id,
@@ -23,15 +23,13 @@ export default function QuestionCard({
   date
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
 
   const postAnswerHandler = () => {
+    const config = headersConfig(`qa/${id}`)
     axios.patch(`http://localhost:8000/qa/${id}`, {
-      questionId: id,
-      answer: postedAnswer,
-      user,
-    });
+     answerObj :{answer: postedAnswer}
+      
+    } , config)
     setPostedAnswer("");
     updateAnswerArray();
   };

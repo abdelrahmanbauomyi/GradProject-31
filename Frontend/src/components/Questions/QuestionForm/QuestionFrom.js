@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Modal from "../../NavigationBar/Navbar/Modal";
+import headersConfig from "../../../utils/headersConfig";
 
 export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
@@ -29,11 +30,11 @@ export default function QuestionForm(props) {
   }, []);
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(questionContent);
+    const config = headersConfig("qa")
     axios.post("http://localhost:8000/qa", {
       title: questionTitle,
       question: questionContent,
-    });
+    } , config);
     setModal(true);
     setQuestionTitle("");
     setQuestionContent("");

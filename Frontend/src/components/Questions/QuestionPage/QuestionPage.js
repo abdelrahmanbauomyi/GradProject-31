@@ -10,14 +10,14 @@ const QuestionPage = () => {
   const id = params.questionId;
   const [question, setQuestion] = useState({});
   const [updateAnswer, setUpdateAnswer] = useState(false); // boolean variable to update the answers array
-  const updateAnswerArray =  () =>
-  setUpdateAnswer((updateAnswer) => !updateAnswer);
+  const updateAnswerArray =  async () =>
+  await setUpdateAnswer((updateAnswer) => !updateAnswer);
     
   
   useLayoutEffect(() => {
     axios
       .get(`http://localhost:8000/qa/${id}`)
-      .then((response) => setQuestion(response.data));
+      .then((response) =>setQuestion((response.data)));
   }, [updateAnswer,id]);
   return (
     <MDBContainer>
