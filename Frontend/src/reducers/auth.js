@@ -1,6 +1,9 @@
 import {
     USER_REGISTER_SUCCESS,
     USER_REGISTER_FAILED,
+    DOCTOR_REGISTER_REQUEST,
+    DOCTOR_REGISTER_SUCCESS,
+    DOCTOR_REGISTER_FAILED,
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FAILED,
     USER_LOGOUT_REQUEST,
@@ -39,6 +42,19 @@ export const userRegisterReducers = ( state={} ,action) => {
         case USER_REGISTER_SUCCESS:
             return{loading:false , userInfo:action.payload}
         case USER_REGISTER_FAILED:
+            return{loading:false , error:action.payload}
+        default :
+        return state
+    }
+}
+
+export const doctorRegisterReducers = ( state={} ,action) => {
+    switch(action.type){
+        case DOCTOR_REGISTER_REQUEST : 
+        return {loading:true}
+        case DOCTOR_REGISTER_SUCCESS:
+            return{loading:false , doctorInfo:action.payload}
+        case DOCTOR_REGISTER_FAILED:
             return{loading:false , error:action.payload}
         default :
         return state

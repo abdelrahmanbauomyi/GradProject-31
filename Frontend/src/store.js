@@ -19,12 +19,13 @@ const reducer = combineReducers({
   appointments:appointmentsReducer
 });
 
-const doctorInfoFromStorage = localStorage.getItem("doctorInfo")
-  ? JSON.parse(localStorage.getItem("doctorInfo"))
-  : null;
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+
+const doctorInfoFromStorage = localStorage.getItem("doctorInfo")
+  ? JSON.parse(localStorage.getItem("doctorInfo"))
   : null;
 
 const initialState = {
