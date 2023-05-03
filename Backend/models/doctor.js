@@ -9,8 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    Doctor.belongsToMany(models.User,{through:{model:models.Booking,unique:false},uniqueKey:'appoitmentId',foreignKey:'doctorId'});
-      
+      Doctor.belongsToMany(models.User, {
+        through: { model: models.Booking, unique: false },
+        uniqueKey: 'appoitmentId',
+        foreignKey: 'doctorId',
+      });
     }
   }
   Doctor.init(
@@ -60,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       title: {
         type: DataTypes.STRING,
-        defaultValue: "Dr",
+        defaultValue: 'Dr',
         allowNull: false,
       },
       area: {
@@ -88,10 +91,12 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Doctor',
       tableName: 'doctors',
-      indexes: [{
-        unique:false,
-        fields: ['Dname']
-      }],
+      indexes: [
+        {
+          unique: false,
+          fields: ['Dname'],
+        },
+      ],
     }
   );
   return Doctor;
