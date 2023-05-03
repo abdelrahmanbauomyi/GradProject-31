@@ -3,10 +3,12 @@ import { Container, Button, NavLink } from "react-bootstrap";
 import styles from "./Details.module.css";
 import CircularImage from "./CircularImage";
 import SearchCard from "../Cards/SearchCard";
+import Header from '../../Header/Header'
 
 const Details = () => {
   return (
     <div className="text">
+      <Header/>
       <Container>
         <h1 className={styles.text1}>We care</h1>
         <h2 className={styles.text2}> about your health</h2>

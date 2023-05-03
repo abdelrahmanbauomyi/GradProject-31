@@ -5,8 +5,31 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import ErrorPopUp from "./ErrorPopUp";
 import classes from "./DoctorSignUpForm.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {  useNavigate  ,  useLocation} from "react-router-dom"
+import { useEffect } from "react";
+import {doctorRegister} from "../../../actions/doctorActions"
 
 const DoctorSignUpForm = (props) => {
+
+  const history = useNavigate();
+  const location = useLocation();
+  const disaptch = useDispatch()
+  const DoctorRegister = useSelector(state => state.DoctorRegister)
+  const {loading, error,doctorInfo} = DoctorRegister
+  const redirect = location.search? location.search.split('=')[1] :'/'
+  
+  useEffect(()=>{
+    if(doctorInfo){
+        history(redirect)
+    }
+    },[history,doctorInfo,redirect]) 
+
+  const handleRegister = (values) => {
+  disaptch(doctorRegister (values))
+  }
+
+
   const speciality = [
     { name: "Dermatology (Skin)", value: "Dermatology" },
     { name: "Dentistry (Teeth)", value: "Dentistry" },
@@ -102,6 +125,9 @@ const DoctorSignUpForm = (props) => {
 
     onSubmit: async (values, { resetForm }) => {
       console.log("Your Sumbitted data is", values);
+      handleRegister(values);
+        console.log("data added");
+        resetForm();
     },
   });
   console.log("Data values", formik.values);

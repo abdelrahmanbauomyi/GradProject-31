@@ -10,17 +10,19 @@ import { logout } from '../../actions/userActions'
 
 
 
+
 const Header = () => {
 
-
+ 
 const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
 const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
 
-/* const logoutHandler = () => {
+
+ const logoutHandler = () => {
   dispatch(logout())
-} */
+} 
    
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
   const [signInIsClicked, setsignInIsClicked] = useState(false);
@@ -82,10 +84,10 @@ const {userInfo} = userLogin
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href='#link'>Doctors</Nav.Link>
+            <Nav.Link as={Link} to='/myappointments'>Doctors</Nav.Link>
             <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
             <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
-            <NavLink  as={Link} to='/Home Page' >Clinic For Doctors</NavLink>
+            <NavLink  as={Link} to='/HomePage' >Clinic For Doctors</NavLink>
             
           </Nav>
           <Nav  className='ms-auto'>
@@ -94,7 +96,7 @@ const {userInfo} = userLogin
                 <Nav.Link as={Link} to='/profile_info'>
                   Profile
                 </Nav.Link>
-                <NavDropdown.Item /* onClick={logoutHandler} */ >Log out</NavDropdown.Item>
+                <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
               </NavDropdown>
               
             ):( <div > <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 

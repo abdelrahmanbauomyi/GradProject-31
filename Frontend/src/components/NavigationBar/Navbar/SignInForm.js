@@ -4,7 +4,7 @@ import Input from "./Input";
 import classes from "./SignInForm.module.css";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../../actions/userActions";
 import { useLocation } from "react-router-dom";
 
