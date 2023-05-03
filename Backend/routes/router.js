@@ -48,11 +48,19 @@ router.post(
 
 //Booking routes
 router.post('/booking/addappoitment', authUser, bookingHandler.addAppoitment);
-router.post('/booking/reservappoitment', authUser, bookingHandler.reserveAppoitment);
-router.delete('/booking/deleteappoitment', authUser, bookingHandler.deleteAppoitment);
-router.get('/booking/available', bookingHandler.showAvailable)
-router.get('/booking/userhistory',authUser,bookingHandler.userHistory)
-router.get('/booking/doctorhistory',authUser,bookingHandler.doctorHistory)
+router.post(
+  '/booking/reservappoitment',
+  authUser,
+  bookingHandler.reserveAppoitment
+);
+router.delete(
+  '/booking/deleteappoitment',
+  authUser,
+  bookingHandler.deleteAppoitment
+);
+router.get('/booking/available', bookingHandler.showAvailable);
+router.get('/booking/userhistory', authUser, bookingHandler.userHistory);
+router.get('/booking/doctorhistory', authUser, bookingHandler.doctorHistory);
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);
