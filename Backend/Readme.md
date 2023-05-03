@@ -4,13 +4,12 @@ To create a login-system for the 1st version of the project, A client can sign u
 
 ## API Endpoints
 
-#### Users
+### Users
 #### CRUD routes
 - [x] get_user_data  [token required]: 'users/' [GET]
-<!-- - Show [token required] : 'Users/:id' [GET] -->
 - [x] Create [token created] : 'users/' [POST] 
 - [x] delete [user deleted] : 'users/' [DELETE] 
-- [x] edit [user deleted] : 'users/edit' [PATCH] 
+- [x] edit [user edited] : 'users/edit' [PATCH] 
 #### Login & Logout routes
 - [x] login  [return a token] : 'users/login'  [GET]
 - [x] logout [removes a token] : 'Users/logout'[POST] 
@@ -20,9 +19,26 @@ To create a login-system for the 1st version of the project, A client can sign u
 
 - - - -
 ### Doctors
-- [x] Index : 'Doctors/' [GET]
-- [x] Show [token required] : 'doctor/:speciality/:area ?title' [GET]
-- [x] 
+#### CRUD routes
+- [x] Index : 'doctors/' [GET]
+- [x] Search  : 'doctor/searchDoctors' [GET]
+- [x] delete [doctor deleted] : 'doctor/' [DELETE] 
+- [x] edit [doctor edited] : 'users/edit' [PATCH] 
+#### Login & Logout routes
+- [x] login  [return a token] : 'doctors/login'  [GET]
+- [x] logout [removes a token] : 'doctors/logout'[POST] 
+- [x] logoutFromAllDevices[removes all tokens] : 'doctors/logoutFromAllDevices'[POST]
+#### Email routes
+- [x] verifyEmail [uses a token] : 'confirmation/:token'  [GET]
+
+- - - -
+### Booking
+
+- addAppoitments [doctor's token required ] : 'Booking/addAppoitments' [POST]
+- reserveAppoitments [user's token required] : 'Booking/reserveAppoitments' [POST]
+- deleteAppoitments [user's token required] : 'Booking/delete' [DELETE]
+
+- - - -
 ## Data Shapes
 ### users
 - id :  SERIAL PRIMARY KEY 
@@ -52,10 +68,10 @@ To create a login-system for the 1st version of the project, A client can sign u
 - location : VARCHAR
 - Fees : INTEGER
 
-
-       
- 
-## parts to study
-- JWT 
-- sequlize
-- nodemailer
+### Booking
+- AppoitmentId : SERIAL PRIMARY KEY
+- userId : SERIAL PRIMARY KEY REFERENCES User "id" ON DELETE CASCADE ON UPDATE CASCADE
+- doctorId : SERIAL PRIMARY KEY REFERENCES Docotr "id" ON DELETE CASCADE ON UPDATE CASCADE
+- startTime : DATE
+- endTime : DATE
+- status : VARCHAR       

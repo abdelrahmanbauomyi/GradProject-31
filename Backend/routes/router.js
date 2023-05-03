@@ -6,6 +6,7 @@ const emailHandler = require('../Handlers/emailHandler');
 const doctorHandler = require('../Handlers/doctorHandler');
 const imageHandler = require('../Handlers/imgHandler');
 const qaHandler = require('../Handlers/qaHandler');
+const bookingHandler = require('../Handlers/bookingHandler');
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -43,6 +44,9 @@ router.post(
   authUser,
   doctorHandler.logoutFromAllDevices
 );
+
+//Booking routes
+router.post('/booking/addappoitment',authUser,bookingHandler.addAppoitment)
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);
