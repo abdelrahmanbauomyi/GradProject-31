@@ -20,7 +20,7 @@ export default function QuestionCard({
   title,
   content,
   updateAnswerArray,
-  date
+  date,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
 

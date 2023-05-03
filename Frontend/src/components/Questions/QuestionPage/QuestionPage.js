@@ -1,4 +1,4 @@
-import React, {  useLayoutEffect, useState } from "react";
+import React, {  useEffect, useLayoutEffect, useState } from "react";
 import { MDBContainer } from "mdb-react-ui-kit";
 import QuestionCard from "./QuestionCard";
 import QuestionAnswers from "./QuestionAnswers";
@@ -11,10 +11,10 @@ const QuestionPage = () => {
   const [question, setQuestion] = useState({});
   const [updateAnswer, setUpdateAnswer] = useState(false); // boolean variable to update the answers array
   const updateAnswerArray =  async () =>
-  await setUpdateAnswer((updateAnswer) => !updateAnswer);
+   setUpdateAnswer((updateAnswer) => !updateAnswer);
     
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     axios
       .get(`http://localhost:8000/qa/${id}`)
       .then((response) =>setQuestion((response.data)));
