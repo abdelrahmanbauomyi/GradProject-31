@@ -165,7 +165,7 @@ exports.getUserInfo = async (req, res, next) => {
 exports.Edit = async (req, res, next) => {
   try{
     debugger
-    const updates = Object.keys(req.body)
+    const updates = Object.keys(req.body).filter((update) => req.body[update] !== "")
     const allowedUpdates = ["firstName", "lastName", "password", "email", "gender", "mobilenumber", "dob"]
     const validUpdate = updates.every((update) => allowedUpdates.includes(update))
     if(!validUpdate){
