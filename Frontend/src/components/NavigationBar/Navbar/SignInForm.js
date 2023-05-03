@@ -89,7 +89,7 @@ const SignInForm = (props) => {
           <p>Don't have an account?</p>
           <p onClick={() => props.onSwitch("signup")}>Sign up now!</p>
         </div>
-        <button className="ui blue sumbit button">sumbit</button>
+        <button className={classes.button} type="submit">sumbit</button>
       </form>
     </Modal>
   );

@@ -1,29 +1,46 @@
 .signin-form {
-    /* max-width: 500px; */
-    width: fit-content;
-    height:fit-content;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 15px;
-    flex:1;
-    /* background-color: #f7f7f7; */
-    background-color: #FFFAF1;
-    
-    
-    /* box-shadow: 0 2px 5px rgba(2, 0, 0, 0.3); */
-  }
-  .text {
-    font-size: 25px;
-    font-weight: bold;
-  }
+  /* max-width: 500px; */
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  /* background-color: #f7f7f7; */
+  background-color: #fffaf1;
 
-.sign-up-text{
-    display: flex;
-    justify-content: center;
-  }
-  .sign-up-text p:last-child {
-    color: blue;
-    text-decoration: underline;
-    margin-left: 10px;
-    cursor: pointer;
-  }
+  /* box-shadow: 0 2px 5px rgba(2, 0, 0, 0.3); */
+}
+.text {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.sign-up-text {
+  display: flex;
+  justify-content: center;
+}
+.sign-up-text p:last-child {
+  color: blue;
+  text-decoration: underline;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.button {
+  display: block;
+  width: 40%;
+  height: 40px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  border-radius: 20px;
+  background-color: #4200ff;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.button[type="submit"]:hover {
+  background-color: blueviolet;
+}
