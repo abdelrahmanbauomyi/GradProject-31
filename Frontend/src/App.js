@@ -17,6 +17,7 @@ import QuestionPage from "./components/Questions/QuestionPage/QuestionPage";
 import DashBoard from "./DoctorComponents/DrScreens/DashBoard";
 import SideScreen from "./DoctorComponents/DrScreens/SideScreen"
 import DoctorEdit from "./DoctorComponents/DrScreens/DoctorEdit";
+import Header from "./components/Header/Header";
 
 function App() {
  
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <Router>
+        <Header/>
         <Routes>
           <Route exact path="/" element={ <HomeScreen />} />
           <Route

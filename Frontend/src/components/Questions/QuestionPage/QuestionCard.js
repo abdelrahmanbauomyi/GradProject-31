@@ -13,12 +13,14 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import timeAgo from "../../../utils/timeAgo";
 
 export default function QuestionCard({
   id,
   title,
   content,
   updateAnswerArray,
+  date
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
   const userDetails = useSelector((state) => state.userDetails);
@@ -52,7 +54,7 @@ export default function QuestionCard({
                     <h6 className="fw-bold text-primary mb-1">Lily Coleman</h6>
 
                     <p className="text-muted small mb-0">
-                      Shared publicly - Jan 2020
+                      {timeAgo(date)}
                     </p>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useLayoutEffect, useState } from "react";
 import { MDBContainer } from "mdb-react-ui-kit";
 import QuestionCard from "./QuestionCard";
 import QuestionAnswers from "./QuestionAnswers";
@@ -14,7 +14,7 @@ const QuestionPage = () => {
   setUpdateAnswer((updateAnswer) => !updateAnswer);
     
   
-  useEffect(() => {
+  useLayoutEffect(() => {
     axios
       .get(`http://localhost:8000/qa/${id}`)
       .then((response) => setQuestion(response.data));
