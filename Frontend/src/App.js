@@ -15,20 +15,18 @@ import NavBar from "./DoctorComponents/DrNavBar/NavBar";
 import QuestionForm from "./components/Questions/QuestionForm/QuestionFrom";
 import QuestionPage from "./components/Questions/QuestionPage/QuestionPage";
 import DashBoard from "./DoctorComponents/DrScreens/DashBoard";
-import SideScreen from "./DoctorComponents/DrScreens/SideScreen"
+import SideScreen from "./DoctorComponents/DrScreens/SideScreen";
 import DoctorEdit from "./DoctorComponents/DrScreens/DoctorEdit";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
- 
-
-
   return (
     <>
       <Router>
-        <Header/>
+        <Header />
         <Routes>
-          <Route exact path="/" element={ <HomeScreen />} />
+          <Route exact path="/" element={<HomeScreen />} />
           <Route
             exact
             path="/profile_info"
@@ -49,10 +47,11 @@ function App() {
           <Route path="/HomePage" element={<NavBar />} />
           <Route path="/ask" element={<QuestionForm />} />
           <Route path="/questions/:questionId" element={<QuestionPage />} />
-          <Route path="/DrDashBoard" element={<DashBoard/>} />
-          <Route path="/SideScreen" element={<SideScreen/>} />
-          <Route path="/DoctorEdit" element={<DoctorEdit/>} />
+          <Route path="/DrDashBoard" element={<DashBoard />} />
+          <Route path="/SideScreen" element={<SideScreen />} />
+          <Route path="/DoctorEdit" element={<DoctorEdit />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
