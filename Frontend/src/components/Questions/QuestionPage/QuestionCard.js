@@ -14,6 +14,7 @@ import { useState } from "react";
 import axios from "axios";
 import timeAgo from "../../../utils/timeAgo";
 import headersConfig from "../../../utils/headersConfig";
+import { Link } from "react-router-dom";
 
 export default function QuestionCard({
   id,
@@ -21,15 +22,19 @@ export default function QuestionCard({
   content,
   updateAnswerArray,
   date,
+  user,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
 
   const postAnswerHandler = async () => {
-    const config = headersConfig(`qa/${id}`)
-    await axios.patch(`http://localhost:8000/qa/${id}`, {
-     answerObj :{answer: postedAnswer}
-      
-    } , config)
+    const config = headersConfig(`qa/${id}`);
+    await axios.patch(
+      `http://localhost:8000/qa/${id}`,
+      {
+        answerObj: { answer: postedAnswer },
+      },
+      config
+    );
     setPostedAnswer("");
     updateAnswerArray();
   };
@@ -49,11 +54,14 @@ export default function QuestionCard({
                     height="60"
                   />
                   <div>
-                    <h6 className="fw-bold text-primary mb-1">Lily Coleman</h6>
+                    <h6 className="fw-bold text-primary mb-1">
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to={"/profile_info"}
+                      >{`${user.firstName} ${user.lastName}`}</Link>
+                    </h6>
 
-                    <p className="text-muted small mb-0">
-                      {timeAgo(date)}
-                    </p>
+                    <p className="text-muted small mb-0">{timeAgo(date)}</p>
                   </div>
                 </div>
                 <div className="p-4">
@@ -81,7 +89,7 @@ export default function QuestionCard({
                     style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
                     value={postedAnswer}
-                    required= {true}
+                    required={true}
                     onChange={(event) => setPostedAnswer(event.target.value)}
                   />
                 </div>
