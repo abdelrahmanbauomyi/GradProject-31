@@ -64,6 +64,7 @@
 .rating {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 .rating p {
   size: 17.37px;
@@ -79,6 +80,7 @@
   color: #4200ff;
   background-color: transparent;
   transition: 0.2s ease-in;
+  margin-top: 20px;
 }
 .button:hover {
   background-color: #4200ff;
@@ -100,7 +102,6 @@
   {
    width: 300px;
     min-height: 300px;
-    display: block;
     padding-bottom: 15px;
     margin:15px auto;
 
@@ -108,14 +109,25 @@
  .button {
   width: 200px;
   font-size: 15px;
+  margin-top: 40px;
   }
   .rectangle{
     width:250px;
-    height: 200px;
+    height: 150px;
     margin-left: -30px;
 
   }
   .available{
     margin-left: -28px;
+  }
+  .img img {
+    width: 323.99px;
+    height: 170.23px;
+    margin-top: -170px;
+  }
+  .info h2 {
+    font-size: 23.28px;
+    color: #404040;
+    margin-top: 30px;
   }
 }

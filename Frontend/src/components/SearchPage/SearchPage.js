@@ -1,10 +1,10 @@
 import DrawerComponent from "../UI/DrawerComponent";
 import Filters from "./Filters/Filters";
 import useWidthAndHeight from "../../hooks/useWidthAndHeight";
-import DoctorCard from "../Home/MeetDoctor/DoctorCard";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import DoctorInfo from "./DoctorInfo/DoctorInfo";
 
 
 const SearchPage = () => {
@@ -49,12 +49,18 @@ const SearchPage = () => {
           </div>
         )}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-          {doctors.map((doctor) => (
+ {/*          {doctors.map((doctor) => (
             <DoctorCard
               doctorName={doctor.Dname}
               speciality={doctor.speciality}
             />
-          ))}
+          ))} */}
+          <DoctorInfo/>
+          <DoctorInfo/>
+          <DoctorInfo/>
+          <DoctorInfo/>
+
+ 
         </div>
       </div>
     </>

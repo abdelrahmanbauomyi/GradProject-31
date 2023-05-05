@@ -32,6 +32,11 @@ const DoctorCard = ({ doctorName, speciality }) => {
           />
           <p>(102)</p>
         </div>
+        <div className={classes.specialty}>  
+          <h2>
+          specialties
+          </h2>
+        </div>
         <button className={classes.button}>Book an Appointment</button>
       </div>
     </div>

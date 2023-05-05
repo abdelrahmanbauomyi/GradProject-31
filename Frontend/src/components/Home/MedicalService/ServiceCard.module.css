@@ -15,7 +15,9 @@
   transition: 0.2s ease-in;
   padding: 20px 0;
   font-weight: 600;
-
+}
+.card>p{
+  text-align: center;
 }
 .card:hover .imgColor1{
 color: white;

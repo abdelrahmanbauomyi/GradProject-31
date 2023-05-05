@@ -26,16 +26,12 @@ const MeetDoctor = () => {
   return (
     <Section title="Meet Our Doctors" paragraph="Well qualified doctors ready to serve you">
        <div className={classes.container}>
-        <div className={classes.flex}>
         <DoctorCard />
         <DoctorCard />
-         <div className={classes.three}>
          <DoctorCard />
-         </div>
-         <div className={classes.four}>
          <DoctorCard />
-         </div>
         </div>
+        <div className={classes.loc}>
         <button onClick={()=>navigate('/search')} className={classes.button}>See More </button>
         </div>
     </Section>
