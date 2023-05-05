@@ -24,7 +24,7 @@ export default function QuestionForm(props) {
   useEffect(() => {
     axios
       .get("http://localhost:8000/faq", {
-        user,
+        
       })
       .then((result) => setFAQ((res) => result.data));
   }, []);

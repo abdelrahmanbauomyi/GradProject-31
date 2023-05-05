@@ -24,9 +24,9 @@ export default function QuestionCard({
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
 
-  const postAnswerHandler = () => {
+  const postAnswerHandler = async () => {
     const config = headersConfig(`qa/${id}`)
-    axios.patch(`http://localhost:8000/qa/${id}`, {
+    await axios.patch(`http://localhost:8000/qa/${id}`, {
      answerObj :{answer: postedAnswer}
       
     } , config)
@@ -81,6 +81,7 @@ export default function QuestionCard({
                     style={{ backgroundColor: "#fff", resize: "none" }}
                     wrapperClass="w-100"
                     value={postedAnswer}
+                    required= {true}
                     onChange={(event) => setPostedAnswer(event.target.value)}
                   />
                 </div>
