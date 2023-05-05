@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import DoctorInfo from "./DoctorInfo/DoctorInfo";
-
+import Header from "../Header/Header";
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
@@ -20,11 +20,12 @@ const SearchPage = () => {
         },
       })
       .then((res) => {
-        setDoctors(res.data) ;
+        setDoctors(res.data);
       });
   }, [filters]);
   return (
     <>
+      <Header />
       <div
         style={{
           display: width > 800 ? "flex" : "",
@@ -49,18 +50,16 @@ const SearchPage = () => {
           </div>
         )}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
- {/*          {doctors.map((doctor) => (
+          {/*          {doctors.map((doctor) => (
             <DoctorCard
               doctorName={doctor.Dname}
               speciality={doctor.speciality}
             />
           ))} */}
-          <DoctorInfo/>
-          <DoctorInfo/>
-          <DoctorInfo/>
-          <DoctorInfo/>
-
- 
+          <DoctorInfo />
+          <DoctorInfo />
+          <DoctorInfo />
+          <DoctorInfo />
         </div>
       </div>
     </>
