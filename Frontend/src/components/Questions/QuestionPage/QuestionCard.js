@@ -10,7 +10,7 @@ import {
   MDBRow,
   MDBTextArea,
 } from "mdb-react-ui-kit";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import timeAgo from "../../../utils/timeAgo";
 import headersConfig from "../../../utils/headersConfig";
@@ -25,10 +25,6 @@ export default function QuestionCard({
   user,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
-  const [propsAvailable, setPropsAvailable] = useState(false);
-  useEffect(() => {
-    if (user) setPropsAvailable(true);
-  }, [user]);
   const postAnswerHandler = async () => {
     const config = headersConfig(`qa/${id}`);
     await axios.patch(
@@ -41,7 +37,6 @@ export default function QuestionCard({
     setPostedAnswer("");
     updateAnswerArray();
   };
-  if (!propsAvailable) return null;
   return (
     <section className="">
       <MDBContainer className="py-5">
