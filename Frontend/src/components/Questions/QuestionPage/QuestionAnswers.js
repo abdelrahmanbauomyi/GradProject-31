@@ -20,7 +20,7 @@ const QuestionAnswers = ({ id, answers }) => {
               answers.map((answer) => (
                 <MDBCard className="mb-4">
                   <MDBCardBody>
-                    <p>{answer.answer}</p>
+                    <h3>{answer.answer}</h3>
 
                     <div className="d-flex justify-content-between">
                       <div className="d-flex flex-row align-items-center">
