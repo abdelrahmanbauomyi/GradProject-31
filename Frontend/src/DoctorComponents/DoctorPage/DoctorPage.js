@@ -15,31 +15,34 @@ import BookingSection from "./BookingSection";
 
 const DoctorPage = () => {
   const { doctorId } = useParams();
+  const [doctor, setDoctor] = useState();
+  useEffect(() => {
+    const config = headersConfig();
+    axios
+      .get(`PUT URL HERE/${doctorId}`, {}, config)
+      .then((res) => setDoctor(res.data));
+  }, []);
 
-  //if (!doctor) return null;
+  if (!doctor) return null;
   return (
     <div>
       <Header />
       <div className={classes.mainContainer}>
-      <div className={classes.doctorPage}>
-        <div className={classes.limitedWidth}>
-          <div className={classes.gridStyleRow}>
-            <div className={classes.profile}>
-              <DoctorPageCard/>
-              <AboutDoctor/>
-              <PatientsReviews/>
+        <div className={classes.doctorPage}>
+          <div className={classes.limitedWidth}>
+            <div className={classes.gridStyleRow}>
+              <div className={classes.profile}>
+                <DoctorPageCard />
+                <AboutDoctor />
+                <PatientsReviews />
+              </div>
+              <BookingSection appointments={doctor.Bookings} />
             </div>
-            <BookingSection/>
           </div>
         </div>
       </div>
-    </div></div>
+    </div>
   );
 };
 
 export default DoctorPage;
-
-
-
-
-

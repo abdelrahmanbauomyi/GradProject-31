@@ -1,4 +1,4 @@
-import React,{ useState} from "react";
+import React, { useState } from "react";
 import classes from "./BookingSection.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,7 @@ import Scheduler from "../../components/UI/Scheduler";
 import AppointmentModal from "../../components/Appointment/AppointmentModal";
 
 const BookingSection = () => {
+
   const [bookingModal, setBookingModal] = useState(false);
   return (
     <div className={classes.bookingSection}>
@@ -39,12 +40,19 @@ const BookingSection = () => {
             <div className={classes.locationContainer}>
               <div className={classes.location}>
                 <span className={classes.locationIcon}>
-                  <FontAwesomeIcon icon={faLocationDot} className={classes.imgColor1} />
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    className={classes.imgColor1}
+                  />
                 </span>
                 <div className={classes.locationText}>
-                  <span className={classes.address}>El 3asher : El 3asher Street</span>
-                  <span className={classes.moreDetails}>Book now to receive the clinics address details and phone number
-</span>
+                  <span className={classes.address}>
+                    El 3asher : El 3asher Street
+                  </span>
+                  <span className={classes.moreDetails}>
+                    Book now to receive the clinics address details and phone
+                    number
+                  </span>
                 </div>
               </div>
             </div>
@@ -52,32 +60,38 @@ const BookingSection = () => {
             <div className={classes.schedulerWrapper}>
               <div className={classes.SchedulerContainer}>
                 <span>
-              <Scheduler/>
-            <span className={classes.appointment}>Appointment reservation
-            </span>
-            </span>
-            </div>
+                  <Scheduler />
+                  <span className={classes.appointment}>
+                    Appointment reservation
+                  </span>
+                </span>
+              </div>
             </div>
             <div className={classes.bookingFooter}>
-              <span className={classes.footerIcon}> <FontAwesomeIcon icon={faCalendarDays} /></span>
+              <span className={classes.footerIcon}>
+                {" "}
+                <FontAwesomeIcon icon={faCalendarDays} />
+              </span>
               <div className={classes.footerText}>
                 <span className={classes.reservationText}>
-                Book online, Pay at the clinic!
+                  Book online, Pay at the clinic!
                 </span>
-                <span>
-                  Doctor requires reservation!
-                </span>
+                <span>Doctor requires reservation!</span>
               </div>
             </div>
           </span>
           {bookingModal && (
-  <AppointmentModal
-    //appointments={doctor.appointments}
-    onClose={() => setBookingModal(false)}
-  />
-)}
-<button className={classes.bookingFlex} onClick={() => setBookingModal(true)}>book</button>
-
+            <AppointmentModal
+              //appointments={doctor.appointments}
+              onClose={() => setBookingModal(false)}
+            />
+          )}
+          <button
+            className={classes.bookingFlex}
+            onClick={() => setBookingModal(true)}
+          >
+            book
+          </button>
         </span>
       </div>
     </div>
@@ -85,5 +99,3 @@ const BookingSection = () => {
 };
 
 export default BookingSection;
-
-
