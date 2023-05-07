@@ -66,8 +66,8 @@ router.get('/confirmation/:token', emailHandler.verifyEmail);
 //qa routes
 router.get('/qa', qaHandler.getAllQA);
 router.get('/qa/:id', qaHandler.getQA);
-router.post('/qa', qaHandler.createQA);
-router.patch('/qa/:id', authUser, qaHandler.updateQA);
+router.post('/qa' , authUser , qaHandler.createQA);
+router.post('/qa/:id' , authUser , qaHandler.postAnswer);
 
 //faq routes
 router.get('/faq', faqHandler.getAllFAQ);
