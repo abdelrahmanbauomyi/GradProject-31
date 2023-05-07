@@ -17,10 +17,10 @@ const QuestionAnswers = ({ id, answers }) => {
           <MDBCol md="12" lg="12">
             {answers &&
               answers.length > 0 &&
-              answers.map((answer) => (
-                <MDBCard className="mb-4">
+              answers.map((answer , idx) => (
+                <MDBCard className="mb-4" key={idx}>
                   <MDBCardBody>
-                    <p>{answer.answer}</p>
+                    <h5>{answer.answerContent}</h5>
 
                     <div className="d-flex justify-content-between">
                       <div className="d-flex flex-row align-items-center">
@@ -30,7 +30,7 @@ const QuestionAnswers = ({ id, answers }) => {
                           width="25"
                           height="25"
                         />
-                        <p className="small mb-0 ms-2">{answer.name}</p>
+                        <p className="small mb-0 ms-2">{answer.Doctor.Dname}</p>
                       </div>
                       <div className="d-flex flex-row align-items-center">
                         <p className="small text-muted mb-0">Upvote?</p>

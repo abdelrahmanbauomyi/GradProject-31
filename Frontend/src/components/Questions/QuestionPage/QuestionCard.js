@@ -27,10 +27,10 @@ export default function QuestionCard({
   const [postedAnswer, setPostedAnswer] = useState("");
   const postAnswerHandler = async () => {
     const config = headersConfig(`qa/${id}`);
-    await axios.patch(
+    await axios.post(
       `http://localhost:8000/qa/${id}`,
       {
-        answerObj: { answer: postedAnswer },
+        answer: postedAnswer
       },
       config
     );

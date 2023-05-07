@@ -24,7 +24,7 @@ const QuestionPage = () => {
     <>
       <Header />
       <MDBContainer>
-        <QuestionCard
+      <QuestionCard
           id={id}
           title={question.title}
           content={question.question}
@@ -32,7 +32,7 @@ const QuestionPage = () => {
           date={question.date}
           user={question.User}
         />
-        <QuestionAnswers id={id} answers={question.answers} />
+        <QuestionAnswers id={id} answers={question.Answers} />
       </MDBContainer>
     </>
   );
