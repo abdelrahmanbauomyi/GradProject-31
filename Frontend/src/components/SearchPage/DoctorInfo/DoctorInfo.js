@@ -11,7 +11,7 @@ import Scheduler from "../../UI/Scheduler";
 import axios from "axios";
 import headersConfig from "../../../utils/headersConfig";
 
-function DoctorInfo() {
+function DoctorInfo({doctor}) {
   const bookingHandler = () => {
     const config = headersConfig("PUT URL HERE")
     axios.post("PUT URL HERE");
