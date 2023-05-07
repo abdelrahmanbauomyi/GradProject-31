@@ -28,7 +28,7 @@ const DoctorPage = () => {
       <Header />
       {bookingModal && (
         <AppointmentModal
-          appointments={doctor.appointments}
+          //appointments={doctor.appointments}
           onClose={() => setBookingModal(false)}
         />
       )}

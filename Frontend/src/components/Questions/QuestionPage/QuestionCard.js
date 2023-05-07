@@ -15,6 +15,7 @@ import axios from "axios";
 import timeAgo from "../../../utils/timeAgo";
 import headersConfig from "../../../utils/headersConfig";
 import { Link } from "react-router-dom";
+import Modal from "../../NavigationBar/Navbar/Modal";
 
 export default function QuestionCard({
   id,
@@ -25,26 +26,32 @@ export default function QuestionCard({
   user,
 }) {
   const [postedAnswer, setPostedAnswer] = useState("");
+  const [authorizationModal, setAuthorizationModal] = useState(false);
   const postAnswerHandler = async () => {
     const config = headersConfig(`qa/${id}`);
-    try{
+    try {
       await axios.post(
         `http://localhost:8000/qa/${id}`,
         {
-          answer: postedAnswer
+          answer: postedAnswer,
         },
         config
       );
       setPostedAnswer("");
       updateAnswerArray();
+    } catch (err) {
+      setAuthorizationModal(true);
     }
-    catch(err){
-      console.log(err)
+  };
 
-    }}
-   
   return (
     <section className="">
+      {authorizationModal && (
+        <Modal onClose={() => setAuthorizationModal(false)}>
+          Only doctors can answer questions. If you have any question, press{" "}
+          <Link to={"/ask"}>here</Link>
+        </Modal>
+      )}
       <MDBContainer className="py-5">
         <MDBRow className="justify-content-center">
           <MDBCol md="12" lg="12" xl="12">
