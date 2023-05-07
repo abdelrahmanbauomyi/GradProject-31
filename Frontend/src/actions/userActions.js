@@ -52,6 +52,7 @@ export const login = (email, password) => async (dispatch) => {
   
   export const logout = () => async (dispatch) => {
     try {
+      localStorage.removeItem('userInfo')
       dispatch({
         type: USER_LOGOUT_REQUEST
       })
@@ -66,7 +67,7 @@ export const login = (email, password) => async (dispatch) => {
       }
       const { data } = await axios.post('http://localhost:8000/logout', {}
         , config)
-      localStorage.removeItem('userInfo')
+
       dispatch({
         type: USER_LOGOUT_SUCCESS
       })

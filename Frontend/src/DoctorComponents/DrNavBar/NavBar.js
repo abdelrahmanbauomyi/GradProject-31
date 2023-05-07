@@ -46,7 +46,7 @@ const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);
              
               <Nav  className='ms-auto'>
           {doctorInfo?(
-              <NavDropdown title={doctorInfo.name} id='username'>
+              <NavDropdown title={doctorInfo.Dname} id='username'>
                 <Nav.Link as={Link} to='/SideScreen'>
                   Profile
                 </Nav.Link>

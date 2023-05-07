@@ -92,7 +92,7 @@ const {userInfo} = userLogin
           </Nav>
           <Nav  className='ms-auto'>
           {userInfo?(
-              <NavDropdown title={userInfo.name} id='username'>
+              <NavDropdown title={userInfo.firstName} id='username'>
                 <Nav.Link as={Link} to='/profile_info'>
                   Profile
                 </Nav.Link>
