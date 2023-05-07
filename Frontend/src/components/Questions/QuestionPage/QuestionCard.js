@@ -27,16 +27,22 @@ export default function QuestionCard({
   const [postedAnswer, setPostedAnswer] = useState("");
   const postAnswerHandler = async () => {
     const config = headersConfig(`qa/${id}`);
-    await axios.post(
-      `http://localhost:8000/qa/${id}`,
-      {
-        answer: postedAnswer
-      },
-      config
-    );
-    setPostedAnswer("");
-    updateAnswerArray();
-  };
+    try{
+      await axios.post(
+        `http://localhost:8000/qa/${id}`,
+        {
+          answer: postedAnswer
+        },
+        config
+      );
+      setPostedAnswer("");
+      updateAnswerArray();
+    }
+    catch(err){
+      console.log(err)
+
+    }}
+   
   return (
     <section className="">
       <MDBContainer className="py-5">
