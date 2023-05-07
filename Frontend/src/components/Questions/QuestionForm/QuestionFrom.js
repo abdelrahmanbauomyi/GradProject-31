@@ -14,12 +14,15 @@ import { useSelector } from "react-redux";
 import Modal from "../../NavigationBar/Navbar/Modal";
 import headersConfig from "../../../utils/headersConfig";
 import Header from "../../Header/Header";
+import AppointmentModal from "../../Appointment/AppointmentModal";
+import { Button } from "react-bootstrap";
 
 export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const [modal, setModal] = useState(false);
   const [FAQ, setFAQ] = useState([]);
+  const [boking, setBoking] = useState(false);
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
   useEffect(() => {
@@ -56,6 +59,8 @@ export default function QuestionForm(props) {
               <p>You Question has been posted.</p>
             </Modal>
           )}
+          {boking && <AppointmentModal onClose={() => setBoking(false)} />}
+          <Button onClick={() => setBoking(true)}>book</Button>
           <MDBRow>
             <MDBCol lg="6" md="12" className="mb-4">
               <MDBContainer
