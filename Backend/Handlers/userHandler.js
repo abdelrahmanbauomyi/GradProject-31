@@ -1,4 +1,4 @@
-const { sequelize, User } = require('../models');
+const { sequelize, User , Booking ,Doctor } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { where } = require('sequelize');
@@ -155,7 +155,7 @@ exports.getUserInfo = async (req, res, next) => {
       'mobilenumber',
       'dob',
     ],
-    where: { id: userId },
+    where: { id: userId },include :[{model :Booking , attributes:{exclude:['UserId','DoctorId','createdAt','updatedAt']}, include:[{model : Doctor , attributes :['Dname' , 'gender' , 'mobilenumber' , 'rating' ,'speciality','sub_specialties','title','fees']}]}]
   })
     .then((users) => {
       console.log(users[0]);
