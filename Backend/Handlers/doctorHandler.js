@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
+const emailHandler = require('./emailHandler');
 
 exports.loginDoctor = async (req, res) => {
   try {
@@ -78,7 +79,7 @@ exports.createDoctor = async (req, res) => {
   try {
     const image = req.file;
     const sentInfo = {
-      Dname: req.body.firstName + req.body.lastName,
+      Dname: req.body.firstName +' '+ req.body.lastName,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
@@ -113,6 +114,9 @@ exports.createDoctor = async (req, res) => {
       // secure: true, set this on production
       sameSite: 'strict',
     });
+    const verUrl = `http://localhost:5000/confirmation/${token}`;
+
+    emailHandler.sendVerificationEmail(sentInfo.email, verUrl);
     return res.status(201).json(doctor);
   } catch (err) {
     return res.status(500).json(err);

@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Booking.belongsTo( models.Doctor)
+      Booking.belongsTo( models.User)
     }
   }
   Booking.init(
@@ -29,6 +31,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: 'pending',
       },
+      roomId:{
+        type : DataTypes.STRING
+      }
     },
     {
       sequelize,
