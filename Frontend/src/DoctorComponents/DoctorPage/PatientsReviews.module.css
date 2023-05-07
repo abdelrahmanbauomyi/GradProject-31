@@ -1,0 +1,77 @@
+.patientsReviews{
+  background: white;
+  margin: 0px;
+  direction: ltr;
+  text-align: left;
+  border-radius: 10px;
+  padding: 25px;
+  width: calc(100% - 50px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 18px;
+}
+
+.imgColor1{
+  color: #4200ff;
+  margin-right: 10px;
+font-size: 20px !important;
+}
+.rating{
+  text-align: center;
+}
+
+.rating h3{
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.gridRating{
+  display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    margin-top: 20px;
+    -webkit-box-align: baseline;
+    align-items: baseline;
+}
+.starsRating{
+  text-align: center;
+}
+.starsRatingP{
+  display: block;
+  margin: 10px auto auto;
+  text-align: center;
+  font-size: 16px;
+}
+.numberRating{
+  text-align: center;
+  
+}
+.bluebox{
+  background: #4200ff;
+  color:white;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  font-size: 20px;
+  direction: ltr;
+  padding: 2px 5px;
+  width: max-content;
+  margin: auto;
+  padding-left: 10px;
+}
+.a7a{
+  font-size: 20px;
+    font-weight: 600;
+}
+.numberRatingp{
+  display: block;
+    margin: 10px auto auto;
+    font-size: 16px;
+    text-align: center;
+}
+.divider{
+  margin-top: 40px;
+  height: 20px;
+  background: rgb(245, 245, 245);
+  border-bottom: 1px solid rgb(218, 218, 218);
+  width: calc(100%);
+}

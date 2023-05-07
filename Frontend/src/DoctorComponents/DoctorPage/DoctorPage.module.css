@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.profile {
+  width: calc(60% - 15px);
+  margin: 0px 15px;
+  display: table-cell;
+  padding: 0px;
+  vertical-align: top;
+  position: relative;
+  color: rgb(116, 116, 112);
+  font-size: 12px;
+}
+
+.mainContainer {
+  background: #fffaf1 ;
+  width: 100%;
+}
+
+.limitedWidth {
+  width: 95%;
+  max-width: 1170px;
+  margin: auto;
+}
+.gridStyleRow {
+  clear: both;
+  padding: 0px;
+  width: 100%;
+  direction: ltr;
+  display: flex;
+  margin-bottom: 30px;
+}

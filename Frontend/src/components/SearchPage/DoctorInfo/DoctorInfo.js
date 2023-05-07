@@ -44,7 +44,7 @@ function DoctorInfo() {
                 className={classes.imgColor1}
                 icon={faStethoscope}
               />
-              andrologist specialsidal asodiasodias{" "}
+              andrologist specialsidal asodiasodia
             </div>
             <div>
               <FontAwesomeIcon
@@ -67,14 +67,12 @@ function DoctorInfo() {
           </div>
         </div>
         <div className={classes.item4}>
-          {" "}
-          <Scheduler />
-          <Scheduler />
           <Scheduler />
         </div>
       </div>
       <button onClick={bookingHandler}></button>
     </div>
+
   );
 }
 

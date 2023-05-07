@@ -28,8 +28,8 @@
     'menu header header header right right'
     'menu main main main right right'
     'menu main main main right right';
-grid-template-columns: 12% 20% 15% 8% 20% 17%;
-grid-template-rows: 40% 30% 30%;
+grid-template-columns: 12% 20% 15% 20% 15% 15%;
+grid-template-rows: 50% 20% 30%;
   gap: 2px;
   background-color: white;
   padding: 20px;

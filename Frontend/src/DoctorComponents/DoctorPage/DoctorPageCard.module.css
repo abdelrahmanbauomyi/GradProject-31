@@ -1,0 +1,164 @@
+.cardContainer {
+  background: white;
+  margin: 0px 0px 15px;
+  direction: ltr;
+  text-align: left;
+  padding: 25px 25px 16px;
+  border-radius: 10px;
+  width: calc(100% - 50px);
+  min-height: 220px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.imgHolder {
+  display: inline-block;
+  vertical-align: top;
+  width: 145px;
+  padding: 0px;
+}
+.img {
+  max-width: 120px;
+  width: 120px;
+  height: 120px;
+  margin: 0px 5px 25px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid rgba(105, 105, 105, 0.47);
+  background-image: url(https://cdn.discordapp.com/attachments/751272987470200904/1104794637274714225/doctor2.png);
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.doctorDetails {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 165px);
+  padding: 0px;
+}
+.titleFlex {
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.titleText {
+  font-size: 22px;
+  line-height: 25px;
+  display: inline-block;
+}
+.titleText h3 {
+  font-size: inherit;
+  display: unset;
+  margin: 0px;
+  color: unset;
+  font-weight: unset;
+}
+.viewCount {
+  margin-left: auto;
+  order: 2;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(116, 116, 112);
+  white-space: pre;
+  vertical-align: text-top;
+  margin-bottom: auto;
+  padding: 0px 5px;
+}
+.spec {
+  font-weight: 600;
+  margin: 15px 0px 10px;
+  color: rgb(128, 129, 131);
+  font-size: 16px;
+  width: 100%;
+  display: inline-block;
+  white-space: normal;
+  line-height: 20px;
+}
+.cardFotter {
+  margin-top: 15px;
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.ratingNumber {
+  font-size: 12px;
+  color: rgb(128, 129, 132);
+  margin: 4px 10px;
+}
+.link {
+  text-decoration: none !important;
+  font-size: 12px;
+  color: #4200ff !important;
+}
+.pinnedComment {
+  background: rgb(245, 245, 245);
+  margin: 20px 0px 5px;
+  padding: 10px 0px;
+  min-height: 50px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 0.5px solid rgb(238, 238, 238);
+  position: relative;
+  border-radius: 0px 22px;
+}
+.pinnedComment::before {
+  content: "،،";
+  transform: scaleY(-1);
+  top: 25px;
+  left: 10px;
+  color: #4200ff;
+  width: 0px;
+  position: absolute;
+  height: 0px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 0;
+}
+.commentDes {
+  direction: rtl;
+  text-align: start;
+  display: block;
+  color: rgb(111, 112, 114);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 0px 0px 0px 35px;
+  width: 75%;
+}
+.pinnedCommentReview {
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 8px 0px 0px 35px;
+}
+.commentRating {
+  direction: ltr;
+  display: inline-flex;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.commentName {
+  direction: ltr;
+  margin: 0px 12px 0px 30px;
+  color: rgb(116, 116, 112);
+  font-size: 10px;
+  font-weight: 700;
+}
+.pinnedCommentDate {
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+}

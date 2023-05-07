@@ -51,17 +51,17 @@ const SearchPage = () => {
           </div>
         )}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-          {doctors.map((doctor) => (
+    {/*       {doctors.map((doctor) => (
             <DoctorCard
               doctorId={doctor.id}
               doctorName={doctor.Dname}
               speciality={doctor.speciality}
             />
-          ))}
-          {/* <DoctorInfo />
+          ))} */}
+           <DoctorInfo />
           <DoctorInfo />
           <DoctorInfo />
-          <DoctorInfo /> */}
+          <DoctorInfo /> 
         </div>
       </div>
     </>

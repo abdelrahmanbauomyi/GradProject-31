@@ -53,9 +53,9 @@
   font-weight: bold;
   letter-spacing: -1px;
 }
-span {
+/* span {
   margin-left: 16px;
-}
+} */
 
 .active {
   background-color: #ff7779;

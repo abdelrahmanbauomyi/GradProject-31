@@ -77,3 +77,15 @@ const AppointmentModal = ({ onClose, appointments, doctorName }) => {
 };
 
 export default AppointmentModal;
+
+
+
+/* const [doctor, setDoctor] = useState();
+const config = headersConfig();
+useEffect(() => {
+  axios
+    .get(`PUT URL HERE TO FETCH DOCTOR INFO/${doctorId}`, {}, config)
+    .then((result) => setDoctor(result.data))
+    .then(console.log(doctor));
+  //Doctor Data to be displayed in this page
+}, []); */
