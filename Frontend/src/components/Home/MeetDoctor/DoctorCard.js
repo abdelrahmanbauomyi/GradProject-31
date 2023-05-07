@@ -2,8 +2,9 @@ import React from "react";
 import classes from "./DoctorCard.module.css";
 import doctor from "../../../assets/doctor.png";
 import ReviewStars from "../../UI/ReviewStars";
+import { Link } from "react-router-dom";
 
-const DoctorCard = ({ doctorName, speciality }) => {
+const DoctorCard = ({ doctorName, speciality, doctorId }) => {
   const avaliable = false;
   return (
     <div className={classes.card}>
@@ -21,7 +22,7 @@ const DoctorCard = ({ doctorName, speciality }) => {
         </div>
       </div>
       <div className={classes.info}>
-        <h2>{doctorName}</h2>
+        <Link to={`/doctor/${doctorId}`}>{doctorName}</Link>
         <p>{speciality}</p>
         <div className={classes.rating}>
           <ReviewStars
@@ -32,10 +33,8 @@ const DoctorCard = ({ doctorName, speciality }) => {
           />
           <p>(102)</p>
         </div>
-        <div className={classes.specialty}>  
-          <h2>
-          specialties
-          </h2>
+        <div className={classes.specialty}>
+          <h2>specialties</h2>
         </div>
         <button className={classes.button}>Book an Appointment</button>
       </div>

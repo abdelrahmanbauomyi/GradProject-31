@@ -19,6 +19,7 @@ import SideScreen from "./DoctorComponents/DrScreens/SideScreen";
 import DoctorEdit from "./DoctorComponents/DrScreens/DoctorEdit";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import DoctorPage from "./DoctorComponents/DoctorPage/DoctorPage";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/DrDashBoard" element={<DashBoard />} />
           <Route path="/SideScreen" element={<SideScreen />} />
           <Route path="/DoctorEdit" element={<DoctorEdit />} />
+          <Route path="/doctor/:doctorId" element={<DoctorPage />} />
         </Routes>
         <Footer />
       </Router>

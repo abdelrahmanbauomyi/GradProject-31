@@ -8,10 +8,13 @@ import Select from "@mui/material/Select";
 import axios from "axios";
 import headersConfig from "../../utils/headersConfig";
 import { createTheme } from "@mui/material";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
-const AppointmentModal = ({ onClose, doctorName, doctorId, times }) => {
+const AppointmentModal = ({ onClose, appointments, doctorName }) => {
   const [age, setAge] = useState("");
-  const [age1, setAge1] = useState("");
+  const { userInfo } = useSelector((state) => state.userLogin);
+  console.log(appointments);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -21,12 +24,12 @@ const AppointmentModal = ({ onClose, doctorName, doctorId, times }) => {
     event.preventDefault();
     await axios.post("PUT URL HERE", {
       datatoBeSent: {
-        doctorId: "",
-        dateAndTime: "",
+        appointmentId: "id",
       },
       config,
     });
   };
+  if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   return (
     <Modal onClose={onClose}>
       <Container>
@@ -34,17 +37,16 @@ const AppointmentModal = ({ onClose, doctorName, doctorId, times }) => {
           <h5>Booking Confirmation</h5>
           <p>Doctor: 3askary</p>
           <div className="mb-4">
-            <FormControl
-              required
-              variant="standard"
-              sx={{ m: 1, width: 200 }}
-            >
-              <InputLabel id="demo-simple-select-standard-label" sx={{
-                display:'flex',
-                flexDirection:'row-reverse',
-                gap:'3px',
-                marginLeft:'-15px'
-              }}>
+            <FormControl required variant="standard" sx={{ m: 1, width: 200 }}>
+              <InputLabel
+                id="demo-simple-select-standard-label"
+                sx={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  gap: "3px",
+                  marginLeft: "-15px",
+                }}
+              >
                 Day
               </InputLabel>
               <Select
@@ -57,7 +59,9 @@ const AppointmentModal = ({ onClose, doctorName, doctorId, times }) => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Tensgdfgfdgfdgdfsgdfsgdfsgfdgfdgdfgds</MenuItem>
+                <MenuItem value={10}>
+                  Tensgdfgfdgfdgdfsgdfsgdfsgfdgfdgdfgds
+                </MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
