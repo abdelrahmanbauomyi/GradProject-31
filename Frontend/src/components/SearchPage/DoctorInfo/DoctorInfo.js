@@ -10,17 +10,18 @@ import Rating from "@mui/material/Rating";
 import Scheduler from "../../UI/Scheduler";
 import axios from "axios";
 import headersConfig from "../../../utils/headersConfig";
+import { Link } from "react-router-dom";
 
-function DoctorInfo({doctor}) {
+function DoctorInfo({ doctor }) {
   const bookingHandler = () => {
-    const config = headersConfig("PUT URL HERE")
+    const config = headersConfig("PUT URL HERE");
     axios.post("PUT URL HERE");
   };
   return (
     <div>
       <div className={classes.gridcontainer}>
         <div className={classes.item1}>
-          <h2>Doctor ma7ma 3askary</h2>
+          <Link>Doctor ma7ma 3askary</Link>
           <p>Professor in Dermatology,askdhaskdhas,asdkahsdk</p>
           <div className={classes.rating}>
             <Rating
@@ -72,7 +73,6 @@ function DoctorInfo({doctor}) {
       </div>
       <button onClick={bookingHandler}></button>
     </div>
-
   );
 }
 
