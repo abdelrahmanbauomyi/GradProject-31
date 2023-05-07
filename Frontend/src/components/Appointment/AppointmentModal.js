@@ -11,10 +11,10 @@ import { createTheme } from "@mui/material";
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 
-const AppointmentModal = ({ onClose, appointments, doctorName }) => {
+const AppointmentModal = ({ onClose, doctor }) => {
   const [age, setAge] = useState("");
   const { userInfo } = useSelector((state) => state.userLogin);
-  console.log(appointments);
+  console.log(doctor);
 
   const handleChange = (event) => {
     setAge(event.target.value);

@@ -8,7 +8,7 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import Scheduler from "../../components/UI/Scheduler";
 import AppointmentModal from "../../components/Appointment/AppointmentModal";
 
-const BookingSection = () => {
+const BookingSection = ({doctor}) => {
 
   const [bookingModal, setBookingModal] = useState(false);
   return (
@@ -82,7 +82,7 @@ const BookingSection = () => {
           </span>
           {bookingModal && (
             <AppointmentModal
-              //appointments={doctor.appointments}
+              doctor = {doctor}
               onClose={() => setBookingModal(false)}
             />
           )}

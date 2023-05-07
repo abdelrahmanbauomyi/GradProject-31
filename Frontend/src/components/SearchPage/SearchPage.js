@@ -7,6 +7,7 @@ import axios from "axios";
 import DoctorInfo from "./DoctorInfo/DoctorInfo";
 import Header from "../Header/Header";
 import DoctorCard from "../Home/MeetDoctor/DoctorCard";
+import headersConfig from "../../utils/headersConfig";
 
 const SearchPage = () => {
   const [width] = useWidthAndHeight();
@@ -14,16 +15,18 @@ const SearchPage = () => {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
+    const config = headersConfig('doctors/search')
     axios
       .get("http://localhost:8000/doctors/search", {
         params: {
           filters: filters,
         },
-      })
+      } , config)
       .then((res) => {
         setDoctors(res.data);
       });
-  }, [filters]);
+  }, [filters])
+  if(!doctors) return null;
   return (
     <>
       <Header />

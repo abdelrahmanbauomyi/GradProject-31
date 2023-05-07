@@ -21,7 +21,7 @@ function DoctorInfo({ doctor }) {
     <div>
       <div className={classes.gridcontainer}>
         <div className={classes.item1}>
-          <Link>Doctor ma7ma 3askary</Link>
+          <h1><Link to={`/doctor/${doctor.id}`}>Doctor ma7ma 3askary</Link></h1>
           <p>Professor in Dermatology,askdhaskdhas,asdkahsdk</p>
           <div className={classes.rating}>
             <Rating

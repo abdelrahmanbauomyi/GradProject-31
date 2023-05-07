@@ -19,7 +19,7 @@ const DoctorPage = () => {
   useEffect(() => {
     const config = headersConfig();
     axios
-      .get(`PUT URL HERE/${doctorId}`, {}, config)
+      .get(`http://localhost:8000/doctors/${doctorId}`, {}, config)
       .then((res) => setDoctor(res.data));
   }, []);
 
@@ -36,7 +36,7 @@ const DoctorPage = () => {
                 <AboutDoctor />
                 <PatientsReviews />
               </div>
-              <BookingSection appointments={doctor.Bookings} />
+              <BookingSection doctor = {doctor} />
             </div>
           </div>
         </div>
