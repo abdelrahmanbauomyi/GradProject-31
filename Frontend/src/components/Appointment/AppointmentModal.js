@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../NavigationBar/Navbar/Modal";
 import { Button, Container } from "react-bootstrap";
 import InputLabel from "@mui/material/InputLabel";
@@ -7,24 +7,26 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import headersConfig from "../../utils/headersConfig";
-import { createTheme } from "@mui/material";
-import { Fragment } from "react";
 import { useSelector } from "react-redux";
 
 const AppointmentModal = ({ onClose, doctor }) => {
-  const [age, setAge] = useState("");
+  const [bookings, setBookings] = useState([]);
+  const [bookingId, setBookingId] = useState(null);
   const { userInfo } = useSelector((state) => state.userLogin);
+  useEffect(() => {
+    setBookings[doctor.Bookings];
+  }, []);
   console.log(doctor);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setBookingId(event.target.value);
   };
   const bookingSubmitHandler = async (event) => {
-    const config = headersConfig();
+    const config = headersConfig('/PUT URL HERE');
     event.preventDefault();
     await axios.post("PUT URL HERE", {
       datatoBeSent: {
-        appointmentId: "id",
+        bookingId: "id",
       },
       config,
     });
@@ -35,7 +37,7 @@ const AppointmentModal = ({ onClose, doctor }) => {
       <Container>
         <form onSubmit={bookingSubmitHandler}>
           <h5>Booking Confirmation</h5>
-          <p>Doctor: 3askary</p>
+          <p>Doctor: {doctor.Dname}</p>
           <div className="mb-4">
             <FormControl required variant="standard" sx={{ m: 1, width: 200 }}>
               <InputLabel
@@ -52,18 +54,15 @@ const AppointmentModal = ({ onClose, doctor }) => {
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={age}
+                value={bookingId}
                 onChange={handleChange}
                 label="Booking time"
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>
-                  Tensgdfgfdgfdgdfsgdfsgdfsgfdgfdgdfgds
-                </MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {bookings.map((booking) => {
+                  <MenuItem value={booking.bookingId}>
+                    {booking.startTime}
+                  </MenuItem>;
+                })}
               </Select>
             </FormControl>
           </div>
@@ -77,5 +76,3 @@ const AppointmentModal = ({ onClose, doctor }) => {
 };
 
 export default AppointmentModal;
-
-
