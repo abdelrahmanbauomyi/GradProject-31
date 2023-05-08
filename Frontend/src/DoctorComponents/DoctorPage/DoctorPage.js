@@ -16,6 +16,7 @@ import BookingSection from "./BookingSection";
 const DoctorPage = () => {
   const { doctorId } = useParams();
   const [doctor, setDoctor] = useState();
+  const [bookingModal, setBookingModal] = useState(false);
   useEffect(() => {
     const config = headersConfig();
     axios
@@ -36,7 +37,11 @@ const DoctorPage = () => {
                 <AboutDoctor />
                 <PatientsReviews />
               </div>
-              <BookingSection doctor = {doctor} />
+              <BookingSection
+                bookingModal={bookingModal}
+                setBookingModal={setBookingModal}
+                doctor={doctor}
+              />
             </div>
           </div>
         </div>

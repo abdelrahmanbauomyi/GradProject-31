@@ -10,7 +10,7 @@ import headersConfig from "../../utils/headersConfig";
 import { useSelector } from "react-redux";
 import timeFormatter from "../../utils/timeFormatter";
 
-const AppointmentModal = ({ onClose  , doctor}) => {
+const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   const [bookings, setBookings] = useState([]);
   const [bookingId, setBookingId] = useState("");
   const [successfulAppointmentModal, setSuccessfulAppointmentModal] =
@@ -24,7 +24,7 @@ const AppointmentModal = ({ onClose  , doctor}) => {
       () => setSuccessfulAppointmentModal(false),
       2000
     );
-    return clearTimeout(timeOut);
+    return () => clearTimeout(timeOut);
   }, [successfulAppointmentModal]);
 
   const handleChange = (event) => {
@@ -34,12 +34,16 @@ const AppointmentModal = ({ onClose  , doctor}) => {
   const bookingSubmitHandler = async (event) => {
     event.preventDefault();
     const config = headersConfig("booking/reserveappointment");
-    const response = await axios.post("http://localhost:8000/booking/reserveappointment", {
-      appointmentId : bookingId,
-      
-    }, config);
-    console.log(response)
+    const response = await axios.post(
+      "http://localhost:8000/booking/reserveappointment",
+      {
+        appointmentId: bookingId,
+      },
+      config
+    );
+    console.log(response);
     if (response.request.status === 200) {
+      setBookingModal(false);
       setSuccessfulAppointmentModal(true);
     }
   };
