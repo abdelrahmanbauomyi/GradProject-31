@@ -25,10 +25,12 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', authUser, doctorHandler.getDoctor);
-router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
+
 router.get('/doctors/search', doctorHandler.searchDoctors);
+router.get('/doctors/:id', doctorHandler.getDoctor);
+router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
 router.patch('/doctors/edit', authUser, doctorHandler.Edit);
+
 
 //login & logouts routes
 router.post('/users/login', userHandler.loginUser);

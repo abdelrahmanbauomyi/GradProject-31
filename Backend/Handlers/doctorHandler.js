@@ -1,4 +1,4 @@
-const { sequelize, Doctor } = require('../models');
+const { sequelize, Doctor , Booking } = require('../models');
 const jwt = require('jsonwebtoken');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 const { Op } = require('sequelize');
@@ -134,7 +134,13 @@ exports.getAllDoctors = async (req, res) => {
 
 exports.getDoctor = async (req, res) => {
   try {
-    res.status(200).json(req.user);
+    const doctorId = req.params.id
+    const doctor = await Doctor.findOne({
+      where: {id: doctorId},
+      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
+       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+    });
+    res.status(200).json(doctor);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -209,8 +215,9 @@ exports.searchDoctors = async (req, res) => {
     location,
     fees,
     imgPath,
-  } = req.query.filters;
+  } = req.query.filters
   const queryObj = {};
+  console.log(req.query.filter)
 
   if (name) {
     queryObj.Dname = { [Op.like]: '%' + name + '%' };
@@ -259,7 +266,10 @@ exports.searchDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.findAll({
       where: queryObj,
+      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
+       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
     });
+    
     res.status(200).json(doctors);
     console.log(req.query);
   } catch (err) {
