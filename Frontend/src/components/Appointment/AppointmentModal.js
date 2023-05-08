@@ -57,11 +57,20 @@ const AppointmentModal = ({ onClose }) => {
   };
   const [bookings, setBookings] = useState([]);
   const [bookingId, setBookingId] = useState("");
+  const [successfulAppointmentModal, setSuccessfulAppointmentModal] =
+    useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
     setBookings(doctor.Bookings);
-  }, []);
+  }, [doctor.Bookings]);
+  useEffect(() => {
+    const timeOut = setTimeout(
+      () => setSuccessfulAppointmentModal(false),
+      2000
+    );
+    return clearTimeout(timeOut);
+  }, [successfulAppointmentModal]);
 
   const handleChange = (event) => {
     setBookingId(event.target.value);
@@ -70,14 +79,21 @@ const AppointmentModal = ({ onClose }) => {
   const bookingSubmitHandler = async (event) => {
     event.preventDefault();
     const config = headersConfig("/PUT URL HERE");
-    await axios.post("PUT URL HERE", {
+    const response = await axios.post("PUT URL HERE", {
       bookingId,
-
       config,
     });
-    //console.log(bookingId);
+    if (response.statusCode === 200) {
+      setSuccessfulAppointmentModal(true);
+    }
   };
-  //if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
+  if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
+  if (successfulAppointmentModal)
+    return (
+      <Modal onClose={() => setSuccessfulAppointmentModal(false)}>
+        Your Appointment has been submitted.
+      </Modal>
+    );
   return (
     <Modal onClose={onClose}>
       <Container>
