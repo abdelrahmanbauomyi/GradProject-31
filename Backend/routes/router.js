@@ -49,16 +49,16 @@ router.post(
 );
 
 //Booking routes
-router.post('/booking/addappoitment', authUser, bookingHandler.addAppoitment);
+router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
-  '/booking/reservappoitment',
+  '/booking/reservappointment',
   authUser,
-  bookingHandler.reserveAppoitment
+  bookingHandler.reserveAppointment
 );
 router.delete(
-  '/booking/deleteappoitment',
+  '/booking/deleteappointment',
   authUser,
-  bookingHandler.deleteAppoitment
+  bookingHandler.deleteAppointment
 );
 router.get('/booking/available', bookingHandler.showAvailable);
 
