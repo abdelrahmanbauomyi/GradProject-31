@@ -10,57 +10,12 @@ import headersConfig from "../../utils/headersConfig";
 import { useSelector } from "react-redux";
 import timeFormatter from "../../utils/timeFormatter";
 
-const AppointmentModal = ({ onClose }) => {
-  const doctor = {
-    Dname: "Lotfy Mabrouk",
-    email: "maskedrider99xx@gmail.com",
-    dob: "1999-12-04T00:00:00.000Z",
-    gender: "Male",
-    mobilenumber: "11536520723",
-    confirmed: false,
-    rating: 0,
-    speciality: "Cardiothoracic",
-    sub_specialties: null,
-    title: "Dr",
-    area: null,
-    location: null,
-    fees: 200,
-    imgPath: "imgsdoctor.png",
-    createdAt: "2023-05-07T21:01:12.562Z",
-    updatedAt: "2023-05-07T21:02:07.449Z",
-    Bookings: [
-      {
-        id: 1,
-        startTime: "2016-01-22T19:00:00.000Z",
-        endTime: "2016-01-22T19:30:00.000Z",
-        status: "pending",
-      },
-      {
-        id: 2,
-        startTime: "2016-01-22T19:30:00.000Z",
-        endTime: "2016-01-22T20:00:00.000Z",
-        status: "pending",
-      },
-      {
-        id: 3,
-        startTime: "2016-01-22T20:00:00.000Z",
-        endTime: "2016-01-22T20:30:00.000Z",
-        status: "pending",
-      },
-      {
-        id: 4,
-        startTime: "2016-01-22T20:30:00.000Z",
-        endTime: "2016-01-22T21:00:00.000Z",
-        status: "pending",
-      },
-    ],
-  };
+const AppointmentModal = ({ onClose  , doctor}) => {
   const [bookings, setBookings] = useState([]);
   const [bookingId, setBookingId] = useState("");
   const [successfulAppointmentModal, setSuccessfulAppointmentModal] =
     useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
-
   useEffect(() => {
     setBookings(doctor.Bookings);
   }, [doctor.Bookings]);
@@ -78,12 +33,13 @@ const AppointmentModal = ({ onClose }) => {
 
   const bookingSubmitHandler = async (event) => {
     event.preventDefault();
-    const config = headersConfig("/PUT URL HERE");
-    const response = await axios.post("PUT URL HERE", {
-      bookingId,
-      config,
-    });
-    if (response.statusCode === 200) {
+    const config = headersConfig("booking/reserveappointment");
+    const response = await axios.post("http://localhost:8000/booking/reserveappointment", {
+      appointmentId : bookingId,
+      
+    }, config);
+    console.log(response)
+    if (response.request.status === 200) {
       setSuccessfulAppointmentModal(true);
     }
   };
@@ -118,7 +74,7 @@ const AppointmentModal = ({ onClose }) => {
                 {bookings
                   .filter((booking) => booking.status === "pending")
                   .map((booking, idx) => (
-                    <MenuItem key={idx} value={booking.id}>
+                    <MenuItem key={idx} value={booking.appointmentId}>
                       {timeFormatter(booking.startTime)}
                     </MenuItem>
                   ))}
