@@ -17,7 +17,9 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
     useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
   useEffect(() => {
-    setBookings(doctor.Bookings);
+    setBookings(
+      doctor.Bookings.filter((booking) => booking.status === "pending")
+    );
   }, [doctor.Bookings]);
   const handleChange = (event) => {
     setBookingId(event.target.value);
@@ -34,7 +36,6 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
       config
     );
     if (response.request.status === 200) {
-      
       setSuccessfulAppointmentModal(true);
       setTimeout(() => {
         setSuccessfulAppointmentModal(false);
@@ -45,7 +46,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   if (successfulAppointmentModal)
     return (
-    <Modal onClose={() => setSuccessfulAppointmentModal(false)}>
+      <Modal onClose={() => setSuccessfulAppointmentModal(false)}>
         Your Appointment has been submitted.
       </Modal>
     );
@@ -70,9 +71,9 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
                   color: "black",
                 }}
               >
-                {bookings
-                  .filter((booking) => booking.status === "pending")
-                  .map((booking, idx) => (
+                {bookings.length === 0 && <p>No Available appointments</p>}
+                {bookings.length !== 0 &&
+                  bookings.map((booking, idx) => (
                     <MenuItem key={idx} value={booking.appointmentId}>
                       {timeFormatter(booking.startTime)}
                     </MenuItem>
