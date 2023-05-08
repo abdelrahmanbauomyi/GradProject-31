@@ -13,14 +13,16 @@ const AppointmentModal = ({ onClose, doctor }) => {
   const [bookings, setBookings] = useState([]);
   const [bookingId, setBookingId] = useState(null);
   const { userInfo } = useSelector((state) => state.userLogin);
+  const  [bookingTime , setBookingTime] = useState(" ")
   useEffect(() => {
-    setBookings[doctor.Bookings];
+    setBookings(doctor.Bookings);
   }, []);
-  console.log(doctor);
 
   const handleChange = (event) => {
-    setBookingId(event.target.value);
+    setBookingTime(event.target.value);
+    console.log(bookingTime);
   };
+  
   const bookingSubmitHandler = async (event) => {
     const config = headersConfig('/PUT URL HERE');
     event.preventDefault();
@@ -54,15 +56,15 @@ const AppointmentModal = ({ onClose, doctor }) => {
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={bookingId}
+                value={bookingTime?bookingTime : " "}
                 onChange={handleChange}
                 label="Booking time"
               >
-                {bookings.map((booking) => {
-                  <MenuItem value={booking.bookingId}>
+                {bookings.map((booking) => 
+                  <MenuItem value={booking.appoitmentId}>
                     {booking.startTime}
-                  </MenuItem>;
-                })}
+                  </MenuItem>
+                )}
               </Select>
             </FormControl>
           </div>
