@@ -23,7 +23,7 @@ const DoctorPage = () => {
       .then((res) => setDoctor(res.data));
   }, []);
 
-  if (!doctor) return null;
+  //if (!doctor) return null;
   return (
     <div>
       <Header />
