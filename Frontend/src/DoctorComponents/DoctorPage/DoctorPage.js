@@ -22,7 +22,7 @@ const DoctorPage = () => {
     axios
       .get(`http://localhost:8000/doctors/${doctorId}`, {}, config)
       .then((res) => setDoctor(res.data));
-  }, []);
+  }, [bookingModal]);
 
   //if (!doctor) return null;
   return (

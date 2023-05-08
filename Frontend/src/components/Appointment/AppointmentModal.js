@@ -19,14 +19,6 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   useEffect(() => {
     setBookings(doctor.Bookings);
   }, [doctor.Bookings]);
-  useEffect(() => {
-    const timeOut = setTimeout(
-      () => setSuccessfulAppointmentModal(false),
-      2000
-    );
-    return () => clearTimeout(timeOut);
-  }, [successfulAppointmentModal]);
-
   const handleChange = (event) => {
     setBookingId(event.target.value);
   };
@@ -41,16 +33,19 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
       },
       config
     );
-    console.log(response);
     if (response.request.status === 200) {
-      setBookingModal(false);
+      
       setSuccessfulAppointmentModal(true);
+      setTimeout(() => {
+        setSuccessfulAppointmentModal(false);
+        setBookingModal(false);
+      }, 2000);
     }
   };
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   if (successfulAppointmentModal)
     return (
-      <Modal onClose={() => setSuccessfulAppointmentModal(false)}>
+    <Modal onClose={() => setSuccessfulAppointmentModal(false)}>
         Your Appointment has been submitted.
       </Modal>
     );
