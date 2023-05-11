@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Booking.init(
     {
-      appoitmentId: {
+      appointmentId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

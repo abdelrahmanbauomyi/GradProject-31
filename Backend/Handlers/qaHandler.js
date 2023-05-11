@@ -1,7 +1,6 @@
 const { sequelize, qa , User , Answers , Doctor } = require('../models');
 const { where, DATE } = require('sequelize');
 const dayjs = require('dayjs');
-const { model } = require('mongoose');
 
 //POST
 
@@ -78,7 +77,7 @@ exports.postAnswer = async (req, res) => {
       res.status(200).json(answerEntry);
     }
     else{
-      res.send('Not Authorized')
+      return res.status(401).json('Not Authorized');
     }
 
   } catch (err) {

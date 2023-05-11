@@ -25,10 +25,12 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', authUser, doctorHandler.getDoctor);
-router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
+
 router.get('/doctors/search', doctorHandler.searchDoctors);
+router.get('/doctors/:id', doctorHandler.getDoctor);
+router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
 router.patch('/doctors/edit', authUser, doctorHandler.Edit);
+
 
 //login & logouts routes
 router.post('/users/login', userHandler.loginUser);
@@ -47,16 +49,16 @@ router.post(
 );
 
 //Booking routes
-router.post('/booking/addappoitment', authUser, bookingHandler.addAppoitment);
+router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
-  '/booking/reservappoitment',
+  '/booking/reservappointment',
   authUser,
-  bookingHandler.reserveAppoitment
+  bookingHandler.reserveAppointment
 );
 router.delete(
-  '/booking/deleteappoitment',
+  '/booking/deleteappointment',
   authUser,
-  bookingHandler.deleteAppoitment
+  bookingHandler.deleteAppointment
 );
 router.get('/booking/available', bookingHandler.showAvailable);
 
