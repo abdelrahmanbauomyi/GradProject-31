@@ -170,7 +170,6 @@ exports.getUserInfo = async (req, res, next) => {
  
 };
 
-// TODO : use the req.user instead of the query
 exports.Edit = async (req, res, next) => {
   try {
     debugger;

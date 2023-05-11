@@ -1,4 +1,4 @@
-const { sequelize, Doctor , Booking } = require('../models');
+const { sequelize, Doctor, Booking } = require('../models');
 const jwt = require('jsonwebtoken');
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 const { Op } = require('sequelize');
@@ -79,7 +79,7 @@ exports.createDoctor = async (req, res) => {
   try {
     const image = req.file;
     const sentInfo = {
-      Dname: req.body.firstName +' '+ req.body.lastName,
+      Dname: req.body.Dname,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
@@ -136,9 +136,9 @@ exports.getDoctor = async (req, res) => {
   try {
     const doctorId = req.params.id
     const doctor = await Doctor.findOne({
-      where: {id: doctorId},
-      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+      where: { id: doctorId },
+      attributes: { exclude: ['password', 'tokens', 'email', 'confirmed'] },
+      include: [{ model: Booking, where: { status: 'pending' }, attributes: ['startTime', 'endTime', 'status'] }]
     });
     res.status(200).json(doctor);
   } catch (err) {
@@ -218,7 +218,6 @@ exports.searchDoctors = async (req, res) => {
   } = req.query.filters
   const queryObj = {};
   console.log(req.query.filter)
-
   if (name) {
     queryObj.Dname = { [Op.like]: '%' + name + '%' };
   }
@@ -266,10 +265,10 @@ exports.searchDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.findAll({
       where: queryObj,
-      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+      attributes: { exclude: ['password', 'tokens', 'email', 'confirmed'] },
+      include: [{ model: Booking, where: { status: 'pending' }, attributes: ['startTime', 'endTime', 'status'] }]
     });
-    
+
     res.status(200).json(doctors);
     console.log(req.query);
   } catch (err) {
@@ -277,3 +276,26 @@ exports.searchDoctors = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+
+// !!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK
+exports.getReviews = (req, res, next) => {
+  console.log("ALIVE");
+
+  const id = req.body.id;
+  const Dname = req.body.Dname;
+  console.log("ALIVE");
+  // try {
+  // const Reviews = await Doctor.findAll({
+  //   where: {
+  //     id: ID,
+  //     Dname: Dname
+  //   },
+  //   attributes: { include: ['Dname', 'title', 'speciality', 'rating', 'reviewers'] },
+  //   include: [{ model: Booking, where: { status: 'finished' }, attributes: ['rating', 'review'] }]
+  // })
+  res.status(200).json("Reviews");
+  // } catch (err) {
+  //   res.status(500).json(err)
+  // }
+}

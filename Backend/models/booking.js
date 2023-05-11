@@ -31,6 +31,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: 'pending',
       },
+      rating:{
+        type : DataTypes.INTEGER
+      },
+      comment :{
+        type: DataTypes.STRING
+      },
       roomId:{
         type : DataTypes.STRING
       }
