@@ -3,6 +3,7 @@ const { where } = require('sequelize');
 
 exports.createReview = async(req,res,next)=>{
     try {
+        if (req.user.userType == 'user'){
         const info = {
             ID:req.body.appointmentID,
             status : req.body.status,
@@ -36,7 +37,10 @@ exports.createReview = async(req,res,next)=>{
         })
         // console.log(await Doctor.findByPk(info.DoctorID,{attributes: ['rating', 'reviewers']}));
         res.status(200).send(result)
+        }else{
+            res.status(401).json('unauthorized request')
         }
+    }
       } catch (err) {
         console.log(err);
         return res.status(500).json(err);

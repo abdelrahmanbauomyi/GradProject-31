@@ -50,8 +50,6 @@ router.post(
   authUser,
   doctorHandler.logoutFromAllDevices
 );
-// !!!!!!!!!!!!!!!!!!!!!!!!DOESN'T WORK
-router.get('/doctors/review',doctorHandler.getReviews);
 
 //Booking routes
 router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
@@ -81,7 +79,7 @@ router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
 
 
-router.patch('/review',ratingHandler.createReview)
+router.patch('/review',authUser,ratingHandler.createReview)
 
 
 module.exports = router;
