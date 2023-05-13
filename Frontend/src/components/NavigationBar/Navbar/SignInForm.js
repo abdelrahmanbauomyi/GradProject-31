@@ -51,7 +51,7 @@ const SignInForm = (props) => {
     <Modal onClose={props.onClose}>
       <form className={classes[`signin-form`]} onSubmit={sumbitHandler}>
         <div className={classes.text}>
-          <p>Sign Into your Account Now!</p>
+          <h2>Sign Into your Account Now!</h2>
         </div>
         <div>
           <Input
@@ -74,22 +74,12 @@ const SignInForm = (props) => {
             value={password}
             onChange={onChangePassword}
           />
-          <Input
-            label="UserName"
-            input={{
-              id: "username",
-              type: "username",
-              placeholder: "Enter your username",
-            }}
-            value={name}
-            onChange={onChangeName}
-          />
         </div>
         <div className={classes[`sign-up-text`]}>
           <p>Don't have an account?</p>
           <p onClick={() => props.onSwitch("signup")}>Sign up now!</p>
         </div>
-        <button className={classes.button} type="submit">sumbit</button>
+        <button className={classes.button} type="submit">Sign In</button>
       </form>
     </Modal>
   );

@@ -25,6 +25,7 @@ const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);
     const handleDoctorModalSignInClose=()=>{
           setDoctorSignInClicked(false);
       }
+      ///////////
     const handleDoctorModalShow=()=>{
         setDoctorSignUpClicked(true);
       }
@@ -35,6 +36,16 @@ const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);
       const logoutHandler = () => {
         dispatch(doctorLogout())
       }
+      function onFormSwitch(formType)  {
+        if (formType === 'signin') {
+          handleDoctorModalClose();
+          handleDoctorModalSignInShow();
+        } else if (formType === 'signup') {
+          handleDoctorModalSignInClose();
+          handleDoctorModalShow();
+
+        }
+      };
 
     return (
         <header>
@@ -55,10 +66,10 @@ const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);
               
             ):( <div> 
                 <Nav className="me-auto">
-                <Navbar.Text className={styles.text} onClick={handleDoctorModalSignInShow}>Sign In</Navbar.Text>
-                {doctorSignInClicked && <DoctorSignInForm onClose={handleDoctorModalSignInClose}/>}
+                <Navbar.Text className={styles.text} onClick={handleDoctorModalSignInShow} >Sign In</Navbar.Text>
+                {doctorSignInClicked && <DoctorSignInForm onClose={handleDoctorModalSignInClose} onSwitch={onFormSwitch} />}
                 <Navbar.Text className={styles.text} onClick={handleDoctorModalShow}>Sign Up</Navbar.Text>
-                {doctorSignUpClicked && <DoctorSignUpForm onClose={handleDoctorModalClose}/>}
+                {doctorSignUpClicked && <DoctorSignUpForm onClose={handleDoctorModalClose} onSwitch={onFormSwitch}/>}
                 
               </Nav>
             </div>

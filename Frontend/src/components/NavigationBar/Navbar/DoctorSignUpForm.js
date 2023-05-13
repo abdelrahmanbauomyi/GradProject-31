@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState} from "react";
 import Input from "./Input";
 import Modal from "./Modal";
 import { useFormik } from "formik";
@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {  useNavigate  ,  useLocation} from "react-router-dom"
 import { useEffect } from "react";
 import {doctorRegister} from "../../../actions/doctorActions"
+import PhoneInput, {
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+} from "react-phone-number-input";
 
 const DoctorSignUpForm = (props) => {
 
@@ -18,6 +22,7 @@ const DoctorSignUpForm = (props) => {
   const DoctorRegister = useSelector(state => state.DoctorRegister)
   const {loading, error,doctorInfo} = DoctorRegister
   const redirect = location.search? location.search.split('=')[1] :'/'
+  const [showMessage, setShowMessage] = useState(false);
   
   useEffect(()=>{
     if(doctorInfo){
@@ -66,6 +71,8 @@ const DoctorSignUpForm = (props) => {
   const regex_password =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@$!%*?&])[A-Za-z\d-_$@$!%*?&]{8,}$/;
   const regex_number = /^\d{11}$/;
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -84,14 +91,14 @@ const DoctorSignUpForm = (props) => {
         .required("First name is required")
         .matches(regex_name, "First name should only contain alphabets")
         .min(2, "First name should be at least 2 characters long")
-        .max(10, "First name should not be longer than 10 characters"),
+        .max(13, "First name should not be longer than 13 characters"),
 
       lastname: yup
         .string()
         .required("Last name is required")
         .matches(regex_name, "Last name should only contain alphabets")
         .min(2, "Last name should be at least 2 characters long")
-        .max(10, "Last name should not be longer than 10 characters"),
+        .max(13, "Last name should not be longer than 13 characters"),
 
       email: yup.string().email("Invalid Email").required("Email is required"),
 
@@ -119,15 +126,21 @@ const DoctorSignUpForm = (props) => {
       phoneNumber: yup
         .string()
         .required("Phone Number is required")
-        .matches(regex_number, "Phone Number must be 11 digits"),
+        // .matches(regex_number, "Phone Number must be 11 digits")
+        ,
         speciality: yup.string().required("Choosing a speciality is required"),
     }), //// VALIDATION SCHEMA END
 
     onSubmit: async (values, { resetForm }) => {
       console.log("Your Sumbitted data is", values);
-      handleRegister(values);
+      // handleRegister(values);
         console.log("data added");
+        setShowMessage(true);
+        setFormSubmitted(true);
         resetForm();
+        setTimeout(() => {
+          props.onClose(); 
+        }, 1500);
     },
   });
   console.log("Data values", formik.values);
@@ -136,7 +149,7 @@ const DoctorSignUpForm = (props) => {
     <Modal onClose={props.onClose}>
       <form className={classes[`signup-form`]} onSubmit={formik.handleSubmit}>
         <div className={classes.text}>
-          <p>Please Fill in your Personal Information</p>
+          <h2>Please Fill in your Personal Information</h2>
         </div>
         <div className={classes[`form-row`]}>
           <Input
@@ -145,13 +158,14 @@ const DoctorSignUpForm = (props) => {
               id: "firstname",
               type: "text",
               placeholder: "Your First Name",
+              disabled:formSubmitted
             }}
             value={formik.values.firstname}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {formik.touched.firstname && formik.errors.firstname ? (
-            <ErrorPopUp top={160} left={90}>
+            <ErrorPopUp top={140} left={90}>
               {formik.errors.firstname}
             </ErrorPopUp>
           ) : null}
@@ -161,13 +175,14 @@ const DoctorSignUpForm = (props) => {
               id: "lastname",
               type: "text",
               placeholder: "Your Last Name",
+              disabled:formSubmitted
             }}
             value={formik.values.lastname}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {formik.touched.lastname && formik.errors.lastname ? (
-            <ErrorPopUp top={160} right={150}>
+            <ErrorPopUp top={140} right={150}>
               {formik.errors.lastname}
             </ErrorPopUp>
           ) : null}
@@ -179,17 +194,32 @@ const DoctorSignUpForm = (props) => {
               id: "email",
               type: "email",
               placeholder: "Enter your Email Address",
+              disabled:formSubmitted
             }}
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {formik.touched.email && formik.errors.email ? (
-            <ErrorPopUp top={240} right={475}>
+            <ErrorPopUp top={220} right={455}>
               {formik.errors.email}
             </ErrorPopUp>
           ) : null}
-          <Input
+          <div className={classes.selectdiv}>
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <PhoneInput
+              id="phoneNumber"
+              placeholder="Enter phone number"
+              value={formik.values.phoneNumber}
+              onChange={formik.handleChange("phoneNumber")}
+              onBlur={formik.handleBlur("phoneNumber")}
+              international={true}
+              defaultCountry="EG"
+              countryCallingCodeEditable={false}
+              disabled={formSubmitted}
+            />
+          </div>
+          {/* <Input
             label="Phone Number"
             input={{
               id: "phoneNumber",
@@ -199,9 +229,9 @@ const DoctorSignUpForm = (props) => {
             value={formik.values.phoneNumber}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          />
+          /> */}
           {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-            <ErrorPopUp top={240} left={400}>
+            <ErrorPopUp top={220} left={400}>
               {formik.errors.phoneNumber}
             </ErrorPopUp>
           ) : null}
@@ -213,13 +243,14 @@ const DoctorSignUpForm = (props) => {
               id: "password",
               type: "password",
               placeholder: "Your Password",
+              disabled:formSubmitted
             }}
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {formik.touched.password && formik.errors.password ? (
-            <ErrorPopUp top={330} right={475}>
+            <ErrorPopUp top={310} right={475}>
               {formik.errors.password}
             </ErrorPopUp>
           ) : null}
@@ -229,13 +260,14 @@ const DoctorSignUpForm = (props) => {
               id: "confirmPassword",
               type: "password",
               placeholder: "Confirm Password",
+              disabled:formSubmitted
             }}
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-            <ErrorPopUp top={320} left={400}>
+            <ErrorPopUp top={310} left={400}>
               {formik.errors.confirmPassword}
             </ErrorPopUp>
           ) : null}
@@ -246,6 +278,7 @@ const DoctorSignUpForm = (props) => {
             input={{
               id: "dateOfBirth",
               type: "date",
+              disabled:formSubmitted
             }}
             value={formik.values.age}
             onChange={handleDateChange}
@@ -264,6 +297,7 @@ const DoctorSignUpForm = (props) => {
               value={formik.values.gender}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              disabled={formSubmitted}
             >
               <option value="" disabled defaultValue hidden>
                 Select your gender
@@ -303,9 +337,22 @@ const DoctorSignUpForm = (props) => {
           </ErrorPopUp>
         ) : null}
           </div>
+          {/* <button className={classes.button} type="submit">
+            Sign Up
+          </button> */}
+          {showMessage ? (
+            <p className={classes[`success-message`]}>
+              Your Account has been Successfully Created 
+            </p>
+          ) :  <div>
           <button className={classes.button} type="submit">
             Sign Up
           </button>
+          <div className={classes[`sign-in-text`]}>
+            <p>Already have an account?</p>
+            <p onClick={() => props.onSwitch("signin")}>Login in now!</p>
+          </div>
+        </div>}
         </div>
       </form>
     </Modal>

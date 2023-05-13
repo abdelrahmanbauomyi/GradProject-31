@@ -27,3 +27,22 @@
     margin-left: 10px;
     cursor: pointer;
   }
+  .button {
+    display: block;
+    width: 40%;
+    height: 40px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background-color: #4200ff;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+  }
+  
+  .button[type="submit"]:hover {
+    background-color: blueviolet;
+  }
+  

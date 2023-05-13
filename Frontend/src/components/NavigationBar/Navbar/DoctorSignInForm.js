@@ -51,7 +51,7 @@ function DoctorSignInForm(props) {
         <Modal onClose={props.onClose}>
           <form className={classes[`signin-form`]} onSubmit={sumbitHandler}>
             <div className={classes.text}>
-              <p>Sign Into your Doctor Account Now!</p>
+              <h4>Sign Into your Doctor Account Now!</h4>
             </div>
             <div>
               <Input
@@ -75,11 +75,11 @@ function DoctorSignInForm(props) {
                  onChange={onChangePassword}
               />
             </div>
-            {/* <div className={classes[`sign-up-text`]}>
+            <div className={classes[`sign-up-text`]}>
               <p>Don't have an account?</p>
               <p onClick={() => props.onSwitch("signup")}>Sign up now!</p>
-            </div> */}
-            <button className="ui blue sumbit button">sumbit</button>
+            </div>
+            <button className={classes.button}>Sign In</button>
           </form>
         </Modal>
       );

@@ -74,6 +74,21 @@
 .selectdiv select option{
   border-radius: 15px;
 }
+.selectdiv input{
+  background-color: #f8f7f7;
+  border-radius: 10px;
+  height: 35px;
+  width: 35px;
+  border: 1px solid #ccc;
+}
+.selectdiv label{
+  display: block;
+  font-size: 15px;
+  margin-right: 1rem;
+  margin-bottom: 3px;
+  font-weight: bold;
+  color: black;
+}
 
 .text {
   font-size: 25px;
@@ -114,4 +129,12 @@ top: 130px;
   .date-pick{
     display: flex;
     justify-content:left;
+  }
+  .success-message {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
   }
