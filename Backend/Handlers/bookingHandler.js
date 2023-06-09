@@ -75,11 +75,12 @@ exports.reserveAppointment = async (req, res) => {
         { UserId: userId, status: 'reserved' },
         { where: { appointmentId: a_Id } }
       );
-      res.status(201).json(result);
+      res.status(200).json(result);
     } else {
       return res.status(401).json('unauthorized request');
     }
   } catch (err) {
+    console.log(err)
     return res.status(500).json(err);
   }
 };

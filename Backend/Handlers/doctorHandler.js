@@ -138,7 +138,7 @@ exports.getDoctor = async (req, res) => {
     const doctor = await Doctor.findOne({
       where: {id: doctorId},
       attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+       include : [{model : Booking ,attributes:['startTime','endTime','status' , 'appointmentId']}]
     });
     res.status(200).json(doctor);
   } catch (err) {
@@ -217,7 +217,6 @@ exports.searchDoctors = async (req, res) => {
     imgPath,
   } = req.query.filters
   const queryObj = {};
-  console.log(req.query.filter)
 
   if (name) {
     queryObj.Dname = { [Op.like]: '%' + name + '%' };
@@ -267,7 +266,7 @@ exports.searchDoctors = async (req, res) => {
     const doctors = await Doctor.findAll({
       where: queryObj,
       attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+       include : [{model : Booking ,attributes:['startTime','endTime','status' , 'appointmentId']}]
     });
     
     res.status(200).json(doctors);
