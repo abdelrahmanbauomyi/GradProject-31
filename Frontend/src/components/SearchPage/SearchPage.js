@@ -23,7 +23,7 @@ const SearchPage = () => {
         },
       } , config)
       .then((res) => {
-        setDoctors(res.data);
+       setDoctors(res.data);
       });
   }, [filters])
   if(!doctors) return null;

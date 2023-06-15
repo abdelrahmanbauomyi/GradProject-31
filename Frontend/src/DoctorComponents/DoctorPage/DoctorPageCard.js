@@ -14,10 +14,10 @@ const DoctorPageCard = () => {
             <span className={classes.titleText}>
               <h3>
                 Doctor
-                <span> Mohamed 3askary</span>
+                <span> Mohamed Osama</span>
               </h3>
             </span>
-            <span className={classes.viewCount}>420,69 views</span>
+            <span className={classes.viewCount}>50 views</span>
           </span>
           <h2 className={classes.spec}>
             Professor and Consultant of Cardiology & Cardiovascular diseases -
@@ -44,10 +44,7 @@ const DoctorPageCard = () => {
           </div>
           <div className={classes.pinnedComment}>
             <span className={classes.commentDes}>
-              
-              عموما يزنجى مش هكلمك فى فلوس عشان انت متعرفش قيمتها . تعامل سريع و
-              ناس محترمه جدا
-            </span>
+                          </span>
             <div className={classes.pinnedCommentReview}>
               
               <span className={classes.commentRating}>
@@ -58,9 +55,9 @@ const DoctorPageCard = () => {
                   precision={0.5}
                 />
               </span>
-              <span className={classes.commentName}>اف اح</span>
+              <span className={classes.commentName}></span>
               <span className={classes.pinnedCommentDate}>
-                Sunday, 20 September 2015
+                Sunday, 20 September 2022
               </span>
             </div>
           </div>
