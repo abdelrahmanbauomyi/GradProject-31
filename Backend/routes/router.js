@@ -8,6 +8,9 @@ const imageHandler = require('../Handlers/imgHandler');
 const qaHandler = require('../Handlers/qaHandler');
 const bookingHandler = require('../Handlers/bookingHandler');
 const faqHandler = require('../Handlers/faqHandler');
+const ratingHandler = require('../Handlers/ratingHandler');
+
+
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -75,5 +78,9 @@ router.post('/qa/:id' , authUser , qaHandler.postAnswer);
 //faq routes
 router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
+
+
+router.patch('/review',authUser,ratingHandler.createReview)
+
 
 module.exports = router;

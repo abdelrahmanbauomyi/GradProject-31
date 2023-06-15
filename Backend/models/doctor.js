@@ -53,8 +53,8 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
       rating: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+        type: DataTypes.FLOAT,
+        defaultValue: 0.0,
       },
       speciality: {
         type: DataTypes.STRING,
@@ -88,6 +88,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'imgs\\doctor.png',
       },
+      reviewers:{
+        type: DataTypes.INTEGER,
+        defaultValue:0,
+        allowNull:false
+      }
     },
     {
       sequelize,
