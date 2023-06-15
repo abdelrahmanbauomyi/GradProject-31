@@ -88,6 +88,7 @@ exports.createDoctor = async (req, res) => {
       gender: req.body.gender,
       mobilenumber: req.body.mobilenumber,
       speciality: req.body.speciality,
+      location : req.body.location
     };
     if (image) {
       const imageUrl = image.path;
@@ -216,8 +217,9 @@ exports.searchDoctors = async (req, res) => {
     fees,
     imgPath,
   } = req.query.filters
-  const queryObj = {};
-  console.log(req.query.filter)
+  //console.log(req.params)
+  const queryObj ={}
+  //console.log(req.query.filters)
 
   if (name) {
     queryObj.Dname = { [Op.like]: '%' + name + '%' };
@@ -262,16 +264,15 @@ exports.searchDoctors = async (req, res) => {
     queryObj.imgPath = imgPath;
   }
 
-  //console.log(queryObj)
+  console.log(queryObj)
   try {
     const doctors = await Doctor.findAll({
       where: queryObj,
       attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+       include : [{model : Booking ,attributes:['startTime','endTime','status']}]
     });
-
+    //console.log(doctors);
     res.status(200).json(doctors);
-    console.log(req.query);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
