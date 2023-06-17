@@ -11,6 +11,7 @@ import Scheduler from "../../UI/Scheduler";
 import axios from "axios";
 import headersConfig from "../../../utils/headersConfig";
 import { Link } from "react-router-dom";
+import doctorImg from "../../../assets/doctor3.png"
 
 function DoctorInfo({ doctor }) {
   const bookingHandler = () => {
@@ -21,8 +22,8 @@ function DoctorInfo({ doctor }) {
     <div>
       <div className={classes.gridcontainer}>
         <div className={classes.item1}>
-          <h1><Link to={`/doctor/${doctor.id}`}>Doctor ma7ma 3askary</Link></h1>
-          <p>Professor in Dermatology,askdhaskdhas,asdkahsdk</p>
+          <h1><Link to={`/doctor/${doctor.id}`}>{doctor.Dname}</Link></h1>
+          <p>{doctor.speciality}</p>
           <div className={classes.rating}>
             <Rating
               name="simple-controlled"
@@ -34,7 +35,7 @@ function DoctorInfo({ doctor }) {
         </div>
         <div className={classes.item2}>
           <div className={classes.img}>
-            <img src={doctor} alt="doctor" />
+            <img src={doctorImg} alt="doctor" />
           </div>
         </div>
         <div className={classes.item3}>
@@ -45,14 +46,14 @@ function DoctorInfo({ doctor }) {
                 className={classes.imgColor1}
                 icon={faStethoscope}
               />
-              andrologist specialsidal asodiasodia
+              {doctor.speciality}
             </div>
             <div>
               <FontAwesomeIcon
                 className={classes.imgColor1}
                 icon={faLocationDot}
               />{" "}
-              el 3asher
+             {doctor.location}
             </div>
             <div>
               <FontAwesomeIcon
