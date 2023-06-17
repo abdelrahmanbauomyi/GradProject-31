@@ -20,6 +20,9 @@ import DoctorEdit from "./DoctorComponents/DrScreens/DoctorEdit";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import DoctorPage from "./DoctorComponents/DoctorPage/DoctorPage";
+import Announcements from "./Screens/Announcements";
+import VideoMeeting from "./chats/VideoMeeting"
+import VideoWatch from "./components/VideoWatch/VideoWatch";
 
 function App() {
   return (
@@ -38,7 +41,7 @@ function App() {
           <Route path="/Coivd" element={<Coivd />} />
           <Route
             path="/myappointments"
-            element={<MyAppointments></MyAppointments>}
+            element={<MyAppointments/>}
           />
           <Route path="/favourite_articles" element={<FavouriteArticles />} />
           <Route path="/search" element={<SearchPage />} />
@@ -51,8 +54,10 @@ function App() {
           <Route path="/SideScreen" element={<SideScreen />} />
           <Route path="/DoctorEdit" element={<DoctorEdit />} />
           <Route path="/doctor/:doctorId" element={<DoctorPage />} />
+          <Route path="/VideoMeeting" element={<VideoMeeting/>} />
+          <Route path='/watchVideo' element={<VideoWatch/>}/>
         </Routes>
-        <Footer />
+        
       </Router>
     </>
   );

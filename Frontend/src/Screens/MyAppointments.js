@@ -8,6 +8,7 @@ function MyAppointments() {
   return (
     <>
       <Header />
+
     </>
   );
 }

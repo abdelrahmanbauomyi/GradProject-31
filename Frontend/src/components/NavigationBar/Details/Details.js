@@ -3,8 +3,27 @@ import { Container, Button, NavLink } from "react-bootstrap";
 import styles from "./Details.module.css";
 import CircularImage from "./CircularImage";
 import SearchCard from "../Cards/SearchCard";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SignUpForm from "../Navbar/SignUpForm"
+
 
 const Details = () => {
+
+  const history = useNavigate();
+  const handleRowClick = () => {
+    history('/watchVideo');}
+  ;
+  const[signUp,setSignUp] = useState(false);
+  const goToSignUp = () => { 
+    setSignUp(true)
+}
+  /*if (setSignUp) {
+    return <SignUpForm />;
+  } */
+
+
+
   return (
     <div className="text">
       <Container>
@@ -22,15 +41,18 @@ const Details = () => {
           Book an appointment
           <i className="fas fa-arrow-right"></i>{" "}
         </Button>
-        <button className={styles.videoBtn}>
+        <button className={styles.videoBtn} onClick={handleRowClick}>
           <i className={`fa-solid fa-play ${styles.playBtn}`}></i>
         </button>{" "}
         watch video
         <p className={styles.member}>
-          Become a member of out hosptial community?
-          <NavLink href="#link" className={styles.reg}>
+          Become a member of our hosptial community?
+        
+          <NavLink onClick={goToSignUp} className={styles.reg}>
+         
             Sign up
           </NavLink>
+ 
         </p>
       </Container>
       <SearchCard />
