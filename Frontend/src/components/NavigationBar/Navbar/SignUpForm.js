@@ -129,7 +129,7 @@ const SignUpForm = (props) => {
       console.log("Your Sumbitted data is", values);
       try {
         // await addUsers(values);
-        // handleRegister(values)
+        handleRegister(values)
         // console.log("data added");
         console.log("Your Sumbitted data is", values);
         setShowMessage(true);
