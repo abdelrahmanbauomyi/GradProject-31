@@ -133,7 +133,7 @@ const DoctorSignUpForm = (props) => {
 
     onSubmit: async (values, { resetForm }) => {
       console.log("Your Sumbitted data is", values);
-      // handleRegister(values);
+        handleRegister(values);
         console.log("data added");
         setShowMessage(true);
         setFormSubmitted(true);
