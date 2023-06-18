@@ -43,6 +43,10 @@ function App() {
             path="/myappointments"
             element={<MyAppointments/>}
           />
+            <Route
+            path="/announcements"
+            element={<Announcements/>}
+          />
           <Route path="/favourite_articles" element={<FavouriteArticles />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/Contact Us" element={<ContactUs />} />

@@ -8,18 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 
-
-
-
-const Header = () => {
-
- 
+const Header = () => { 
 const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
 const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
-
-
  const logoutHandler = () => {
   dispatch(logout())
 } 
@@ -51,6 +44,7 @@ const {userInfo} = userLogin
     }
   };
 
+
 /*
   const handleDoctorModalShow=()=>{
     setDoctorSignUpClicked(true);
@@ -73,36 +67,34 @@ const {userInfo} = userLogin
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to='/'  className={styles.Home}>Home</Nav.Link>
-            <NavDropdown title="services" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to='/myappointments'>Doctors</Nav.Link>
             <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
-            <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
-            <NavLink  as={Link} to='/HomePage' >Clinic For Doctors</NavLink>
+              <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
             
           </Nav>
           <Nav  className='ms-auto'>
-          {userInfo?(
+          {userInfo?
+           (<div>
               <NavDropdown title={userInfo.firstName} id='username'>
                 <Nav.Link as={Link} to='/profile_info'>
                   Profile
                 </Nav.Link>
                 <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
               </NavDropdown>
-              
-            ):( <div > <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 
+              <Nav className="ms-auto">
+              <Nav.Link as={Link} to='/myappointments'>Doctors</Nav.Link>
+
+              </Nav>
+              </div>   
+            ):( <div > 
+                 <Navbar.Collapse id="basic-navbar-nav">
+               <Nav className="ms-auto">
+             <NavLink  as={Link} to='/HomePage' >Clinic For Doctors</NavLink>
+            <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 
             <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
             {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch} />}
             {signInIsClicked && <SignInForm onClose={hideSignInHandler} onSwitch={onFormSwitch}/>}
+            </Nav>
+            </Navbar.Collapse>
             </div>
             )   
             }

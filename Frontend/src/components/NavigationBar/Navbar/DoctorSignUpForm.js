@@ -14,6 +14,7 @@ import PhoneInput, {
   isPossiblePhoneNumber,
 } from "react-phone-number-input";
 
+
 const DoctorSignUpForm = (props) => {
 
   const history = useNavigate();

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Announcements.module.css';
 import {  useNavigate } from "react-router-dom";
-import SideBar from '../components/SideBar/SideBar';
+import DrSideBar from "../DoctorComponents/DrSideBar/DrSideBar"
 import Footer from '../components/Footer/Footer';
 import { useState } from 'react';
 
@@ -99,7 +99,7 @@ function Announcements(props) {
 
   return (
     <div>
-    <SideBar/>
+
     <div className={styles.tablewrapper}>
       <table className={styles.table}>
       <h2 className={styles.uptxt}>Appointments</h2>
@@ -158,7 +158,7 @@ function Announcements(props) {
       <span className={styles.seeMoreText}>See More</span>
     </div>
     </div>
-   
+    <DrSideBar/>
     </div>
   );
 };

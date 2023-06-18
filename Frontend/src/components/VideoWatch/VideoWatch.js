@@ -6,23 +6,21 @@ import { useState,useEffect } from 'react';
 import SignUpForm from '../NavigationBar/Navbar/SignUpForm';
 const VideoWatch = () => {
  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showSignUp, setShowSignUp] = useState(false);
 
-
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [showSignUp, setShowSignUp] = useState(false);
-  
-    useEffect(() => {
-      const searchParams = new URLSearchParams(location.search);
-      if (searchParams.get('signup') === 'true') {
-        setShowSignUp(true);
-      }
-    }, [location]);
-  
-    const goToSignUp = () => {
-      navigate(`/?signup=true`);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.get('signup') === 'true') {
       setShowSignUp(true);
-    };
+    }
+  }, [location.search]);
+
+  const goToSignUp = () => {
+    navigate('/?signup=true');
+    setShowSignUp(true);
+  };
   return (
     <div>
         <h3> Become a member of out hosptial community?</h3>

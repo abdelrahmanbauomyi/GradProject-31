@@ -4,6 +4,9 @@ import styles from './Circular.module.css'
 import leo from '../../../assets/leo.png'
 
 import {Card,Button} from 'react-bootstrap'
+import {FaSearch } from "react-icons/fa";
+import {TbNotes} from "react-icons/tb"
+ 
 
 const CircularImage = () => {
   return (
@@ -13,15 +16,15 @@ const CircularImage = () => {
     </div>
     <div className={styles.Circluar}>
       <Button variant="light" className={`${styles.cardApp} ${styles.cardSearch}`}>
-      <i className='fas fa-search' ></i>
+      <i > <FaSearch /></i>
       Well Qualified doctors
       <p >Treat with care</p></Button>
       <Button variant="light" className={`${styles.cardQualify} ${styles.cardSearch}`}>
-      <i className='fas fa-clipboard-list' ></i>
+      <i > <TbNotes/></i>
        Book an appointment
       <p >Online appointment</p></Button>
       <Button variant="light" className={`${styles.cardRep} ${styles.cardSearch}`}>
-      <i className='fas fa-clipboard-list' ></i>
+      <i > <TbNotes/></i>
       Book an appointment
       <p >  Online appointment</p></Button>
     </div>
