@@ -52,6 +52,7 @@ router.post(
 );
 
 //Booking routes
+//crud operations
 router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
   '/booking/reservappointment',
@@ -64,6 +65,9 @@ router.delete(
   bookingHandler.deleteAppointment
 );
 router.get('/booking/available', bookingHandler.showAvailable);
+//getting the user/doctor history
+router.get('/booking/userhistory',authUser,bookingHandler.userHistory);
+router.get('/booking/doctorhistory',authUser,bookingHandler.doctorHistory);
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);

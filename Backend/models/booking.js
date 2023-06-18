@@ -45,7 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Booking',
       tableName: 'booking',
-      indexes: [],
+      indexes: [{
+        unique:true,
+        fields:['startTime','DoctorId']
+      }],
     }
   );
   return Booking;

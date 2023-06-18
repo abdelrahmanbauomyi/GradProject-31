@@ -86,12 +86,13 @@ exports.createUser = async (req, res) => {
       },
       { where: { id: user.id } }
     );
+    const port = process.env.BACK_END_PORT ;
     res.cookie('token', token, {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    const verUrl = `http://localhost:5000/confirmation/${token}`;
+    const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(json.email, verUrl);
     return res.status(201).json(user);
