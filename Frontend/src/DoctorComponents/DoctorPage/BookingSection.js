@@ -45,7 +45,7 @@ const BookingSection = ({ doctor, bookingModal, setBookingModal }) => {
                 </span>
                 <div className={classes.locationText}>
                   <span className={classes.address}>
-                    El 3asher : El 3asher Street
+                    New Cairo
                   </span>
                   <span className={classes.moreDetails}>
                     Book now to receive the clinics address details and phone
