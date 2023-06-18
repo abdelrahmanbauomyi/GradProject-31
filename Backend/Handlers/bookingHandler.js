@@ -75,7 +75,7 @@ exports.doctorHistory = async (req, res) => {
           },
         ],
       });
-      res.status(201).json(resualt);
+      res.status(200).json(resualt);
     } else {
       return res.status(401).json('unauthorized request');
     }
@@ -136,7 +136,7 @@ exports.userHistory = async (req, res) => {
           },
         ],
       });
-      res.status(201).json(result);
+      res.status(200).json(result);
     } else {
       return res.status(401).json('unauthorized request');
     }
