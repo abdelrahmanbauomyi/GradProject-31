@@ -4,6 +4,7 @@ import {  useNavigate } from "react-router-dom";
 import SideBar from '../components/SideBar/SideBar';
 import Footer from '../components/Footer/Footer';
 import { useState } from 'react';
+import DrSideBar from '../DoctorComponents/DrSideBar/DrSideBar';
 
 function Announcements(props) {
   const announcements = [

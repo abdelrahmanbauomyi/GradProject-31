@@ -33,7 +33,7 @@ function App() {
           <Route
             exact
             path="/profile_info"
-            element={<ProfileInfo></ProfileInfo>}
+            element={<Announcements></Announcements>}
           />
           <Route path="/edit_profile" element={<EditProfile />} />
           <Route path="/CheckUp" element={<CheckUp />} />
