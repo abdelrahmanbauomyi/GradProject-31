@@ -8,25 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-        Answers.belongsTo(models.qa , {foreignKey: 'qaId'})
-        Answers.belongsTo(models.Doctor)
+      Answers.belongsTo(models.qa, { foreignKey: 'qaId' });
+      Answers.belongsTo(models.Doctor);
     }
   }
   Answers.init(
     {
-        answerId:{
-            primaryKey: true,
-            type : DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false
-
-        },
-        answerContent:{
-          type: DataTypes.STRING
-
-        },
-
-    
+      answerId: {
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+      },
+      answerContent: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

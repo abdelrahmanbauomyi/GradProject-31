@@ -1,4 +1,4 @@
-const { sequelize, User , Booking ,Doctor } = require('../models');
+const { sequelize, User, Booking, Doctor } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { where } = require('sequelize');
@@ -86,7 +86,7 @@ exports.createUser = async (req, res) => {
       },
       { where: { id: user.id } }
     );
-    const port = process.env.BACK_END_PORT ;
+    const port = process.env.BACK_END_PORT;
     res.cookie('token', token, {
       httpOnly: true,
       // secure: true, set this on production
@@ -147,7 +147,7 @@ exports.authTest = async (req, res) => {
 // TODO : use the req.user instead of the query
 exports.getUserInfo = async (req, res, next) => {
   const userId = req.user.id;
-  try{
+  try {
     const user = await User.findAll({
       attributes: [
         'firstName',
@@ -157,18 +157,37 @@ exports.getUserInfo = async (req, res, next) => {
         'mobilenumber',
         'dob',
       ],
-      where: { id: userId },include :[{model :Booking , attributes:{exclude:['UserId','DoctorId','createdAt','updatedAt']}, include:[{model : Doctor , attributes :['Dname' , 'gender' , 'mobilenumber' , 'rating' ,'speciality','sub_specialties','title','fees']}]}]
-    })
-    console.log(user)
-    res.send(202 , user)
-
+      where: { id: userId },
+      include: [
+        {
+          model: Booking,
+          attributes: {
+            exclude: ['UserId', 'DoctorId', 'createdAt', 'updatedAt'],
+          },
+          include: [
+            {
+              model: Doctor,
+              attributes: [
+                'Dname',
+                'gender',
+                'mobilenumber',
+                'rating',
+                'speciality',
+                'sub_specialties',
+                'title',
+                'fees',
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    console.log(user);
+    res.send(202, user);
+  } catch (err) {
+    res.send(err);
+    console.log(err);
   }
-  catch(err){
-    res.send(err)
-    console.log(err)
-  }
-
- 
 };
 
 exports.Edit = async (req, res, next) => {

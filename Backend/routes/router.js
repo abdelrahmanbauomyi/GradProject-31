@@ -10,7 +10,6 @@ const bookingHandler = require('../Handlers/bookingHandler');
 const faqHandler = require('../Handlers/faqHandler');
 const ratingHandler = require('../Handlers/ratingHandler');
 
-
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -33,8 +32,6 @@ router.get('/doctors/search', doctorHandler.searchDoctors);
 router.get('/doctors/:id', doctorHandler.getDoctor);
 router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
 router.patch('/doctors/edit', authUser, doctorHandler.Edit);
-
-
 
 //login & logouts routes
 router.post('/users/login', userHandler.loginUser);
@@ -67,8 +64,8 @@ router.delete(
 );
 router.get('/booking/available', bookingHandler.showAvailable);
 //getting the user/doctor history
-router.get('/booking/userhistory',authUser,bookingHandler.userHistory);
-router.get('/booking/doctorhistory',authUser,bookingHandler.doctorHistory);
+router.get('/booking/userhistory', authUser, bookingHandler.userHistory);
+router.get('/booking/doctorhistory', authUser, bookingHandler.doctorHistory);
 
 //email routes
 router.get('/confirmation/:token', emailHandler.verifyEmail);
@@ -76,15 +73,13 @@ router.get('/confirmation/:token', emailHandler.verifyEmail);
 //qa routes
 router.get('/qa', qaHandler.getAllQA);
 router.get('/qa/:id', qaHandler.getQA);
-router.post('/qa' , authUser , qaHandler.createQA);
-router.post('/qa/:id' , authUser , qaHandler.postAnswer);
+router.post('/qa', authUser, qaHandler.createQA);
+router.post('/qa/:id', authUser, qaHandler.postAnswer);
 
 //faq routes
 router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
 
-
-router.patch('/review',authUser,ratingHandler.createReview)
-
+router.patch('/review', authUser, ratingHandler.createReview);
 
 module.exports = router;

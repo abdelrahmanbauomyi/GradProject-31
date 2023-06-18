@@ -1,4 +1,4 @@
-const { sequelize, User,Doctor } = require('../models');
+const { sequelize, User, Doctor } = require('../models');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
@@ -7,11 +7,10 @@ exports.verifyEmail = async (req, res, next) => {
     const token = req.params.token;
     console.log(token);
     const decoded = jwt.verify(token, process.env.JWT_STRING);
-    if(decoded.userType == 'doctor'){
+    if (decoded.userType == 'doctor') {
       await Doctor.update({ confirmed: true }, { where: { id: decoded._id } });
       res.status(200).send('email has been verified');
-    }
-    else{
+    } else {
       await User.update({ confirmed: true }, { where: { id: decoded._id } });
       res.status(200).send('email has been verified');
     }
