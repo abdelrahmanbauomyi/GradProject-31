@@ -268,8 +268,8 @@ exports.searchDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.findAll({
       where: queryObj,
-      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking ,attributes:['startTime','endTime','status']}]
+      attributes: { exclude: ['password', 'tokens', 'email', 'confirmed'] },
+      include: [{ model: Booking, where: { status: 'pending' }, attributes: ['startTime', 'endTime', 'status'] }]
     });
     //console.log(doctors);
     res.status(200).json(doctors);
