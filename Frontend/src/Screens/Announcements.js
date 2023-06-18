@@ -4,7 +4,6 @@ import {  useNavigate } from "react-router-dom";
 import DrSideBar from "../DoctorComponents/DrSideBar/DrSideBar"
 import Footer from '../components/Footer/Footer';
 import { useState } from 'react';
-import DrSideBar from '../DoctorComponents/DrSideBar/DrSideBar';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
 const config = headersConfig("booking/userhistory");
