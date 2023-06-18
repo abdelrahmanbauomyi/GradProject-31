@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Doctor.hasMany(models.Answers)
+      Doctor.hasMany(models.Answers);
       // Doctor.belongsToMany(models.User, {
       //   through: { model: models.Booking, unique: false },
       //   uniqueKey: 'appoitmentId',
       //   foreignKey: 'doctorId',
       // });
-      Doctor.hasMany(models.Booking)
+      Doctor.hasMany(models.Booking);
     }
   }
   Doctor.init(
@@ -88,11 +88,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'imgs\\doctor.png',
       },
-      reviewers:{
+      reviewers: {
         type: DataTypes.INTEGER,
-        defaultValue:0,
-        allowNull:false
-      }
+        defaultValue: 0,
+        allowNull: false,
+      },
     },
     {
       sequelize,

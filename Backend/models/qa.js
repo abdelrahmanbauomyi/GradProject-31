@@ -8,9 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      qa.belongsTo(models.User)
-      qa.hasMany(models.Answers , {foreignKey: 'qaId'})
-      
+      qa.belongsTo(models.User);
+      qa.hasMany(models.Answers, { foreignKey: 'qaId' });
     }
   }
   qa.init(
@@ -35,8 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       likes: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
-      }
-  
+      },
     },
     {
       sequelize,

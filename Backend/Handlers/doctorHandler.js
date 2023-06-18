@@ -79,7 +79,7 @@ exports.createDoctor = async (req, res) => {
   try {
     const image = req.file;
     const sentInfo = {
-      Dname: req.body.Dname,
+      Dname: req.body.firstName + ' ' + req.body.lastName,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
@@ -88,8 +88,9 @@ exports.createDoctor = async (req, res) => {
       gender: req.body.gender,
       mobilenumber: req.body.mobilenumber,
       speciality: req.body.speciality,
-      location : req.body.location
+      location: req.body.location,
     };
+    //console.log(req.body)
     if (image) {
       const imageUrl = image.path;
       sentInfo.imgPath = imageUrl;
@@ -115,11 +116,13 @@ exports.createDoctor = async (req, res) => {
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    const verUrl = `http://localhost:5000/confirmation/${token}`;
+    const port = process.env.BACK_END_PORT;
+    const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(sentInfo.email, verUrl);
     return res.status(201).json(doctor);
   } catch (err) {
+    console.log(err)
     return res.status(500).json(err);
   }
 };
@@ -135,11 +138,17 @@ exports.getAllDoctors = async (req, res) => {
 
 exports.getDoctor = async (req, res) => {
   try {
-    const doctorId = req.params.id
+    const doctorId = req.params.id;
     const doctor = await Doctor.findOne({
-      where: {id: doctorId},
-      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking , where : {status : 'pending'},attributes:['startTime','endTime','status']}]
+      where: { id: doctorId },
+      attributes: { exclude: ['password', 'tokens', 'email', 'confirmed'] },
+      include: [
+        {
+          model: Booking,
+          where: { status: 'pending' },
+          attributes: ['startTime', 'endTime', 'status'],
+        },
+      ],
     });
     res.status(200).json(doctor);
   } catch (err) {
@@ -216,9 +225,9 @@ exports.searchDoctors = async (req, res) => {
     location,
     fees,
     imgPath,
-  } = req.query.filters
+  } = req.query.filters;
   //console.log(req.params)
-  const queryObj ={}
+  const queryObj = {};
   //console.log(req.query.filters)
 
   if (name) {
@@ -264,12 +273,18 @@ exports.searchDoctors = async (req, res) => {
     queryObj.imgPath = imgPath;
   }
 
-  console.log(queryObj)
+  console.log(queryObj);
   try {
     const doctors = await Doctor.findAll({
       where: queryObj,
-      attributes:{exclude : ['password' , 'tokens'  , 'email' , 'confirmed']},
-       include : [{model : Booking ,attributes:['startTime','endTime','status']}]
+      attributes: { exclude: ['password', 'tokens', 'email', 'confirmed'] },
+      include: [
+        {
+          model: Booking,
+          where: { status: 'pending' },
+          attributes: ['startTime', 'endTime', 'status'],
+        },
+      ],
     });
     //console.log(doctors);
     res.status(200).json(doctors);
@@ -279,14 +294,13 @@ exports.searchDoctors = async (req, res) => {
   }
 };
 
-
 // !!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK
 exports.getReviews = (req, res, next) => {
-  console.log("ALIVE");
+  console.log('ALIVE');
 
   const id = req.body.id;
   const Dname = req.body.Dname;
-  console.log("ALIVE");
+  console.log('ALIVE');
   // try {
   // const Reviews = await Doctor.findAll({
   //   where: {
@@ -296,8 +310,8 @@ exports.getReviews = (req, res, next) => {
   //   attributes: { include: ['Dname', 'title', 'speciality', 'rating', 'reviewers'] },
   //   include: [{ model: Booking, where: { status: 'finished' }, attributes: ['rating', 'review'] }]
   // })
-  res.status(200).json("Reviews");
+  res.status(200).json('Reviews');
   // } catch (err) {
   //   res.status(500).json(err)
   // }
-}
+};
