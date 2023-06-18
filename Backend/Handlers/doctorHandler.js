@@ -79,7 +79,7 @@ exports.createDoctor = async (req, res) => {
   try {
     const image = req.file;
     const sentInfo = {
-      Dname: req.body.Dname,
+      Dname: req.body.firstName + ' ' + req.body.lastName,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
@@ -90,6 +90,7 @@ exports.createDoctor = async (req, res) => {
       speciality: req.body.speciality,
       location: req.body.location,
     };
+    //console.log(req.body)
     if (image) {
       const imageUrl = image.path;
       sentInfo.imgPath = imageUrl;
@@ -120,6 +121,7 @@ exports.createDoctor = async (req, res) => {
     emailHandler.sendVerificationEmail(sentInfo.email, verUrl);
     return res.status(201).json(doctor);
   } catch (err) {
+    console.log(err)
     return res.status(500).json(err);
   }
 };
