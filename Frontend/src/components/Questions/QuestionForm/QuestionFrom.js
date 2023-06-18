@@ -28,6 +28,7 @@ export default function QuestionForm(props) {
       .get("http://localhost:8000/faq", {})
       .then((result) => setFAQ((res) => result.data));
   }, []);
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     const config = headersConfig("qa");
@@ -99,6 +100,7 @@ export default function QuestionForm(props) {
                   className="mb-4"
                   onChange={(event) => setQuestionTitle(event.target.value)}
                 />
+                
                 <MDBTextArea
                   rows={4}
                   label="Your Question"

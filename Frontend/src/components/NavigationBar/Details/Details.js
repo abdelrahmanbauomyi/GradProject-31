@@ -6,7 +6,9 @@ import SearchCard from "../Cards/SearchCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignUpForm from "../Navbar/SignUpForm"
-
+import {BsPlay,BsFillArrowRightCircleFill } from "react-icons/bs";
+import {GrPlay} from "react-icons/gr"
+import {TbPlayerPlay} from "react-icons/tb"
 
 const Details = () => {
 
@@ -39,10 +41,10 @@ const Details = () => {
         <Button className={styles.appointment}>
           {" "}
           Book an appointment
-          <i className="fas fa-arrow-right"></i>{" "}
+          <i>  <BsFillArrowRightCircleFill/> </i>{" "}
         </Button>
         <button className={styles.videoBtn} onClick={handleRowClick}>
-          <i className={`fa-solid fa-play ${styles.playBtn}`}></i>
+          <i className={`${styles.playBtn}`}> <TbPlayerPlay/></i>
         </button>{" "}
         watch video
         <p className={styles.member}>

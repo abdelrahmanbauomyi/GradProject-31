@@ -1,12 +1,24 @@
 import React from 'react';
 import styles from './Announcements.module.css';
 import {  useNavigate } from "react-router-dom";
-import SideBar from '../components/SideBar/SideBar';
+import DrSideBar from "../DoctorComponents/DrSideBar/DrSideBar"
 import Footer from '../components/Footer/Footer';
 import { useState } from 'react';
 import DrSideBar from '../DoctorComponents/DrSideBar/DrSideBar';
+import axios from 'axios';
+import headersConfig from "../utils/headersConfig";
+const config = headersConfig("booking/userhistory");
 
 function Announcements(props) {
+  let appointments;
+  axios.get('http://localhost:8000/booking/userhistory',config)  
+  .then(response => {
+    appointments = response.data;
+    
+    })
+    // const { appointmentId, startTime, User, DoctorId ,status} = appointments;
+    // console.log( { appointmentId, startTime, User, DoctorId },userFirstName)
+
   const announcements = [
     {
       announcement: 'Meeting has been rescheduled for',
@@ -34,51 +46,51 @@ function Announcements(props) {
   ];
 
 
-  const appointments = [
-    {
-      id: 111,
-      startTime: '9:00 AM',
-      doctorName: 'Dr. John Doe',
-      speciality: 'Cardiology',
-      status: 'Scheduled',
-      profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-    },
-    {
-      id: 222,
-      startTime: '10:30 AM',
-      doctorName: 'Dr. Jane Smith',
-      speciality: 'Dermatology',
-      status: 'Completed',
-      profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-    },
+  // const appointments = [
+  //   {
+  //     id: 111,
+  //     startTime: '9:00 AM',
+  //     doctorName: 'Dr. John Doe',
+  //     speciality: 'Cardiology',
+  //     status: 'Scheduled',
+  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
+  //   },
+  //   {
+  //     id: 222,
+  //     startTime: '10:30 AM',
+  //     doctorName: 'Dr. Jane Smith',
+  //     speciality: 'Dermatology',
+  //     status: 'Completed',
+  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
+  //   },
     
-    {
-      id: 333,
-      startTime: '9:30 AM',
-      doctorName: 'Dr. Joe',
-      speciality: 'Cardiology',
-      status: 'Scheduled',
-      profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-    },
-    {
-      id: 333,
-      startTime: '9:30 AM',
-      doctorName: 'Dr. Joe',
-      speciality: 'Cardiology',
-      status: 'ready',
-      profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-    },
-    {
-      id: 3,
-      startTime: '9:30 AM',
-      doctorName: 'Dr. Joe',
-      speciality: 'Cardiology',
-      status: 'Scheduled',
-      profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-    },
-    // Add more appointment objects
-  ];
-
+  //   {
+  //     id: 333,
+  //     startTime: '9:30 AM',
+  //     doctorName: 'Dr. Joe',
+  //     speciality: 'Cardiology',
+  //     status: 'Scheduled',
+  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
+  //   },
+  //   {
+  //     id: 333,
+  //     startTime: '9:30 AM',
+  //     doctorName: 'Dr. Joe',
+  //     speciality: 'Cardiology',
+  //     status: 'ready',
+  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
+  //   },
+  //   {
+  //     id: 3,
+  //     startTime: '9:30 AM',
+  //     doctorName: 'Dr. Joe',
+  //     speciality: 'Cardiology',
+  //     status: 'Scheduled',
+  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
+  //   },
+  //   // Add more appointment objects
+  // ];
+  
   const history = useNavigate();
   const handleRowClick = (appointment) => {
     if (appointment.status == "ready" ) {
@@ -100,7 +112,7 @@ function Announcements(props) {
 
   return (
     <div>
-    <SideBar/>
+
     <div className={styles.tablewrapper}>
       <table className={styles.table}>
       <h2 className={styles.uptxt}>Appointments</h2>
@@ -159,7 +171,7 @@ function Announcements(props) {
       <span className={styles.seeMoreText}>See More</span>
     </div>
     </div>
-   
+    <DrSideBar/>
     </div>
   );
 };
