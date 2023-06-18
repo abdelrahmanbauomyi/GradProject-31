@@ -31,7 +31,7 @@ const {doctorInfo} = doctorLogin
             </a>
           </li>
           <li className="nav-item text-white fs-4 my-1">
-            <a href="#" className="nav-link text-black fs-5 text-decoration-none text-transform" aria-current="page">
+            <a href="/CreateApp" className="nav-link text-black fs-5 text-decoration-none text-transform" aria-current="page">
               <i className={`bi bi-card-list   `}></i>
               <span className={`ms-2 text-capitalize `} >Appointments</span>
             </a>
@@ -40,7 +40,7 @@ const {doctorInfo} = doctorLogin
           <li className="nav-item text-white fs-4 my-1">
             <a href="#" className={`nav-link text-black fs-5 text-decoration-none  `} aria-current="page">
             <i className={`bi bi-bar-chart-fill   `}></i>
-              <span className={`ms-2 text-capitalize `} onClick={logoutHandler}>Tables</span>
+              <span className={`ms-2 text-capitalize `} >Tables</span>
             </a>
           </li>
           <li className="nav-item text-white fs-4 my-1">

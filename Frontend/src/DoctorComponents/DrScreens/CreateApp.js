@@ -5,6 +5,7 @@ import * as yup from "yup";
 import dayjs from 'dayjs';
 import DatePicker from "react-datepicker";
 import { Calendar } from 'react-calendar';
+import DrSideBar from '../DrSideBar/DrSideBar';
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-calendar/dist/Calendar.css';
@@ -93,6 +94,7 @@ const tileDisabled = ({ date }) => {
           ) : null}
 
     </form>
+    <DrSideBar></DrSideBar>
     
   </div>
   )

@@ -23,7 +23,7 @@ import DoctorPage from "./DoctorComponents/DoctorPage/DoctorPage";
 import Announcements from "./Screens/Announcements";
 import VideoMeeting from "./chats/VideoMeeting"
 import VideoWatch from "./components/VideoWatch/VideoWatch";
-
+import CreateApp from "./DoctorComponents/DrScreens/CreateApp";
 function App() {
   return (
     <>
@@ -60,6 +60,7 @@ function App() {
           <Route path="/doctor/:doctorId" element={<DoctorPage />} />
           <Route path="/VideoMeeting" element={<VideoMeeting/>} />
           <Route path='/watchVideo' element={<VideoWatch/>}/>
+          <Route path='/CreateApp' element={<CreateApp/>}/>
         </Routes>
         
       </Router>
