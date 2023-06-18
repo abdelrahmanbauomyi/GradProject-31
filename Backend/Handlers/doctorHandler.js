@@ -116,7 +116,8 @@ exports.createDoctor = async (req, res) => {
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    const verUrl = `http://localhost:5000/confirmation/${token}`;
+    const port = process.env.BACK_END_PORT;
+    const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(sentInfo.email, verUrl);
     return res.status(201).json(doctor);
