@@ -84,6 +84,7 @@ exports.reserveAppointment = async (req, res) => {
       return res.status(401).json('unauthorized request');
     }
   } catch (err) {
+    console.log(err)
     return res.status(500).json(err);
   }
 };

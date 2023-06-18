@@ -35,6 +35,7 @@ router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
 router.patch('/doctors/edit', authUser, doctorHandler.Edit);
 
 
+
 //login & logouts routes
 router.post('/users/login', userHandler.loginUser);
 router.post('/users/logout', authUser, userHandler.logout);
@@ -55,7 +56,7 @@ router.post(
 //crud operations
 router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
-  '/booking/reservappointment',
+  '/booking/reserveappointment',
   authUser,
   bookingHandler.reserveAppointment
 );
