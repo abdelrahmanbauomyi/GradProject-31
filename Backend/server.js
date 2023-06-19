@@ -1,10 +1,11 @@
 const { sequelize, User } = require('./models');
 const express = require('express');
 const app = express();
+const Checkers=require('./Handlers/periodicCheckersHandler')
 const userRoutes = require('./routes/router');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const cron = require('node-cron')
+const schedule = require('node-schedule');
 //TEST CODE FOR THE DATABASE CONNECTION
 app.use(express.json());
 app.use(cookieParser());
@@ -29,8 +30,8 @@ app.listen({ port: process.env.BACK_END_PORT }, async () => {
   //await sequelize.sync();
   console.log('synced !!');
 });
-// cron.schedule('* * * * *',)
-
+const job1 =schedule.scheduleJob('* * * * *',Checkers.appoitmentStartChecker)
+const job2 =schedule.scheduleJob('* * * * *',Checkers.appoitmentEndChecker)
 // this export is required to test the app
 module.exports = app;
 app;
