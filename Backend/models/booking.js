@@ -9,11 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Booking.belongsTo(models.Doctor);
+      Booking.belongsTo(models.User);
     }
   }
   Booking.init(
     {
-      appoitmentId: {
+      appointmentId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -29,12 +31,27 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: 'pending',
       },
+      rating: {
+        type: DataTypes.INTEGER,
+      },
+      comment: {
+        type: DataTypes.STRING,
+      },
+      roomId: {
+        type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4
+      },
     },
     {
       sequelize,
       modelName: 'Booking',
       tableName: 'booking',
-      indexes: [],
+      indexes: [
+        {
+          unique: true,
+          fields: ['startTime', 'DoctorId'],
+        },
+      ],
     }
   );
   return Booking;

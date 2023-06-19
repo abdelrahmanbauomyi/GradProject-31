@@ -13,6 +13,7 @@ const authUser = async (req, res, next) => {
       }
       req.user = user;
       req.user.userType = 'user';
+      console.log('Authenticated as user');
       next();
     } else if (decoded.userType == 'doctor') {
       const user = await Doctor.findOne({ where: { id: decoded._id } });

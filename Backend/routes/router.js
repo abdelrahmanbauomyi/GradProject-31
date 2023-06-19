@@ -8,6 +8,8 @@ const imageHandler = require('../Handlers/imgHandler');
 const qaHandler = require('../Handlers/qaHandler');
 const bookingHandler = require('../Handlers/bookingHandler');
 const faqHandler = require('../Handlers/faqHandler');
+const ratingHandler = require('../Handlers/ratingHandler');
+
 //Requests at /users
 
 // router.get('/users',userHandler.getUsers); for the admin only
@@ -25,9 +27,10 @@ router.post(
   imageHandler.upload.single('img'),
   doctorHandler.createDoctor
 );
-router.get('/doctors', authUser, doctorHandler.getDoctor);
-router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
+
 router.get('/doctors/search', doctorHandler.searchDoctors);
+router.get('/doctors/:id', doctorHandler.getDoctor);
+router.delete('/doctors', authUser, doctorHandler.deleteDoctor);
 router.patch('/doctors/edit', authUser, doctorHandler.Edit);
 
 //login & logouts routes
@@ -47,18 +50,20 @@ router.post(
 );
 
 //Booking routes
-router.post('/booking/addappoitment', authUser, bookingHandler.addAppoitment);
+//crud operations
+router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
-  '/booking/reservappoitment',
+  '/booking/reserveappointment',
   authUser,
-  bookingHandler.reserveAppoitment
+  bookingHandler.reserveAppointment
 );
 router.delete(
-  '/booking/deleteappoitment',
+  '/booking/deleteappointment',
   authUser,
-  bookingHandler.deleteAppoitment
+  bookingHandler.deleteAppointment
 );
 router.get('/booking/available', bookingHandler.showAvailable);
+//getting the user/doctor history
 router.get('/booking/userhistory', authUser, bookingHandler.userHistory);
 router.get('/booking/doctorhistory', authUser, bookingHandler.doctorHistory);
 
@@ -68,11 +73,13 @@ router.get('/confirmation/:token', emailHandler.verifyEmail);
 //qa routes
 router.get('/qa', qaHandler.getAllQA);
 router.get('/qa/:id', qaHandler.getQA);
-router.post('/qa', qaHandler.createQA);
-router.patch('/qa/:id', authUser, qaHandler.updateQA);
+router.post('/qa', authUser, qaHandler.createQA);
+router.post('/qa/:id', authUser, qaHandler.postAnswer);
 
 //faq routes
 router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
+
+router.patch('/review', authUser, ratingHandler.createReview);
 
 module.exports = router;

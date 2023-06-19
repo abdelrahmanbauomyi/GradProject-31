@@ -1,28 +1,35 @@
 const dayjs = require('dayjs');
-const { sequelize, Booking } = require('../models');
-const jwt = require('jsonwebtoken');
+const { sequelize, Booking, User, Doctor } = require('../models');
 const { where } = require('sequelize');
-exports.addAppoitment = async (req, res) => {
+//doctor methods
+exports.addAppointment = async (req, res) => {
   try {
-    console.log(req.user.userType);
     if (req.user.userType == 'doctor') {
       let startTime = dayjs(req.body.startTime);
       let endTime = dayjs(req.body.endTime);
+      const oldTiming = dayjs(); //GMT+2
+      const now = oldTiming.add(1,'h')//GMT+3
+      if (startTime < now || endTime < now || startTime > endTime) {
+        console.log(startTime, endTime, now);
+        return res.status(400).json('Bad request');
+      }
       let diff = Math.abs(startTime - endTime);
       let Duration = req.body.duration * 60000; // duration in milliseconds
       let numberOfTimeSlots = Math.floor(diff / Duration);
+      let arr =[]
       const doctorId = req.user.id;
       while (numberOfTimeSlots--) {
         endTime = startTime.add(req.body.duration, 'm');
-        const booking = await Booking.create({
+        
+        arr.push({
           startTime: startTime,
           endTime: endTime,
-          doctorId: doctorId,
-        });
-
+          DoctorId: doctorId,
+        })
         startTime = endTime;
-      }
-      res.status(201).json('done');
+      }      
+      const booking = await Booking.bulkCreate(arr)
+      res.status(201).json(booking);
     } else {
       return res.status(401).json('unauthorized request');
     }
@@ -30,33 +37,16 @@ exports.addAppoitment = async (req, res) => {
     return res.status(500).json(err);
   }
 };
-exports.reserveAppoitment = async (req, res) => {
-  try {
-    if (req.user.userType == 'user') {
-      const userId = req.user.id;
-      const a_Id = req.body.appoitmentId;
-      const resualt = await Booking.update(
-        { userId: userId, status: 'reserved' },
-        { where: { appoitmentId: a_Id } }
-      );
-      res.status(201).json(resualt);
-    } else {
-      return res.status(401).json('unauthorized request');
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-};
-exports.deleteAppoitment = async (req, res) => {
+exports.deleteAppointment = async (req, res) => {
   try {
     if (req.user.userType == 'doctor') {
       const doctorId = req.user.id;
-      const a_Id = req.body.appoitmentId;
-      const resualt = await Booking.destroy({
-        where: { appoitmentId: a_Id, doctorId: doctorId },
+      const a_Id = req.body.appointmentId;
+      const result = await Booking.destroy({
+        where: { appointmentId: a_Id, DoctorId: doctorId },
       });
-      if (resualt) {
-        res.status(201).json(resualt);
+      if (result) {
+        res.status(201).json(result);
       } else {
         res.status(401).json('unauthorized request');
       }
@@ -67,23 +57,62 @@ exports.deleteAppoitment = async (req, res) => {
     return res.status(500).json(err);
   }
 };
-
-exports.showAvailable = async (req, res) => {
-  let doctorId = req.body.doctorId;
-  const resault = await Booking.findAll({
-    where: { doctorId: doctorId, status: 'pending' },
-  });
-  return res.status(200).json(resault);
-};
 exports.doctorHistory = async (req, res) => {
   try {
     if (req.user.userType == 'doctor') {
       const doctorId = req.user.id;
-      const resualt = await Booking.findAll({ where: { doctorId: doctorId } });
-      res.status(201).json(resualt);
+      const resualt = await Booking.findAll({
+        where: { DoctorId: doctorId },
+        include: [
+          {
+            model: User,
+            attributes: [
+              'firstName',
+              'lastName',
+              'dob',
+              'gender',
+              'mobilenumber',
+              'imgPath',
+            ],
+          },
+        ],
+      });
+      res.status(200).json(resualt);
     } else {
       return res.status(401).json('unauthorized request');
     }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+};
+// users methods
+exports.reserveAppointment = async (req, res) => {
+  try {
+    if (req.user.userType == 'user') {
+      const userId = req.user.id;
+      const a_Id = req.body.appointmentId;
+      const result = await Booking.update(
+        { UserId: userId, status: 'reserved' },
+        { where: { appointmentId: a_Id } }
+      );
+      res.status(201).json('reserved');
+    } else {
+      return res.status(401).json('unauthorized request');
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+};
+
+exports.showAvailable = async (req, res) => {
+  try {
+    let doctorId = req.body.doctorId;
+    const result = await Booking.findAll({
+      where: { DoctorId: doctorId, status: 'pending' },
+    });
+    return res.status(200).json(result);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -93,8 +122,23 @@ exports.userHistory = async (req, res) => {
   try {
     if (req.user.userType == 'user') {
       const userId = req.user.id;
-      const resualt = await Booking.findAll({ where: { userId: userId } });
-      res.status(201).json(resualt);
+      const result = await Booking.findAll({
+        where: { UserId: userId },
+        include: [
+          {
+            model: Doctor,
+            attributes: [
+              'Dname',
+              'gender',
+              'mobilenumber',
+              'imgPath',
+              'speciality',
+              'rating',
+            ],
+          },
+        ],
+      });
+      res.status(200).json(result);
     } else {
       return res.status(401).json('unauthorized request');
     }

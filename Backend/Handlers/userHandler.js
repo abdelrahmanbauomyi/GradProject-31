@@ -1,4 +1,4 @@
-const { sequelize, User } = require('../models');
+const { sequelize, User, Booking, Doctor } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { where } = require('sequelize');
@@ -46,6 +46,7 @@ exports.loginUser = async (req, res) => {
           // secure: true, set this on production
           sameSite: 'strict',
         });
+        user.userType = "user";
         res.status(200).json(user);
       } else {
         res.status(400).send('invalid email or password');
@@ -86,14 +87,16 @@ exports.createUser = async (req, res) => {
       },
       { where: { id: user.id } }
     );
+    const port = process.env.BACK_END_PORT;
     res.cookie('token', token, {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    const verUrl = `http://localhost:5000/confirmation/${token}`;
+    const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(json.email, verUrl);
+    user.userType = "user";
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json(err);
@@ -146,28 +149,49 @@ exports.authTest = async (req, res) => {
 // TODO : use the req.user instead of the query
 exports.getUserInfo = async (req, res, next) => {
   const userId = req.user.id;
-  User.findAll({
-    attributes: [
-      'firstName',
-      'lastName',
-      'email',
-      'gender',
-      'mobilenumber',
-      'dob',
-    ],
-    where: { id: userId },
-  })
-    .then((users) => {
-      console.log(users[0]);
-      res.status(202).json(users[0]);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.send({ error: error });
+  try {
+    const user = await User.findAll({
+      attributes: [
+        'firstName',
+        'lastName',
+        'email',
+        'gender',
+        'mobilenumber',
+        'dob',
+      ],
+      where: { id: userId },
+      include: [
+        {
+          model: Booking,
+          attributes: {
+            exclude: ['UserId', 'DoctorId', 'createdAt', 'updatedAt'],
+          },
+          include: [
+            {
+              model: Doctor,
+              attributes: [
+                'Dname',
+                'gender',
+                'mobilenumber',
+                'rating',
+                'speciality',
+                'sub_specialties',
+                'title',
+                'fees',
+              ],
+            },
+          ],
+        },
+      ],
     });
+    console.log(user);
+    res.send(202, user);
+  } catch (err) {
+    res.send(err);
+    console.log(err);
+  }
 };
 
-// TODO : use the req.user instead of the query
 exports.Edit = async (req, res, next) => {
   try {
     debugger;

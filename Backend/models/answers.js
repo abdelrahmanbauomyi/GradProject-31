@@ -1,47 +1,35 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class qa extends Model {
+  class Answers extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      qa.belongsTo(models.User);
-      qa.hasMany(models.Answers, { foreignKey: 'qaId' });
+      Answers.belongsTo(models.qa, { foreignKey: 'qaId' });
+      Answers.belongsTo(models.Doctor);
     }
   }
-  qa.init(
+  Answers.init(
     {
-      qaId: {
-        allowNull: false,
-        autoIncrement: true,
+      answerId: {
         primaryKey: true,
         type: DataTypes.INTEGER,
-      },
-      question: {
-        type: DataTypes.STRING,
+        autoIncrement: true,
         allowNull: false,
       },
-      title: {
+      answerContent: {
         type: DataTypes.STRING,
-      },
-      date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      likes: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
       },
     },
     {
       sequelize,
-      modelName: 'qa',
-      tableName: 'qa',
+      modelName: 'Answers',
+      tableName: 'answers',
       indexes: [],
     }
   );
-  return qa;
+  return Answers;
 };

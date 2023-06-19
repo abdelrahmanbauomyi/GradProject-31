@@ -1,5 +1,6 @@
-const { sequelize, qa } = require('../models');
-const { where } = require('sequelize');
+const { sequelize, qa, User, Answers, Doctor } = require('../models');
+const { where, DATE } = require('sequelize');
+const dayjs = require('dayjs');
 
 //POST
 
@@ -8,10 +9,9 @@ exports.createQA = async (req, res) => {
     const info = {
       title: req.body.title,
       question: req.body.question,
-      answers: req.body.answers,
+      UserId: req.user.id,
     };
     const entry = await qa.create(info);
-    console.log(entry);
     return res.status(201).json(entry);
   } catch (err) {
     console.log(err);
@@ -35,27 +35,50 @@ exports.getAllQA = async (req, res) => {
 exports.getQA = async (req, res) => {
   try {
     const qaId = req.params.id;
-    const entry = await qa.findByPk(qaId);
+    const entry = await qa.findOne({
+      where: {
+        qaId: qaId,
+      },
+      include: [
+        {
+          model: Answers,
+          attributes: { exclude: ['qaId', 'DoctorId'] },
+          include: [
+            {
+              model: Doctor,
+              attributes: ['Dname', 'title', 'rating', 'speciality'],
+            },
+          ],
+        },
+        {
+          model: User,
+          attributes: ['firstName', 'lastName'],
+        },
+      ],
+    });
+
     res.status(200).json(entry);
   } catch (err) {
-    return res.status(500).json(err);
     console.log(err);
+    return res.status(500).json(err);
   }
 };
 
-//PATCH
-
-exports.updateQA = async (req, res) => {
+exports.postAnswer = async (req, res) => {
   try {
-    const qaId = req.params.id;
-    const answer = [req.body.answer];
-    console.log('here');
-    console.log(req.user);
-    const entry = await qa.findByPk(qaId);
-    entry.answers = entry.answers.concat(answer);
-    await entry.save();
-    res.status(200).json(entry);
+    if (req.user.userType == 'doctor') {
+      const info = {
+        qaId: req.params.id,
+        DoctorId: req.user.id,
+        answerContent: req.body.answer,
+      };
+      const answerEntry = await Answers.create(info);
+      res.status(200).json(answerEntry);
+    } else {
+      return res.status(401).json('Not Authorized');
+    }
   } catch (err) {
+    console.log(err);
     return res.status(500).json(err);
   }
 };
