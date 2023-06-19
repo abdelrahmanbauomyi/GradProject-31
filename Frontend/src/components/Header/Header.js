@@ -7,14 +7,18 @@ import SignUpForm from '../NavigationBar/Navbar/SignUpForm'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
+import { doctorLogout } from '../../actions/doctorActions'
 
 const Header = () => { 
 const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
 const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
+const doctorLogin = useSelector(state=>state.doctorLogin)
+const {doctorInfo} = doctorLogin
  const logoutHandler = () => {
   dispatch(logout())
+  dispatch(doctorLogout())
 } 
    
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
@@ -69,7 +73,6 @@ const {userInfo} = userLogin
             <Nav.Link as={Link} to='/'  className={styles.Home}>Home</Nav.Link>
             <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
               <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
-            
           </Nav>
           <Nav  className='ms-auto'>
           {userInfo?
@@ -85,7 +88,17 @@ const {userInfo} = userLogin
 
               </Nav>
               </div>   
-            ):( <div > 
+            ): doctorInfo ? (
+              <div>
+                 <NavDropdown title={doctorInfo.Dname} id='username'>
+                <Nav.Link as={Link} to='/profile_info'>
+                  Profile
+                </Nav.Link>
+                <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
+              </NavDropdown>
+              </div>
+            ): (
+               <div > 
                  <Navbar.Collapse id="basic-navbar-nav">
                <Nav className="ms-auto">
              <NavLink  as={Link} to='/HomePage' >Clinic For Doctors</NavLink>

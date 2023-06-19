@@ -28,12 +28,15 @@ const doctorInfoFromStorage = localStorage.getItem("doctorInfo")
   ? JSON.parse(localStorage.getItem("doctorInfo"))
   : null;
 
-const initialState = {
-  userLogin: { userInfo: userInfoFromStorage },
-  doctorLogin:{doctorInfo: userInfoFromStorage},
-  DoctorRegister:{doctorInfo: userInfoFromStorage},
+;
 
-};
+  const initialState = {
+    userLogin: { userInfo: userInfoFromStorage },
+    doctorLogin: { doctorInfo: doctorInfoFromStorage },
+    DoctorRegister: { doctorInfo: doctorInfoFromStorage },
+  };
+
+
 
 
 const middleware = [thunk];
