@@ -37,11 +37,8 @@ const ReviewSection = () =>{
       </span>
     </div>
     <div className={classes.reviewComment}>
-      ولا يبن المره الشرموطه لو عملت الحركه ديه تانى وانا فجيم
-      هنيك اهلك كلهم هنيك كسم اللى جابك يبن المره القحبه و اياك
-      تكلم نص كلمه يبن الشراميط يعرص
     </div>
-    <span className={classes.reviewName}>محما عسكرى</span>
+    <span className={classes.reviewName}></span>
     <div className={classes.reviewDate}>
       Wednesday, 29 March 2023 08:02 PM
     </div>

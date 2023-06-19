@@ -4,7 +4,6 @@ import {  useNavigate } from "react-router-dom";
 import DrSideBar from "../DoctorComponents/DrSideBar/DrSideBar"
 import Footer from '../components/Footer/Footer';
 import { useState } from 'react';
-
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
 const config = headersConfig("booking/userhistory");
@@ -14,32 +13,40 @@ function Announcements(props) {
   axios.get('http://localhost:8000/booking/userhistory',config)  
   .then(response => {
     appointments = response.data;
-    
+    console.log(appointments)
     })
+
+    const {
+  appointmentId,
+  startTime,
+  endTime,
+  status,
+  Doctor: { Dname }
+} = appointments
+console.log(Dname);
     // const { appointmentId, startTime, User, DoctorId ,status} = appointments;
     // console.log( { appointmentId, startTime, User, DoctorId },userFirstName)
-
   const announcements = [
     {
       announcement: 'Meeting has been rescheduled for',
-      status: 'Scheduled',
+      
       profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
     },
     {
       announcement: 'Meeting has been rescheduled for',
-      status: 'Scheduled',
+      
       profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
     },  {
       announcement: 'Meeting has been rescheduled for',
-      status: 'Scheduled',
+      
       profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
     },  {
       announcement: 'Meeting has been rescheduled for',
-      status: 'Scheduled',
+      
       profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
     },  {
       announcement: 'Meeting has been rescheduled for',
-      status: 'Scheduled',
+      
       profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
     },
     // Add more announcement objects with the status property
@@ -52,7 +59,7 @@ function Announcements(props) {
   //     startTime: '9:00 AM',
   //     doctorName: 'Dr. John Doe',
   //     speciality: 'Cardiology',
-  //     status: 'Scheduled',
+  //     
   //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
   //   },
   //   {
@@ -69,7 +76,7 @@ function Announcements(props) {
   //     startTime: '9:30 AM',
   //     doctorName: 'Dr. Joe',
   //     speciality: 'Cardiology',
-  //     status: 'Scheduled',
+  //     
   //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
   //   },
   //   {
@@ -85,7 +92,7 @@ function Announcements(props) {
   //     startTime: '9:30 AM',
   //     doctorName: 'Dr. Joe',
   //     speciality: 'Cardiology',
-  //     status: 'Scheduled',
+  //     
   //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
   //   },
   //   // Add more appointment objects
@@ -121,23 +128,22 @@ function Announcements(props) {
             <th></th>
             <th>Appointment id</th>
             <th >start time</th>
-            <th>Doctor Name</th>
-            <th>Speciality</th>
+            <th>end Time</th>
             <th>status</th>
+            <th>Doctor Name</th>
           </tr>
         </thead>
         <tbody>
-          {displayedAppointments .map((appointment, idx) => (
+          {displayedAppointments.map((appointment, idx) => (
               <tr key={idx} onClick={()=> handleRowClick(appointment)} >
                   <div className={styles.profilePicture}>
               <img src={appointment.profilePictureUrl} alt="Profile" />
             </div>
-                <td>{appointment.id}</td>
-                <td className={styles.expand}>{appointment.startTime} </td> 
-                <td className={styles.expand}>{appointment.doctorName}</td> 
-                <td className={styles.expand}>{appointment.speciality}</td> 
-                <td className={styles.expand}>{appointment.status}</td> 
-               
+                <td>{appointmentId}</td>
+                <td className={styles.expand}>{startTime} </td> 
+                <td className={styles.expand}>{endTime}</td> 
+                <td className={styles.expand}>{status}</td> 
+                <td className={styles.expand}>{Dname}</td> 
               
               </tr>
           ))}
