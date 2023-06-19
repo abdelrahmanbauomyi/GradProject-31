@@ -38,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       roomId: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4
       },
     },
     {

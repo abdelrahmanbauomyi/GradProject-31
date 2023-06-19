@@ -1,6 +1,5 @@
 const dayjs = require('dayjs');
 const { sequelize, Booking, User, Doctor } = require('../models');
-const jwt = require('jsonwebtoken');
 const { where } = require('sequelize');
 //doctor methods
 exports.addAppointment = async (req, res) => {
@@ -16,18 +15,20 @@ exports.addAppointment = async (req, res) => {
       let diff = Math.abs(startTime - endTime);
       let Duration = req.body.duration * 60000; // duration in milliseconds
       let numberOfTimeSlots = Math.floor(diff / Duration);
+      let arr =[]
       const doctorId = req.user.id;
       while (numberOfTimeSlots--) {
         endTime = startTime.add(req.body.duration, 'm');
-        const booking = await Booking.create({
+        
+        arr.push({
           startTime: startTime,
           endTime: endTime,
           DoctorId: doctorId,
-        });
-
+        })
         startTime = endTime;
-      }
-      res.status(201).json('done');
+      }      
+      const booking = await Booking.bulkCreate(arr)
+      res.status(201).json(booking);
     } else {
       return res.status(401).json('unauthorized request');
     }
