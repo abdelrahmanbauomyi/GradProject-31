@@ -12,7 +12,7 @@ exports.appoitmentStartChecker = async()=>{
                 [Sequelize.Op.lte]:now
             }},
             {
-                status:'pending'
+                status:'reserved'
             }
         ]
         }
