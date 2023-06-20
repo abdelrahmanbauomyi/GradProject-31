@@ -11,17 +11,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  // ! primary key both (from ,to)
+  // ! primary key messageID
   Messages.init(
     {
+      ID: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
       //! sender and reciever are doctor and patient ID
       sender: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       receiver: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       content: {
         type: DataTypes.STRING,
@@ -32,7 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Messages',
       tableName: 'Messages',
-      indexes: [],
+      indexes: [{
+        unique: false,
+        fields:["sender", "receiver"]
+      }],
     }
   );
   return Messages;

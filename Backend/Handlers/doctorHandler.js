@@ -148,7 +148,7 @@ exports.getDoctor = async (req, res) => {
         {
           model: Booking,
           where: { status: 'pending' },
-          attributes: ['startTime', 'endTime', 'status'],
+          attributes: ['startTime', 'endTime', 'status',"rating","comment"],
         },
       ],
     });
@@ -297,6 +297,7 @@ exports.searchDoctors = async (req, res) => {
 };
 
 // !!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK
+// !!!!!!! CAN BE REPLACED BY ADDING THE BOOKING MODEL VALUES TO THE GET DOCTOR REQUEST
 exports.getReviews = (req, res, next) => {
   console.log('ALIVE');
 
