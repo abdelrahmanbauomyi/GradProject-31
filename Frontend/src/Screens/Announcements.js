@@ -22,7 +22,7 @@ function Announcements(props) {
   endTime,
   status,
   Doctor: { Dname }
-} = appointments
+} = appointments || { appointmentId: '', startTime: '', endTime: '', status: '' , Doctor : { Dname : '' } } 
 console.log(Dname);
     // const { appointmentId, startTime, User, DoctorId ,status} = appointments;
     // console.log( { appointmentId, startTime, User, DoctorId },userFirstName)
@@ -116,8 +116,9 @@ console.log(Dname);
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
   const showMoreButton = visibleRows < appointments.length;
 
-
+  
   return (
+    
     <div>
 
     <div className={styles.tablewrapper}>

@@ -38,7 +38,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
       },
       config
     );
-    if (response.request.status === 200) {
+    if (response.request.status === 201) {
       setSuccessfulAppointmentModal(true);
       setTimeout(() => {
         setSuccessfulAppointmentModal(false);
@@ -68,7 +68,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={bookingId}
+                value={bookingId} 
                 onChange={handleChange}
                 label="Booking time"
                 sx={{
