@@ -46,6 +46,7 @@ exports.loginUser = async (req, res) => {
           // secure: true, set this on production
           sameSite: 'strict',
         });
+        user.userType = "user";
         res.status(200).json(user);
       } else {
         res.status(400).send('invalid email or password');
@@ -95,6 +96,7 @@ exports.createUser = async (req, res) => {
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(json.email, verUrl);
+    user.userType = "user";
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json(err);

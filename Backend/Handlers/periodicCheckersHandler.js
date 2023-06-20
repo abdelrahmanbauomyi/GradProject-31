@@ -2,18 +2,39 @@ const { sequelize, Booking, User, Doctor } = require('../models');
 const Sequelize = require('sequelize');
 const dayjs = require('dayjs');
 exports.appoitmentStartChecker = async()=>{
-    const now = dayjs();
-    const appoitment=await Booking.findAll({
+    const now = addHoursToDate(new Date,1)
+    const appoitment=await Booking.update({
+        status:'ongoing'
+    },{
         where:{
+            [Sequelize.Op.and]:[{
             startTime:{
-                [Sequelize.Op.lt]: now
+                [Sequelize.Op.lte]:now
+            }},
+            {
+                status:'pending'
+            }
+        ]
+        }
+    })
+    console.log("ALIVE")
+    console.log(appoitment) ;
+}
+exports.appoitmentEndChecker = async()=>{
+    const now = addHoursToDate(new Date,1)
+    const appoitment=await Booking.update({
+        status:"Finished"
+    },{
+        where:{
+            
+            endTime:{
+                [Sequelize.Op.lt]:now
             }
         }
     })
-    if(appoitment){
-        
-    }
+    console.log("ALIVE")
+    console.log(appoitment) ;
 }
-exports.appoitmentEndChecker = async()=>{
-
-}
+function addHoursToDate(date, hours) {
+    return new Date(new Date(date).setHours(date.getHours() + hours));
+  }

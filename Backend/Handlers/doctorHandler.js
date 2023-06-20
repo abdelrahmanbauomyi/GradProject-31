@@ -35,6 +35,7 @@ exports.loginDoctor = async (req, res) => {
           // secure: true, set this on production
           sameSite: 'strict',
         });
+        doctor.userType = "doctor";
         res.status(200).json(doctor);
       } else {
         res.status(400).send('invalid email or password');
@@ -120,6 +121,7 @@ exports.createDoctor = async (req, res) => {
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(sentInfo.email, verUrl);
+    doctor.userType = "doctor";
     return res.status(201).json(doctor);
   } catch (err) {
     console.log(err)

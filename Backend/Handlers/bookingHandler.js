@@ -7,7 +7,8 @@ exports.addAppointment = async (req, res) => {
     if (req.user.userType == 'doctor') {
       let startTime = dayjs(req.body.startTime);
       let endTime = dayjs(req.body.endTime);
-      let now = dayjs();
+      const oldTiming = dayjs(); //GMT+2
+      const now = oldTiming.add(1,'h')//GMT+3
       if (startTime < now || endTime < now || startTime > endTime) {
         console.log(startTime, endTime, now);
         return res.status(400).json('Bad request');
