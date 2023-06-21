@@ -1,6 +1,7 @@
 import styles from './DashBoard.module.css'
 import DrSideBar from '../DrSideBar/DrSideBar'
 import { useState,useEffect } from "react";
+import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import  {approveAppointment,refuseAppointment} from '../../actions/appointmentActions'
 import headersConfig from '../../utils/headersConfig';
@@ -49,6 +50,12 @@ const DashBoard = () => {
 const [visibleRows, setVisibleRows] = useState(3);
 const [showAllRows, setShowAllRows] = useState(false);
 
+const history = useNavigate();
+  const handleRowClick = (appointment) => {
+    if (appointment.status === "reserved" ) {
+    history('/VideoMeeting');}
+  };
+
 const handleSeeMore = () => {
   setVisibleRows(appointments.length);
   setShowAllRows(true);
@@ -77,7 +84,7 @@ const showMoreButton = visibleRows < appointments.length;
         <tbody>
           {displayedAppointments.map(appointment => (
             
-            <tr key={appointment.appointmentId}>
+            <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>
               <td>{appointment.appointmentId}</td>
               <td>{appointment.startTime}</td>
               <td>{appointment.endTime}</td>

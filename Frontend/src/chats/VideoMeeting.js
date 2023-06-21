@@ -51,16 +51,22 @@ const {doctorInfo} = doctorLogin
 
 
         
-      const roomID = appointments.roomID
+      const roomID = appointments.roomId
+      console.log(roomID)
      //  const name = appointments.Doctor.Dname
-   const name = doctorInfo? appointments.Doctor.Dname: appointments.User.First ;
+    //  let name
+    //  if(doctorInfo){
+    //   name = appointments.Doctor.Dname
+    //  }
+    //  else name = appointments.User ? appointments.User.firstName : ''
+  //  const name = doctorInfo? appointments.Doctor.Dname: appointments.User.firstName ;
    
   let myMeeting = async (element) => {
  // generate Kit Token
   const appID = APP_ID;
   const serverSecret = SERVER_SECRET;
   const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest
-  (appID, serverSecret, roomID, randomID(5),  randomID(5));
+  (appID, serverSecret, roomID, randomID(5), randomID(5));
 
 
  // Create instance object from Kit Token.

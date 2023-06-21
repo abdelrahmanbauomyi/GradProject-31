@@ -118,7 +118,7 @@ function Announcements(props) {
   
   const history = useNavigate();
   const handleRowClick = (appointment) => {
-    if (appointment.status == "ready" ) {
+    if (appointment.status === "reserved" ) {
     history('/VideoMeeting');}
   };
 
@@ -154,7 +154,7 @@ function Announcements(props) {
         <tbody>
           {displayedAppointments.map(appointment => (
             
-            <tr key={appointment.appointmentId}>
+            <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>  
               <td>{appointment.appointmentId}</td>
               <td>{appointment.startTime}</td>
               <td>{appointment.endTime}</td>
