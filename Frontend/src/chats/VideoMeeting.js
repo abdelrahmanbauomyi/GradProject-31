@@ -4,8 +4,12 @@ import axios from 'axios';
 import headersConfig from "../utils/headersConfig"
 import { useState,useEffect } from 'react';
 import { useSelector } from "react-redux";
+import { getRoomId } from './data';
 export default function App() {
 
+
+
+  
 
   const [appointments, setAppointments] = useState([]);
   const config = headersConfig("booking/userhistory");
@@ -51,10 +55,10 @@ const {doctorInfo} = doctorLogin
 
 
         
-      const roomID = appointments.roomID
+      const roomID = getRoomId()
      //  const name = appointments.Doctor.Dname
    const name = doctorInfo? appointments.Doctor.Dname: appointments.User.First ;
-   
+
   let myMeeting = async (element) => {
  // generate Kit Token
   const appID = APP_ID;

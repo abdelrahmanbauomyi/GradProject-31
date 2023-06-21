@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
+import { setRoomId } from '../chats/data';
 
 function Announcements(props) {
 
@@ -117,7 +118,9 @@ function Announcements(props) {
   
   const history = useNavigate();
   const handleRowClick = (appointment) => {
-    if (appointment.status == "ready" ) {
+    if (appointment.status == "reserved" ) {
+      const roomId = appointment.roomId;
+      setRoomId(roomId);
     history('/VideoMeeting');}
   };
 
@@ -154,7 +157,7 @@ function Announcements(props) {
         <tbody>
           {appointments.map(appointment => (
             
-            <tr key={appointment.appointmentId}>
+            <tr key={appointment.appointmentId} >
               <td>{appointment.appointmentId}</td>
               <td>{appointment.startTime}</td>
               <td>{appointment.endTime}</td>
