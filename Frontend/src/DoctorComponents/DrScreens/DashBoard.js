@@ -5,6 +5,7 @@ import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import  {approveAppointment,refuseAppointment} from '../../actions/appointmentActions'
 import headersConfig from '../../utils/headersConfig';
+import { setRoomId } from '../../chats/data';
 import axios from 'axios';
 
 const DashBoard = () => {
@@ -51,10 +52,12 @@ const [visibleRows, setVisibleRows] = useState(3);
 const [showAllRows, setShowAllRows] = useState(false);
 
 const history = useNavigate();
-  const handleRowClick = (appointment) => {
-    if (appointment.status === "reserved" ) {
-    history('/VideoMeeting');}
-  };
+const handleRowClick = (appointment) => {
+  if (appointment.status == "reserved" ) {
+    const roomId = appointment.roomId;
+    setRoomId(roomId);
+  history('/VideoMeeting');}
+};
 
 const handleSeeMore = () => {
   setVisibleRows(appointments.length);

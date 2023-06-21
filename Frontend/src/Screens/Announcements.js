@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
+import { setRoomId } from '../chats/data';
 
 function Announcements(props) {
 
@@ -118,7 +119,9 @@ function Announcements(props) {
   
   const history = useNavigate();
   const handleRowClick = (appointment) => {
-    if (appointment.status === "reserved" ) {
+    if (appointment.status == "reserved" ) {
+      const roomId = appointment.roomId;
+      setRoomId(roomId);
     history('/VideoMeeting');}
   };
 
@@ -133,6 +136,7 @@ function Announcements(props) {
 
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
   const showMoreButton = visibleRows < appointments.length;
+  // console.log(appointments)
 
   
   return (

@@ -4,6 +4,7 @@ import axios from 'axios';
 import headersConfig from "../utils/headersConfig"
 import { useState,useEffect } from 'react';
 import { useSelector } from "react-redux";
+import { getRoomId } from './data';
 export default function App() {
 
 
@@ -51,15 +52,13 @@ const {doctorInfo} = doctorLogin
 
 
         
-      const roomID = appointments.roomId
-      console.log(roomID)
-     //  const name = appointments.Doctor.Dname
-    //  let name
-    //  if(doctorInfo){
-    //   name = appointments.Doctor.Dname
-    //  }
-    //  else name = appointments.User ? appointments.User.firstName : ''
-  //  const name = doctorInfo? appointments.Doctor.Dname: appointments.User.firstName ;
+      const roomID = getRoomId()
+  //     let name    
+  //  if(doctorInfo){
+  //      name = appointments.Doctor.Dname
+  //     }
+  // //  const name = doctorInfo? appointments.Doctor.Dname: appointments.User.firstName ;
+  // console.log(name)
    
   let myMeeting = async (element) => {
  // generate Kit Token
