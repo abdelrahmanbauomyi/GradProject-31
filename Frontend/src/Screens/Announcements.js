@@ -134,8 +134,9 @@ function Announcements(props) {
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
   const showMoreButton = visibleRows < appointments.length;
 
-
+  
   return (
+    
     <div>
 
     <div className={styles.tablewrapper}>
