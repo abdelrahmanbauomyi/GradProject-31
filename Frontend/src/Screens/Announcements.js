@@ -7,7 +7,6 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
 
-
 function Announcements(props) {
 
 
