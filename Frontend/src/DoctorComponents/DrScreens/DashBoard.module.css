@@ -113,3 +113,14 @@ tr:hover {
   margin-left: 30px;
   color: #4e4e4e;
 }
+.seeMoreButton {
+  margin-top: 20px;
+  margin-left: 650px;
+  color: #404040;
+  background-color: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+a {
+  text-decoration: none;
+}
+

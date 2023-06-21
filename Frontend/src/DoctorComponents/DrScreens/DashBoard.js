@@ -9,12 +9,12 @@ import axios from 'axios';
 const DashBoard = () => {
 
   const [appointments, setAppointments] = useState([]);
-  const config = headersConfig("/booking/doctorhistory");
+  const config = headersConfig("booking/doctorhistory");
 
   useEffect(() => {
-    axios.get('http://localhost:8000//booking/doctorhistory',config)
+    axios.get('http://localhost:8000/booking/doctorhistory',config)
       .then(response => {
-        setAppointments(response.data);
+       setAppointments(response.data);
       })
       .catch(error => {
         console.error(error);
@@ -46,6 +46,17 @@ const DashBoard = () => {
 //     disaptch(refuseAppointment(index));
 //   };
 
+const [visibleRows, setVisibleRows] = useState(3);
+const [showAllRows, setShowAllRows] = useState(false);
+
+const handleSeeMore = () => {
+  setVisibleRows(appointments.length);
+  setShowAllRows(true);
+};
+
+const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
+const showMoreButton = visibleRows < appointments.length;
+
 
     
       return (
@@ -56,7 +67,6 @@ const DashBoard = () => {
       <h2 className={styles.uptxt}>Appointments</h2>
         <thead>
           <tr>
-            <th></th>
             <th>Appointment id</th>
             <th >start time</th>
             <th>end Time</th>
@@ -65,20 +75,24 @@ const DashBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {appointments.map(appointment => (
+          {displayedAppointments.map(appointment => (
             
             <tr key={appointment.appointmentId}>
               <td>{appointment.appointmentId}</td>
               <td>{appointment.startTime}</td>
               <td>{appointment.endTime}</td>
               <td>{appointment.status}</td>
+              <td>{appointment.User ? appointment.User.firstName : ''}</td>
             </tr>
           ))}
 
          
         </tbody>
-      
-      
+        {showMoreButton && !showAllRows && (
+        <a className={styles.seeMoreButton} onClick={handleSeeMore}>
+          See More
+        </a>
+      )}
       
       </table>
    </div>

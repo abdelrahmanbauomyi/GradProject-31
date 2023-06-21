@@ -13,6 +13,7 @@ function Announcements(props) {
 
   const [appointments, setAppointments] = useState([]);
   const config = headersConfig("booking/userhistory");
+  
 
   useEffect(() => {
     axios.get('http://localhost:8000/booking/userhistory', config)
@@ -144,7 +145,6 @@ function Announcements(props) {
       <h2 className={styles.uptxt}>Appointments</h2>
         <thead>
           <tr>
-            <th></th>
             <th>Appointment id</th>
             <th >start time</th>
             <th>end Time</th>
@@ -153,13 +153,14 @@ function Announcements(props) {
           </tr>
         </thead>
         <tbody>
-          {appointments.map(appointment => (
+          {displayedAppointments.map(appointment => (
             
             <tr key={appointment.appointmentId}>
               <td>{appointment.appointmentId}</td>
               <td>{appointment.startTime}</td>
               <td>{appointment.endTime}</td>
               <td>{appointment.status}</td>
+              <td>{appointment.Doctor.Dname}</td>
             </tr>
           ))}
 
