@@ -1,4 +1,4 @@
-table {
+/* table {
   border-collapse: separate;
   border-spacing: 0 10px;
   width: 100%;
@@ -49,7 +49,8 @@ tr:hover {
   height: 300px;
   background-color: #fff;
   /* border: 1px solid #ccc; */
-  padding: 20px;
+
+/* padding: 20px;
   border-radius: 14px;
   position: relative;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -57,4 +58,58 @@ tr:hover {
 
 .btn {
   left: 120px;
+} */
+
+.tablewrapper {
+  position: absolute;
+  width: 65%;
+  margin-top: 60px;
+  margin-left: 250px;
+}
+
+.table {
+  display: block;
+  overflow: hidden;
+  table-layout: fixed;
+  border-collapse: separate;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 10px;
+  white-space: nowrap;
+  width: 100em;
+  max-width: 80%;
+  margin: auto;
+  table-layout: auto;
+  overflow-x: auto;
+  background-color: #ffffff;
+  color: #4200ff;
+  border-spacing: 0 7px;
+}
+
+.table thead {
+  background-color: white;
+  color: #909090;
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+}
+
+.table td {
+  border-top: 0.5px solid white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table tbody tr:hover {
+  background-color: white;
+}
+.expand {
+  width: 100%;
+}
+
+.uptxt {
+  text-align: left;
+  margin-left: 30px;
+  color: #4e4e4e;
 }

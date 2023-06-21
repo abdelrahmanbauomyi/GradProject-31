@@ -13,6 +13,7 @@ const HomeScreen = () => {
       <Home></Home>
       <Tiktok />
       <Subscribe />
+      <Footer/>
     </div>
   );
 };

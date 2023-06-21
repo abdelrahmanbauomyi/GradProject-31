@@ -84,7 +84,7 @@ const {doctorInfo} = doctorLogin
                 <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
               </NavDropdown>
               <Nav className="ms-auto">
-              <Nav.Link as={Link} to='/myappointments'>Doctors</Nav.Link>
+
 
               </Nav>
               </div>   

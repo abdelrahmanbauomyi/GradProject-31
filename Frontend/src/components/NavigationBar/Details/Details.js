@@ -41,7 +41,8 @@ const Details = () => {
         <Button className={styles.appointment}>
           {" "}
           Book an appointment
-          <i>  <BsFillArrowRightCircleFill/> </i>{" "}
+          <i>  <BsFillArrowRightCircleFill/> </i>
+          {" "}
         </Button>
         <button className={styles.videoBtn} onClick={handleRowClick}>
           <i className={`${styles.playBtn}`}> <TbPlayerPlay/></i>

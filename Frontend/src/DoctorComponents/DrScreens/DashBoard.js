@@ -1,38 +1,108 @@
 import styles from './DashBoard.module.css'
 import DrSideBar from '../DrSideBar/DrSideBar'
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import  {approveAppointment,refuseAppointment} from '../../actions/appointmentActions'
+import headersConfig from '../../utils/headersConfig';
+import axios from 'axios';
 
 const DashBoard = () => {
 
-  const [showAll, setShowAll] = useState(false);
+  const [appointments, setAppointments] = useState([]);
+  const config = headersConfig("/booking/doctorhistory");
 
-  const toggleShowAll = () => {
-    setShowAll(!showAll)
-  }
+  useEffect(() => {
+    axios.get('http://localhost:8000//booking/doctorhistory',config)
+      .then(response => {
+        setAppointments(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
-  const disaptch = useDispatch()
+  console.log(appointments)
+
+
+
+//   const [showAll, setShowAll] = useState(false);
+
+//   const toggleShowAll = () => {
+//     setShowAll(!showAll)
+//   }
+// ''
+//   const disaptch = useDispatch()
   
   
-  const appointments = useSelector((state) => state.appointments.appointments);
+//   const appointments = useSelector((state) => state.appointments.appointments);
  
  
 
-  const handleApprove = (index) => {
-    disaptch(approveAppointment(index));
-  };
+//   const handleApprove = (index) => {
+//     disaptch(approveAppointment(index));
+//   };
 
-  const handleRefuse = (index) => {
-    disaptch(refuseAppointment(index));
-  };
+//   const handleRefuse = (index) => {
+//     disaptch(refuseAppointment(index));
+//   };
 
 
     
       return (
-        <>
+        <div>
+          
+    <div className={styles.tablewrapper}>
+      <table className={styles.table}>
+      <h2 className={styles.uptxt}>Appointments</h2>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Appointment id</th>
+            <th >start time</th>
+            <th>end Time</th>
+            <th>status</th>
+            <th>Patient Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointments.map(appointment => (
+            
+            <tr key={appointment.appointmentId}>
+              <td>{appointment.appointmentId}</td>
+              <td>{appointment.startTime}</td>
+              <td>{appointment.endTime}</td>
+              <td>{appointment.status}</td>
+            </tr>
+          ))}
+
+         
+        </tbody>
+      
+      
+      
+      </table>
+   </div>
         <DrSideBar/>
-     <div >
+    
+</div>
+        )
+
+    }
+
+export default DashBoard
+
+
+
+
+
+
+
+
+
+
+/*
+
+ <div >
      
       <table className={`${styles.box} `}>
         <thead>
@@ -73,49 +143,6 @@ const DashBoard = () => {
           </div>
         )}
       </div>
-</>
-        )
-
-    }
-
-export default DashBoard
-
-
-
-
-
-
-
-
-
-
-/*
-
-  <Container fluid="sm">
-    
-
-    <Row  sm>
-      <Col sm>name</Col>
-      <Col>disease</Col>
-       <Col>date</Col>
-        <Col>approval</Col>
-    </Row>
-    {appointments.map((appointment, index) => (
-    <Row sm>
-      <Col sm>{appointment.name}</Col>
-      <Col sm>{appointment.disease}</Col>
-       <Col md>{appointment.date}</Col>
-        <Col md> {appointment.approval}</Col>
-      
-    </Row>     
-    ))}
-
-<Row md={4}>
-        <Col>1 of 3</Col>
-        <Col xs={2}>2 of 3</Col>
-        <Col>3 of 3</Col>
-      </Row>
-  </Container>
 
 
 

@@ -3,27 +3,45 @@ import styles from './Announcements.module.css';
 import {  useNavigate } from "react-router-dom";
 import DrSideBar from "../DoctorComponents/DrSideBar/DrSideBar"
 import Footer from '../components/Footer/Footer';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig";
-const config = headersConfig("booking/userhistory");
+
 
 function Announcements(props) {
-  let appointments;
-  axios.get('http://localhost:8000/booking/userhistory',config)  
-  .then(response => {
-    appointments = response.data;
-    console.log(appointments)
-    })
 
-    const {
-  appointmentId,
-  startTime,
-  endTime,
-  status,
-  Doctor: { Dname }
-} = appointments
-console.log(Dname);
+
+  const [appointments, setAppointments] = useState([]);
+  const config = headersConfig("booking/userhistory");
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/booking/userhistory', config)
+      .then(response => {
+        setAppointments(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+
+
+
+//   let appointments;
+//   axios.get('http://localhost:8000/booking/userhistory',config)  
+//   .then(response => {
+//     appointments = response.data;
+//     console.log(appointments)
+//     })
+
+//     const {
+//   appointmentId,
+//   startTime,
+//   endTime,
+//   status,
+//   Doctor: { Dname }
+// } = appointments
+// console.log(Dname);
     // const { appointmentId, startTime, User, DoctorId ,status} = appointments;
     // console.log( { appointmentId, startTime, User, DoctorId },userFirstName)
   const announcements = [
@@ -134,19 +152,16 @@ console.log(Dname);
           </tr>
         </thead>
         <tbody>
-          {displayedAppointments.map((appointment, idx) => (
-              <tr key={idx} onClick={()=> handleRowClick(appointment)} >
-                  <div className={styles.profilePicture}>
-              <img src={appointment.profilePictureUrl} alt="Profile" />
-            </div>
-                <td>{appointmentId}</td>
-                <td className={styles.expand}>{startTime} </td> 
-                <td className={styles.expand}>{endTime}</td> 
-                <td className={styles.expand}>{status}</td> 
-                <td className={styles.expand}>{Dname}</td> 
-              
-              </tr>
+          {appointments.map(appointment => (
+            
+            <tr key={appointment.appointmentId}>
+              <td>{appointment.appointmentId}</td>
+              <td>{appointment.startTime}</td>
+              <td>{appointment.endTime}</td>
+              <td>{appointment.status}</td>
+            </tr>
           ))}
+
          
         </tbody>
         {showMoreButton && !showAllRows && (

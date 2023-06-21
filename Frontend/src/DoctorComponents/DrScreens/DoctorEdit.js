@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom"
 import { getDoctorDetails, updateDoctorProfile } from "../../actions/doctorActions"
 import { useEffect, useState } from "react";
+import styles from './DoctorEdit.module.css'
 
 
 const DoctorEdit = () => {
@@ -48,7 +49,7 @@ const DoctorEdit = () => {
   return (
     <div>
       <div>
-        <Form onSubmit={sumbitHandler}>
+        <Form   className={styles.txt} onSubmit={sumbitHandler}>
           <Form.Group controlId='Dname'>
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -60,8 +61,9 @@ const DoctorEdit = () => {
           </Form.Group>
 
           <Form.Group controlId='email'>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label  className={styles.txt}>Email Address</Form.Label>
             <Form.Control
+            className={styles.txt}
               type='email'
               placeholder='Enter email'
               value={email}
