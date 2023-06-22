@@ -59,7 +59,7 @@ function Announcements(props) {
     if (appointment.status == "ongoing" ) {
       const roomId = appointment.roomId;
       setRoomId(roomId);
-    history('/VideoMeeting');}
+      history('/VideoMeeting' , {state : {roomId: roomId}});}
   };
 
 
@@ -137,7 +137,7 @@ function Announcements(props) {
         <tbody>
           {displayedAppointments.map((appointment,idx) => (
             
-            <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>  
+            <tr key={appointment.appointmentId} >  
               <td>{idx+1}</td>
               <td>{timeFormatter(appointment.startTime)}</td>
               <td>{timeFormatter(appointment.endTime)}</td>
