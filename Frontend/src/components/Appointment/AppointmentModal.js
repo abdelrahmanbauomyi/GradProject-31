@@ -17,12 +17,13 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
     useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
   useEffect(() => {
-    setBookings( () =>{
-      const bookings = doctor.Bookings.filter((booking) => booking.status === "pending")
-      if(!bookings) return []
-      return bookings
-    }
-    );
+    setBookings(() => {
+      const bookings = doctor.Bookings.filter(
+        (booking) => booking.status === "pending"
+      );
+      if (!bookings) return [];
+      return bookings;
+    });
   }, []);
   const handleChange = (event) => {
     setBookingId(event.target.value);
@@ -49,8 +50,12 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   if (successfulAppointmentModal)
     return (
-      <Modal onClose={() => {setSuccessfulAppointmentModal(false)
-      setBookingModal(false)}}>
+      <Modal
+        onClose={() => {
+          setSuccessfulAppointmentModal(false);
+          setBookingModal(false);
+        }}
+      >
         Your Appointment has been submitted.
       </Modal>
     );
@@ -86,7 +91,9 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
             </FormControl>
           </div>
           <div className="d-flex justify-content-center">
-            <Button type="submit" disabled={bookings.length === 0}>Book</Button>
+            <Button type="submit" disabled={bookings.length === 0}>
+              Book
+            </Button>
           </div>
         </form>
       </Container>
