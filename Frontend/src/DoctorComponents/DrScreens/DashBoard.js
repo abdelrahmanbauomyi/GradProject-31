@@ -5,7 +5,9 @@ import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import  {approveAppointment,refuseAppointment} from '../../actions/appointmentActions'
 import headersConfig from '../../utils/headersConfig';
+import { setRoomId } from '../../chats/data';
 import axios from 'axios';
+import timeFormatter from '../../utils/timeFormatter';
 
 const DashBoard = () => {
 
@@ -51,14 +53,17 @@ const [visibleRows, setVisibleRows] = useState(3);
 const [showAllRows, setShowAllRows] = useState(false);
 
 const history = useNavigate();
-  const handleRowClick = (appointment) => {
-    if (appointment.status === "reserved" ) {
-    history('/VideoMeeting');}
-  };
-
+const handleRowClick = (appointment) => {
+  if (appointment.status == "ongoing" ) {
+    const roomId = appointment.roomId;
+    setRoomId(roomId);
+  history('/VideoMeeting');}
+};
+const [seeLess, setSeeLess] = useState(false)
 const handleSeeMore = () => {
   setVisibleRows(appointments.length);
   setShowAllRows(true);
+  setSeeLess(true)
 };
 
 const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
@@ -74,7 +79,7 @@ const showMoreButton = visibleRows < appointments.length;
       <h2 className={styles.uptxt}>Appointments</h2>
         <thead>
           <tr>
-            <th>Appointment id</th>
+            <th></th>
             <th >start time</th>
             <th>end Time</th>
             <th>status</th>
@@ -82,12 +87,12 @@ const showMoreButton = visibleRows < appointments.length;
           </tr>
         </thead>
         <tbody>
-          {displayedAppointments.map(appointment => (
+          {displayedAppointments.map((appointment,idx) => (
             
             <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>
-              <td>{appointment.appointmentId}</td>
-              <td>{appointment.startTime}</td>
-              <td>{appointment.endTime}</td>
+              <td>{idx+1}</td>
+              <td>{timeFormatter(appointment.startTime)}</td>
+              <td>{timeFormatter(appointment.endTime)}</td>
               <td>{appointment.status}</td>
               <td>{appointment.User ? appointment.User.firstName : ''}</td>
             </tr>
@@ -100,6 +105,11 @@ const showMoreButton = visibleRows < appointments.length;
           See More
         </a>
       )}
+            {seeLess && <a className={styles.seeMoreButton} onClick={()=>{
+setVisibleRows(3)
+setShowAllRows(false)
+setSeeLess(false)
+}}>See Less</a>}
       
       </table>
    </div>

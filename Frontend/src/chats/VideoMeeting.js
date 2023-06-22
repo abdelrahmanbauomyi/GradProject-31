@@ -1,35 +1,8 @@
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { APP_ID, SERVER_SECRET } from "./constant"
-import axios from 'axios';
-import headersConfig from "../utils/headersConfig"
-import { useState,useEffect } from 'react';
-import { useSelector } from "react-redux";
 import { getRoomId } from './data';
 export default function App() {
 
-
-
-  
-
-  const [appointments, setAppointments] = useState([]);
-  const config = headersConfig("booking/userhistory");
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/booking/userhistory', config)
-      .then(response => {
-        setAppointments(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-
-
-const userLogin = useSelector(state=>state.userLogin)
-const {userInfo} = userLogin
-const doctorLogin = useSelector(state=>state.doctorLogin)
-const {doctorInfo} = doctorLogin
 
   
 
@@ -56,9 +29,13 @@ const {doctorInfo} = doctorLogin
 
         
       const roomID = getRoomId()
-     //  const name = appointments.Doctor.Dname
-   const name = doctorInfo? appointments.Doctor.Dname: appointments.User.First ;
-
+  //     let name    
+  //  if(doctorInfo){
+  //      name = appointments.Doctor.Dname
+  //     }
+  // //  const name = doctorInfo? appointments.Doctor.Dname: appointments.User.firstName ;
+  // console.log(name)
+   
   let myMeeting = async (element) => {
  // generate Kit Token
   const appID = APP_ID;

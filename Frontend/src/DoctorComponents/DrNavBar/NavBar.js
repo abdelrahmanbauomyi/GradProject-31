@@ -58,7 +58,7 @@ const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);
               <Nav  className='ms-auto'>
           {doctorInfo?(
               <NavDropdown title={doctorInfo.Dname} id='username'>
-                <Nav.Link as={Link} to='/SideScreen'>
+                <Nav.Link as={Link} to='/DrDashBoard'>
                   Profile
                 </Nav.Link>
                 <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
