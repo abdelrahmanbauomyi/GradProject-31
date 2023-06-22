@@ -29,6 +29,12 @@
   height: 100% !important;
   margin-bottom: 30px;
 }
+
 .navbar .nav-link {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  text-decoration: none !important;
 }

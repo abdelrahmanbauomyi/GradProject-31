@@ -90,15 +90,15 @@ function EditProfile() {
 </Form.Group>
 
 
-<Form.Group controlId='mobilenumber'>
-<Form.Label>Mobile Number</Form.Label>
-<Form.Control
-  type='number'
-  placeholder='Mobile Number'
-  value={mobilenumber}
-  onChange={(e) => setmobileNumber(e.target.value)}
-></Form.Control>
-</Form.Group>
+            <Form.Group controlId='mobilenumber'>
+            <Form.Label>Mobile Number</Form.Label>
+            <Form.Control
+              type='number'
+              placeholder='Mobile Number'
+              value={mobilenumber}
+              onChange={(e) => setmobileNumber(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
 
 
