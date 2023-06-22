@@ -17,23 +17,12 @@ const IconStar = ({ props }) => {
 };
 
 const ReviewStars = (props) => {
+  const arr = Array(props.count).fill(0)
   return (
     <Fragment>
-      <span>
+      { arr.map( i => <span>
         <IconStar props={props} />
-      </span>
-      <span>
-        <IconStar props={props} />
-      </span>
-      <span>
-        <IconStar props={props} />
-      </span>
-      <span>
-        <IconStar props={props} />
-      </span>
-      <span>
-        <IconStar props={props} />
-      </span>
+      </span>)}
     </Fragment>
   );
 };

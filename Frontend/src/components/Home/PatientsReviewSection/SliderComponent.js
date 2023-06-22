@@ -23,18 +23,21 @@ const SliderComponent = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const fetchReviews = async () => {
-      const response = await axios.get("PUT URL HERE and config if needed");
+      const response = await axios.get("http://localhost:8000/review");
       setReviews(response.data);
     };
+    fetchReviews()
   }, []);
   if (!reviews) return null;
   return (
     <div style={{ width: "80%", margin: "0 auto" }}>
       <Slider {...settings}>
         {reviews.map((review) => (
-          <ReviewCard review />
+          <ReviewCard review= {review} />
         ))}
-        <ReviewCard />
+   
+  
+      
       </Slider>
     </div>
   );

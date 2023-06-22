@@ -4,7 +4,7 @@ import image from "../../../assets/image.png";
 
 import ReviewStars from "../../UI/ReviewStars";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({review}) => {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
@@ -16,20 +16,21 @@ const ReviewCard = ({ review }) => {
         </div>
       </div>
       <div className={classes.information}>
-        <h2 className={classes.name}>{review.name || "Sara Ali Khan"}</h2>
+        <h2 className={classes.name}>{review.User.firstName } {review.User.lastName}</h2>
         <h3 className={classes.speciality}>
-          {review.speciality || "Cardiologist Patient"}
+          {review.Doctor.Dname}
         </h3>
         <ReviewStars
           width="0.85625rem"
           height="0.85625rem"
           color="#4200ff"
           marginRight="1px"
+          count = {review.rating}
         />
 
         <p className={classes.review}>
-          {review.review ||
-            "Thanks for all the services, no doubt it is the best hospital."}
+          { 
+            review.comment}
         </p>
       </div>
     </div>
