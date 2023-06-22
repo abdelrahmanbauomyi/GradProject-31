@@ -64,7 +64,7 @@ const {doctorInfo} = doctorLogin
   const appID = APP_ID;
   const serverSecret = SERVER_SECRET;
   const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest
-  (appID, serverSecret, roomID, randomID(5),  randomID(5));
+  (appID, serverSecret, roomID, randomID(5), randomID(5));
 
 
  // Create instance object from Kit Token.

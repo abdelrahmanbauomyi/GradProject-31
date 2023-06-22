@@ -43,7 +43,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
       setTimeout(() => {
         setSuccessfulAppointmentModal(false);
         setBookingModal(false);
-      }, 2000);
+      }, 700);
     }
   };
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
