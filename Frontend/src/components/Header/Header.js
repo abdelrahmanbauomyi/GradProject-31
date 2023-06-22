@@ -48,7 +48,6 @@ const {doctorInfo} = doctorLogin
     }
   };
 
-
 /*
   const handleDoctorModalShow=()=>{
     setDoctorSignUpClicked(true);
@@ -61,8 +60,8 @@ const {doctorInfo} = doctorLogin
   {doctorSignUpClicked && <DoctorSignUpForm onClose={handleDoctorModalClose}/>}
 
 */ 
+
   return (
-    
     <header  >
        <Navbar className={styles.navbar} expand="lg">
       <Container>
@@ -115,8 +114,6 @@ const {doctorInfo} = doctorLogin
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    
-    
     </header>
     
   )

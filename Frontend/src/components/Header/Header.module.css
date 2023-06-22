@@ -1,9 +1,3 @@
-.navbar {
-  background-color: #fffaf1;
-  background-size: auto;
-  height: 100% !important;
-  margin-bottom: 30px;
-}
 .Home {
   border: none;
 
@@ -28,4 +22,13 @@
 .text {
   color: #4200ff !important;
   cursor: pointer;
+}
+.navbar {
+  background-color: #fffaf1;
+  background-size: auto;
+  height: 100% !important;
+  margin-bottom: 30px;
+}
+.navbar .nav-link {
+  text-decoration: none;
 }

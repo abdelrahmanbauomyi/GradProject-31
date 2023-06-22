@@ -6,8 +6,8 @@ import SearchCard from "../Cards/SearchCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignUpForm from "../Navbar/SignUpForm"
-import {BsPlay,BsFillArrowRightCircleFill } from "react-icons/bs";
-import {GrPlay} from "react-icons/gr"
+import {BsFillArrowRightCircleFill } from "react-icons/bs";
+
 import {TbPlayerPlay} from "react-icons/tb"
 
 const Details = () => {
@@ -58,7 +58,7 @@ const Details = () => {
  
         </p>
       </Container>
-      <SearchCard />
+     
     </div>
   );
 };
