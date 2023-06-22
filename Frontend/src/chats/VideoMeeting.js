@@ -1,11 +1,11 @@
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { APP_ID, SERVER_SECRET } from "./constant"
+import { getRoomId } from './data';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import headersConfig from "../utils/headersConfig"
 import { useState,useEffect } from 'react';
 import { useSelector } from "react-redux";
-import { getRoomId } from './data';
-import { useLocation } from 'react-router-dom';
 export default function App() {
 
   const location = useLocation()
