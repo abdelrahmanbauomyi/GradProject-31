@@ -61,10 +61,7 @@ function EditProfile() {
   }, [disaptch, history, userInfo, user]);
 
   const sumbitHandler = (e) => {
-    // e.preventDefault();
-    // disaptch(
-    //   updateUserProfile({ firstName, lastName, email, mobilenumber, gender })
-    // );
+
     e.preventDefault();
     disaptch(
       updateUserProfile({ firstName, lastName, email, mobilenumber, gender })
@@ -76,11 +73,10 @@ function EditProfile() {
         setShowMessage(false); // Set showMessage to false on failed form submission
       });
   };
-  // function formatToISODate(dateString) {
-  //   const [month, day, year] = dateString.split('/');
-  //   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-  // }
+
   return (
+    <div>
+         <DrSideBar />
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>Manage Profile</h2>
@@ -141,64 +137,14 @@ function EditProfile() {
               An Error was encountered, Please Try Again!
             </div>
           )}
-          {/* <div className={styles[`success-message`]}>
-            Your Changes has been saved successfully
-          </div>
-          <div className={styles[`failed-message`]}>
-            An Error was encountred, Please Try Again!
-          </div> */}
+
         </form>
       </div>
-      <DrSideBar />
+      </div>
+    
+   
     </div>
-    ////////////////////////////////
-    // <div>
-    //   <Form onSubmit={sumbitHandler}>
-    //     <Form.Group controlId="firstame">
-    //       <Form.Label>Name</Form.Label>
-    //       <Form.Control
-    //         type="firstName"
-    //         placeholder="Enter First Name"
-    //         value={firstName}
-    //         onChange={(e) => setFirstName(e.target.value)}
-    //       ></Form.Control>
-    //     </Form.Group>
 
-    //     <Form.Group controlId="email">
-    //       <Form.Label>Email Address</Form.Label>
-    //       <Form.Control
-    //         type="email"
-    //         placeholder="Enter email"
-    //         value={email}
-    //         onChange={(e) => setEmail(e.target.value)}
-    //       ></Form.Control>
-    //     </Form.Group>
-
-    //     <Form.Group controlId="lastName">
-    //       <Form.Label>Last Name</Form.Label>
-    //       <Form.Control
-    //         type="lastName"
-    //         placeholder="Enter Last Name"
-    //         value={lastName}
-    //         onChange={(e) => setLastName(e.target.value)}
-    //       ></Form.Control>
-    //     </Form.Group>
-
-    //     <Form.Group controlId="mobilenumber">
-    //       <Form.Label>Mobile Number</Form.Label>
-    //       <Form.Control
-    //         type="number"
-    //         placeholder="Mobile Number"
-    //         value={mobilenumber}
-    //         onChange={(e) => setmobileNumber(e.target.value)}
-    //       ></Form.Control>
-    //     </Form.Group>
-
-    //     <Button type="sumbit" variant="primary">
-    //       Update
-    //     </Button>
-    //   </Form>
-    // </div>
   );
 }
 

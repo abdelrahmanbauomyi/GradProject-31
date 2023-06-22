@@ -7,10 +7,12 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
+  margin-left: 350px;
+  margin-top: -700px;
 }
 
 .title {
-  background-color: #4200FF;
+  background-color: #4200ff;
   /* padding: 10px; */
   /* width: fit-content; */
   /* height: fit-content; */
@@ -23,7 +25,7 @@
   margin-left: -20px;
   margin-right: -20px;
 }
-.form{
+.form {
   margin-top: 10px;
 }
 .row {
@@ -31,12 +33,13 @@
   align-items: center;
   margin-bottom: 10px;
 }
-.double-row{
+.double-row {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
-.double-row input,select{
+.double-row input,
+select {
   border: 1px solid #ccc;
   border-radius: 15px;
   background-color: #f8f7f7;
@@ -46,18 +49,16 @@
   margin-right: 10px;
   font-size: 1em;
 }
-.row input{
+.row input {
   border: 1px solid #ccc;
   border-radius: 15px;
   background-color: #f8f7f7;
   width: fit-content;
   height: 25px;
   text-align: center;
-  
 }
 .label {
-margin-right:5px;
-
+  margin-right: 5px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -68,17 +69,17 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-.button{
+.button {
   display: block;
   margin: 0 auto;
-padding: 8px 20px;
-border-radius: 20px;
-background-color: #4200FF;
-color: #fff;
-border: none;
-font-size: 15px;
-cursor: pointer;
-transition: all 0.25s ease-in-out;
+  padding: 8px 20px;
+  border-radius: 20px;
+  background-color: #4200ff;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
 }
 .success-message {
   background-color: #4caf50;
@@ -88,7 +89,7 @@ transition: all 0.25s ease-in-out;
   margin-top: 10px;
   text-align: center;
 }
-.failed-message{
+.failed-message {
   background-color: red;
   color: white;
   padding: 10px;
