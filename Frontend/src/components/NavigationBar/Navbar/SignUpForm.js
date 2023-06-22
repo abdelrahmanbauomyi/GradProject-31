@@ -39,30 +39,12 @@ const SignUpForm = (props) => {
   }, [history, userInfo, redirect]);
 
   const handleRegister = (values) => {
-    disaptch(register(values));
-    // e.preventDefault();
-    // const Data = {email,password,firstName,lastName,gender,confirmpassword}
-    /* const options = {
-      url: 'http://localhost:8000/login',
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:8000/login',
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
-      withCredentials: true,
-      data: {
-          "password":"a7a",
-          "email":"omar.tolan@gmail.com"
-      }
-    };
-    
-    axios(options)
-      .then(response => {
-        console.log(response.status, response.body);
-      });
-    }*/
+    const formattedPhoneNumber = values.phoneNumber.startsWith("+")
+    ? values.phoneNumber.slice(1) // Remove the "+" sign
+    : values.phoneNumber;
+  
+  const updatedValues = { ...values, phoneNumber: formattedPhoneNumber };
+    disaptch(register(updatedValues));
   };
   const handleDateChange = (event) => {
     formik.setFieldValue("age", event.target.value);
