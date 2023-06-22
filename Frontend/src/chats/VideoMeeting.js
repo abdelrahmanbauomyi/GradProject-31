@@ -5,9 +5,10 @@ import headersConfig from "../utils/headersConfig"
 import { useState,useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { getRoomId } from './data';
+import { useLocation } from 'react-router-dom';
 export default function App() {
 
-
+  const location = useLocation()
   const [appointments, setAppointments] = useState([]);
   const config = headersConfig("booking/userhistory");
 
@@ -52,7 +53,8 @@ const {doctorInfo} = doctorLogin
 
 
         
-      const roomID = getRoomId()
+      const roomID = location.state.roomId
+      // console.log(location.state)
   //     let name    
   //  if(doctorInfo){
   //      name = appointments.Doctor.Dname

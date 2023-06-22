@@ -24,7 +24,7 @@ const DashBoard = () => {
       });
   }, []);
 
-  console.log(appointments)
+  // console.log(appointments)
 
 
 
@@ -54,10 +54,10 @@ const [showAllRows, setShowAllRows] = useState(false);
 
 const history = useNavigate();
 const handleRowClick = (appointment) => {
-  if (appointment.status == "ongoing" ) {
+  if (appointment.status == "reserved" ) {
     const roomId = appointment.roomId;
     setRoomId(roomId);
-  history('/VideoMeeting');}
+  history('/VideoMeeting' , {state : {roomId: roomId}});}
 };
 const [seeLess, setSeeLess] = useState(false)
 const handleSeeMore = () => {

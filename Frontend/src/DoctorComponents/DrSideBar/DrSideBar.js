@@ -5,6 +5,7 @@ import styles from "./DrSideBar.module.css"
 import { doctorLogout } from "../../actions/doctorActions";
 import { useDispatch,useSelector } from "react-redux";
 import {logout} from "../../actions/userActions"
+import { Link } from "react-router-dom";
 
 function DrSideBar() {
 
@@ -26,10 +27,10 @@ const {doctorInfo} = doctorLogin
     <div className="container-fluid" >
     <div className="row">
     <div className={`bg-dark col-md-2 min-vh-100 ${styles.sidebar}`}>
-        <a className="text-decoration-none text-blue d-flex align-itemcenter ms-3 mt-2">
+        <Link className="text-decoration-none text-blue d-flex align-itemcenter ms-3 mt-2" to={"/"}>
           {/* <i className="fs-4 bi bi-speedometer "></i> */}
           <span className="ms-1 fs-4 ">Online Clinic</span>
-        </a>
+        </Link>
         {userInfo ? (<div>
         <hr className="text-secondary"/>
         <ul className="nav nav-tabs flex-column">

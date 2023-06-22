@@ -15,9 +15,9 @@ function SideBar() {
       <nav className={styles[`nav-menu`]}>
         <ul className={styles[`nav-menu-items`]}>
           <li className={styles[`navbar-header`]}>
-            <h1>
+            <Link to={"/"}>
               <span>Online</span> Clinic
-            </h1>
+            </Link>
           </li>
           {SidebarData.map((item, index) => {
             const active = activeIndex === index ? styles.active : "";

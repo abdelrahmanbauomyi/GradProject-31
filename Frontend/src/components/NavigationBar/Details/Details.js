@@ -38,7 +38,7 @@ const Details = () => {
         <p className={styles.text4}>
           and it does not just mean absence of diseases.
         </p>
-        <Button className={styles.appointment}>
+        <Button className={styles.appointment} onClick={()=> {history('/search')}}>
           {" "}
           Book an appointment
           <i>  <BsFillArrowRightCircleFill/> </i>
@@ -58,7 +58,7 @@ const Details = () => {
  
         </p>
       </Container>
-      <SearchCard />
+      {/* <SearchCard /> */}
     </div>
   );
 };

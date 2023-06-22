@@ -73,6 +73,8 @@ const {doctorInfo} = doctorLogin
             <Nav.Link as={Link} to='/'  className={styles.Home}>Home</Nav.Link>
             <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
               <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
+              <Nav.Link as={Link} to='/ask'> Ask a question </Nav.Link>
+
           </Nav>
           <Nav  className='ms-auto'>
           {userInfo?
