@@ -77,6 +77,15 @@ exports.doctorHistory = async (req, res) => {
           },
         ],
       });
+
+      const statusOrder = ["ongoing", "reserved", "pending", "Finished"];
+      const statusComparator = (a, b) => {
+        const aIndex = statusOrder.indexOf(a.status);
+        const bIndex = statusOrder.indexOf(b.status);
+        return aIndex - bIndex;
+      };
+      resualt.sort(statusComparator)
+
       res.status(200).json(resualt);
     } else {
       return res.status(401).json('unauthorized request');
@@ -122,7 +131,7 @@ exports.userHistory = async (req, res) => {
   try {
     if (req.user.userType == 'user') {
       const userId = req.user.id;
-      const result = await Booking.findAll({
+      const resualt = await Booking.findAll({
         where: { UserId: userId },
         include: [
           {
@@ -138,7 +147,14 @@ exports.userHistory = async (req, res) => {
           },
         ],
       });
-      res.status(200).json(result);
+      const statusOrder = ["ongoing", "reserved", "pending", "Finished"];
+      const statusComparator = (a, b) => {
+        const aIndex = statusOrder.indexOf(a.status);
+        const bIndex = statusOrder.indexOf(b.status);
+        return aIndex - bIndex;
+      };
+      resualt.sort(statusComparator)
+      res.status(200).json(resualt);
     } else {
       return res.status(401).json('unauthorized request');
     }
