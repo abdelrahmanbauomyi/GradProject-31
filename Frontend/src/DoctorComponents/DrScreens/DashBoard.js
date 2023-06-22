@@ -7,6 +7,7 @@ import  {approveAppointment,refuseAppointment} from '../../actions/appointmentAc
 import headersConfig from '../../utils/headersConfig';
 import { setRoomId } from '../../chats/data';
 import axios from 'axios';
+import timeFormatter from '../../utils/timeFormatter';
 
 const DashBoard = () => {
 
@@ -53,7 +54,7 @@ const [showAllRows, setShowAllRows] = useState(false);
 
 const history = useNavigate();
 const handleRowClick = (appointment) => {
-  if (appointment.status == "reserved" ) {
+  if (appointment.status == "ongoing" ) {
     const roomId = appointment.roomId;
     setRoomId(roomId);
   history('/VideoMeeting');}
@@ -77,7 +78,7 @@ const showMoreButton = visibleRows < appointments.length;
       <h2 className={styles.uptxt}>Appointments</h2>
         <thead>
           <tr>
-            <th>Appointment id</th>
+            <th></th>
             <th >start time</th>
             <th>end Time</th>
             <th>status</th>
@@ -85,12 +86,12 @@ const showMoreButton = visibleRows < appointments.length;
           </tr>
         </thead>
         <tbody>
-          {displayedAppointments.map(appointment => (
+          {displayedAppointments.map((appointment,idx) => (
             
             <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>
-              <td>{appointment.appointmentId}</td>
-              <td>{appointment.startTime}</td>
-              <td>{appointment.endTime}</td>
+              <td>{idx+1}</td>
+              <td>{timeFormatter(appointment.startTime)}</td>
+              <td>{timeFormatter(appointment.endTime)}</td>
               <td>{appointment.status}</td>
               <td>{appointment.User ? appointment.User.firstName : ''}</td>
             </tr>
