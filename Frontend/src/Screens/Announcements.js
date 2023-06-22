@@ -129,10 +129,11 @@ function Announcements(props) {
 
   const [visibleRows, setVisibleRows] = useState(3);
   const [showAllRows, setShowAllRows] = useState(false);
-
+  const [seeLess, setSeeLess] = useState(false)
   const handleSeeMore = () => {
     setVisibleRows(appointments.length);
     setShowAllRows(true);
+    setSeeLess(true)
   };
 
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
@@ -174,8 +175,14 @@ function Announcements(props) {
         <a className={styles.seeMoreButton} onClick={handleSeeMore}>
           See More
         </a>
+        
       )}
-      
+      {seeLess && <a className={styles.seeMoreButton} onClick={()=>{
+setVisibleRows(3)
+setShowAllRows(false)
+setSeeLess(false)
+}}>See Less</a>}
+        
       </table>
    
       

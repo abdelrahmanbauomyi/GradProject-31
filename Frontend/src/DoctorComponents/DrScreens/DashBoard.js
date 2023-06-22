@@ -59,10 +59,11 @@ const handleRowClick = (appointment) => {
     setRoomId(roomId);
   history('/VideoMeeting');}
 };
-
+const [seeLess, setSeeLess] = useState(false)
 const handleSeeMore = () => {
   setVisibleRows(appointments.length);
   setShowAllRows(true);
+  setSeeLess(true)
 };
 
 const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
@@ -104,6 +105,11 @@ const showMoreButton = visibleRows < appointments.length;
           See More
         </a>
       )}
+            {seeLess && <a className={styles.seeMoreButton} onClick={()=>{
+setVisibleRows(3)
+setShowAllRows(false)
+setSeeLess(false)
+}}>See Less</a>}
       
       </table>
    </div>
