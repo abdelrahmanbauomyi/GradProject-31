@@ -47,46 +47,89 @@ const DoctorEdit = () => {
     disaptch(updateDoctorProfile({ Dname, email, mobilenumber }))
   }
   return (
-    <div>
-      <div>
-        <Form   className={styles.txt} onSubmit={sumbitHandler}>
-          <Form.Group controlId='Dname'>
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type='Dname'
-              placeholder='Enter Full Name'
-              value={Dname}
-              onChange={(e) => setDname(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId='email'>
-            <Form.Label  className={styles.txt}>Email Address</Form.Label>
-            <Form.Control
-            className={styles.txt}
-              type='email'
-              placeholder='Enter email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId='mobilenumber'>
-            <Form.Label>Mobile Number</Form.Label>
-            <Form.Control
-              type='number'
-              placeholder='Mobile Number'
-              value={mobilenumber}
-              onChange={(e) => setmobileNumber(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Button type='sumbit' variant='primary'>Update</Button>
-        </Form>
-
-
-      </div>
+    <div className={styles.container}>
+    <div className={styles.title}>
+      <h2>Manage Profile</h2>
     </div>
+    <div className={styles.form}>
+      <form>
+        <div className={styles[`double-row`]}>
+          <label className={styles.label}>First Name</label>
+          <input type="text"></input>
+          <label className={styles.label}>Last Name</label>
+          <input type="text"></input>
+        </div>
+        <div className={styles.row}>
+          <label className={styles.label}>Email</label>
+          <input type="email"></input>
+        </div>
+        <div className={styles.row}>
+          <label className={styles.label}>Mobile Number</label>
+          <input type="number"></input>
+        </div>
+        <div className={styles.row}>
+          <label className={styles.label}>Gender</label>
+          <select name="cars" id="cars">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div className={styles.row}>
+          <label className={styles.label}>Date of Birth</label>
+          <input type="date"></input>
+        </div>
+        <button className={styles.button} type="submit">
+          Save{" "}
+        </button>
+        <div className={styles[`success-message`]}>
+          Your Changes has been saved successfully
+        </div>
+        <div className={styles[`failed-message`]}>
+          An Error was encountred, Please Try Again!
+        </div>
+      </form>
+    </div>
+  </div>
+    // <div>
+    //   <div>
+    //     <Form   className={styles.txt} onSubmit={sumbitHandler}>
+    //       <Form.Group controlId='Dname'>
+    //         <Form.Label>Name</Form.Label>
+    //         <Form.Control
+    //           type='Dname'
+    //           placeholder='Enter Full Name'
+    //           value={Dname}
+    //           onChange={(e) => setDname(e.target.value)}
+    //         ></Form.Control>
+    //       </Form.Group>
+
+    //       <Form.Group controlId='email'>
+    //         <Form.Label  className={styles.txt}>Email Address</Form.Label>
+    //         <Form.Control
+    //         className={styles.txt}
+    //           type='email'
+    //           placeholder='Enter email'
+    //           value={email}
+    //           onChange={(e) => setEmail(e.target.value)}
+    //         ></Form.Control>
+    //       </Form.Group>
+
+    //       <Form.Group controlId='mobilenumber'>
+    //         <Form.Label>Mobile Number</Form.Label>
+    //         <Form.Control
+    //           type='number'
+    //           placeholder='Mobile Number'
+    //           value={mobilenumber}
+    //           onChange={(e) => setmobileNumber(e.target.value)}
+    //         ></Form.Control>
+    //       </Form.Group>
+
+    //       <Button type='sumbit' variant='primary'>Update</Button>
+    //     </Form>
+
+
+    //   </div>
+    // </div>
   )
 }
 
