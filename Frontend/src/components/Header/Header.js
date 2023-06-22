@@ -82,7 +82,9 @@ const {doctorInfo} = doctorLogin
                 <Nav.Link as={Link} to='/profile_info'>
                   Profile
                 </Nav.Link>
-                <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
+                <Nav.Link  onClick={logoutHandler}>
+                  Log out
+                </Nav.Link>
               </NavDropdown>
               <Nav className="ms-auto">
 
@@ -100,14 +102,12 @@ const {doctorInfo} = doctorLogin
               </div>
             ): (
                <div > 
-                 <Navbar.Collapse id="basic-navbar-nav">
-               <Nav className="ms-auto">
-             <NavLink  as={Link} to='/HomePage' >Clinic For Doctors</NavLink>
+            <Navbar.Collapse id="basic-navbar-nav">
+            <NavLink  as={Link} to='/HomePage' className={styles.clinic}  >Clinic For Doctors</NavLink>
             <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 
             <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
             {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch} />}
             {signInIsClicked && <SignInForm onClose={hideSignInHandler} onSwitch={onFormSwitch}/>}
-            </Nav>
             </Navbar.Collapse>
             </div>
             )   
@@ -120,7 +120,7 @@ const {doctorInfo} = doctorLogin
     
   )
 }
-//onSwitch={onFormSwitch}
+
 
 export default Header
 

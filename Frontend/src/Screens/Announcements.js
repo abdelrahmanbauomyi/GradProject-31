@@ -15,7 +15,6 @@ function Announcements(props) {
   const [appointments, setAppointments] = useState([]);
   const config = headersConfig("booking/userhistory");
   
-
   useEffect(() => {
     axios.get('http://localhost:8000/booking/userhistory', config)
       .then(response => {
@@ -27,25 +26,6 @@ function Announcements(props) {
   }, []);
 
 
-
-
-//   let appointments;
-//   axios.get('http://localhost:8000/booking/userhistory',config)  
-//   .then(response => {
-//     appointments = response.data;
-//     console.log(appointments)
-//     })
-
-//     const {
-//   appointmentId,
-//   startTime,
-//   endTime,
-//   status,
-//   Doctor: { Dname }
-// } = appointments
-// console.log(Dname);
-    // const { appointmentId, startTime, User, DoctorId ,status} = appointments;
-    // console.log( { appointmentId, startTime, User, DoctorId },userFirstName)
   const announcements = [
     {
       announcement: 'Meeting has been rescheduled for',
@@ -73,50 +53,6 @@ function Announcements(props) {
   ];
 
 
-  // const appointments = [
-  //   {
-  //     id: 111,
-  //     startTime: '9:00 AM',
-  //     doctorName: 'Dr. John Doe',
-  //     speciality: 'Cardiology',
-  //     
-  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-  //   },
-  //   {
-  //     id: 222,
-  //     startTime: '10:30 AM',
-  //     doctorName: 'Dr. Jane Smith',
-  //     speciality: 'Dermatology',
-  //     status: 'Completed',
-  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-  //   },
-    
-  //   {
-  //     id: 333,
-  //     startTime: '9:30 AM',
-  //     doctorName: 'Dr. Joe',
-  //     speciality: 'Cardiology',
-  //     
-  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-  //   },
-  //   {
-  //     id: 333,
-  //     startTime: '9:30 AM',
-  //     doctorName: 'Dr. Joe',
-  //     speciality: 'Cardiology',
-  //     status: 'ready',
-  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-  //   },
-  //   {
-  //     id: 3,
-  //     startTime: '9:30 AM',
-  //     doctorName: 'Dr. Joe',
-  //     speciality: 'Cardiology',
-  //     
-  //     profilePictureUrl: 'https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM='
-  //   },
-  //   // Add more appointment objects
-  // ];
   
   const history = useNavigate();
   const handleRowClick = (appointment) => {
@@ -136,6 +72,45 @@ function Announcements(props) {
     setSeeLess(true)
   };
 
+
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  
+  const handleReviewClick = (appointment) => {
+    setShowReviewForm(true);
+  };
+  
+  const handleCloseReviewForm = () => {
+    setShowReviewForm(false);
+  };
+  
+  const handleRatingChange = (selectedRating) => {
+    setRating(selectedRating);
+  };
+  
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+  
+   const headConfig = headersConfig("review")
+  const handleReviewSubmit = (event) => {
+    event.preventDefault();
+   
+    const {response} = axios.patch('http://localhost:8000/review' , {
+      "rating": rating,
+      "comment": comment
+    }
+    , headConfig ) 
+   console.log(response)
+
+    setRating(0);
+    setComment('');
+    setShowReviewForm(false);
+  };
+
+
+  
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
   const showMoreButton = visibleRows < appointments.length;
   // console.log(appointments)
@@ -155,6 +130,8 @@ function Announcements(props) {
             <th>end Time</th>
             <th>status</th>
             <th>Doctor Name</th>
+            <th>Meeting</th>
+            <th>Reviews</th>
           </tr>
         </thead>
         <tbody>
@@ -166,11 +143,70 @@ function Announcements(props) {
               <td>{timeFormatter(appointment.endTime)}</td>
               <td>{appointment.status}</td>
               <td>{appointment.Doctor.Dname}</td>
+              <td>
+        {/* Button with different styles and disabled state */}
+        <button
+          style={{
+            backgroundColor: appointment.status === "ongoing" ? "green" : "red",
+            color: "white",
+          }}
+          disabled={appointment.status !== "ongoing"}
+          onClick={() => handleRowClick(appointment)}
+        >
+          Join
+        </button>
+      </td>
+      <td>
+        {/* Button with different styles and disabled state */}
+        <button
+          style={{
+            backgroundColor: appointment.status === "done" ? "green" : "red",
+            color: "white",
+          }}
+          disabled={appointment.status !== "done"}
+          onClick={() => handleReviewClick(appointment)}
+        >
+          Review
+        </button>
+      </td>
             </tr>
           ))}
-
-         
         </tbody>
+        {showReviewForm && (
+  <div className="modal">
+    <div className="modal-content">
+      <span className="close" onClick={handleCloseReviewForm}>
+        &times;
+      </span>
+      <form onSubmit={handleReviewSubmit}>
+        <h2>Leave a Review</h2>
+        <div>
+          <label>Rating:</label>
+          <div className="star-rating">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                className={`star ${star <= rating ? 'filled' : ''}`}
+                onClick={() => handleRatingChange(star)}
+              >
+                &#9733;
+              </span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <label>Comment:</label>
+          <textarea
+            value={comment}
+            onChange={handleCommentChange}
+            placeholder="Write your comment here..."
+          ></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+)}
         {showMoreButton && !showAllRows && (
         <a className={styles.seeMoreButton} onClick={handleSeeMore}>
           See More
