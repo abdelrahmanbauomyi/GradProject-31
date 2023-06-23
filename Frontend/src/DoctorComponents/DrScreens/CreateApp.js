@@ -47,6 +47,8 @@ const tileDisabled = ({ date }) => {
   };
 
   return (
+    <div> 
+        <DrSideBar></DrSideBar>
     <div className={styles.Container}>
     <h2>Choose your free appointments slots!</h2>
     <form onSubmit={handleSubmit}>
@@ -93,7 +95,8 @@ const tileDisabled = ({ date }) => {
           ) : null}
 
     </form>
-    <DrSideBar></DrSideBar>
+    </div>
+  
     
   </div>
   )

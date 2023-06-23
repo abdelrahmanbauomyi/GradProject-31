@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { getDoctorDetails, updateDoctorProfile } from "../../actions/doctorActions"
 import { useEffect, useState } from "react";
 import styles from './DoctorEdit.module.css'
+import DrSideBar from '../DrSideBar/DrSideBar';
 
 
 const DoctorEdit = () => {
@@ -47,6 +48,8 @@ const DoctorEdit = () => {
     disaptch(updateDoctorProfile({ Dname, email, mobilenumber }))
   }
   return (
+    <div> 
+      <DrSideBar/>
     <div className={styles.container}>
     <div className={styles.title}>
       <h2>Manage Profile</h2>
@@ -90,46 +93,8 @@ const DoctorEdit = () => {
       </form>
     </div>
   </div>
-    // <div>
-    //   <div>
-    //     <Form   className={styles.txt} onSubmit={sumbitHandler}>
-    //       <Form.Group controlId='Dname'>
-    //         <Form.Label>Name</Form.Label>
-    //         <Form.Control
-    //           type='Dname'
-    //           placeholder='Enter Full Name'
-    //           value={Dname}
-    //           onChange={(e) => setDname(e.target.value)}
-    //         ></Form.Control>
-    //       </Form.Group>
+  </div>
 
-    //       <Form.Group controlId='email'>
-    //         <Form.Label  className={styles.txt}>Email Address</Form.Label>
-    //         <Form.Control
-    //         className={styles.txt}
-    //           type='email'
-    //           placeholder='Enter email'
-    //           value={email}
-    //           onChange={(e) => setEmail(e.target.value)}
-    //         ></Form.Control>
-    //       </Form.Group>
-
-    //       <Form.Group controlId='mobilenumber'>
-    //         <Form.Label>Mobile Number</Form.Label>
-    //         <Form.Control
-    //           type='number'
-    //           placeholder='Mobile Number'
-    //           value={mobilenumber}
-    //           onChange={(e) => setmobileNumber(e.target.value)}
-    //         ></Form.Control>
-    //       </Form.Group>
-
-    //       <Button type='sumbit' variant='primary'>Update</Button>
-    //     </Form>
-
-
-    //   </div>
-    // </div>
   )
 }
 

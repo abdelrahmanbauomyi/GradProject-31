@@ -103,7 +103,11 @@ const {doctorInfo} = doctorLogin
             ): (
                <div > 
             <Navbar.Collapse id="basic-navbar-nav">
-            <NavLink  as={Link} to='/HomePage' className={styles.clinic}  >Clinic For Doctors</NavLink>
+            <NavDropdown title="Clinic For Doctors" >
+            <NavLink  as={Link} to='' className={styles.clinic}  >Sign Up</NavLink>
+            <NavLink  as={Link} to='' className={styles.clinic}  >Sign IN</NavLink>
+            </NavDropdown>
+            
             <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 
             <Button  onClick={showSignUpHandler}  className={styles.SignUp}>Sign Up</Button>
             {signUpIsClicked && <SignUpForm onClose={hideSignUpHandler} onSwitch={onFormSwitch} />}
