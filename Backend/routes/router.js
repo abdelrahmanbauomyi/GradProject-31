@@ -81,5 +81,6 @@ router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
 
 router.patch('/review', authUser, ratingHandler.createReview);
+router.get('/review', ratingHandler.getBestReviews);
 
 module.exports = router;

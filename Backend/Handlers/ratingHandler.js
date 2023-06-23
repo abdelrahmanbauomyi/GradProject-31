@@ -1,5 +1,5 @@
-const { sequelize, Booking, Doctor } = require('../models');
-const { where } = require('sequelize');
+const { sequelize, Booking, Doctor ,User } = require('../models');
+const { where,Op } = require('sequelize');
 
 exports.createReview = async (req, res, next) => {
   try {
@@ -55,3 +55,33 @@ exports.createReview = async (req, res, next) => {
     return res.status(500).json(err);
   }
 };
+exports.getBestReviews = async(req,res)=>{
+  try{
+    const rev = await Booking.findAll({
+      where:{
+        rating:{
+          [Op.not]:null
+        }
+      },
+      order:[['rating','DESC']],
+      limit : 10,
+      attributes: ['rating','comment'],
+      include: [
+        {
+          model: Doctor,
+          attributes: ['Dname'],
+        },
+        {
+          model: User,
+          attributes: ['firstName','lastName'],
+        }
+      ],
+     
+      }
+    )
+    res.status(200).send(rev);
+  }
+  catch(err){
+    return res.status(500).json(err);
+  }
+}
