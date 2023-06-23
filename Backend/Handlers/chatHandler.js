@@ -3,6 +3,7 @@ const { InMemorySessionStore } = require("./sessionStore");
 const sessionStore = new InMemorySessionStore();
 const { InMemoryMessageStore } = require("./messageStore");
 const messageStore = new InMemoryMessageStore();
+const siofu = require("socketio-file-upload");
 
 const { sequelize, Doctor, User, Messages, Booking } = require('../models');
 const { Op } = require("sequelize");
@@ -10,6 +11,11 @@ const { Op } = require("sequelize");
 module.exports = (io, socket) => {
 
   io.on('connection', (socket) => {
+
+    var uploader = new siofu();
+    uploader.dir = "../ChatFiles";
+    uploader.listen(socket);
+
     sessionStore.saveSession(socket.sessionID, {
       userID: socket.userID,
       username: socket.username,
@@ -122,6 +128,31 @@ module.exports = (io, socket) => {
       };
       socket.to(to).to(socket.userID).emit("private message", message);
       messageStore.saveMessage(message);
+    });
+
+    uploader.on("saved", function (event) {
+      if (event.file.success) {
+        console.log(event.file.name);
+        // the reciver email should be stored in the event.file.meta.to
+        // the file type should be stored in the event.file.meta.type
+        console.log(event.file.meta.to);
+        const message = {
+          content: event.file.pathName,
+          from: socket.userID,
+          to: event.file.meta.to
+        }
+        socket.to(event.file.meta.to).to(socket.userID).emit("private message", message);
+        messageStore.saveMessage(message);
+      } else {
+        socket.emit("upload did not succeed please reupload");
+      }
+
+    });
+
+    // Error handler:
+    uploader.on("error", function (event) {
+      console.log("Error from uploader", event);
+      socket.emit("failed to save image please re upload");
     });
 
     socket.on("disconnect", async () => {
