@@ -32,7 +32,11 @@ const DoctorSignUpForm = (props) => {
     },[history,doctorInfo,redirect]) 
 
   const handleRegister = (values) => {
-  disaptch(doctorRegister (values))
+    const formattedPhoneNumber = values.phoneNumber.startsWith("+2")
+    ? values.phoneNumber.slice(2)  
+    : values.phoneNumber;
+    const updatedValues = { ...values, phoneNumber: formattedPhoneNumber };
+  disaptch(doctorRegister (updatedValues))
   }
 
 

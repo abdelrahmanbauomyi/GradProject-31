@@ -39,8 +39,8 @@ const SignUpForm = (props) => {
   }, [history, userInfo, redirect]);
 
   const handleRegister = (values) => {
-    const formattedPhoneNumber = values.phoneNumber.startsWith("+")
-    ? values.phoneNumber.slice(1) // Remove the "+" sign
+    const formattedPhoneNumber = values.phoneNumber.startsWith("+2")
+    ? values.phoneNumber.slice(2) 
     : values.phoneNumber;
   
   const updatedValues = { ...values, phoneNumber: formattedPhoneNumber };

@@ -43,7 +43,7 @@ const {doctorInfo} = doctorLogin
           <li className="nav-item text-white fs-4 my-1">
             <a href="/edit_profile" className="nav-link text-black fs-5 text-decoration-none " aria-current="page">
             <i className={`bi bi-person-fill   `}></i>
-              <span className={`ms-2 text-capitalize`}>Profile</span>
+              <span className={`ms-2 text-capitalize`}>Edit Profile</span>
             </a>
           </li>
           <li className="nav-item text-white fs-4 my-1">
@@ -66,14 +66,14 @@ const {doctorInfo} = doctorLogin
           <li className="nav-item text-white fs-4 my-1">
             <a href="/CreateApp" className="nav-link text-black fs-5 text-decoration-none text-transform" aria-current="page">
               <i className={`bi bi-card-list   `}></i>
-              <span className={`ms-2 text-capitalize `} >Appointments Time</span>
+              <span className={`ms-2 text-capitalize `} >Appointments</span>
             </a>
           </li>
          
           <li className="nav-item text-white fs-4 my-1">
             <a href="/DoctorEdit" className={`nav-link text-black fs-5 text-decoration-none  `} aria-current="page">
             <i className={`bi bi-bar-chart-fill   `}></i>
-              <span className={`ms-2 text-capitalize `} >EditProfile</span>
+              <span className={`ms-2 text-capitalize `} >Edit Profile</span>
             </a>
           </li>
           <li className="nav-item text-white fs-4 my-1">
