@@ -18,6 +18,7 @@ const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
 const doctorLogin = useSelector(state=>state.doctorLogin)
 const {doctorInfo} = doctorLogin
+
  const logoutHandler = () => {
   dispatch(logout())
   dispatch(doctorLogout())
@@ -25,7 +26,7 @@ const {doctorInfo} = doctorLogin
    
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
   const [signInIsClicked, setsignInIsClicked] = useState(false);
-  
+
   const [drsignUpIsClicked, setDrsignUpIsClicked] = useState(false);
   const [drsignInIsClicked, setDrsignInIsClicked] = useState(false);
 
@@ -49,7 +50,7 @@ const {doctorInfo} = doctorLogin
   const hideSignInHandler = () => {
     setsignInIsClicked(false);
   };
-  function onFormSwitch(formType)  {
+   function onFormSwitch(formType)  {
     if (formType === 'signin') {
        hideSignUpHandler();
        showSignInHandler();
@@ -87,8 +88,7 @@ const {doctorInfo} = doctorLogin
       showDrSignUp();
     }
   };
-   
-
+  
 /*
   const handleDoctorModalShow=()=>{
     setDoctorSignUpClicked(true);
@@ -117,7 +117,7 @@ const {doctorInfo} = doctorLogin
 
           </Nav>
           <Nav  className='ms-auto'>
-          {userInfo?
+          {userInfo  ?
            (<div>
               <NavDropdown title={userInfo.firstName} id='username'>
                 <Nav.Link as={Link} to='/profile_info'>
@@ -128,8 +128,6 @@ const {doctorInfo} = doctorLogin
                 </Nav.Link>
               </NavDropdown>
               <Nav className="ms-auto">
-
-
               </Nav>
               </div>   
             ): doctorInfo ? (
@@ -141,7 +139,7 @@ const {doctorInfo} = doctorLogin
                 <NavDropdown.Item  onClick={logoutHandler}  >Log out</NavDropdown.Item>
               </NavDropdown>
               </div>
-            ): (
+            ): (      
                <div > 
             <Navbar.Collapse id="basic-navbar-nav">
             <NavDropdown title="Clinic For Doctors" onToggle={handleDropdownToggle} show={dropdownOpen} >

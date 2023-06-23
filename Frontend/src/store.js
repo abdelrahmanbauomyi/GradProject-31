@@ -33,8 +33,10 @@ const doctorInfoFromStorage = localStorage.getItem("doctorInfo")
   const initialState = {
     userLogin: { userInfo: userInfoFromStorage },
     userRegister: { userInfo: userInfoFromStorage },
+    userUpdateProfile:{userInfo:userInfoFromStorage},
     doctorLogin: { doctorInfo: doctorInfoFromStorage },
     DoctorRegister: { doctorInfo: doctorInfoFromStorage },
+    doctorUpdateProfile: { doctorInfo: doctorInfoFromStorage }
   };
 
 

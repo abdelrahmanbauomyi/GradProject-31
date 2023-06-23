@@ -204,6 +204,7 @@ export const updateDoctorProfile = (doctor) => async (dispatch, getState) => {
       type: DOCTOR_UPDATE_PROFILE_SUCCESS,
       payload: data,
     })
+    localStorage.setItem('doctorInfo', JSON.stringify(data))
 
   } catch (error) {
     dispatch({

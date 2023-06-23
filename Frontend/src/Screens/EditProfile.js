@@ -38,16 +38,12 @@ function EditProfile() {
   useEffect(() => {
     if (!userInfo) {
       history("/login");
-    } else {
-      if (!userInfo.firstName) {
-        disaptch(getUserDetails("/profile_info"));
-      } else {
+    } else {    
         setFirstName(userInfo.firstName);
         setLastName(userInfo.lastName);
         setEmail(userInfo.email);
         setmobileNumber(userInfo.mobilenumber);
         setGender(userInfo.gender);
-
         const date = new Date(userInfo.dob);
         const month = `0${date.getMonth() + 1}`.slice(-2);
         const day = `0${date.getDate()}`.slice(-2);
@@ -56,9 +52,11 @@ function EditProfile() {
         console.log(formattedDate);
         setDob(formattedDate);
         console.log(userInfo.dob);
-      }
+
     }
-  }, [disaptch, history, userInfo, user]);
+  }, [history, userInfo ]);
+
+
 
   const sumbitHandler = (e) => {
 
@@ -68,10 +66,12 @@ function EditProfile() {
     )
       .then(() => {
         setShowMessage(true); // Set showMessage to true on successful form submission
+      
       })
       .catch(() => {
         setShowMessage(false); // Set showMessage to false on failed form submission
       });
+   
   };
 
   return (
