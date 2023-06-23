@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import { doctorLogout } from '../../actions/doctorActions'
+import DoctorSignInForm from '../NavigationBar/Navbar/DoctorSignInForm'
+import DoctorSignUpForm from '../NavigationBar/Navbar/DoctorSignUpForm'
 
 const Header = () => { 
-const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
+// const [doctorSignUpClicked, setDoctorSignUpClicked] = useState(false);  
 const dispatch = useDispatch()
 const userLogin = useSelector(state=>state.userLogin)
 const {userInfo} = userLogin
@@ -23,7 +25,17 @@ const {doctorInfo} = doctorLogin
    
   const [signUpIsClicked, setsignUpIsClicked] = useState(false);
   const [signInIsClicked, setsignInIsClicked] = useState(false);
+  
+  const [drsignUpIsClicked, setDrsignUpIsClicked] = useState(false);
+  const [drsignInIsClicked, setDrsignInIsClicked] = useState(false);
 
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  // Normal User
   const showSignUpHandler = () => {
     setsignUpIsClicked(true);
   };
@@ -37,8 +49,7 @@ const {doctorInfo} = doctorLogin
   const hideSignInHandler = () => {
     setsignInIsClicked(false);
   };
-
-   function onFormSwitch(formType)  {
+  function onFormSwitch(formType)  {
     if (formType === 'signin') {
        hideSignUpHandler();
        showSignInHandler();
@@ -47,6 +58,36 @@ const {doctorInfo} = doctorLogin
        showSignUpHandler();
     }
   };
+
+  // Doctor
+  const showDrSignUp= ()=>{
+    setDrsignUpIsClicked(true);
+    setDropdownOpen(false); 
+  }
+  const hideDrSignUp= ()=>{
+    setDrsignUpIsClicked(false);
+  }
+  const showDrSignIn= ()=>{
+    setDrsignInIsClicked(true);
+    setDropdownOpen(false); 
+  }
+  const hideDrSignIn= ()=>{
+    setDrsignInIsClicked(false);
+  }
+  function onDrFormSwitch(formType)  {
+    if (formType === 'signin') {
+      //  hideSignUpHandler();
+      //  showSignInHandler();
+      hideDrSignUp();
+      showDrSignIn();
+    } else if (formType === 'signup') {
+      //  hideSignInHandler();
+      //  showSignUpHandler();
+      hideDrSignIn();
+      showDrSignUp();
+    }
+  };
+   
 
 /*
   const handleDoctorModalShow=()=>{
@@ -103,9 +144,11 @@ const {doctorInfo} = doctorLogin
             ): (
                <div > 
             <Navbar.Collapse id="basic-navbar-nav">
-            <NavDropdown title="Clinic For Doctors" >
-            <NavLink  as={Link} to='' className={styles.clinic}  >Sign Up</NavLink>
-            <NavLink  as={Link} to='' className={styles.clinic}  >Sign IN</NavLink>
+            <NavDropdown title="Clinic For Doctors" onToggle={handleDropdownToggle} show={dropdownOpen} >
+            <NavLink  as={Link} to='' className={styles.clinic} onClick={showDrSignUp}  >Sign Up</NavLink>
+            <NavLink  as={Link} to='' className={styles.clinic} onClick={showDrSignIn}  >Sign In</NavLink>
+            {drsignUpIsClicked &&<DoctorSignUpForm onClose={hideDrSignUp} onSwitch={onDrFormSwitch}/>}
+            {drsignInIsClicked && <DoctorSignInForm onClose={hideDrSignIn} onSwitch={onDrFormSwitch}/>}
             </NavDropdown>
             
             <Button  onClick={showSignInHandler}  className={styles.SignIn} >Sign in</Button> 

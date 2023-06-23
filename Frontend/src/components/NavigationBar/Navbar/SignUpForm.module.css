@@ -60,6 +60,7 @@
 
 .selectdiv select {
   width: 100%;
+  height: fit-content;
   padding: 8px;
   border-radius: 15px;
   border: 1px solid #ccc;

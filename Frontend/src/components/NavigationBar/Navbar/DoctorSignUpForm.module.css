@@ -66,6 +66,7 @@
   box-sizing: border-box;
   font-size: 1em;
   background-color: #F8F7F7;
+  height: fit-content;
   /* -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; */
@@ -91,6 +92,7 @@
 }
 
 .text {
+  margin-top: -49px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
