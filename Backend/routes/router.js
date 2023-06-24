@@ -57,6 +57,9 @@ router.post(
   authUser,
   bookingHandler.reserveAppointment
 );
+
+//router.get('/checkout-success',authUser,bookingHandler.reserveAppointment); //to be tested
+
 router.delete(
   '/booking/deleteappointment',
   authUser,
