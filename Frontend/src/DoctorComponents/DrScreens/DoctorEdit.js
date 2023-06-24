@@ -30,7 +30,7 @@ const DoctorEdit = () => {
 
   useEffect(() => {
     if (!doctorInfo) {
-      history('/HomePage')
+      history('/')
     } else {
       if (!doctorInfo.Dname) {
         disaptch(getDoctorDetails('/Doctor'))

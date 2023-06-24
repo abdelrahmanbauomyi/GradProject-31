@@ -34,6 +34,7 @@ const doctorInfoFromStorage = localStorage.getItem("doctorInfo")
     userLogin: { userInfo: userInfoFromStorage },
     userRegister: { userInfo: userInfoFromStorage },
     userUpdateProfile:{userInfo:userInfoFromStorage},
+    userDetails:{userInfo:userInfoFromStorage},
     doctorLogin: { doctorInfo: doctorInfoFromStorage },
     DoctorRegister: { doctorInfo: doctorInfoFromStorage },
     doctorUpdateProfile: { doctorInfo: doctorInfoFromStorage }
