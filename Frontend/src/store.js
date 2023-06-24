@@ -18,6 +18,8 @@ const reducer = combineReducers({
   doctorUpdateProfile:doctorUpdateReducers,
   appointments:appointmentsReducer
 });
+ 
+
 
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

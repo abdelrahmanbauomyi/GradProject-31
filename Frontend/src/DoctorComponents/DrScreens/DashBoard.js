@@ -11,6 +11,10 @@ import timeFormatter from '../../utils/timeFormatter';
 
 const DashBoard = () => {
 
+  const doctorLogin = useSelector((state)=>state.doctorLogin)
+  const {doctorInfo} = doctorLogin
+
+
   const [appointments, setAppointments] = useState([]);
   const config = headersConfig("booking/doctorhistory");
 
@@ -24,30 +28,7 @@ const DashBoard = () => {
       });
   }, []);
 
-  // console.log(appointments)
-
-
-
-//   const [showAll, setShowAll] = useState(false);
-
-//   const toggleShowAll = () => {
-//     setShowAll(!showAll)
-//   }
-// ''
-//   const disaptch = useDispatch()
   
-  
-//   const appointments = useSelector((state) => state.appointments.appointments);
- 
- 
-
-//   const handleApprove = (index) => {
-//     disaptch(approveAppointment(index));
-//   };
-
-//   const handleRefuse = (index) => {
-//     disaptch(refuseAppointment(index));
-//   };
 
 const [visibleRows, setVisibleRows] = useState(3);
 const [showAllRows, setShowAllRows] = useState(false);
@@ -73,49 +54,56 @@ const showMoreButton = visibleRows < appointments.length;
     
       return (
         <div>
-          
-    <div className={styles.tablewrapper}>
-      <table className={styles.table}>
-      <h2 className={styles.uptxt}>Appointments</h2>
-        <thead>
-          <tr>
-            <th></th>
-            <th >start time</th>
-            <th>end Time</th>
-            <th>status</th>
-            <th>Patient Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {displayedAppointments.map((appointment,idx) => (
-            
-            <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>
-              <td>{idx+1}</td>
-              <td>{timeFormatter(appointment.startTime)}</td>
-              <td>{timeFormatter(appointment.endTime)}</td>
-              <td>{appointment.status}</td>
-              <td>{appointment.User ? appointment.User.firstName : ''}</td>
-            </tr>
-          ))}
-
-         
-        </tbody>
-        {showMoreButton && !showAllRows && (
-        <a className={styles.seeMoreButton} onClick={handleSeeMore}>
-          See More
-        </a>
-      )}
-            {seeLess && <a className={styles.seeMoreButton} onClick={()=>{
-setVisibleRows(3)
-setShowAllRows(false)
-setSeeLess(false)
-}}>See Less</a>}
+          {doctorInfo ? (
+            <div>
+             <div className={styles.tablewrapper}>
+             <table className={styles.table}>
+             <h2 className={styles.uptxt}>Appointments</h2>
+               <thead>
+                 <tr>
+                   <th></th>
+                   <th >start time</th>
+                   <th>end Time</th>
+                   <th>status</th>
+                   <th>Patient Name</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {displayedAppointments.map((appointment,idx) => (
+                   
+                   <tr key={appointment.appointmentId} onClick={()=>handleRowClick(appointment)}>
+                     <td>{idx+1}</td>
+                     <td>{timeFormatter(appointment.startTime)}</td>
+                     <td>{timeFormatter(appointment.endTime)}</td>
+                     <td>{appointment.status}</td>
+                     <td>{appointment.User ? appointment.User.firstName : ''}</td>
+                   </tr>
+                 ))}
+       
+                
+               </tbody>
+               {showMoreButton && !showAllRows && (
+               <a className={styles.seeMoreButton} onClick={handleSeeMore}>
+                 See More
+               </a>
+             )}
+                   {seeLess && <a className={styles.seeMoreButton} onClick={()=>{
+       setVisibleRows(3)
+       setShowAllRows(false)
+       setSeeLess(false)
+       }}>See Less</a>}
+             
+             </table>
+          </div>
+               <DrSideBar/>
+           </div>
       
-      </table>
+
+          ) : (
+                <div> ssssssss </div>
+          ) 
+        }
    </div>
-        <DrSideBar/>
-    
-</div>
         )
 
     }

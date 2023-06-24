@@ -1,9 +1,9 @@
 .container {
   position: relative;
-  background-color: white;
+  background-color:bisque ;
   padding: 20px;
   border-radius: 20px;
-  width: 700px;
+  width: 650px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -12,10 +12,7 @@
 }
 
 .title {
-  background-color: #4200ff;
-  /* padding: 10px; */
-  /* width: fit-content; */
-  /* height: fit-content; */
+  background-color: #837bff;
   text-align: center;
   height: fit-content;
   color: white;
@@ -28,11 +25,6 @@
 .form {
   margin-top: 10px;
 }
-.row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
 .double-row {
   display: flex;
   align-items: center;
@@ -41,26 +33,14 @@
 .double-row input,
 select {
   border: 1px solid #ccc;
-  border-radius: 15px;
   background-color: #f8f7f7;
-  width: 250px;
-  height: 25px;
+  width: 350px;
+  height: 30px;
   text-align: center;
+  
   margin-right: 10px;
   font-size: 1em;
 }
-.row input {
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  background-color: #f8f7f7;
-  width: fit-content;
-  height: 25px;
-  text-align: center;
-}
-.label {
-  margin-right: 5px;
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -80,6 +60,7 @@ input[type="number"] {
   font-size: 15px;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  margin-top: 15px;
 }
 .success-message {
   background-color: #4caf50;
@@ -89,11 +70,28 @@ input[type="number"] {
   margin-top: 10px;
   text-align: center;
 }
-.failed-message {
-  background-color: red;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
+.error{
+  color: red;
+  margin-top: -15px;
+  font-size: 15px;
+  
+}
+.select-div{
+  display: flex;
+  flex-direction: column;
+}
+.select-div select{
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #f8f7f7;
+  width: 350px;
+  height: 30px;
   text-align: center;
+  margin-right: 10px;
+  font-size: 1em;
+  
+}
+.select-div label{
+  font-size: 15px;
+  font-weight: bold;
 }

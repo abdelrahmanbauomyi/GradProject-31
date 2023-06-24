@@ -73,25 +73,20 @@ function Announcements(props) {
   };
 
 
-  const [showReviewForm, setShowReviewForm] = useState(false);
+
+  
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
-  
-  const handleReviewClick = (appointment) => {
-    setShowReviewForm(true);
-  };
-  
-  const handleCloseReviewForm = () => {
-    setShowReviewForm(false);
-  };
-  
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleRatingChange = (selectedRating) => {
     setRating(selectedRating);
   };
-  
+
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
+
   
    const headConfig = headersConfig("review")
   const handleReviewSubmit = (event) => {
@@ -106,14 +101,17 @@ function Announcements(props) {
 
     setRating(0);
     setComment('');
-    setShowReviewForm(false);
+  
+  };
+
+  const toggleForm = () => {
+    setIsOpen(!isOpen);
   };
 
 
-  
   const displayedAppointments = showAllRows ? appointments : appointments.slice(0, visibleRows);
   const showMoreButton = visibleRows < appointments.length;
-  // console.log(appointments)
+ 
 
   
   return (
@@ -159,54 +157,56 @@ function Announcements(props) {
       <td>
         {/* Button with different styles and disabled state */}
         <button
-          style={{
-            backgroundColor: appointment.status === "done" ? "green" : "red",
-            color: "white",
-          }}
-          disabled={appointment.status !== "done"}
-          onClick={() => handleReviewClick(appointment)}
-        >
-          Review
-        </button>
+        onClick={toggleForm}
+        style={{ backgroundColor: appointment.status === 'finished' ? 'green' : 'red' }}
+        disabled={appointment.status !== 'finished'}
+      >
+        {isOpen ? 'Close Form' : 'Open Form'}
+      </button>
       </td>
             </tr>
           ))}
         </tbody>
-        {showReviewForm && (
-  <div className="modal">
-    <div className="modal-content">
-      <span className="close" onClick={handleCloseReviewForm}>
-        &times;
-      </span>
-      <form onSubmit={handleReviewSubmit}>
-        <h2>Leave a Review</h2>
         <div>
-          <label>Rating:</label>
-          <div className="star-rating">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span
-                key={star}
-                className={`star ${star <= rating ? 'filled' : ''}`}
-                onClick={() => handleRatingChange(star)}
-              >
-                &#9733;
-              </span>
-            ))}
+     
+      {isOpen && (
+        <form onSubmit={handleReviewSubmit} className={styles.reviewForm}>
+          <h2 className={styles.formTitle}>Leave a Review</h2>
+          <div className={styles.ratingContainer}>
+            <label className={styles.ratingLabel}>Rating:</label>
+            <div className={styles.starRating}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  className={`${styles.star} ${
+                    star <= rating
+                      ? styles.filled
+                      : star - 0.5 <= rating
+                      ? styles['half-filled']
+                      : ''
+                  }`}
+                  onClick={() => handleRatingChange(star)}
+                >
+                  &#9733;
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-        <div>
-          <label>Comment:</label>
-          <textarea
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Write your comment here..."
-          ></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+          <div className={styles.commentContainer}>
+            <label className={styles.commentLabel}>Comment:</label>
+            <textarea
+              className={styles.commentTextarea}
+              value={comment}
+              onChange={handleCommentChange}
+              placeholder="Write your comment here..."
+            ></textarea>
+          </div>
+          <button type="submit" className={styles.submitButton}>
+            Submit
+          </button>
+        </form>
+      )}
     </div>
-  </div>
-)}
         {showMoreButton && !showAllRows && (
         <a className={styles.seeMoreButton} onClick={handleSeeMore}>
           See More
