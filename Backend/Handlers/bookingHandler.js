@@ -124,8 +124,8 @@ exports.payAppointment = async (req,res)=>{
       payment_method_types:["card"],
       mode: 'payment',
       line_items,
-      success_url: `${req.protocol}://${req.get('host')}/checkout-success?verified=${process.env.SECRET_PAYMENT_CHECK}&appointmentId=${a_Id}&userId=${userId}` ,
-      cancel_url: `${req.protocol}://${req.get('host')}/checkout-cancel`,
+      success_url: `http://localhost:3000/success/${a_Id}` ,
+      cancel_url: `http://localhost:3000/cancel`
     });
  
     res.status(303).json({url : session.url});
@@ -139,26 +139,6 @@ exports.payAppointment = async (req,res)=>{
 
 }
 
-//still needs to be tested
-/*
-exports.reserveAppointment = async (req, res) => {
-  try {
-    if(req.verified){
-      const a_Id = req.appointmentId;
-      const userId = req.userId;
-      const result = await Booking.update(
-        {UserId: userId ,  status: 'reserved' },
-        { where: { appointmentId: a_Id } }
-      );
-
-      res.status(201).json('reserved');
-    }
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-};
-*/
 exports.reserveAppointment = async (req, res) => {
   try {
     if (req.user.userType == 'user') {

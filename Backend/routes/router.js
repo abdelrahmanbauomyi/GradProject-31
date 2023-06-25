@@ -55,10 +55,10 @@ router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
   '/booking/reserveappointment',
   authUser,
-  bookingHandler.reserveAppointment
+  bookingHandler.payAppointment
 );
 
-//router.get('/checkout-success',authUser,bookingHandler.reserveAppointment); //to be tested
+router.post('/checkout-success',authUser,bookingHandler.reserveAppointment); //to be tested
 
 router.delete(
   '/booking/deleteappointment',

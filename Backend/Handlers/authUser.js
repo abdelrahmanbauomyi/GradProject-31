@@ -3,14 +3,6 @@ const { sequelize, User, Doctor } = require('../models');
 
 const authUser = async (req, res, next) => {
   try {
-    /*
-    if(req.query && (req.query.verified == process.env.SECRET_PAYMENT_CHECK)){
-      req.verified = true;
-      req.appointmentId = +req.query.appointmentId;
-      req.userId = +req.query.userId;
-      next();
-    }
-    */
     debugger;
     const token = req.cookies.token;
     const decoded = jwt.verify(token, process.env.JWT_STRING);
