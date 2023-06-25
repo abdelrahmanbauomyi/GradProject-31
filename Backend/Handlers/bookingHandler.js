@@ -79,7 +79,7 @@ exports.doctorHistory = async (req, res) => {
         ],
       });
 
-      const statusOrder = ['ongoing', 'reserved', 'pending', 'Finished'];
+      const statusOrder = ['ongoing', 'reserved', 'pending payment', 'pending' , 'Finished' , 'expired'];
       const statusComparator = (a, b) => {
         const aIndex = statusOrder.indexOf(a.status);
         const bIndex = statusOrder.indexOf(b.status);
@@ -103,7 +103,7 @@ exports.payAppointment = async (req, res) => {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
       const result = await Booking.update(
-        { UserId: userId, status: 'pending Payment' },
+        { UserId: userId, status: 'pending payment' },
         { where: { appointmentId: a_Id } }
       );
     const appointment = await Booking.findByPk(a_Id);
@@ -128,7 +128,7 @@ exports.payAppointment = async (req, res) => {
       cancel_url: `http://localhost:3000/cancel`
     });
  
-    res.status(303).json({url : session.url});
+    res.status(200).json({url : session.url});
     } else {
       return res.status(401).json('unauthorized request');
     }
@@ -144,6 +144,7 @@ exports.reserveAppointment = async (req, res) => {
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
+      console.log(a_Id)
       const result = await Booking.update(
         { UserId: userId, status: 'reserved' },
         { where: { appointmentId: a_Id } }
@@ -193,7 +194,7 @@ exports.userHistory = async (req, res) => {
           },
         ],
       });
-      const statusOrder = ['ongoing', 'reserved', 'pending', 'Finished'];
+      const statusOrder = ['ongoing', 'reserved', 'pending payment', 'Finished' ];
       const statusComparator = (a, b) => {
         const aIndex = statusOrder.indexOf(a.status);
         const bIndex = statusOrder.indexOf(b.status);
