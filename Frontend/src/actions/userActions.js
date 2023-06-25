@@ -15,6 +15,7 @@ import {
     USER_UPDATE_PROFILE_FAILED,
   } from "../constants/userConstants";
 import axios from "axios";
+import headersConfig from "../utils/headersConfig";
   
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -56,16 +57,8 @@ export const login = (email, password) => async (dispatch) => {
       dispatch({
         type: USER_LOGOUT_REQUEST
       })
-      const config = {
-        headers: {
-          'Accept': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:8000/logout',
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          'Content-Type': 'application/json;charset=UTF-8'
-        },
-        withCredentials: true
-      }
-      const { data } = await axios.post('http://localhost:8000/logout', {}
+      const config = headersConfig('users/logout')
+      const { data } = await axios.post('http://localhost:8000/users/logout', {}
         , config)
 
       dispatch({

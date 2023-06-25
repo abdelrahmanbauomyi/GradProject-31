@@ -4,7 +4,7 @@ export default function timeFormatter(time) {
     weekday: "long",
     month: "short",
     day: "numeric",
-    timeZone: "Africa/Cairo",
+    timeZone: "Europe/Paris",
     hour: "2-digit",
     minute: "2-digit",
   };

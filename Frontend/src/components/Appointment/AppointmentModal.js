@@ -48,8 +48,10 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
         },
         config
       );
-      navigate(paymentResponse.data.url);
+      console.log(paymentResponse)
+      window.location.href = paymentResponse.data.url;
     } catch (error) {
+      console.log(error)
       setErrorAppointModal(true);
       setErrorMessage("An error has occured. please try again later");
       return;
