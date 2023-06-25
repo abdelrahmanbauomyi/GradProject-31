@@ -9,6 +9,7 @@ import axios from "axios";
 import headersConfig from "../../utils/headersConfig";
 import { useSelector } from "react-redux";
 import timeFormatter from "../../utils/timeFormatter";
+import { useNavigate } from "react-router-dom";
 
 const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   const [bookings, setBookings] = useState([]);
@@ -20,6 +21,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
     "An Error has occurred, Please try again later."
   );
   const { userInfo } = useSelector((state) => state.userLogin);
+  const navigate = useNavigate();
   useEffect(() => {
     setBookings(() => {
       const bookings = doctor.Bookings.filter(
@@ -40,12 +42,13 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
     let paymentResponse, bookingResponse;
     try {
       paymentResponse = await axios.post(
-        "ADD URL HERE",
+        "http://localhost:8000/booking/reserveappointment",
         {
           appointmentId: bookingId,
         },
         config
       );
+      navigate(paymentResponse.data.url);
     } catch (error) {
       setErrorAppointModal(true);
       setErrorMessage("An error has occured. please try again later");

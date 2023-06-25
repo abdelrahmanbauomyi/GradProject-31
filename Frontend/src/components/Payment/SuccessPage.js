@@ -8,7 +8,7 @@ const SuccessPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const updateInDataBase = async () => {
-      const response = await axios.post("PUT URL HERE", {
+      const response = await axios.post("http://localhost:8000/checkout-success", {
         appointmendId: id,
       });
       if (response.ok) {

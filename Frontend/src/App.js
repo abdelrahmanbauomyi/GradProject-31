@@ -58,7 +58,7 @@ function App() {
           <Route path="/watchVideo" element={<VideoWatch />} />
           <Route path="/CreateApp" element={<CreateApp />} />
           <Route path="/success/:id" element={<SuccessPage />} />
-          <Route path="/failure" element={<FailurePage />} />
+          <Route path="/cancel" element={<FailurePage />} />
         </Routes>
       </Router>
     </>
