@@ -147,8 +147,9 @@ exports.getDoctor = async (req, res) => {
       include: [
         {
           model: Booking,
-          where: { status: 'pending' },
-          attributes: ['startTime', 'endTime', 'status'],
+          // this was commented out because it has a dependency on the doctor page while showing its bookings
+         // where: { status: 'pending' },
+          attributes: ['startTime', 'endTime', 'status',"rating","comment" , "appointmentId"],
         },
       ],
     });
@@ -283,7 +284,7 @@ exports.searchDoctors = async (req, res) => {
       include: [
         {
           model: Booking,
-          where: { status: 'pending' },
+          //where: { status: 'pending' },
           attributes: ['startTime', 'endTime', 'status'],
         },
       ],
@@ -297,6 +298,7 @@ exports.searchDoctors = async (req, res) => {
 };
 
 // !!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK
+// !!!!!!! CAN BE REPLACED BY ADDING THE BOOKING MODEL VALUES TO THE GET DOCTOR REQUEST
 exports.getReviews = (req, res, next) => {
   console.log('ALIVE');
 

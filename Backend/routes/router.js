@@ -55,8 +55,11 @@ router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
 router.post(
   '/booking/reserveappointment',
   authUser,
-  bookingHandler.reserveAppointment
+  bookingHandler.payAppointment
 );
+
+router.post('/checkout-success',authUser,bookingHandler.reserveAppointment); //to be tested
+
 router.delete(
   '/booking/deleteappointment',
   authUser,
@@ -81,5 +84,6 @@ router.get('/faq', faqHandler.getAllFAQ);
 router.post('/faq', faqHandler.createFAQ);
 
 router.patch('/review', authUser, ratingHandler.createReview);
+router.get('/review', ratingHandler.getBestReviews);
 
 module.exports = router;

@@ -38,6 +38,8 @@
     "prettier": "^2.8.4",
     "sequelize": "^6.29.0",
     "socket.io": "^4.6.1",
+    "socketio-file-upload": "^0.7.3",
+    "stripe": "^12.10.0",
     "supertest": "^6.3.3"
   }
 }

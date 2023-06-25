@@ -34,9 +34,12 @@ To create a login-system for the 1st version of the project, A client can sign u
 - - - -
 ### Booking
 
-- addAppoitments [doctor's token required ] : 'Booking/addAppoitments' [POST]
+- addAppoitments [doctor's token required ] : 'Booking/addAppoitments' [POST] 
 - reserveAppoitments [user's token required] : 'Booking/reserveAppoitments' [POST]
-- deleteAppoitments [user's token required] : 'Booking/delete' [DELETE]
+- deleteAppoitments [doctor's token required] : 'Booking/delete' [DELETE]
+- Show Available :'/booking/available' [GET]
+- user history [user's token required] :'/booking/userhistory' [GET]
+- doctor history [doctor's token required] : '/booking/doctorhistory' [GET]
 
 - - - -
 ## Data Shapes
