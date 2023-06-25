@@ -48,38 +48,14 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
       );
     } catch (error) {
       setErrorAppointModal(true);
-      setErrorMessage(
-        "An error has occured while verifying your credit card. please check your credit card and try again later"
-      );
+      setErrorMessage("An error has occured. please try again later");
       return;
     }
-    if (paymentResponse.data.url === "Success") {
-      try {
-        bookingResponse = await axios.post(
-          "http://localhost:8000/booking/reserveappointment",
-          {
-            appointmentId: bookingId,
-          },
-          config
-        );
-      } catch (error) {
-        setErrorAppointModal(true);
-        setErrorMessage("An error has occured. Please try again later");
-        return;
-      }
-    } else {
-      setErrorAppointModal(true);
-      setErrorMessage(
-        "An error has occured while verifying your credit card. please check your credit card and try again later"
-      );
-      return;
-    }
-
-    setSuccessfulAppointmentModal(true);
+    /* setSuccessfulAppointmentModal(true);
     setTimeout(() => {
       setSuccessfulAppointmentModal(false);
       setBookingModal(false);
-    }, 700);
+    }, 700); */
   };
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   if (successfulAppointmentModal)

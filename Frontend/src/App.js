@@ -21,9 +21,11 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import DoctorPage from "./DoctorComponents/DoctorPage/DoctorPage";
 import Announcements from "./Screens/Announcements";
-import VideoMeeting from "./chats/VideoMeeting"
+import VideoMeeting from "./chats/VideoMeeting";
 import VideoWatch from "./components/VideoWatch/VideoWatch";
 import CreateApp from "./DoctorComponents/DrScreens/CreateApp";
+import SuccessPage from "./components/Payment/SuccessPage";
+import FailurePage from "./components/Payment/FailurePage";
 function App() {
   return (
     <>
@@ -39,14 +41,8 @@ function App() {
           <Route path="/CheckUp" element={<CheckUp />} />
           <Route path="/BalanceHormones" element={<BalanceHormones />} />
           <Route path="/Coivd" element={<Coivd />} />
-          <Route
-            path="/myappointments"
-            element={<MyAppointments/>}
-          />
-            <Route
-            path="/announcements"
-            element={<Announcements/>}
-          />
+          <Route path="/myappointments" element={<MyAppointments />} />
+          <Route path="/announcements" element={<Announcements />} />
           <Route path="/favourite_articles" element={<FavouriteArticles />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/Contact Us" element={<ContactUs />} />
@@ -58,11 +54,12 @@ function App() {
           <Route path="/SideScreen" element={<SideScreen />} />
           <Route path="/DoctorEdit" element={<DoctorEdit />} />
           <Route path="/doctor/:doctorId" element={<DoctorPage />} />
-          <Route path="/VideoMeeting" element={<VideoMeeting/>} />
-          <Route path='/watchVideo' element={<VideoWatch/>}/>
-          <Route path='/CreateApp' element={<CreateApp/>}/>
+          <Route path="/VideoMeeting" element={<VideoMeeting />} />
+          <Route path="/watchVideo" element={<VideoWatch />} />
+          <Route path="/CreateApp" element={<CreateApp />} />
+          <Route path="/success/:id" element={<SuccessPage />} />
+          <Route path="/failure" element={<FailurePage />} />
         </Routes>
-        
       </Router>
     </>
   );
