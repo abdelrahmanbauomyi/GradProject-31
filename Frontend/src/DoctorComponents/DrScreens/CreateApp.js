@@ -8,6 +8,8 @@ import { Calendar } from 'react-calendar';
 import DrSideBar from '../DrSideBar/DrSideBar';
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-calendar/dist/Calendar.css';
+import axios from 'axios';
+import headersConfig from '../../utils/headersConfig';
 
 
 
@@ -26,6 +28,16 @@ function CreateApp() {
       endTime: dayjs(AppDate).format('YYYY-MM-DD') + ' ' + dayjs(endTime).format('HH:mm:ss'),
       duration: duration
     };
+    const config = headersConfig("/booking/addappointment");
+    axios.post(
+      "http://localhost:8000/booking/addappointment",
+      appointmentData,
+      config
+    );
+
+
+
+
     console.log("Your Sumbitted data is", appointmentData); 
     setShowMessage(true);    
   };
