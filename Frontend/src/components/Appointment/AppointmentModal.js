@@ -15,6 +15,10 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   const [bookingId, setBookingId] = useState("");
   const [successfulAppointmentModal, setSuccessfulAppointmentModal] =
     useState(false);
+  const [errorAppointModal, setErrorAppointModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "An Error has occurred, Please try again later."
+  );
   const { userInfo } = useSelector((state) => state.userLogin);
   useEffect(() => {
     setBookings(() => {
@@ -32,20 +36,50 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
   const bookingSubmitHandler = async (event) => {
     event.preventDefault();
     const config = headersConfig("booking/reserveappointment");
-    const response = await axios.post(
-      "http://localhost:8000/booking/reserveappointment",
-      {
-        appointmentId: bookingId,
-      },
-      config
-    );
-    if (response.request.status === 201) {
-      setSuccessfulAppointmentModal(true);
-      setTimeout(() => {
-        setSuccessfulAppointmentModal(false);
-        setBookingModal(false);
-      }, 700);
+
+    let paymentResponse, bookingResponse;
+    try {
+      paymentResponse = await axios.post(
+        "ADD URL HERE",
+        {
+          appointmentId: bookingId,
+        },
+        config
+      );
+    } catch (error) {
+      setErrorAppointModal(true);
+      setErrorMessage(
+        "An error has occured while verifying your credit card. please check your credit card and try again later"
+      );
+      return;
     }
+    if (paymentResponse.data.url === "Success") {
+      try {
+        bookingResponse = await axios.post(
+          "http://localhost:8000/booking/reserveappointment",
+          {
+            appointmentId: bookingId,
+          },
+          config
+        );
+      } catch (error) {
+        setErrorAppointModal(true);
+        setErrorMessage("An error has occured. Please try again later");
+        return;
+      }
+    } else {
+      setErrorAppointModal(true);
+      setErrorMessage(
+        "An error has occured while verifying your credit card. please check your credit card and try again later"
+      );
+      return;
+    }
+
+    setSuccessfulAppointmentModal(true);
+    setTimeout(() => {
+      setSuccessfulAppointmentModal(false);
+      setBookingModal(false);
+    }, 700);
   };
   if (!userInfo) return <Modal onClose={onClose}>Please sign in</Modal>;
   if (successfulAppointmentModal)
@@ -59,6 +93,17 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
         Your Appointment has been submitted.
       </Modal>
     );
+  if (errorAppointModal)
+    return (
+      <Modal
+        onClose={() => {
+          setErrorAppointModal(false);
+        }}
+      >
+        {errorMessage}
+      </Modal>
+    );
+
   return (
     <Modal onClose={onClose}>
       <Container>
@@ -73,7 +118,7 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={bookingId} 
+                value={bookingId}
                 onChange={handleChange}
                 label="Booking time"
                 sx={{
