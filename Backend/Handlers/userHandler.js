@@ -45,6 +45,7 @@ exports.loginUser = async (req, res) => {
           httpOnly: true,
           // secure: true, set this on production
           sameSite: 'strict',
+          maxAge : 86400000 * 10
         });
         user.userType = "user";
         res.status(200).json(user);
@@ -78,7 +79,7 @@ exports.createUser = async (req, res) => {
 
     const user = await User.create(json);
     const token = jwt.sign(
-      { _id: user.id, userType: 'user' },
+      { _id: user.id, userType: 'user'  },
       process.env.JWT_STRING
     );
     await User.update(
@@ -92,6 +93,7 @@ exports.createUser = async (req, res) => {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
+      maxAge : 86400000 * 10
     });
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
@@ -130,7 +132,7 @@ exports.logoutFromAllDevices = async (req, res) => {
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    res.send(req.user);
+    res.status(200).send(req.user);
   } catch (e) {
     res.send({ error: e });
   }

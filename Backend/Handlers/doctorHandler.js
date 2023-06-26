@@ -34,6 +34,7 @@ exports.loginDoctor = async (req, res) => {
           httpOnly: true,
           // secure: true, set this on production
           sameSite: 'strict',
+          maxAge : 86400000 * 10
         });
         doctor.userType = "doctor";
         res.status(200).json(doctor);
@@ -116,6 +117,7 @@ exports.createDoctor = async (req, res) => {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
+      maxAge : 86400000 * 10
     });
     const port = process.env.BACK_END_PORT;
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
@@ -147,8 +149,9 @@ exports.getDoctor = async (req, res) => {
       include: [
         {
           model: Booking,
-          where: { status: 'pending' },
-          attributes: ['startTime', 'endTime', 'status'],
+          // this was commented out because it has a dependency on the doctor page while showing its bookings
+         // where: { status: 'pending' },
+          attributes: ['startTime', 'endTime', 'status',"rating","comment" , "appointmentId"],
         },
       ],
     });
@@ -176,20 +179,22 @@ exports.deleteDoctor = async (req, res) => {
 
 exports.logout = async (req, res) => {
   try {
-    const validTokens = req.user.tokens.filter(
-      (token) => token !== req.cookies.token
-    );
-    await Doctor.update(
-      { tokens: validTokens },
-      { where: { id: req.user.id } }
-    );
-    res.cookie('token', '', {
-      expires: new Date('October 13, 1970 11:13:00'),
-      httpOnly: true,
-      // secure: true, set this on production
-      sameSite: 'strict',
-    });
-    res.send(req.user);
+    if(req.user.userType == 'doctor'){
+      const validTokens = req.user.tokens.filter(
+        (token) => token !== req.cookies.token
+      );
+      await Doctor.update(
+        { tokens: validTokens },
+        { where: { id: req.user.id } }
+      );
+      res.cookie('token', '', {
+        expires: new Date('October 13, 1970 11:13:00'),
+        httpOnly: true,
+        // secure: true, set this on production
+        sameSite: 'strict'
+       });
+      res.send(req.user);
+    }
   } catch (e) {
     res.send({ error: e });
   }
@@ -197,14 +202,17 @@ exports.logout = async (req, res) => {
 
 exports.logoutFromAllDevices = async (req, res) => {
   try {
-    await Doctor.update({ tokens: [] }, { where: { id: req.user.id } });
-    res.cookie('token', '', {
-      expires: new Date('October 13, 1970 11:13:00'),
-      httpOnly: true,
-      // secure: true, set this on production
-      sameSite: 'strict',
-    });
-    res.send(req.user);
+    if(req.user.userType == 'doctor'){
+      await Doctor.update({ tokens: [] }, { where: { id: req.user.id } });
+      res.cookie('token', '', {
+        expires: new Date('October 13, 1970 11:13:00'),
+        httpOnly: true,
+        // secure: true, set this on production
+        sameSite: 'strict',
+      });
+      res.send(req.user);
+    }
+
   } catch (e) {
     res.send({ error: e });
   }
@@ -283,7 +291,7 @@ exports.searchDoctors = async (req, res) => {
       include: [
         {
           model: Booking,
-          where: { status: 'pending' },
+          //where: { status: 'pending' },
           attributes: ['startTime', 'endTime', 'status'],
         },
       ],
@@ -297,6 +305,7 @@ exports.searchDoctors = async (req, res) => {
 };
 
 // !!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK
+// !!!!!!! CAN BE REPLACED BY ADDING THE BOOKING MODEL VALUES TO THE GET DOCTOR REQUEST
 exports.getReviews = (req, res, next) => {
   console.log('ALIVE');
 
