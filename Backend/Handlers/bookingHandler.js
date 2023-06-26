@@ -102,10 +102,10 @@ exports.payAppointment = async (req, res) => {
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
-      const result = await Booking.update(
-        { UserId: userId, status: 'pending payment' },
+     /* const result = await Booking.update(
+        { UserId: userId },
         { where: { appointmentId: a_Id } }
-      );
+      );*/
     const appointment = await Booking.findByPk(a_Id);
     const doctorId = appointment.DoctorId;
     const doctor = await  Doctor.findByPk(doctorId);
