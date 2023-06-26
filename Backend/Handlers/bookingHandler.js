@@ -157,6 +157,12 @@ exports.reserveAppointment = async (req, res) => {
     if (decoded._id != req.user.id){
       return res.status(401).json({error: 'Unauthorized Request!'})
     }
+    res.cookie('paymentToken', '', {
+      expires: new Date('October 13, 1970 11:13:00'),
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+    });
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
