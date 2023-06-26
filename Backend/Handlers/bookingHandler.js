@@ -1,5 +1,6 @@
 const dayjs = require('dayjs');
 const stripe = require('stripe')(process.env.STRIPE_KEY);
+const jwt = require('jsonwebtoken');
 const { sequelize, Booking, User, Doctor } = require('../models');
 const { where } = require('sequelize');
 //doctor methods
@@ -107,6 +108,16 @@ exports.payAppointment = async (req, res) => {
         { where: { appointmentId: a_Id } }
       );*/
     const appointment = await Booking.findByPk(a_Id);
+    const token = jwt.sign(
+      {_id: userId, _aid: a_Id},
+      process.env.JWT_STRING
+    );
+    res.cookie('paymentToken', token, {
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+      maxAge :  86400000 * 10
+    });
     const doctorId = appointment.DoctorId;
     const doctor = await  Doctor.findByPk(doctorId);
     const line_items = [{
@@ -141,6 +152,11 @@ exports.payAppointment = async (req, res) => {
 
 exports.reserveAppointment = async (req, res) => {
   try {
+    const token = req.cookies.paymentToken;
+    const decoded = jwt.verify(token, process.env.JWT_STRING);
+    if (decoded._id != req.user.id){
+      return res.status(401).json({error: 'Unauthorized Request!'})
+    }
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
