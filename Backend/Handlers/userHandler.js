@@ -93,7 +93,7 @@ exports.createUser = async (req, res) => {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
-      maxAge : 86400000 * 10
+      maxAge :  86400000 * 10
     });
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
