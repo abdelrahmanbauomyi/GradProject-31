@@ -51,20 +51,20 @@ router.post(
 
 //Booking routes
 //crud operations
-router.post('/booking/addappointment', authUser, bookingHandler.addAppointment);
+router.post('/booking/addappointment', authUser, bookingHandler.addAppointment); //docotr adds an appoitment
 router.post(
   '/booking/reserveappointment',
   authUser,
   bookingHandler.payAppointment
 );
 
-router.post('/checkout-success',authUser,bookingHandler.reserveAppointment); //to be tested
+router.post('/checkout-success', authUser, bookingHandler.reserveAppointment); //to be tested
 
 router.delete(
   '/booking/deleteappointment',
   authUser,
   bookingHandler.deleteAppointment
-);
+); //doctor deletes an appoitemnet
 router.get('/booking/available', bookingHandler.showAvailable);
 //getting the user/doctor history
 router.get('/booking/userhistory', authUser, bookingHandler.userHistory);

@@ -203,7 +203,6 @@ exports.Edit = async (req, res, next) => {
     const allowedUpdates = [
       'firstName',
       'lastName',
-      'password',
       'email',
       'gender',
       'mobilenumber',
