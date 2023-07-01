@@ -26,6 +26,7 @@ import CreateApp from "./DoctorComponents/DrScreens/CreateApp";
 import SuccessPage from "./components/Payment/SuccessPage";
 import FailurePage from "./components/Payment/FailurePage";
 import Skeleton from "./Screens/Skeleton"
+import ChatWindow from "./chats/ChatWindow"
 function App() {
   return (
     <>
@@ -59,6 +60,7 @@ function App() {
           <Route path="/success/:id" element={<SuccessPage />} />
           <Route path="/cancel" element={<FailurePage />} />
           <Route path="/skeleton" element={<Skeleton/>} />
+          <Route path="/chat" element={<ChatWindow/>} />
         </Routes>
       </Router>
     </>
