@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      //! sender and reciever are doctor and patient ID
+      //! sender and reciever are doctor and patient emails
       sender: {
         type: DataTypes.STRING,
         allowNull: false,

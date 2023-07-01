@@ -146,7 +146,6 @@ module.exports = (io, socket) => {
       } else {
         socket.emit("upload did not succeed please reupload");
       }
-
     });
 
     // Error handler:

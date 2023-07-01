@@ -10,6 +10,8 @@ const chatHandler = require('./Handlers/chatHandler');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const schedule = require('node-schedule');
+const crypto = require("crypto");
+const randomId = () => crypto.randomBytes(8).toString("hex");
 //TEST CODE FOR THE DATABASE CONNECTION
 app.use(express.json());
 app.use(cookieParser());
