@@ -12,6 +12,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import {FaFacebookF } from "react-icons/fa";
+import {BsInstagram} from "react-icons/bs"
+import {BsTwitter} from "react-icons/bs"
 
 
 const Footer =() => {
@@ -27,8 +30,8 @@ const Footer =() => {
 
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <a href='/Health tips' >
-                    Health Tips
+                  <a href='/skeleton' >
+                    Interactive dignosis
                   </a>
                 </li>
                 <li>
@@ -92,17 +95,17 @@ const Footer =() => {
                 <p>Follow us!</p>
               <p>
             <MDBBtn outline  floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='facebook-f' />
+            <i><BsInstagram/></i>
             </MDBBtn>
             </p>
             <p>
             <MDBBtn outline  floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='twitter' />
+            <i><BsTwitter/></i>
           </MDBBtn>
           </p>
           <p>
           <MDBBtn outline  floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='instagram' />
+           <i><FaFacebookF/></i>
           </MDBBtn>
           </p>
             </MDBCol>

@@ -11,7 +11,6 @@ import Tips from "./components/NavigationBar/NavbarScreens/Tips";
 import CheckUp from "./components/NavigationBar/NavbarScreens/CheckUp";
 import Coivd from "./components/NavigationBar/NavbarScreens/Covid";
 import ContactUs from "./components/NavigationBar/NavbarScreens/ContactUs";
-import NavBar from "./DoctorComponents/DrNavBar/NavBar";
 import QuestionForm from "./components/Questions/QuestionForm/QuestionFrom";
 import QuestionPage from "./components/Questions/QuestionPage/QuestionPage";
 import DashBoard from "./DoctorComponents/DrScreens/DashBoard";
@@ -26,6 +25,7 @@ import VideoWatch from "./components/VideoWatch/VideoWatch";
 import CreateApp from "./DoctorComponents/DrScreens/CreateApp";
 import SuccessPage from "./components/Payment/SuccessPage";
 import FailurePage from "./components/Payment/FailurePage";
+import Skeleton from "./Screens/Skeleton"
 function App() {
   return (
     <>
@@ -47,7 +47,6 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/Contact Us" element={<ContactUs />} />
           <Route path="/Health Tips" element={<Tips />} />
-          <Route path="/HomePage" element={<NavBar />} />
           <Route path="/ask" element={<QuestionForm />} />
           <Route path="/questions/:questionId" element={<QuestionPage />} />
           <Route path="/DrDashBoard" element={<DashBoard />} />
@@ -59,6 +58,7 @@ function App() {
           <Route path="/CreateApp" element={<CreateApp />} />
           <Route path="/success/:id" element={<SuccessPage />} />
           <Route path="/cancel" element={<FailurePage />} />
+          <Route path="/skeleton" element={<Skeleton/>} />
         </Routes>
       </Router>
     </>

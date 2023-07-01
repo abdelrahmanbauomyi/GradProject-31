@@ -14,6 +14,7 @@ const BalanceHormones = () => {
 
   return (
         <div> 
+   
        <Header/>
        <div className={styles.container} onClick={handleClick}>
         <button className={styles.box} onClick={handleClick} >
@@ -26,7 +27,7 @@ const BalanceHormones = () => {
             <path d="M25 29L19 23L25 17" stroke="#056839" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
         </svg>
     </button>
-<h1>Balancing Hormones Through Nutrition &amp; LifeStyle</h1>
+<h1> Skeleton Instructions and Usage</h1>
 <VerticalTimeline>
   <VerticalTimelineElement
     className={styles.vert}
@@ -35,79 +36,61 @@ const BalanceHormones = () => {
     date="2011 - present"
     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
   >
-    <h3 > Many Natural Ways to </h3>
-    <h4 >Balance Your Hormones</h4>
-    <p>
-    Certain lifestyle practices, including exercising regularly,
-    and eating a nutritious diet rich is protein and fiber can help naturally balance your hormones.
-    </p>
-  </VerticalTimelineElement>
-  <VerticalTimelineElement
-    date="first Step"
-    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-   
-  >
-    <h3 >Eat enough protein </h3>
-    <h4 >at every meal</h4>
-    <p>
-    protein provide essential amino acids that your body can’t make on its own
-    </p>
-  </VerticalTimelineElement>
-  <VerticalTimelineElement
-    date="Second step "
-    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-  >
-    <h3 >Healthy fats</h3>
-    <h4 >Stay away from trans fats.</h4>
-    <p>
-    include omega 3s such as fatty fish, nuts, seeds, avocado, eggs yolk
-    </p>
+    <h3 > Select a structure on the skeleton  </h3>
+    <h4 >to see more information</h4>
   </VerticalTimelineElement>
   <VerticalTimelineElement
     date="Third Step"
     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
   >
-    <h3 >Stay away from sugar </h3>
-    <h4 >and sugary</h4>
-    <p>
-    which can cause insulin resistance and increase belly fat storage
-    </p>
+    <h3 >To view the detailed information</h3>
+    <h4 >click on the "Details" button associated with the selected structure.</h4>
+  </VerticalTimelineElement>
+  <VerticalTimelineElement
+    date="first Step"
+    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+  >
+    
+    <h3 >If you select the "skeleton,"</h3>
+    <h4 >you have many options</h4>
+    
+  </VerticalTimelineElement>
+  <VerticalTimelineElement
+    date="Second step "
+    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+  >
+    <h3 >Hide</h3>
+    <h4 > This option allows you to hide the selected structure from the skeleton. </h4>
+  </VerticalTimelineElement>
+  <VerticalTimelineElement
+    date="Third Step"
+    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+  >
+    <h3 >Fade </h3>
+    <h4 >Fade Only Selected Structure or Fade Everything Else</h4>
   </VerticalTimelineElement>
   <VerticalTimelineElement
     date="Fourth Step"
     iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
   >
-    <h3 >Consume a high fiber diet</h3>
-    <h4 >both soluble and insoluble</h4>
-    <p>
-     Fiber is essential to a healthy diet.
-    </p>
-  </VerticalTimelineElement>
-  <VerticalTimelineElement
-    date="Fifth Step"
-    iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-  >
-    <h3 >Get consistent, </h3>
-    <h4 >high quality sleep</h4>
-    <p>
-    getting enough restorative sleep is crucial for optimal health.
-    </p>
-  </VerticalTimelineElement>
-  <VerticalTimelineElement
-    date="Sixth Step"
-    iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}   
-  >
-    <h3 >Engage in regular exercise</h3>
-    <h4 >strongly influences hormonal health</h4>
-    <p>
-    improving blood flow to your muscles, 
-    </p>
+    <h3 >Isolate</h3>
+    <h4 >Selecting this option isolates the chosen structure, highlighting it while hiding or fading everything else.</h4>
   </VerticalTimelineElement>
   <VerticalTimelineElement
     iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
   />
 </VerticalTimeline>
-</div>
+<div>s
+    <iframe id="embedded-human" 
+      frameBorder="10"
+      style={{aspectRatio: "4 / 3" , width: "50%" ,  margin: "30px" , justifyContent : "center" ,  display : "flex"}}
+      allowFullScreen="true" 
+      loading="lazy"
+      src="https://human.biodigital.com/viewer/?id=5BYi&ui-anatomy-descriptions=true&ui-anatomy-pronunciations=true&ui-anatomy-labels=true&ui-audio=true&ui-chapter-list=false&ui-fullscreen=true&ui-help=true&ui-info=true&ui-label-list=true&ui-layers=true&ui-loader=circle&ui-media-controls=full&ui-menu=true&ui-nav=true&ui-search=true&ui-tools=true&ui-tutorial=false&ui-undo=true&ui-whiteboard=true&initial.none=true&disable-scroll=false&uaid=Lncjq&paid=o_11ab2a89">
+    </iframe>
+  </div>
+  </div>
+
   )
 }
 

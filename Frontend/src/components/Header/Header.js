@@ -111,7 +111,7 @@ const {doctorInfo} = doctorLogin
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to='/'  className={styles.Home}>Home</Nav.Link>
-            <Nav.Link as={Link} to='/Health tips'>Health Tips</Nav.Link>
+            <Nav.Link as={Link} to='/skeleton'>Interactive dignosis</Nav.Link>
               <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
               <Nav.Link as={Link} to='/ask'> Ask a question </Nav.Link>
 

@@ -3,10 +3,7 @@ import DrSideBar from "../DrSideBar/DrSideBar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  approveAppointment,
-  refuseAppointment,
-} from "../../actions/appointmentActions";
+
 import headersConfig from "../../utils/headersConfig";
 import { setRoomId } from "../../chats/data";
 import axios from "axios";
