@@ -45,8 +45,9 @@ exports.loginUser = async (req, res) => {
           httpOnly: true,
           // secure: true, set this on production
           sameSite: 'strict',
+          maxAge: 86400000 * 10,
         });
-        user.userType = "user";
+        user.userType = 'user';
         res.status(200).json(user);
       } else {
         res.status(400).send('invalid email or password');
@@ -92,11 +93,12 @@ exports.createUser = async (req, res) => {
       httpOnly: true,
       // secure: true, set this on production
       sameSite: 'strict',
+      maxAge: 86400000 * 10,
     });
     const verUrl = `http://localhost:${port}/confirmation/${token}`;
 
     emailHandler.sendVerificationEmail(json.email, verUrl);
-    user.userType = "user";
+    user.userType = 'user';
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json(err);
@@ -130,7 +132,7 @@ exports.logoutFromAllDevices = async (req, res) => {
       // secure: true, set this on production
       sameSite: 'strict',
     });
-    res.send(req.user);
+    res.status(200).send(req.user);
   } catch (e) {
     res.send({ error: e });
   }
@@ -201,7 +203,6 @@ exports.Edit = async (req, res, next) => {
     const allowedUpdates = [
       'firstName',
       'lastName',
-      'password',
       'email',
       'gender',
       'mobilenumber',

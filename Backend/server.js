@@ -76,6 +76,11 @@ app.listen({ port: process.env.BACK_END_PORT }, async () => {
 });
 const job1 = schedule.scheduleJob('* * * * *', Checkers.appoitmentStartChecker)
 const job2 = schedule.scheduleJob('* * * * *', Checkers.appoitmentEndChecker)
+const job3 = schedule.scheduleJob('* * * * *', Checkers.appoitmentExpirationChecker)
+const job4 = schedule.scheduleJob('0 0 * * *', Checkers.appoitmentExpirationDelete)
+
+
+
 // this export is required to test the app
 module.exports = app;
 app;

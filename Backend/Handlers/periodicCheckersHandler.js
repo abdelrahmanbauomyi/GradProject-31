@@ -25,13 +25,51 @@ exports.appoitmentEndChecker = async()=>{
     const appoitment=await Booking.update({
         status:"Finished"
     },{
+
         where:{
-            
+            [Sequelize.Op.and]:[{
             endTime:{
-                [Sequelize.Op.lt]:now
+                [Sequelize.Op.lte]:now
+            }},
+            {
+                status:'ongoing'
             }
+        ]
         }
     })
+    console.log("ALIVE")
+    console.log(appoitment) ;
+}
+
+exports.appoitmentExpirationChecker = async()=>{
+    const now = addHoursToDate(new Date,1)
+    const appoitment=await Booking.update({
+        status:'expired'
+    },{
+        where:{
+            [Sequelize.Op.and]:[{
+            startTime:{
+                [Sequelize.Op.lte]:now
+            }},
+            {
+                status:'pending'
+            }
+        ]
+        }
+    })
+    console.log("ALIVE")
+    console.log(appoitment) ;
+}
+
+exports.appoitmentExpirationDelete = async()=>{
+    const now = addHoursToDate(new Date,1)
+    const appoitment=await Booking.delete(
+        {
+            where:{
+                status : "expired"
+            }
+        }
+    )
     console.log("ALIVE")
     console.log(appoitment) ;
 }

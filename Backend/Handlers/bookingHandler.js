@@ -1,5 +1,6 @@
 const dayjs = require('dayjs');
 const stripe = require('stripe')(process.env.STRIPE_KEY);
+const jwt = require('jsonwebtoken');
 const { sequelize, Booking, User, Doctor } = require('../models');
 const { where } = require('sequelize');
 //doctor methods
@@ -79,7 +80,7 @@ exports.doctorHistory = async (req, res) => {
         ],
       });
 
-      const statusOrder = ['ongoing', 'reserved', 'pending', 'Finished'];
+      const statusOrder = ['ongoing', 'reserved', 'pending payment', 'pending' , 'Finished' , 'expired'];
       const statusComparator = (a, b) => {
         const aIndex = statusOrder.indexOf(a.status);
         const bIndex = statusOrder.indexOf(b.status);
@@ -102,11 +103,21 @@ exports.payAppointment = async (req, res) => {
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
-      const result = await Booking.update(
-        { UserId: userId, status: 'pending Payment' },
+     /* const result = await Booking.update(
+        { UserId: userId },
         { where: { appointmentId: a_Id } }
-      );
+      );*/
     const appointment = await Booking.findByPk(a_Id);
+    const token = jwt.sign(
+      {_id: userId, _aid: a_Id},
+      process.env.JWT_STRING
+    );
+    res.cookie('paymentToken', token, {
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+      maxAge :  86400000 * 10
+    });
     const doctorId = appointment.DoctorId;
     const doctor = await  Doctor.findByPk(doctorId);
     const line_items = [{
@@ -128,7 +139,7 @@ exports.payAppointment = async (req, res) => {
       cancel_url: `http://localhost:3000/cancel`
     });
  
-    res.status(303).json({url : session.url});
+    res.status(200).json({url : session.url});
     } else {
       return res.status(401).json('unauthorized request');
     }
@@ -141,9 +152,21 @@ exports.payAppointment = async (req, res) => {
 
 exports.reserveAppointment = async (req, res) => {
   try {
+    const token = req.cookies.paymentToken;
+    const decoded = jwt.verify(token, process.env.JWT_STRING);
+    if (decoded._id != req.user.id){
+      return res.status(401).json({error: 'Unauthorized Request!'})
+    }
+    res.cookie('paymentToken', '', {
+      expires: new Date('October 13, 1970 11:13:00'),
+      httpOnly: true,
+      // secure: true, set this on production
+      sameSite: 'strict',
+    });
     if (req.user.userType == 'user') {
       const userId = req.user.id;
       const a_Id = req.body.appointmentId;
+      console.log(a_Id)
       const result = await Booking.update(
         { UserId: userId, status: 'reserved' },
         { where: { appointmentId: a_Id } }
@@ -193,7 +216,7 @@ exports.userHistory = async (req, res) => {
           },
         ],
       });
-      const statusOrder = ['ongoing', 'reserved', 'pending', 'Finished'];
+      const statusOrder = ['ongoing', 'reserved', 'pending payment', 'Finished' ];
       const statusComparator = (a, b) => {
         const aIndex = statusOrder.indexOf(a.status);
         const bIndex = statusOrder.indexOf(b.status);
