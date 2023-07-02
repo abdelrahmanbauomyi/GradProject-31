@@ -89,7 +89,7 @@ const BookingSection = ({ doctor, bookingModal, setBookingModal }) => {
             className={classes.bookingFlex}
             onClick={() => setBookingModal(true)}
           >
-            book
+            Book Now!
           </button>
         </span>
       </div>

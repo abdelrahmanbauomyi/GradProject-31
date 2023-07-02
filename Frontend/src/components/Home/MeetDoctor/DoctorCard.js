@@ -5,13 +5,13 @@ import ReviewStars from "../../UI/ReviewStars";
 import { Link } from "react-router-dom";
 
 const DoctorCard = ({ doctorName, speciality, doctorId }) => {
-  const avaliable = false;
+  const available = false;
   return (
     <div className={classes.card}>
       <div className={classes.preview}>
         <div className={classes.available}>
           <div
-            style={{ backgroundColor: avaliable ? "#00FF00" : "grey" }}
+            style={{ backgroundColor: available ? "#00FF00" : "grey" }}
             className={classes.dot}
           ></div>
           Available

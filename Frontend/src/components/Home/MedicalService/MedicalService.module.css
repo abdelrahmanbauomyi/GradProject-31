@@ -43,3 +43,18 @@
     margin-top: -40px;
   }
 }
+
+@media only screen and (min-width: 601px) and (max-width:1274px) {.container{
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+height:auto;
+justify-content: left;
+ 
+}
+.flex{
+  width: auto;
+  gap:25px;
+  justify-content: space-between;
+}
+}

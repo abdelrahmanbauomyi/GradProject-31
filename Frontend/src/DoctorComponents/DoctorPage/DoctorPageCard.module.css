@@ -162,3 +162,12 @@
   -webkit-box-align: center;
   align-items: center;
 }
+
+@media only screen and (max-width:670px){
+.imgHolder{
+  width: auto;
+}
+.img{
+  height:100px;
+}
+}

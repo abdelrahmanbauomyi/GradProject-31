@@ -36,6 +36,9 @@ const DoctorPage = () => {
                 <DoctorPageCard />
                 <AboutDoctor />
                 <PatientsReviews />
+                <button className={classes.bookButton}>
+                Book Now!
+              </button>
               </div>
               <BookingSection
                 bookingModal={bookingModal}

@@ -1,80 +1,59 @@
 import React from "react";
 import classes from "./DoctorInfo.module.css";
-import doctor from "../../../assets/doctor2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStethoscope } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import Rating from "@mui/material/Rating";
-import Scheduler from "../../UI/Scheduler";
 import axios from "axios";
 import headersConfig from "../../../utils/headersConfig";
 import { Link } from "react-router-dom";
-import doctorImg from "../../../assets/doctor3.png"
+import doctorImg from "../../../assets/doctor3.png";
 
 function DoctorInfo({ doctor }) {
   const bookingHandler = () => {
     const config = headersConfig("PUT URL HERE");
     axios.post("PUT URL HERE");
+   
   };
+  const available = false;
   return (
     <div>
-      <div className={classes.gridcontainer}>
-        <div className={classes.item1}>
-          <h1><Link to={`/doctor/${doctor.id}`}>{doctor.Dname}</Link></h1>
-          <p>{doctor.speciality}</p>
-          <div className={classes.rating}>
-            <Rating
-              name="simple-controlled"
-              value={4.5}
-              readOnly
-              precision={0.5}
-            />
-          </div>
-        </div>
-        <div className={classes.item2}>
-          <div className={classes.img}>
-            <img src={doctorImg} alt="doctor" />
-          </div>
-        </div>
-        <div className={classes.item3}>
+      <div class={classes.doctorCard}>
+        <div class={classes.doctorImg}> <img src={doctorImg} alt="doctor" /></div>
+        <h2 class={classes.doctorName}>
+          <Link to={`/doctor/${doctor.id}`}>{doctor.Dname}</Link>
+        </h2>
+        <p class={classes.doctorSpecialization}>
           {" "}
-          <div className={classes.info2}>
-            <div>
-              <FontAwesomeIcon
-                className={classes.imgColor1}
-                icon={faStethoscope}
-              />
-              {doctor.speciality}
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className={classes.imgColor1}
-                icon={faLocationDot}
-              />{" "}
-             {doctor.location}
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className={classes.imgColor1}
-                icon={faMoneyBill}
-              />
-              500 LE
-            </div>
-            <div>
-              <FontAwesomeIcon className={classes.imgColor1} icon={faClock} /> 1
-              : 30 hours reamaining
-            </div>
-          </div>
+          <FontAwesomeIcon className={classes.imgColor1} icon={faStethoscope} />
+          {doctor.speciality}
+        </p>
+        <div className={classes.rating}>
+          <Rating
+            name="simple-controlled"
+            value={4.5}
+            readOnly
+            precision={0.5}
+          />
         </div>
-        <div className={classes.item4}>
-          <Scheduler />
-        </div>
+        <p class={classes.doctorCost}>
+          {" "}
+          <FontAwesomeIcon className={classes.imgColor1} icon={faMoneyBill} />
+          Estimated Cost: $100
+        </p>
+        <p class={classes.doctorLocation}>           <FontAwesomeIcon className={classes.imgColor1} icon={faLocationDot} />{" "}
+          {doctor.location}Location: New York</p>
+        <p class={classes.doctorWaitingTime}>
+          {" "}
+          <FontAwesomeIcon className={classes.imgColor1} icon={faClock} />
+          Estimated Waiting Time: 30 minutes
+        </p>
       </div>
-      <button onClick={bookingHandler}></button>
     </div>
   );
 }
 
 export default DoctorInfo;
+
