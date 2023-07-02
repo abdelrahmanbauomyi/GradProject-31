@@ -25,8 +25,9 @@ import VideoWatch from "./components/VideoWatch/VideoWatch";
 import CreateApp from "./DoctorComponents/DrScreens/CreateApp";
 import SuccessPage from "./components/Payment/SuccessPage";
 import FailurePage from "./components/Payment/FailurePage";
-import Skeleton from "./Screens/Skeleton"
-import ChatWindow from "./chats/ChatWindow"
+import Skeleton from "./Screens/Skeleton";
+import ChatWindow from "./chats/ChatWindow";
+import AllQuestions from "./components/Questions/AllQuestions/AllQuestions";
 function App() {
   return (
     <>
@@ -59,8 +60,9 @@ function App() {
           <Route path="/CreateApp" element={<CreateApp />} />
           <Route path="/success/:id" element={<SuccessPage />} />
           <Route path="/cancel" element={<FailurePage />} />
-          <Route path="/skeleton" element={<Skeleton/>} />
-          <Route path="/chat" element={<ChatWindow/>} />
+          <Route path="/skeleton" element={<Skeleton />} />
+          <Route path="/chat" element={<ChatWindow />} />
+          <Route path="/all-questions" element={<AllQuestions />} />
         </Routes>
       </Router>
     </>
