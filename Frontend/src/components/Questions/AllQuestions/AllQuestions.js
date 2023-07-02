@@ -18,8 +18,8 @@ const AllQuestions = () => {
   return (
     <div>
       <Header />
-      <h1 className="text-center">All Questions</h1>
-      <div className="d-flex justify-content-center flex-wrap">
+      <h1 className="text-center mt-5">All Questions</h1>
+      <div className="d-flex justify-content-center flex-wrap gap-3 mt-5">
         {questions.map((question, idx) => (
           <QuestionCard
             key={idx}

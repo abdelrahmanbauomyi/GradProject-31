@@ -47,7 +47,6 @@ export default function QuestionForm(props) {
       config
     );
     if (response.status === 201) {
-      console.log(response);
       setModal(true);
       setModalMessage("You Question has been posted.");
     } else {
@@ -97,13 +96,11 @@ export default function QuestionForm(props) {
                 </MDBAccordion>
               </MDBContainer>
             </MDBCol>
-            <MDBCol lg="6" md="12" className="text-center mt-5">
-              <p>
-                <h5 class="fw-bold">
+            <MDBCol lg="6" md="12" className="mt-5">
+                <h5 className="fw-bold">
                   Still have any questions? Post your question and our staff
                   will answer.
                 </h5>
-              </p>
 
               <form onSubmit={formSubmitHandler}>
                 <MDBInput
