@@ -48,7 +48,6 @@ const AppointmentModal = ({ onClose, doctor, setBookingModal }) => {
         },
         config
       );
-      console.log(paymentResponse)
       window.location.href = paymentResponse.data.url;
     } catch (error) {
       console.log(error)

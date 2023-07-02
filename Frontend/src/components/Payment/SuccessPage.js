@@ -17,7 +17,7 @@ const SuccessPage = () => {
         },
         config
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert("Your Appointment was reserved successfully");
         navigate("/profile_info");
       } else {
