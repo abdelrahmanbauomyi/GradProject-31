@@ -114,6 +114,7 @@ const {doctorInfo} = doctorLogin
             <Nav.Link as={Link} to='/skeleton'>Interactive dignosis</Nav.Link>
               <Nav.Link as={Link} to='/Contact Us'> Contact us </Nav.Link>
               <Nav.Link as={Link} to='/ask'> Ask a question </Nav.Link>
+              <Nav.Link as={Link} to='/all-questions'> See All Questions </Nav.Link>
 
           </Nav>
           <Nav  className='ms-auto'>

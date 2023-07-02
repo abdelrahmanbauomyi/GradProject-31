@@ -20,6 +20,7 @@ export default function QuestionForm(props) {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const [modal, setModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const [FAQ, setFAQ] = useState([]);
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
@@ -29,10 +30,15 @@ export default function QuestionForm(props) {
       .then((result) => setFAQ((res) => result.data));
   }, []);
 
-  const formSubmitHandler = (event) => {
+  const formSubmitHandler = async (event) => {
     event.preventDefault();
+    if (!userDetails.userInfo) {
+      setModal(true);
+      setModalMessage("You need to sign in to ask questions.");
+      return;
+    }
     const config = headersConfig("qa");
-    axios.post(
+    const response = await axios.post(
       "http://localhost:8000/qa",
       {
         title: questionTitle,
@@ -40,7 +46,14 @@ export default function QuestionForm(props) {
       },
       config
     );
-    setModal(true);
+    if (response.status === 201) {
+      console.log(response);
+      setModal(true);
+      setModalMessage("You Question has been posted.");
+    } else {
+      setModal(true);
+      setModalMessage("An error has occurred. Please try again");
+    }
     setQuestionTitle("");
     setQuestionContent("");
   };
@@ -55,7 +68,7 @@ export default function QuestionForm(props) {
                 setModal(false);
               }}
             >
-              <p>You Question has been posted.</p>
+              <p>{modalMessage}</p>
             </Modal>
           )}
 
@@ -100,7 +113,7 @@ export default function QuestionForm(props) {
                   className="mb-4"
                   onChange={(event) => setQuestionTitle(event.target.value)}
                 />
-                
+
                 <MDBTextArea
                   rows={4}
                   label="Your Question"
