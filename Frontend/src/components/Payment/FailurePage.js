@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const FailurePage = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const timer = setTimeout(() => navigate("/"), 3000);
-    return () => clearTimeout(timer);
+    alert("Your payment has failed. Please try again");
+    navigate("/search");
   }, []);
   return <div>Your appointment was not reserved, try again</div>;
 };
