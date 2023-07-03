@@ -24,6 +24,19 @@ export const USER_UPDATE_PROFILE_FAILED  = 'USER_UPDATE_PROFILE_FAILED'
 export const USER_UPDATE_PROFILE_RESET = 'USER_UPDATE_PROFILE_REQUEST'
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Doctor Constants */ 
 
 export const DOCTOR_LOGIN_REQUEST = 'DOCTOR_LOGIN_REQUEST'
@@ -55,14 +68,6 @@ export const DOCTOR_UPDATE_PROFILE_RESET = 'DOCTOR_UPDATE_PROFILE_RESET'
 
 
 
-
-
-
-/* Appointment Constants */ 
-
-
-export const APPROVE_APPOINTMENT = 'APPROVE_APPOINTMENT';
-export const REFUSE_APPOINTMENT = 'REFUSE_APPOINTMENT';
 
 
 

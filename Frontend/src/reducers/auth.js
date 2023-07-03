@@ -48,18 +48,7 @@ export const userRegisterReducers = ( state={} ,action) => {
     }
 }
 
-export const doctorRegisterReducers = ( state={} ,action) => {
-    switch(action.type){
-        case DOCTOR_REGISTER_REQUEST : 
-        return {loading:true}
-        case DOCTOR_REGISTER_SUCCESS:
-            return{loading:false , doctorInfo:action.payload}
-        case DOCTOR_REGISTER_FAILED:
-            return{loading:false , error:action.payload}
-        default :
-        return state
-    }
-}
+
 
 export const userDetailsReducers = (state = {user:{}}, action ) => {
     switch(action.type) {

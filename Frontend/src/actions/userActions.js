@@ -81,7 +81,6 @@ export const login = (email, password) => async (dispatch) => {
       dispatch({
         type: USER_REGISTER_REQUEST,
       })
-  
       const config = {
         headers: {
           'Accept': 'application/json',
@@ -103,13 +102,10 @@ export const login = (email, password) => async (dispatch) => {
           "mobilenumber": values.phoneNumber
         },
         config)
-  
       dispatch({
         type: USER_REGISTER_SUCCESS,
         payload: data,
       })
-  
-      
     localStorage.setItem('userInfo', JSON.stringify(data))
     localStorage.setItem('isLoggedIn', true)
 

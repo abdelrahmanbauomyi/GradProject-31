@@ -22,8 +22,8 @@ export default function QuestionForm(props) {
   const [modal, setModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [FAQ, setFAQ] = useState([]);
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
+  const userLogin = useSelector(state=>state.userLogin)
+const {userInfo} = userLogin
   useEffect(() => {
     axios
       .get("http://localhost:8000/faq", {})
@@ -32,7 +32,7 @@ export default function QuestionForm(props) {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    if (!userDetails.userInfo) {
+    if (!userInfo) {
       setModal(true);
       setModalMessage("You need to sign in to ask questions.");
       return;
