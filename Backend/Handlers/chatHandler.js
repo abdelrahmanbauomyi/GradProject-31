@@ -1,4 +1,3 @@
-
 const { InMemorySessionStore } = require("./sessionStore");
 const sessionStore = new InMemorySessionStore();
 const { InMemoryMessageStore } = require("./messageStore");
@@ -8,7 +7,7 @@ const siofu = require("socketio-file-upload");
 const { sequelize, Doctor, User, Messages, Booking } = require('../models');
 const { Op } = require("sequelize");
 
-module.exports = (io, socket) => {
+module.exports = async (io, socket) => {
 
   var uploader = new siofu();
   uploader.dir = "../ChatFiles";
@@ -22,6 +21,8 @@ module.exports = (io, socket) => {
 
   // emit session details
   socket.emit("session", {
+
+
     sessionID: socket.sessionID,
     email: socket.email,
   });
@@ -31,7 +32,7 @@ module.exports = (io, socket) => {
 
   const users = [];
   const messagesPerUser = new Map();
-  Messages.findAll({
+  const messagess = await Messages.findAll({
     attributes: ["sender", "receiver", "content"],
     where: {
       [Op.or]: [
@@ -39,30 +40,26 @@ module.exports = (io, socket) => {
         { receiver: socket.email }
       ]
     }
-  }).then((messages) => {
-    messages.forEach((message) => {
-      const { sender, receiver, content } = message;
-      const otherUser = socket.email === sender ? receiver : sender;
-      if (messagesPerUser.has(otherUser)) {
-        messagesPerUser.get(otherUser).push({ sender, receiver, content });
-      }
-      else {
-        messagesPerUser.set(otherUser, { sender, receiver, content });
-      }
-    })
-  }).catch((err) => {
-    console.log(err);
-    console.log("error retreiving messages: from database ");
   })
-  Booking.findAll({
+  messagess.forEach((message) => {
+    const { sender, receiver, content } = message;
+    const otherUser = socket.email === sender ? receiver : sender;
+    if (messagesPerUser.has(otherUser)) {
+      messagesPerUser.get(otherUser).push({ sender, receiver, content });
+    }
+    else {
+      messagesPerUser.set(otherUser, { sender, receiver, content });
+    }
+  })
+  const bookings = await Booking.findAll({
     include: [
       {
         model: User,
-        attributes: ['email']
+        attributes: ['email','firstName']
       },
       {
         model: Doctor,
-        attributes: ['email']
+        attributes: ['email','Dname']
       }
     ],
     where: {
@@ -74,23 +71,49 @@ module.exports = (io, socket) => {
       [sequelize.col('Doctor.email'), 'doctor_email'],
       [sequelize.col('User.email'), 'user_email']
     ]
-  }).then((bookings) => {
-    bookings.forEach((booking) =>{
-      const otherUser = (booking.Doctor.email === socket.email )? booking.User.email : booking.Doctor.email;
-      session = sessionStore.findSession(otherUser);
-      users.push({
-        email: otherUser,
-        username: session.username,
-        connected: session.connected,
-        messages: messagesPerUser.get(session.email) || []
-      }
-      )
-    })
-  }).catch((error) => {
-    console.log(error);
-    console.log("error with the users event");
   })
+  users.push({
+    email:socket.email,
+    username:socket.username,
+  })
+  bookings.forEach((booking) => {
+        const userType = (booking.Doctor.email === socket.email)? "user":"Doctor";
+        // const otherUser = (booking.Doctor.email === socket.email) ? booking.User.email : booking.Doctor.email;
+        if(userType === "user"){
+          info = {
+            email :booking.User.email,
+            username : booking.User.firstName,
+
+          }
+        }else if(userType === "Doctor"){
+          info = {
+            email :booking.Doctor.email,
+            username : booking.Doctor.Dname,
+          }
+        }
+        let connection ;
+        if(sessionStore.findSession(info.email)){
+          connection = sessionStore.findSession(info.email).connected
+        }else{
+          connection = false
+        }
+        
+        console.log("session data",connection);
+        users.push({
+          email: info.email,
+          username: info.username,
+          messages: messagesPerUser.get(info.email) || [],
+          connected: connection
+        }
+        )
+        console.log("users",users);
+      })
+
+
+
   socket.emit("users", users);
+
+
   // broadcasts that a user to connected to all other users
   socket.broadcast.emit("user connected", {
     email: socket.email,
@@ -98,6 +121,8 @@ module.exports = (io, socket) => {
     connected: true,
     messages: [],
   });
+
+
   socket.on("private message", ({ content, to }) => {
     const message = {
       content,
@@ -107,6 +132,7 @@ module.exports = (io, socket) => {
     socket.to(to).to(socket.email).emit("private message", message);
     messageStore.saveMessage(message);
   });
+
 
   uploader.on("saved", function (event) {
     if (event.file.success) {
@@ -122,17 +148,27 @@ module.exports = (io, socket) => {
       socket.to(event.file.meta.to).to(socket.email).emit("private message", message);
       messageStore.saveMessage(message);
     } else {
+
+
       socket.emit("upload did not succeed please reupload");
+
+
     }
   });
 
   // Error handler:
   uploader.on("error", function (event) {
     console.log("Error from uploader", event);
+
+
     socket.emit("failed to save image please re upload");
+
+
   });
 
+
   socket.on("disconnect", async () => {
+
     user = socket.email
     const matchingSockets = await io.in(socket.email).allSockets();
     const isDisconnected = matchingSockets.size === 0;
