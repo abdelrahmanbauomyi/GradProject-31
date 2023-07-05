@@ -1,21 +1,14 @@
+
 .card {
   width: 417.12px;
   height: 494.64px;
   border-radius: 13.03px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  font-family: "poppins";
   padding: 0 57px;
-
   padding-top: 45px;
 }
 
-p,
-h2,
-button,
-.available {
-  font-weight: 900 !important;
-}
 .preview {
   margin-bottom: 19px;
 }
@@ -30,6 +23,13 @@ button,
   align-items: center;
   justify-content: center;
   color: #404040;
+  gap:4px;
+}
+
+.dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
 .rectangle {
   width: 302.28px;
@@ -61,13 +61,14 @@ button,
   color: #767676;
   margin-bottom: 0.5rem;
 }
-.rating{
-    display: flex;
-    justify-content: center;
+.rating {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
-.rating p{
-    size: 17.37px;
-    color: #404040;
+.rating p {
+  size: 17.37px;
+  color: #404040;
 }
 .button {
   height: 52.12px;
@@ -79,8 +80,88 @@ button,
   color: #4200ff;
   background-color: transparent;
   transition: 0.2s ease-in;
+  margin-top: 20px;
 }
 .button:hover {
   background-color: #4200ff;
   color: white;
+}
+.seeMore{
+  height: 52.12px;
+  width: 256.79px;
+  border-radius: 20.85px;
+  color: #4200ff;
+  border: 1px solid #4200ff;
+  font-size: 17.97px;
+  color: #4200ff;
+  background-color: transparent;
+  transition: 0.2s ease-in;
+}
+
+@media only screen and (max-width: 722px) {.card
+  {
+   width: 300px;
+    min-height: 300px;
+    padding-bottom: 15px;
+    margin:15px auto;
+
+  }
+ .button {
+  width: 200px;
+  font-size: 15px;
+  margin-top: 40px;
+  }
+  .rectangle{
+    width:250px;
+    height: 150px;
+    margin-left: -30px;
+
+  }
+  .available{
+    margin-left: -28px;
+  }
+  .img img {
+    width: 323.99px;
+    height: 170.23px;
+    margin-top: -170px;
+  }
+  .info h2 {
+    font-size: 23.28px;
+    color: #404040;
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (min-width:723px) and (max-width: 1200px) {.card
+  {
+   width: 350px;
+    min-height: 300px;
+    padding-bottom: 15px;
+    margin:15px auto;
+
+  }
+ .button {
+  width: 200px;
+  font-size: 15px;
+  margin-top: 40px;
+  }
+  .rectangle{
+    width:300px;
+    height: 150px;
+    margin-left: -30px;
+
+  }
+  .available{
+    margin-left: -28px;
+  }
+  .img img {
+    width: 323.99px;
+    height: 170.23px;
+    margin-top: -170px;
+  }
+  .info h2 {
+    font-size: 23.28px;
+    color: #404040;
+    margin-top: 30px;
+  }
 }

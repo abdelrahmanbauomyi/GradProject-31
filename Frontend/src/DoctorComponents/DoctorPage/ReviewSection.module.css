@@ -1,0 +1,47 @@
+.reviewContainer{
+  color: rgb(116, 116, 112);
+  border-bottom: 1px solid rgb(218, 218, 218);
+  padding: 15px 30px;
+  width: calc(100% + 25px); 
+
+}
+.reviewHeader{
+  font-size: 18px;
+  margin: 8px 0px 18px;
+  display: grid;
+  grid-template-columns: 66.66% 33.33%;
+  max-height: 20px;
+}
+.subRatingText{
+  display: block;
+  margin: 10px auto auto;
+  font-size: 16px;
+  text-align: center;
+}
+.reviewComment{
+  max-width: 70%;
+    font-size: 13px;
+    font-weight: 400;
+}
+.reviewDate{
+  font-size: 11px;
+    margin-bottom: 5px;
+}
+.reviewName{
+  direction: ltr;
+    font-size: 12px;
+    margin-top: 8px;
+}
+.blueBox{
+  background: #4200ff;
+  color:white;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  font-size: 20px;
+  direction: ltr;
+  padding: 2px 5px;
+  width: max-content;
+  margin: auto;
+  padding-left: 10px;
+}

@@ -1,0 +1,16 @@
+.glasscard {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.15
+  ); /* Use rgba color values to set the opacity of the background */
+  backdrop-filter: blur(
+    5px
+  ); /* Use the backdrop-filter property to create the blur effect */
+  border-radius: 10px; /* Use border-radius to create rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Use box-shadow to create the shadow effect */
+  padding: 20px; /* Add padding to create some space around the content */
+  margin: 20px; /* Add margin to create some space around the card */
+  width: 1200px;
+}

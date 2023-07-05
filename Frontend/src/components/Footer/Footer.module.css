@@ -1,0 +1,49 @@
+.pos {
+  position: sticky;
+  background-color: #4200ff;
+  border-radius: 15px;
+  margin-left: 33%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.nameDoc {
+  margin: 15px;
+  border-radius: 15px;
+
+  text-align: center;
+  height: 55px;
+  width: 580px;
+  position: relative;
+  margin-bottom: 5%;
+}
+
+.findDoc {
+  position: relative;
+  margin-top: 3%;
+  margin-left: 3%;
+  color: white;
+}
+.latest {
+  color: #b4b4b4;
+}
+
+.but {
+  position: absolute;
+  background: #4200ff;
+  padding: 0.6rem 1rem;
+  border: none;
+  color: #fff;
+  border-radius: 15px;
+  right: 20px;
+  bottom: 34px;
+}
+
+.footer {
+  background-color: #f0f0f0;
+}
+
+.col {
+  margin-left: 5%;
+}

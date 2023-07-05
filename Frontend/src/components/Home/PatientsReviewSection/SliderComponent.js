@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import ReviewCard from "./ReviewCard";
 import "./arrow.css";
 import useWidthAndHeight from "../../../hooks/useWidthAndHeight";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 const SliderComponent = () => {
   const [width] = useWidthAndHeight();
   const settings = {
@@ -17,20 +20,24 @@ const SliderComponent = () => {
     pauseOnHover: true,
     swipeToSlide: true,
   };
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const response = await axios.get("http://localhost:8000/review");
+      setReviews(response.data);
+    };
+    fetchReviews()
+  }, []);
+  if (!reviews) return null;
   return (
     <div style={{ width: "80%", margin: "0 auto" }}>
       <Slider {...settings}>
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
+        {reviews.map((review) => (
+          <ReviewCard review= {review} />
+        ))}
+   
+  
+      
       </Slider>
     </div>
   );
