@@ -14,8 +14,8 @@ class InMemorySessionStore extends SessionStore {
       this.sessions = new Map();
     }
   
-    findSession(id) {
-      return this.sessions.get(id);
+    findSession(email) {
+      return this.sessions.get(email);
     }
   
     saveSession(id, session) {

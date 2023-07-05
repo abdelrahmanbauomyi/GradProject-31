@@ -10,6 +10,8 @@ const chatHandler = require('./Handlers/chatHandler');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const schedule = require('node-schedule');
+const crypto = require("crypto");
+const randomId = () => crypto.randomBytes(8).toString("hex");
 //TEST CODE FOR THE DATABASE CONNECTION
 app.use(express.json());
 app.use(cookieParser());
@@ -33,6 +35,9 @@ const onConnection = (socket) => {
 }
 // !! this works if frontend saves email address in local storage
 ChatNamespace.use((socket, next) => {
+    // console.log("\n=====================================================================================================")
+    // console.log(socket.handshake)
+    // console.log("hello");
   const sessionID = socket.handshake.auth.sessionID;
   if (sessionID) {
     // find existing session
@@ -40,20 +45,20 @@ ChatNamespace.use((socket, next) => {
     if (session) {
       socket.sessionID = sessionID;
       // user id = email, username =first,last name from the frontend
-      socket.userID = session.userID;
+      socket.email = session.email;
       socket.username = session.username;
       return next();
     }
   }
   // frontend will have to send the username and userEmail from their side
   const username = socket.handshake.auth.username;
-  const userID = socket.handshake.auth.email;
+  const email = socket.handshake.auth.email;
 
   if (!username) {
     return next(new Error("invalid username"));
   }
-  socket.sessionID = randomId();
-  socket.userID = userID;
+  socket.sessionID = email;
+  socket.email = email;
   socket.username = username;
   next();
 })
@@ -62,7 +67,7 @@ ChatNamespace.on("connection", onConnection);
 app.use('/', userRoutes);
 
 //Server
-app.listen({ port: process.env.BACK_END_PORT }, async () => {
+httpServer.listen({ port: process.env.BACK_END_PORT }, async () => {
   console.log('running!!');
   await sequelize
     .sync
@@ -72,8 +77,14 @@ app.listen({ port: process.env.BACK_END_PORT }, async () => {
   //await sequelize.sync();
   console.log('synced !!');
 });
+
 const job1 = schedule.scheduleJob('* * * * *', Checkers.appoitmentStartChecker)
 const job2 = schedule.scheduleJob('* * * * *', Checkers.appoitmentEndChecker)
+const job3 = schedule.scheduleJob('* * * * *', Checkers.appoitmentExpirationChecker)
+const job4 = schedule.scheduleJob('0 0 * * *', Checkers.appoitmentExpirationDelete)
+
+
+
 // this export is required to test the app
 module.exports = app;
 app;
