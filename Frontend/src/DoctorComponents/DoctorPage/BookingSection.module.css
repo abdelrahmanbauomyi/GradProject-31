@@ -1,0 +1,175 @@
+.bookingSection{
+  width: 40%;
+  padding: 0px;
+  vertical-align: top;
+  position: relative;
+}
+.bookingContainer{
+    width: 100%;
+    background: white;
+    top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.bookingTitle{
+  background: #4200ff;
+  color:white;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.bookingFlex{
+  position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color:red;
+    border:none;
+    padding: 10px 0px;
+    color:white;
+    transition: all 0.2s ease-out 0s;
+}
+.bookingDetails{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+.firstElement{
+  display: flex;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 50%;
+    cursor: auto;
+}
+.firstElementText{
+    margin: 0px 2.5px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(128, 129, 132);
+    font-weight: 700;
+}
+.imgColor1{
+  color: #4200ff;
+  margin-right: 10px;
+font-size: 20px !important;
+}
+
+.one{
+  position: relative;
+}
+.two{
+  display: list-item;
+  list-style: none;
+}
+.locationContainer{
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  border-bottom: 1px solid rgb(218, 218, 218);
+}
+.location{
+  padding: 10px 15px 5px;
+  flex-wrap: nowrap;
+  display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    border-bottom: none;
+}
+.locationIcon{
+  margin-left: 15px;
+  line-height: 1;
+}
+.locationText{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 13px;
+  color: rgb(116, 116, 112);
+
+}
+.moreDetails{
+  margin-top: 5px;
+    font-weight: 700;
+}
+.choose{
+  font-size: 18px;
+    font-weight: 600;
+    line-height: 50px;
+    text-align: center;
+    color:black;
+}
+.schedulerWrapper{
+  background: rgb(245, 245, 245);
+    width: 100%;
+    padding: 18px 0px 0px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+.chedulerContainer{
+  position: relative;
+}
+
+.appointment{
+  text-align: center;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    padding: 15px 0px;
+    margin: 0px;
+    border-top: 1px solid rgb(218, 218, 218);
+    font-size: 16px;
+    color: rgb(116, 116, 112);
+    background-color: rgb(255, 255, 255);
+}
+.bookingFooter{
+  display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 0px 10px;
+}
+.footerIcon{
+color:#4200ff;
+margin-right: 15px;
+font-size: 30px;
+}
+
+.footerText{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 13px;
+  color: rgb(102, 102, 102);
+}
+.reservationText{
+  line-height: 22px;
+  font-weight: 700px !important;
+}
+.bookingFlex:hover{
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+@media only screen and (max-width: 940px) {.bookingSection
+  {
+    display: none;
+  }
+}

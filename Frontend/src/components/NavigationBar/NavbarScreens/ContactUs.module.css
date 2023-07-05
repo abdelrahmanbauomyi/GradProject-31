@@ -1,0 +1,83 @@
+.container {
+  margin-left: 50px;
+  background-color: #fffaf1;
+}
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.form-container {
+  display: flex;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  font-weight: bold !important;
+  margin-bottom: 5px;
+  color: #333;
+}
+.form-row input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 600px;
+}
+.form-row textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 600px;
+  height: 150px;
+}
+.success-message {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.form-roww {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-roww label {
+  font-weight: bold !important;
+  margin-bottom: 5px;
+  color: #333;
+}
+.form-roww input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 650px;
+}
+.form-roww textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 650px;
+  height: 150px;
+}
+
+.button {
+  display: block;
+  width: 40%;
+  height: 40px;
+
+  padding: 8px 20px;
+  border-radius: 5px;
+  background-color: #4200ff;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}

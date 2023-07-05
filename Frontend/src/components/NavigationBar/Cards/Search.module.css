@@ -1,0 +1,46 @@
+.nameDoc {
+  margin: 15px;
+  border-radius: 15px;
+
+  text-align: center;
+  height: 40px;
+  position: relative;
+}
+
+.specialtiy {
+  margin: 15px;
+  border-radius: 15px;
+  height: 40px;
+  text-align: center;
+}
+
+.searchBtn {
+  border: none;
+  border-radius: 20px;
+  background-color: #4200ff !important;
+  margin: 15px;
+}
+.findDoc {
+  position: relative;
+  margin-top: 1%;
+  margin-left: 3%;
+  color: #404040;
+}
+
+.pos {
+  position: sticky;
+  background-color: white;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-top: 220px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (min-width: 875px) {
+  .pos {
+    transform: translate(-50%, -50%);
+  }
+}

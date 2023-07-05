@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+}
+
+.card{
+  background-color: white;
+  height:251.9px;
+  width:271.59px;
+  font-size: 18.47px;
+  color: black;
+  text-align: center;
+  border-radius: 28.743px;
+  box-shadow: 0px 2.8743px 17.2458px -0.718575px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(14.3715px);
+  transition: 0.2s ease-in;
+  padding: 20px 0;
+  font-weight: 600;
+}
+.card>p{
+  text-align: center;
+}
+.card:hover .imgColor1{
+color: white;
+}
+
+.card:hover{
+background-color: #4200ff;
+color: white ;
+transform: scale(1.1);
+}
+.imgColor1{
+  color: #4200ff;
+  width:71px;
+  height:57.5px;
+  margin:45px auto;
+
+}
+@media only screen and (max-width: 600px) {.card
+  {
+   width:250px;
+    min-height: 250px;
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+
+.container {
+  display: grid;
+  grid-template-columns: 250px auto;  /* grid has two columns; content defines width */
+  justify-content: space-evenly;    /* horizontal alignment of grid tracks */
+  align-content: space-between;      /* vertical alignment of grid tracks */
+  height: 1050px;
+  /* background-color: lightgray;
+  border: 1px solid black; */
+  margin-bottom: 30px;
+}
+
+.loc{
+ margin: auto;
+  display: grid;  
+}
+
+.button {
+  height: 61px;
+  width: 185px;
+  border-radius: 20.85px;
+  color: #4200ff;
+  border: 1px solid #4200ff;
+  font-size: 17.97px;
+  color: #4200ff;
+  background-color: transparent;
+  transition: 0.2s ease-in;
+  text-align: center;
+  line-height: 58px;
+ cursor: pointer;
+ margin: auto;  
+
+}
+
+.button:hover {
+  background-color: #4200ff;
+  color: white;
+}
+
+
+
+@media only screen and (max-width: 600px) {.container
+  {
+    display: flex;
+    margin: auto;
+   height: 1050px;
+   justify-content: center;
+  }
+.loc{
+  margin-top: 90px;
+}
+}
+
+@media only screen and (max-width: 1013px) {.container
+  {
+    height: 1050px;
+    grid-template-columns: auto auto;  
+  }
+.loc{
+  margin-top: 90px;
+}
+}

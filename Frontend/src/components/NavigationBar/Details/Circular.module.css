@@ -1,0 +1,122 @@
+.card {
+  box-sizing: border-box;
+  position: absolute;
+  width: 427.01px;
+  height: 427.01px;
+  left: 973.84px;
+  top: 315.07px;
+  border-radius: 50%;
+  border: 26.9268px solid #e7e7e7;
+}
+
+.img {
+  position: absolute;
+  width: 1023.24px;
+  height: 485.6px;
+  left: 0.01px;
+  top: -137.98px;
+  z-index: 1;
+}
+.cardApp {
+  margin: 40px;
+  border-radius: 15px;
+  border: none;
+  width: 252.49px;
+  height: 69.47px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  left: -50%;
+  bottom: 22%;
+  text-transform: none;
+}
+
+.cardSearch {
+  font-size: 12px;
+  text-transform: none;
+}
+
+.cardQualify {
+  margin: 40px;
+  border-radius: 15px;
+  border: none;
+  width: 252.49px;
+  height: 69.47px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  left: -50%;
+  bottom: 39%;
+  z-index: 10;
+}
+.cardRep {
+  margin: 40px;
+  border-radius: 15px;
+  border: none;
+  width: 252.49px;
+  height: 69.47px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+  z-index: 10;
+  left: 30%;
+  bottom: 62%;
+}
+
+.Circluar {
+  position: absolute;
+  width: 327.35px;
+  height: 327.35px;
+  left: 1023.35px;
+  top: 361.98px;
+  border-radius: 50%;
+  background-color: #4200ff;
+  background-image: linear-gradient(#4200ff, rgba(66, 0, 255, 0));
+}
+.wrap {
+  position: absolute;
+  left: -1% !important;
+  bottom: 115% !important;
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .wrap {
+    position: absolute;
+    left: -8% !important;
+    bottom: 115% !important;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .wrap {
+    position: absolute;
+    left: -15% !important;
+    bottom: 115% !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .wrap {
+    position: absolute;
+    left: -21% !important;
+    bottom: 115% !important;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .wrap {
+    position: absolute;
+    left: 6% !important;
+    bottom: 115% !important;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .wrap {
+    position: absolute;
+    left: 20% !important;
+    bottom: 107% !important;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .wrap {
+    display: none;
+  }
+}

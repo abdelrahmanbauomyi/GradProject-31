@@ -1,0 +1,24 @@
+
+.main {
+  width: 100%;
+  height: auto;
+}
+.title {
+  text-align: center;
+  font-size: 2.985625rem;
+  color: #404040;
+}
+.paragraph {
+  text-align: center;
+  font-size: 1.154375rem;
+  color: #b4b4b4;
+  margin-bottom: 3.125rem;
+}
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 2.1875rem;
+  }
+  .paragraph {
+    font-size: 1.125rem;
+  }
+}
